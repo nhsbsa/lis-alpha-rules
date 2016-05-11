@@ -1,0 +1,176 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.1.0 http://maven.apache.org/xsd/settings-1.1.0.xsd
+	http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+ 
+  <groupId>net.nhs.nhsbsa.lis</groupId>
+  <artifactId>lis-alpha-rules</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	<version.jdk>1.7</version.jdk>
+    <sonar.host.url>${sonarUrl}</sonar.host.url>
+    <sonar.projectKey>${project.groupId}:${project.artifactId}</sonar.projectKey>
+    <sonar.projectName>${project.artifactId}</sonar.projectName>
+    <sonar.projectVersion>${project.version}</sonar.projectVersion>
+  </properties>
+
+  <distributionManagement>
+    <repository>
+      <id>bsa-rc</id>
+      <name>bsa-rc</name>
+      <url>${repoUrl}/bsa-rc</url>
+    </repository>
+  </distributionManagement>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+
+        <!-- basic compile & package plugins -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.3</version>
+          <configuration>
+            <source>${version.jdk}</source>
+            <target>${version.jdk}</target>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-war-plugin</artifactId>
+          <version>2.6</version>
+          <configuration>
+            <archive>
+              <manifest>
+                <addClasspath>false</addClasspath>
+              </manifest>
+            </archive>
+            <webResources>
+              <resource>
+                <directory>${basedir}/src/main/webapp</directory>
+                <filtering>true</filtering>
+              </resource>
+            </webResources>
+          </configuration>
+        </plugin>
+
+
+        <!-- code quality -->
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>sonar-maven-plugin</artifactId>
+          <version>2.7.1</version>
+        </plugin>
+        <plugin>
+          <groupId>org.jacoco</groupId>
+          <artifactId>jacoco-maven-plugin</artifactId>
+          <version>0.7.6.201602180812</version>
+          <executions>
+            <execution>
+              <id>pre-unit-test</id>
+              <goals>
+                <goal>prepare-agent</goal>
+              </goals>
+            </execution>
+            <execution>
+              <id>post-unit-test</id>
+              <phase>test</phase>
+              <goals>
+                <goal>report</goal>
+              </goals>
+            </execution>
+            <execution>
+              <id>pre-integration-test</id>
+              <phase>pre-integration-test</phase>
+              <goals>
+                <goal>prepare-agent-integration</goal>
+              </goals>
+            </execution>
+            <execution>
+              <id>post-integration-test</id>
+              <phase>post-integration-test</phase>
+              <goals>
+                <goal>report-integration</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>br.com.softplan.security.zap</groupId>
+          <artifactId>zap-maven-plugin</artifactId>
+          <version>1.2.0-0</version>
+          <configuration>
+            <zapPort>${zapPort}</zapPort>
+            <zapHost>${zapHost}</zapHost>
+            <targetUrl>${zapTargetUrl}</targetUrl>
+          </configuration>
+        </plugin>
+
+        <!-- deploy -->
+        <plugin>
+          <groupId>org.apache.tomcat.maven</groupId>
+          <artifactId>tomcat7-maven-plugin</artifactId>
+          <version>2.2</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
+  </build>
+
+  <profiles>
+    <profile>
+      <id>zap</id>
+      <properties>
+        <sonar.zaproxy.reportPath>${project.build.directory}/zap-reports/zapReport.xml</sonar.zaproxy.reportPath>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>sonar-maven-plugin</artifactId>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+	
+    <profile>
+      <id>sonar</id>
+      <properties>
+        <sonar.java.codeCoveragePlugin>jacoco</sonar.java.codeCoveragePlugin>
+        <sonar.surefire.reportsPath>/target/surefire-reports</sonar.surefire.reportsPath>
+        <sonar.jacoco.reportPath>target/jacoco.exec</sonar.jacoco.reportPath>
+        <sonar.jacoco.itReportPath>target/jacoco-it.exec</sonar.jacoco.itReportPath>
+      </properties>
+      <build>
+        <pluginManagement>
+          <plugins>
+            <plugin>
+              <groupId>org.codehaus.mojo</groupId>
+              <artifactId>sonar-maven-plugin</artifactId>
+              <version>2.7.1</version>
+            </plugin>
+          </plugins>
+        </pluginManagement>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>sonar-maven-plugin</artifactId>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+</project>

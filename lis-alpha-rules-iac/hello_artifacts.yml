@@ -1,0 +1,8 @@
+---
+webapp_artifacts:
+  tomcat:
+    - group_id: net.nhs.nhsbsa.devops
+      artifact_id: helloworld
+      version:
+      type: war
+      context: helloworld
