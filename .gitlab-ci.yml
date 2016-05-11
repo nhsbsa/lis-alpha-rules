@@ -1,0 +1,152 @@
+image: nhsbsa/docker-centos-iac:latest
+
+stages:
+  - build
+  - test-deploy
+  - test
+  - deploy
+
+before_script:
+  - printenv | sort
+  - git clone git@${CI_GIT_HOST}:devops/bsa-ci.git
+
+# feature job
+# for every feature* branch:
+# perform maven install to perform compile, test and code quality checks
+feature-build:
+  stage: build
+  only:
+    - /^feature.*$/
+  script:
+    # mvn to compile, test and qa changes
+    - mvn -B -Psonar clean install sonar:sonar
+    - bsa-ci/ci-sonar.sh
+
+# develop job
+# for every merge to master:
+# - updates the POM version to major.minor.git-hash
+# - commits to a new branch named after POM version
+master-creates-release-candidate:
+  stage: build
+  only:
+    - master
+  script:
+    # general git config
+    - bsa-ci/ci-git.sh init
+
+    # new version number
+    - oldVersion=$(bsa-ci/ci-mvn-version.sh get)
+    - newVersion=`echo $oldVersion | bsa-ci/ci-mvn-version.sh update $CI_BUILD_ID`
+
+    # new git branch
+    - bsa-ci/ci-git.sh to-ssh
+    - gitBranch="rc/hello-$newVersion"
+    - git checkout -b "$gitBranch"
+
+    # update README.md with link to built binary
+    - echo "[Release Candidate $newVersion]($REPO_URL/bsa-rc/)" | cat - README.md > /tmp/out && mv /tmp/out README.md
+
+    # update iac artifacts version
+    - bsa-ci/ci-iac-version.sh set helloworld-iac/hello_artifacts.yml $newVersion
+
+    # update maven version number and mvn install to compile, test and qa changes
+    - bsa-ci/ci-mvn-version.sh set $newVersion
+    - mvn -B -Psonar -DsonarUrl=$SONAR_URL -Dsonar.branch=release clean install sonar:sonar
+    - bsa-ci/ci-sonar.sh
+    - cat target/sonar/report-task.txt
+
+    # commit changes to branch
+    - git ls-files . | grep 'pom.xml' | xargs git add
+    - git add README.md
+    - git add helloworld-iac/hello_artifacts.yml
+    - git commit -m "Release branch $gitBranch"
+
+    # push new branch
+    - bsa-ci/ci-git.sh push $gitBranch
+
+# release job
+# for every release* branch:
+# perform maven install and deploy:deploy
+rc-binary-deploy:
+  stage: build
+  only:
+    - /^rc.*$/
+  script:
+    # mvn install to compile, test and qa changes
+    # then deploy:deploy to push artifacts up to binary repo
+    - mvn -B -DrepoUrl=$REPO_URL clean install deploy:deploy
+
+rc-iac-deploy-local:
+  stage: test-deploy
+  only:
+    - /^rc.*$/
+  script:
+    # clone iac
+    - git clone git@${CI_GIT_HOST}:devops/iac-control.git
+
+    # update the hello_artifacts.yml
+    - cp helloworld-iac/hello_artifacts.yml iac-control/ansible/vars/hello_artifacts.yml
+
+    # run the iac-control terraform
+    - ( cd iac-control && bin/iac_bootstrap.rb --verbose )
+
+rc-zap-test:
+  stage: test
+  only:
+    - /^rc.*$/
+  services:
+    - nhsbsa/owasp-zap:latest
+  script:
+    # clone iac
+    - git clone git@${CI_GIT_HOST}:devops/iac-control.git
+    - eval $(cd iac-control && bin/generate_tfvars.rb)
+    - baseUrl="http://env${subnet}-hello00.node.consul:8080/helloworld"
+    #- curl http://env${subnet}-hello00.node.consul:8080
+    # mvn install to compile, test and qa changes
+    - >
+      mvn -B -Pzap -DzapPort=$NHSBSA__OWASP_ZAP_PORT_8080_TCP_PORT -DzapHost=$NHSBSA__OWASP_ZAP_PORT_8080_TCP_ADDR
+      -DzapTargetUrl=$baseUrl
+      -DsonarUrl=$SONAR_URL  -Dsonar.branch=release
+      install br.com.softplan.security.zap:zap-maven-plugin:analyze sonar:sonar
+    - bsa-ci/ci-sonar.sh
+
+rc-acceptance-test:
+  stage: test
+  only:
+    - /^rc.*$/
+  script:
+    # iac to get environment subnet
+    - git clone git@${CI_GIT_HOST}:devops/iac-control.git
+    - eval $(cd iac-control && bin/generate_tfvars.rb)
+    # get base url
+    - baseUrl="http://env${subnet}-hello00.node.consul:8080/helloworld"
+    # hw-acceptance-test does the hard work of testing
+    - git clone git@${CI_GIT_HOST}:devops/helloworld-acceptance-test.git
+    - (cd helloworld-acceptance-test && cucumber testurl=$baseUrl helloWorld.feature )
+
+rc-capacity-test:
+  stage: test
+  only:
+    - /^rc.*$/
+  script:
+    - echo TODO
+
+rc-iac-deploy:
+  stage: deploy
+  only:
+    - /^rc.*$/
+  script:
+    # general git config
+    - bsa-ci/ci-git.sh init
+
+    # clone iac
+    - git clone git@${CI_GIT_HOST}:devops/iac-control.git
+
+    # update the hello_artifacts.yml
+    - cp helloworld-iac/hello_artifacts.yml iac-control/ansible/vars/hello_artifacts.yml
+
+    # commit new artifacts yml into iac-control
+    - POM_VERSION=$(bsa-ci/ci-mvn-version.sh get)
+    - ( cd iac-control ../bsa-ci/ci-git.sh to-ssh )
+    - ( cd iac-control && git checkout -b "feature/hello-$POM_VERSION" && git add ansible/vars/hello_artifacts.yml && git commit -m "feature/hello-$POM_VERSION" )
+    - ( cd iac-control && git push --set-upstream origin feature/hello-${POM_VERSION} )
