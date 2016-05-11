@@ -13,7 +13,7 @@
   <groupId>net.nhs.nhsbsa.lis</groupId>
   <artifactId>lis-alpha-rules</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <packaging>pom</packaging>
+  <packaging>pom</packaging> 
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
