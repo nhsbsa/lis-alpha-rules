@@ -1,0 +1,8 @@
+/target/
+/bsa-ci/
+/iac-control/
+.classpath
+.project
+/.settings/
+/bsa-ci/
+/iac-control/
