@@ -17,7 +17,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <version.jdk>1.8</version.jdk>
+    <version.jdk>1.7</version.jdk>
     <version.spring-boot>1.3.5.RELEASE</version.spring-boot>
     <sonar.host.url>${sonarUrl}</sonar.host.url>
     <sonar.projectKey>${project.groupId}:${project.artifactId}</sonar.projectKey>
