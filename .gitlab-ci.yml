@@ -32,7 +32,7 @@ master-creates-release-candidate:
     - master
   script:
     # create new release candidate
-    - (cd bsa-cli && bundle install)
+    - (cd bsa-ci && bundle install)
     - bsa-ci/create-release-candidate.rb
 
 # release job
