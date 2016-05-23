@@ -33,7 +33,7 @@ master-creates-release-candidate:
   script:
     # create new release candidate
     - (cd bsa-ci && bundle install)
-    - ruby --debug bsa-ci/create-release-candidate.rb --verbose
+    - bsa-ci/create-release-candidate.rb --verbose
 
 # release job
 # for every release* branch:
