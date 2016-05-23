@@ -9,6 +9,7 @@ stages:
 before_script:
   - printenv | sort
   - git clone git@${CI_GIT_HOST}:devops/bsa-ci.git
+  - (cd bsa-ci && bundle install)
 
 # feature job
 # for every feature* branch:
@@ -32,7 +33,6 @@ master-creates-release-candidate:
     - master
   script:
     # create new release candidate
-    - (cd bsa-ci && bundle install)
     - bsa-ci/create-release-candidate.rb --verbose
 
 # release job
