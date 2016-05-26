@@ -9,6 +9,7 @@ stages:
 before_script:
   - printenv | sort
   - git clone git@${CI_GIT_HOST}:devops/bsa-ci.git
+  - (cd bsa-ci && bundle config --global silence_root_warning 1)
   - (cd bsa-ci && bundle install)
 
 # feature job
