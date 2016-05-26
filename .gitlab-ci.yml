@@ -34,7 +34,7 @@ master-creates-release-candidate:
     - master
   script:
     # create new release candidate
-    - bsa-ci/create-release-candidate.rb --verbose
+    - bundle exec bsa-ci/create-release-candidate.rb --verbose
 
     # script:
     #   # general git config
