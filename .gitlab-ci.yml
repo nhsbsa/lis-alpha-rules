@@ -9,9 +9,7 @@ stages:
 before_script:
   - printenv | sort
   - git clone git@${CI_GIT_HOST}:devops/bsa-ci.git
-  - (cd bsa-ci && bundle config --global silence_root_warning true)
   - (cd bsa-ci && bundle install)
-  - cat pom.xml
 
 # feature job
 # for every feature* branch:
@@ -35,7 +33,7 @@ master-creates-release-candidate:
     - master
   script:
     # create new release candidate
-    - bsa-ci/create-release-candidate.rb --verbose
+    - bsa-ci/create_release_candidate.rb --verbose
 
     # script:
     #   # general git config
