@@ -1,8 +1,8 @@
 ---
 webapp_artifacts:
   tomcat:
-    - group_id: net.nhs.nhsbsa.devops
-      artifact_id: helloworld
+    - group_id: net.nhs.nhsbsa.lis.lis-alpha-rules
+      artifact_id: lis-alpha-rules-ws
       version:
-      type: war
-      context: helloworld
+      type: jar
+      context: lis-rules
