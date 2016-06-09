@@ -1,5 +1,7 @@
 package net.nhs.nhsbsa.lis.rules.client;
 
+import org.springframework.util.Assert;
+
 /**
  * Builder to specify and retrieve URIs for RESTful resource endpoint.
  */
@@ -18,6 +20,7 @@ public class RestEndpointBuilder {
 	public String deleteResourceUri;
 
 	public RestEndpointBuilder(String baseUri) {
+		Assert.notNull(baseUri, "REST Endpoint must have a base URI defined.");
 		this.baseUri = baseUri;
 	}
 	
@@ -79,6 +82,10 @@ public class RestEndpointBuilder {
 
 	public String getPostResourceUri() {
 		return postResourceUri;
+	}
+
+	public String getDeleteResourceUri() {
+		return deleteResourceUri;
 	}
 	
 }
