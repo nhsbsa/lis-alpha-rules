@@ -13,18 +13,25 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.client.MockRestServiceServer;
+import org.springframework.web.client.RestTemplate;
 
 import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
 
 public class AssessmentClientTest {
 
-	private AssessmentRestClient client = new AssessmentRestClient();
+	private RestTemplate restTemplate;
 	private MockRestServiceServer mockServer;
+	private AssessmentRestClient client;
 
 	@Before
 	public void setup() {
-
-		mockServer = MockRestServiceServer.createServer(client.getRestTemplate());
+		
+		restTemplate = new RestTemplate();
+		mockServer = MockRestServiceServer.createServer(restTemplate);
+		RestEndpointBuilder restEndpointBuilder = new RestEndpointBuilder("/assessments")
+				.withGetResource("/{id}")
+				.withPutResource("/{id}");
+		client = new AssessmentRestClient(restTemplate, restEndpointBuilder);
 	}
 
 	@Test
