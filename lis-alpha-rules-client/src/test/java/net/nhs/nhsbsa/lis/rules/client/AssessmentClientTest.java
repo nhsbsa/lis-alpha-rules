@@ -28,12 +28,27 @@ public class AssessmentClientTest {
 	}
 
 	@Test
-	public void test() {
+	public void testGet() {
 
 		mockServer.expect(requestTo("/assessments/42")).andExpect(method(HttpMethod.GET))
 				.andRespond(withSuccess(resource("/fixture/assessment.json"), MediaType.APPLICATION_JSON));
 
 		Assessment actual = client.get("42");
+		assertNotNull(actual);
+		assertEquals("42", actual.getId());
+
+		mockServer.verify();
+	}
+
+	@Test
+	public void testPut() {
+
+		mockServer.expect(requestTo("/assessments/42")).andExpect(method(HttpMethod.PUT))
+				.andRespond(withSuccess(resource("/fixture/assessment.json"), MediaType.APPLICATION_JSON));
+
+		Assessment input = new Assessment("42");
+		
+		Assessment actual = client.put(input);
 		assertNotNull(actual);
 		assertEquals("42", actual.getId());
 

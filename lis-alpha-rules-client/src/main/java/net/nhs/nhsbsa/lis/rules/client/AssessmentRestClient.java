@@ -1,5 +1,8 @@
 package net.nhs.nhsbsa.lis.rules.client;
 
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
@@ -14,7 +17,10 @@ public class AssessmentRestClient implements IAssessmentRestClient {
 
 	@Override
 	public Assessment put(Assessment assessment) {
-		return assessment;
+		HttpEntity<Assessment> requestEntity = new HttpEntity<Assessment>(assessment);
+		ResponseEntity<Assessment> responseEntity =
+				restTemplate.exchange("/assessments/{id}", HttpMethod.PUT, requestEntity, Assessment.class, "42");
+		return responseEntity.getBody();
 	}
 
 	@Override
