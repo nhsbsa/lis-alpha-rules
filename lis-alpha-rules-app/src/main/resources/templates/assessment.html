@@ -1,10 +1,18 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head> 
-    <title>Getting Started: Serving Web Content</title> 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<head>
+<title>Prototype Rules Engine Interface</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-    <p th:text="'Hello, ' + ${assessment.id} + '!!!'" >hello world</p>
+	<p>
+		TODO What is this page? 
+	</p>
+	<label>Assessment ID: <input type="text" th:field="${assessment.id}" /></label>
+	<table>
+		<tr th:each="field : ${it}">
+			<td th:text="${field?.value}"></td>
+		</tr>
+	</table>
 </body>
 </html>
