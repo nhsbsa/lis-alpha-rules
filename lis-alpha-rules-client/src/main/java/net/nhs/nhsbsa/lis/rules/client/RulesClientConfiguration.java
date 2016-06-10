@@ -18,9 +18,9 @@ public class RulesClientConfiguration {
 	
 	@Bean
 	public AssessmentRestClient getAssessmentRestClient() {
-		RestEndpointBuilder builder = new RestEndpointBuilder(assessmentsUri);
-		builder.withGetResource("/{id}")
-			.withPutResource("/{id}");
+		RestEndpointBuilder builder = new RestEndpointBuilder(assessmentsUri)
+				.withGetResource("/{id}")
+				.withPutResource("/{id}");
 		return new AssessmentRestClient(builder);
 	}
 	
