@@ -20,4 +20,11 @@ public class AssessmentBuilder extends ModelBuilder<Assessment> {
 		instance.setAddress(result.getField());
 		return result;
 	}
+
+	public PersonBuilder withApplicant() {
+		
+		PersonBuilder result = new PersonBuilder(this, null);
+		instance.setApplicant(result.getField());
+		return result;
+	}
 }

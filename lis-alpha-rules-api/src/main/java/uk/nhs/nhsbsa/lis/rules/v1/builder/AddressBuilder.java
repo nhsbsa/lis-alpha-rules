@@ -12,4 +12,8 @@ public class AddressBuilder extends ModelBuilder<Address>{
 		super(parent, instance);
 	}
 
+	public AddressBuilder withPostcode(String postcode) {
+		getInstance().setPostcode(postcode);
+		return this;
+	}
 }
