@@ -1,6 +1,7 @@
 package uk.nhs.nhsbsa.lis.rules.v1.builder;
 
 import uk.nhs.nhsbsa.lis.rules.v1.model.Address;
+import uk.nhs.nhsbsa.rules.types.Field;
 
 public class AddressBuilder extends ModelBuilder<Address>{
 
@@ -13,7 +14,7 @@ public class AddressBuilder extends ModelBuilder<Address>{
 	}
 
 	public AddressBuilder withPostcode(String postcode) {
-		getInstance().setPostcode(postcode);
-		return this;
+        instance.setPostcode(new Field<String>(postcode));
+        return this;
 	}
 }

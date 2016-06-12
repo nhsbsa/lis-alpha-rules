@@ -14,7 +14,7 @@ import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
 import uk.nhs.nhsbsa.rules.types.Field;
 
 @Controller
-@RequestMapping(path="/assessment")
+@RequestMapping(path="/assessments")
 public class AssessmentController { 
 
     @RequestMapping(path="/{id}", method=RequestMethod.GET)
@@ -32,7 +32,11 @@ public class AssessmentController {
         		
         Assessment assessment = (Assessment) builder.getInstance();
         ModelAndView result = new ModelAndView("assessment", "assessment", assessment);
-        List<Field<?>> it = Arrays.asList(assessment.getAddress(), assessment.getApplicant());
+        
+        //TODO create iterator
+        List<Field<?>> it = Arrays.asList(
+                assessment.getAddress().getValue().getPostcode(),
+                assessment.getApplicant().getValue().getName().getValue().getSurname());
         result.getModel().put("it", it);
         return result;
     }

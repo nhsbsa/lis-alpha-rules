@@ -1,34 +1,37 @@
 package uk.nhs.nhsbsa.lis.rules.v1.model;
 
+import uk.nhs.nhsbsa.rules.types.Field;
+
 public class Name {
 
-	private String title;
+	private Field<String> title;
 	
-	private String forenames;
+	private Field<String> forenames;
 	
-	private String surname;
+	private Field<String> surname;
 
-	public String getTitle() {
-		return title;
-	}
+    public Field<String> getTitle() {
+        return title;
+    }
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    public void setTitle(Field<String> title) {
+        this.title = title;
+    }
 
-	public String getForenames() {
-		return forenames;
-	}
+    public Field<String> getForenames() {
+        return forenames;
+    }
 
-	public void setForenames(String forenames) {
-		this.forenames = forenames;
-	}
+    public void setForenames(Field<String> forenames) {
+        this.forenames = forenames;
+    }
 
-	public String getSurname() {
-		return surname;
-	}
+    public Field<String> getSurname() {
+        return surname;
+    }
 
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}
+    public void setSurname(Field<String> surname) {
+        this.surname = surname;
+    }
+
 }
