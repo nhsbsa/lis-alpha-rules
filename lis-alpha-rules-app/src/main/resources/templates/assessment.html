@@ -22,8 +22,9 @@
     <div class="clear"></div>
 
     <div>
+      <div th:unless="${assessment eq null}"></div>
       <div>
-        <form action="#" th:action="@{/assessments/__${id}__}" th:object="${model}" method="POST">
+        <form action="#" th:action="@{/assessments/__${id}__}" th:object="${assessment}" method="POST">
           <div class="list">
             <table class="form">
               <thead>

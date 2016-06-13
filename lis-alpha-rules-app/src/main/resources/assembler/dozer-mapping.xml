@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://dozer.sourceforge.net
+          http://dozer.sourceforge.net/schema/beanmapping.xsd">
+
+  <mapping wildcard="false">
+    <class-a>net.nhs.nhsbsa.lis.rules.app.model.AssessmentModel</class-a>
+    <class-b>net.nhs.nhsbsa.lis.rules.app.model.AssessmentModel</class-b>
+    <field>
+      <a>id</a>
+      <b>id</b>
+    </field>
+    <field>
+      <a>fields</a>
+      <a-hint></a-hint>
+      <b>fields</b>
+    </field>
+  </mapping>
+
+  <mapping wildcard="false">
+    <class-a>uk.nhs.nhsbsa.rules.types.Field</class-a>
+    <class-b>uk.nhs.nhsbsa.rules.types.Field</class-b>
+    <field>
+      <a>name</a>
+      <b>name</b>
+    </field>
+    <field>
+      <a>value</a>
+      <b>value</b>
+    </field>
+  </mapping>
+
+</mappings>
