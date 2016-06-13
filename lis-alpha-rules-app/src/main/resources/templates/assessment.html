@@ -1,18 +1,52 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
 <title>Prototype Rules Engine Interface</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
+<link rel="stylesheet" type="text/css" href="../css/application.css" media="all" />
 </head>
+
 <body>
-	<p>
-		TODO What is this page? 
-	</p>
-	<label>Assessment ID: <input type="text" th:field="${assessment.id}" /></label>
-	<table>
-		<tr th:each="field : ${it}">
-			<td th:text="${field?.value}"></td>
-		</tr>
-	</table>
+  <div id="content">
+
+    <div class="header">
+      <div class="headerlogo">
+        <p>Version ${project.version}</p>
+      </div>
+    </div>
+
+    <div class="clear"></div>
+
+    <div>
+      <div>
+        <form action="#" th:action="@{/assessments/__${id}__}" th:object="${model}" method="POST">
+          <div class="list">
+            <table class="form">
+              <thead>
+                <tr>
+                  <th th:text="#{field.name}">Name</th>
+                  <th th:text="#{field.value}">Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr th:each="field, row : *{fields}">
+                  <td th:text="${field.name}"></td>
+                  <td><input type="text" th:field="*{fields[__${row.index}__].value}" /></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div>
+            <button class="button" type="submit" name="update" th:text="#{form.update}">Remove row</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
 </body>
 </html>

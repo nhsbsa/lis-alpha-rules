@@ -8,13 +8,13 @@ public class PersonBuilder extends ModelBuilder<Person>{
 		super();
 	}
 
-	public PersonBuilder(ModelBuilder<?> parent, Person instance) {
-		super(parent, instance);
+	public PersonBuilder(ModelBuilder<?> parent, String name, Person instance) {
+		super(parent, name, instance);
 	}
 
 	public NameBuilder withName() {
 
-		NameBuilder result = new NameBuilder(this, null);
+		NameBuilder result = new NameBuilder(this, "name", null);
 		instance.setName(result.getField());
 		return result;
 	}

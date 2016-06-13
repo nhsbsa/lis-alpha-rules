@@ -1,4 +1,4 @@
-package net.nhs.nhsbsa.lis.rules.app;
+package net.nhs.nhsbsa.lis.rules.app.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

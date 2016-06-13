@@ -8,6 +8,8 @@ import java.util.List;
  */
 public class Field <T> {
 	
+	private String name;
+	
 	/**
 	 * The underlying model field value as presented by applicant.
 	 */
@@ -44,8 +46,9 @@ public class Field <T> {
 	 * Convenience constructor.
 	 * @param value
 	 */
-	public Field(T value) {
+	public Field(String name, T value) {
 		super();
+		this.name = name;
 		this.value = value;
 	}
 
@@ -87,6 +90,14 @@ public class Field <T> {
 
 	public void setAppliedRules(List<RuleTraceabilityMeta> appliedRules) {
 		this.appliedRules = appliedRules;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	
