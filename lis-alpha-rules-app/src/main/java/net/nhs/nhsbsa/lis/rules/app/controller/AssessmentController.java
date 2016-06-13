@@ -28,24 +28,26 @@ public class AssessmentController {
 	IAssembler<AssessmentModel, AssessmentModel> assembler;
 	
     @RequestMapping(path="/{id}", method=RequestMethod.GET)
-    public ModelAndView getGreeting(@PathVariable("id") String id) {
+    public ModelAndView get(@PathVariable("id") String id) {
 
+		AssessmentModel assessment = assessmentRespository.findOne(id);
+		
+		//create a dummy assessment and redirect back to its ID
+		if (assessment == null) {
+			assessment = create();
+			assessment = assessmentRespository.save(assessment);
+			return new ModelAndView(
+					MvcUtils.redirect("/assessments/{}", assessment.getId()));
+		}
+    	
+		//setup MV and render
     	ModelAndView result = new ModelAndView("assessment");
     	result.addObject("id", id);
-        result.getModel().put("assessment", findOrCreate(id));
+        result.getModel().put("assessment", assessment);
         return result;
     }
 
-	private AssessmentModel findOrCreate(String id) {
-		AssessmentModel result = assessmentRespository.findOne(id);
-		if (result == null) {
-			result = dummyData();
-			assessmentRespository.save(result);
-		}
-		return result;
-	}
-
-    private AssessmentModel dummyData() {
+    private AssessmentModel create() {
     	AssessmentModel result = new AssessmentModel();
         List<Field<?>> fields = Arrays.asList(
         		new Field<String>("forename", "Bob"),
@@ -56,14 +58,14 @@ public class AssessmentController {
 	}
 
 	@RequestMapping(path="/{id}", method=RequestMethod.POST)
-    public String putGreeting(@PathVariable("id") String id, 
+    public String update(@PathVariable("id") String id, 
     		final AssessmentModel model,
     		final BindingResult bindingResult) {
 		
-		AssessmentModel persisted = findOrCreate(id);
+		AssessmentModel persisted = assessmentRespository.findOne(id);
 		assembler.map(model, persisted);
 		assessmentRespository.save(persisted);
-		return MvcUtils.redirect("/assessments/{}", id);
+		return MvcUtils.redirect("/assessments/{}", persisted.getId());
     }
 
 }
