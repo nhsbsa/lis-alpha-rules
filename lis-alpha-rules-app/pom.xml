@@ -10,7 +10,7 @@
   </parent>
 
   <groupId>net.nhs.nhsbsa.lis.lis-alpha-rules</groupId>
-  <artifactId>lis-alpha-rules-ws</artifactId>
+  <artifactId>lis-alpha-rules-app</artifactId>
   <packaging>jar</packaging>
 
   <dependencies>
@@ -18,6 +18,15 @@
       <groupId>net.nhs.nhsbsa.lis.lis-alpha-rules</groupId>
       <artifactId>lis-alpha-rules-api</artifactId>
       <version>1.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>net.nhs.nhsbsa.lis.lis-alpha-rules</groupId>
+      <artifactId>lis-alpha-rules-client</artifactId>
+      <version>1.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-thymeleaf</artifactId>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -37,11 +46,15 @@
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>org.assertj</groupId>
-      <artifactId>assertj-core</artifactId>
-      <version>3.4.1</version>
-    </dependency>
   </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
 
 </project>

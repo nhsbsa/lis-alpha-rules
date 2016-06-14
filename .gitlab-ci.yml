@@ -22,7 +22,7 @@ feature-build:
   script:
     # mvn to compile, test and qa changes
     - mvn -B -Psonar clean install sonar:sonar
-    - bsa-ci/ci-sonar.sh
+    - bsa-ci/sonarqube_job_status.rb
 
 # develop job
 # for every merge to master:
@@ -33,42 +33,7 @@ master-creates-release-candidate:
   only:
     - master
   script:
-    # create new release candidate
     - bsa-ci/create_release_candidate.rb --verbose
-
-    # script:
-    #   # general git config
-    #   - bsa-ci/ci-git.sh init
-    #
-    #   # new version number
-    #   - oldVersion=$(bsa-ci/ci-mvn-version.sh get)
-    #   - newVersion=`echo $oldVersion | bsa-ci/ci-mvn-version.sh update $CI_BUILD_ID`
-    #
-    #   # new git branch
-    #   - bsa-ci/ci-git.sh to-ssh
-    #   - gitBranch="rc/lis-alpha-rules-$newVersion"
-    #   - git checkout -b "$gitBranch"
-    #
-    #   # update README.md with link to built binary
-    #   - echo "[Release Candidate $newVersion]($REPO_URL/bsa-rc/)" | cat - README.md > /tmp/out && mv /tmp/out README.md
-    #
-    #   # update iac artifacts version
-    #   - bsa-ci/ci-iac-version.sh set lis-alpha-rules-iac/lis-alpha-rules_artifacts.yml $newVersion
-    #
-    #   # update maven version number and mvn install to compile, test and qa changes
-    #   - bsa-ci/ci-mvn-version.sh set $newVersion
-    #   - mvn -B -Psonar -DsonarUrl=$SONAR_URL -Dsonar.branch=release clean install sonar:sonar
-    #   - bsa-ci/ci-sonar.sh
-    #   - cat target/sonar/report-task.txt
-    #
-    #   # commit changes to branch
-    #   - git ls-files . | grep 'pom.xml' | xargs git add
-    #   - git add README.md
-    #   - git add lis-alpha-rules-iac/lis-alpha-rules_artifacts.yml
-    #   - git commit -m "Release branch $gitBranch"
-    #
-    #   # push new branch
-    #   - bsa-ci/ci-git.sh push $gitBranch
 
 # release job
 # for every release* branch:

@@ -2,7 +2,6 @@ package uk.nhs.nhsbsa.ppc.matex.letters;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.List;
 import java.util.Map;
 
 import org.junit.Test;
@@ -17,6 +16,7 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
 import uk.nhs.nhsbsa.lis.rules.ws.LisRulesWebServiceApplication;
 
 /**
@@ -37,15 +37,14 @@ public class LisRulesWebServiceApplicationTest {
 
 	@Test
 	public void testGreeting() throws Exception {
-		@SuppressWarnings("rawtypes")
-		ResponseEntity<List> entity = new TestRestTemplate()
-				.getForEntity("http://localhost:" + this.port + "/rules", List.class);
+		ResponseEntity<Assessment> entity = new TestRestTemplate()
+				.getForEntity("http://localhost:" + this.port + "/assessments/123", Assessment.class);
 		assertEquals(HttpStatus.OK, entity.getStatusCode());
 	}
 
 	@Test
+	@SuppressWarnings("rawtypes")
 	public void testInfo() throws Exception {
-		@SuppressWarnings("rawtypes")
 		ResponseEntity<Map> entity = new TestRestTemplate().getForEntity("http://localhost:" + this.mgt + "/info",
 				Map.class);
 		assertEquals(HttpStatus.OK, entity.getStatusCode());

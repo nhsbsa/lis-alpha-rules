@@ -1,0 +1,262 @@
+/* CSS reset */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td { 
+	margin:0;
+	padding:0;
+}
+header, section, footer, aside, nav, main, article, figure {
+	display: block; 
+} 
+table {
+	border-collapse:collapse;
+	border-spacing:0;
+}
+img { 
+	border:0;
+}
+ol,ul {
+	list-style:none;
+}
+body{
+	font-family: Arial, Helvetica;
+	font-size: 1em;
+	background-color: #EBEBEB;
+	color:#585858;
+	height: 100%;
+}
+a{
+	color: #0072C6;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+.container{
+	width:100%;
+	margin: auto;
+	max-width: 960px;
+	height: 100%;
+	position: relative;
+	background: white;
+	margin-top:20px;
+	padding-bottom: 50px;
+}
+.clear{
+	clear: both;
+}
+.container .header{
+	padding: 25px 25px 0;
+	margin:10px;
+	position: relative;
+	display: block;
+}
+.container h1{
+	position: relative;
+	font-size: 2em;
+	font-weight: bold;
+	padding: 5px 0px 5px 10px;
+	color: #0065BD;
+}
+.headerlogo {
+	background-image: url(../images/nhsbsalogo.gif);
+	background-repeat: no-repeat;
+	float:right;
+	width:250px;
+	height:50px;
+	padding: 10px 0;
+}
+.headerlogo > p {
+    font-size: 0.7em;
+    padding-top: 50px;
+    position: relative;
+    text-align: right;
+}
+.headeroff {
+	float:left;
+	height:80px;
+	width:400px;
+}
+.intro {
+	padding: 0 30px;
+	margin: 0 20px;
+}
+.intro h2 {
+	font-size: 1.5em;
+	color: #0065BD;
+	font-weight:bold;
+}
+.intro p {
+	margin: 30px 0;
+	font-size: 0.9em;
+}
+.content {
+	width:90%;
+	margin: 0 auto;
+}
+.content h3 {
+	color: #0065BD;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.form{
+	width:80%;
+	margin: 0 auto;
+}
+.indextext{
+	width:80%;
+	margin: 50px auto;
+	padding-bottom:50px;
+}
+.complete{
+	width:740px;
+	height:515px;
+	margin: 50px auto;
+	background: url(images/email_screen.png) no-repeat scroll;
+}
+.completetxt {
+	font-size: 12px;
+	width: 93%;
+	margin:0 auto;
+	padding-top: 160px;
+	color:black;
+}
+.userinfo{
+	font-size: 1em;
+	margin:0;
+	width:100%;
+	display: inline-block;
+	position: relative;
+	margin-bottom:15px;
+}
+.form input[type="text"] {
+	width: 50%;
+	display: inline;
+	position: relative;
+}
+.form input[type="email"] {
+	width: 50%;
+	display: inline-block;
+	position: relative;
+}
+.form input[type="password"] {
+	width: 50%;
+	display: inline-block;
+	position: relative;
+}
+.form input[type="date"] {
+	display: inline-block;
+	position: relative;
+}
+.form input[type="checkbox"] {
+	margin: 10px 5px 15px 0;
+	background-color:rgba(255, 255, 255, 0.4);
+	border: 1px solid rgba(102, 153, 204, 0.4);
+	padding: 5px;
+	color: #4b4b4b;
+}
+.form input:disabled {
+	background: white none repeat scroll 0 0;
+	border: 0 none;
+}
+.form input[disabled] {
+	background: white none repeat scroll 0 0;
+	border: 0 none;
+}
+.form input[disabled="disabled"] {
+	background: white none repeat scroll 0 0;
+	border: 0 none;
+}
+.form select {
+	padding:5px;
+	position: relative;
+	display: inline;
+	border: 1px solid rgba(102, 153, 204, 0.4);
+}
+.form label {
+    color: black;
+    display: inline-block;
+    font-size: 0.8em;
+    font-weight: bold;
+    position: relative;
+    width: 35%;
+    text-align: right;
+    padding-right: 15px;
+    vertical-align: middle;
+}
+.form input {
+	border: 1px solid rgba(102, 153, 204, 0.4);
+	padding: 7px;
+	color: #4b4b4b;
+}
+.form input:focus {
+	border: 1px solid #0066cc;
+}
+.form input.button{
+	padding: 5px 10px 6px;
+	background-color: #0065BD;
+	color:white;
+	text-decoration: none;
+	font-weight:bold;
+	box-shadow: 0 1px 3px #999;
+	border: none;
+	position: relative;
+	cursor: pointer;
+	display:inline-block;
+	float:right;
+	border: solid 1px #0065BD;
+}
+.form input.button:hover{
+	background: white;
+	color: #0065BD;
+	border: solid 1px #0065BD;
+}
+.ui-state-error.message {
+    color: red;
+    font-size: 0.7em;
+    width:62%;
+    float: right;
+}
+.forgot {
+    display: block;
+    float: right;
+    font-size: 0.7em;
+    text-decoration: underline;
+    width: 62%;
+}
+.subbut {
+	width:90%;
+	padding-top: 10px;
+}
+.subbut a {
+	text-decoration: underline;
+}
+.subbut p {
+    color: #0065bd;
+    float: right;
+    font-size: 0.8em;
+    font-weight: bold;
+    padding-top: 5px;
+    text-align: center;
+    width: 75%;
+}
+.subtext {
+	color: red;
+	font-size: 1em;
+	margin: 10px 0;
+}
+.subnontext {
+	color: gray;
+	font-size: 0.8em;
+	margin: 10px 0;
+}
+.proticktxt {
+	font-size: 0.8em;
+}
+.proticklabel {
+	font-size: 0.8em;
+}
+.bk2home {
+    float: right;
+    margin: 0 7%;
+    text-align: right;
+    width: 85%;
+}
