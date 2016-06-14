@@ -28,8 +28,8 @@
 			<div th:unless="${assessments eq null}">
 				<div class="list">
 					<ul>
-						<li th:each="assessment, row : *{assessments}"><a
-							th:href="@{/assessments/__${assessment.id}__}"
+						<li th:each="assessment, row : *{assessments}">
+						<a th:href="@{/assessments/__${assessment.id}__}"
 							th:text="${assessment.id}"></a></li>
 					</ul>
 				</div>
