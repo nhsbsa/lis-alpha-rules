@@ -1,29 +1,58 @@
 package net.nhs.nhsbsa.lis.rules.app.service;
 
+import java.util.Arrays;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import uk.nhs.nhsbsa.lis.rules.v1.builder.AssessmentBuilder;
-import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
+import net.nhs.nhsbsa.lis.rules.app.assembler.IAssembler;
+import net.nhs.nhsbsa.lis.rules.app.exception.ResourceNotFoundException;
+import net.nhs.nhsbsa.lis.rules.app.model.AssessmentModel;
+import net.nhs.nhsbsa.lis.rules.app.repository.IAssessmentRespository;
+import uk.nhs.nhsbsa.rules.types.Field;
 
 @Service
 public class AssessmentService implements IAssessmentService {
 
-	/* (non-Javadoc)
-	 * @see net.nhs.nhsbsa.lis.rules.app.service.IAssessmentService#getAssessment(java.lang.String)
-	 */
+	@Autowired
+	private IAssessmentRespository assessmentRespository;
+	
+	@Autowired
+	IAssembler<AssessmentModel, AssessmentModel> assembler;
+
 	@Override
-	public Assessment getAssessment(String id) {
+	public Iterable<AssessmentModel> list() {
+
+		return assessmentRespository.findAll();
+	}
+
+	@Override
+	public AssessmentModel get(String id) {
+		AssessmentModel result = assessmentRespository.findOne(id);
+		if (result == null) {
+			throw new ResourceNotFoundException();
+		}
+		return result;
+	}
+
+	@Override
+	public AssessmentModel create() {
+    	AssessmentModel result = new AssessmentModel();
+        List<Field<?>> fields = Arrays.asList(
+        		new Field<String>("forename", "Bob"),
+        		new Field<String>("surname", "Builder")
+        		);
+        result.setFields(fields);
+		return assessmentRespository.save(result);
+	}
+
+	@Override
+	public AssessmentModel update(String id, AssessmentModel model) {
 		
-    	AssessmentBuilder builder = new AssessmentBuilder(id);
-		builder.withAddress()
-			.withPostcode("BB1 1BB");
-		builder.withApplicant()
-			.withName()
-				.withTitle("Mr")
-				.withSurname("Builder")
-				.withForenames("Bob")
-				;
-        Assessment result = (Assessment) builder.getInstance();
-        return result;
+		AssessmentModel persisted = assessmentRespository.findOne(id);
+		assembler.map(model, persisted);
+		assessmentRespository.save(persisted);
+		return persisted;
 	}
 }

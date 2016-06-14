@@ -1,9 +1,15 @@
 package net.nhs.nhsbsa.lis.rules.app.service;
 
-import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
+import net.nhs.nhsbsa.lis.rules.app.model.AssessmentModel;
 
 public interface IAssessmentService {
 
-	Assessment getAssessment(String id);
+	Iterable<AssessmentModel> list();
+
+	AssessmentModel get(String id);
+
+	AssessmentModel create();
+
+	AssessmentModel update(String id, AssessmentModel model);
 
 }
