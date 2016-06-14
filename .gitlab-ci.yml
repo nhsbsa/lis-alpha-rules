@@ -7,6 +7,7 @@ stages:
   - deploy
 
 before_script:
+  - export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java))))
   - printenv | sort
   - java -version
   - git clone git@${CI_GIT_HOST}:devops/bsa-ci.git
@@ -33,6 +34,7 @@ master-creates-release-candidate:
   only:
     - master
   script:
+    - gem uninstall english
     - bsa-ci/create_release_candidate.rb --verbose
 
 # release job
