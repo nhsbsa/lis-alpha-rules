@@ -33,7 +33,7 @@ master-creates-release-candidate:
   only:
     - master
   script:
-    - bsa-ci/create_release_candidate.rb --verbose
+    - bsa-ci/create_release_candidate.rb
 
 # release job
 # for every release* branch:
