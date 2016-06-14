@@ -23,23 +23,15 @@
 
     <div>
       <div th:if="${assessments eq null}">There are no assessments</div>
-      <!--       <div th:unless="${assessments eq null}"> -->
-      <!--         <div class="list"> -->
-      <!--           <table class="form"> -->
-      <!--             <thead> -->
-      <!--               <tr> -->
-      <!--                 <th th:text="#{field.name}">Name</th> -->
-      <!--                 <th th:text="#{field.value}">Value</th> -->
-      <!--               </tr> -->
-      <!--             </thead> -->
-      <!--             <tbody> -->
-      <!--               <tr th:each="field, row : *{fields}"> -->
-      <!--                 <td th:text="${field.name}"></td> -->
-      <!--                 <td><input type="text" th:field="*{fields[__${row.index}__].value}" /></td> -->
-      <!--               </tr> -->
-      <!--             </tbody> -->
-      <!--           </table> -->
-      <!--         </div> -->
+     <div th:unless="${assessments eq null}"> 
+       <div class="list">
+         <ul>
+          <li th:each="assessment, row : *{assessments}">
+            <a th:href="@{/assessments/__${assessment.id}__}" th:text="${assessment.id}"></a>
+          </li>
+         </ul>
+       </div> 
+       </div>
       <div>
         <form action="#" th:action="@{/assessments}" method="POST">
           <button class="button" type="submit" name="update" th:text="#{form.create}">New Assessment</button>
