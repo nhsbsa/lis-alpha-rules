@@ -29,13 +29,13 @@
             <table class="form">
               <thead>
                 <tr>
-                  <th th:text="#{field.name}">Name</th>
-                  <th th:text="#{field.value}">Value</th>
+                  <th th:text="#{attribute.name}">Name</th>
+                  <th th:text="#{attribute.value}">Value</th>
                 </tr>
               </thead>
               <tbody>
                 <tr th:each="field, row : *{fields}">
-                  <td th:text="${field.name}"></td>
+                  <td th:text="#{field.__${field.name}__}"></td>
                   <td><input type="text" th:field="*{fields[__${row.index}__].value}" /></td>
                 </tr>
               </tbody>

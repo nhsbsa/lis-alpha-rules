@@ -40,7 +40,7 @@ public class AssessmentService implements IAssessmentService {
 	public AssessmentModel create() {
     	AssessmentModel result = new AssessmentModel();
         List<Field<?>> fields = Arrays.asList(
-        		new Field<String>("forename", "Bob"),
+        		new Field<String>("forenames", "Bob"),
         		new Field<String>("surname", "Builder")
         		);
         result.setFields(fields);
