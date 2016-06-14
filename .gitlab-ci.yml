@@ -8,6 +8,7 @@ stages:
 
 before_script:
   - printenv | sort
+  - java -version
   - git clone git@${CI_GIT_HOST}:devops/bsa-ci.git
   - (cd bsa-ci && bundle install)
 
