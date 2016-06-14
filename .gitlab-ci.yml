@@ -33,7 +33,8 @@ master-creates-release-candidate:
   only:
     - master
   script:
-    - bsa-ci/create_release_candidate.rb
+    - gem uninstall english
+    - bsa-ci/create_release_candidate.rb --verbose
 
 # release job
 # for every release* branch:
