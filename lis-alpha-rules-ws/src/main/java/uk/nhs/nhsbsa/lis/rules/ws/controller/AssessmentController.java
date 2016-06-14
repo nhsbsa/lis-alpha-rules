@@ -19,7 +19,7 @@ public class AssessmentController {
     	
     	//TODO pad out a blank assessment with all the required fields.
     	AssessmentBuilder builder = new AssessmentBuilder(id);
-    	builder.withAddress();
+    	builder.withAddress(); 
     	return builder.getInstance();
     }
 

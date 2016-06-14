@@ -8,7 +8,7 @@ import org.springframework.web.client.RestTemplate;
 @Configuration
 public class RulesClientConfiguration {
 
-	@Value("assessments.uri")
+	@Value("${assessments.uri}")
 	String assessmentsUri;
 	
 	@Bean

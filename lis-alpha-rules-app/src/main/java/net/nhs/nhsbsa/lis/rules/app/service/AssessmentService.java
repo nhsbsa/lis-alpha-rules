@@ -10,6 +10,7 @@ import net.nhs.nhsbsa.lis.rules.app.assembler.IAssembler;
 import net.nhs.nhsbsa.lis.rules.app.exception.ResourceNotFoundException;
 import net.nhs.nhsbsa.lis.rules.app.model.AssessmentModel;
 import net.nhs.nhsbsa.lis.rules.app.repository.IAssessmentRespository;
+import net.nhs.nhsbsa.lis.rules.client.IAssessmentRestClient;
 import uk.nhs.nhsbsa.rules.types.Field;
 
 @Service
@@ -19,7 +20,10 @@ public class AssessmentService implements IAssessmentService {
 	private IAssessmentRespository assessmentRespository;
 	
 	@Autowired
-	IAssembler<AssessmentModel, AssessmentModel> assembler;
+	private IAssembler<AssessmentModel, AssessmentModel> assembler;
+	
+	@Autowired
+	private IAssessmentRestClient assessmentRestClient;
 
 	@Override
 	public Iterable<AssessmentModel> list() {
@@ -38,6 +42,8 @@ public class AssessmentService implements IAssessmentService {
 
 	@Override
 	public AssessmentModel create() {
+		
+		assessmentRestClient.get("");
     	AssessmentModel result = new AssessmentModel();
         List<Field<?>> fields = Arrays.asList(
         		new Field<String>("forenames", "Bob"),
