@@ -7,6 +7,7 @@ stages:
   - deploy
 
 before_script:
+  - export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java))))
   - printenv | sort
   - git clone git@${CI_GIT_HOST}:devops/bsa-ci.git
   - (cd bsa-ci && bundle install)
