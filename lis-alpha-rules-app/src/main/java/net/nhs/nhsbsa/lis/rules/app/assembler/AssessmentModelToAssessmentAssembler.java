@@ -28,15 +28,17 @@ public class AssessmentModelToAssessmentAssembler extends AbstractAssembler<Asse
 		walker.walk(destination, (dst) -> {
 			String key = key(dst);
 			Field<Object> src = index.get(key);
-			Object oldValue = dst.getValue();
-			Object newValue = src.getValue();
-			if (!Objects.equals(oldValue, newValue)) {
-				LOGGER.info("Changing {} from {} to {}", new Object[]{
-						dst.getName(),
-						oldValue,
-						newValue
-				});
-				((Field<Object>)dst).setValue(newValue);
+			if (src != null) {
+				Object oldValue = dst.getValue();
+				Object newValue = src.getValue();
+				if (!Objects.equals(oldValue, newValue)) {
+					LOGGER.info("Changing {} from {} to {}", new Object[]{
+							dst.getName(),
+							oldValue,
+							newValue
+					});
+					((Field<Object>)dst).setValue(newValue);
+				}
 			}
 		});
 	}

@@ -40,4 +40,8 @@ public class AssemblerService implements IAssemblerService {
 		});
 	}
 
+	public void setAssemblers(List<IAssembler<?, ?>> assemblers) {
+		this.assemblers = assemblers;
+	}
+
 }
