@@ -12,13 +12,14 @@ public abstract class AbstractAssembler<S, D> implements IAssembler<S, D> {
 	public AbstractAssembler() {
 		Class<?>[] types = GenericTypeResolver.resolveTypeArguments(getClass(), IAssembler.class);
 		this.sourceClass = (Class<S>) types[0];
-		this.destinationClass = (Class<D>) types[1];
+		this.destinationClass = (Class<D>) types[1]; 
 	}
 	
 	@Override
 	public boolean accept(Class<?> source, Class<?> destination) {
-		return TypeUtils.isAssignable(sourceClass, source)
+		boolean result =  TypeUtils.isAssignable(sourceClass, source)
 				&& TypeUtils.isAssignable(destinationClass, destination);
+		return result;
 	}
 
 }

@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import net.nhs.nhsbsa.lis.rules.app.MvcUtils;
 import net.nhs.nhsbsa.lis.rules.app.model.AssessmentModel;
 import net.nhs.nhsbsa.lis.rules.app.service.IAssessmentService;
+import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
 
 @Controller
 @RequestMapping(path="/assessments")
@@ -22,7 +23,7 @@ public class AssessmentController {
     @RequestMapping(method=RequestMethod.GET)
     public ModelAndView list() {
     	
-		Iterable<AssessmentModel> assessments = assessmentService.list();
+		Iterable<Assessment> assessments = assessmentService.list();
 		
 		//setup MV and render
     	ModelAndView result = new ModelAndView("assessments");

@@ -10,12 +10,15 @@ import uk.nhs.nhsbsa.rules.types.Field;
 
 public class AssessmentModelIndexer {
 
-	public Map<String, Field<?>> index(AssessmentModel model) {
+	@SuppressWarnings("unchecked")
+	public Map<String, Field<Object>> index(AssessmentModel model) {
 		
 		Assert.notNull(model);
-		Map<String, Field<?>> result = new HashMap<>();
-		for (Field<?> field : model.getFields()) {
-			result.put(field.getName(), field);
+		Map<String, Field<Object>> result = new HashMap<>();
+		if (model.getFields() != null) {
+			for (Field<?> field : model.getFields()) {
+				result.put(field.getName(), (Field<Object>)field);
+			}
 		}
 		return result;
 	}

@@ -42,7 +42,7 @@ public class AssessmentModelIndexerTest {
 	public void testEmpty() {
 
 		fixture.setFields(new ArrayList<>());
-		Map<String, Field<?>> index = indexer.index(fixture);
+		Map<String, Field<Object>> index = indexer.index(fixture);
 		assertNotNull(index);
 		assertTrue(index.isEmpty());
 	}
@@ -50,7 +50,7 @@ public class AssessmentModelIndexerTest {
 	@Test
 	public void testIndex() {
 
-		Map<String, Field<?>> index = indexer.index(fixture);
+		Map<String, Field<Object>> index = indexer.index(fixture);
 		assertNotNull(index);
 		assertNotNull(index.get("f1"));
 		assertSame(f1, index.get("f1"));

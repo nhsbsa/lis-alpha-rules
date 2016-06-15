@@ -2,6 +2,8 @@ package uk.nhs.nhsbsa.lis.rules.v1.model;
 
 import java.util.Date;
 
+import org.springframework.data.annotation.Id;
+
 import uk.nhs.nhsbsa.rules.types.Field;
 
 /**
@@ -13,6 +15,7 @@ public class Assessment {
 	 * ID for this assessment.
 	 * No need for Field meta on this.
 	 */
+	@Id
 	private String id;
 	
 	/**
