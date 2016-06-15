@@ -1,13 +1,14 @@
 package uk.nhs.nhsbsa.util;
 
-import java.lang.reflect.ParameterizedType;
+import org.springframework.core.GenericTypeResolver;
 
 public class GenericsUtils {
 
 	@SuppressWarnings("rawtypes")
-	public static Class genericClass(Class genericClass, int index) {
-		ParameterizedType parameterizedType = (ParameterizedType) genericClass.getGenericSuperclass();
-		return (Class) parameterizedType.getActualTypeArguments()[0];
+	public static Class genericClass(Class genericClass, Class genericInterface, int index) {
+		
+		Class<?>[] types = GenericTypeResolver.resolveTypeArguments(genericClass, genericInterface);
+		return types[index];
 	}
 
 }

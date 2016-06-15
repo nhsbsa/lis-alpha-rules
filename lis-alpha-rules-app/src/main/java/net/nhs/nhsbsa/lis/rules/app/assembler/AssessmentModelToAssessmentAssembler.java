@@ -11,8 +11,9 @@ public class AssessmentModelToAssessmentAssembler extends AbstractAssembler<Asse
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(AssessmentModelToAssessmentAssembler.class);
 	
-//	@Override
+	@Override
 	public void map(AssessmentModel source, Assessment destination) {
+		
 		
 	}
 
