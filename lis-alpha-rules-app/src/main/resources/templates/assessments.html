@@ -6,47 +6,42 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
-<link rel="stylesheet" type="text/css" href="../css/application.css" media="all" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
+<link rel="stylesheet" type="text/css" href="../css/application.css"
+	media="all" />
 </head>
 
 <body>
-  <div id="content">
+	<div id="content">
 
-    <div class="header">
-      <div class="headerlogo">
-        <p>Version ${project.version}</p>
-      </div>
-    </div>
+		<div class="header">
+			<div class="headerlogo">
+				<p>Version ${project.version}</p>
+			</div>
+		</div>
 
-    <div class="clear"></div>
+		<div class="clear"></div>
 
-    <div>
-      <div th:if="${assessments eq null}">There are no assessments</div>
-      <!--       <div th:unless="${assessments eq null}"> -->
-      <!--         <div class="list"> -->
-      <!--           <table class="form"> -->
-      <!--             <thead> -->
-      <!--               <tr> -->
-      <!--                 <th th:text="#{field.name}">Name</th> -->
-      <!--                 <th th:text="#{field.value}">Value</th> -->
-      <!--               </tr> -->
-      <!--             </thead> -->
-      <!--             <tbody> -->
-      <!--               <tr th:each="field, row : *{fields}"> -->
-      <!--                 <td th:text="${field.name}"></td> -->
-      <!--                 <td><input type="text" th:field="*{fields[__${row.index}__].value}" /></td> -->
-      <!--               </tr> -->
-      <!--             </tbody> -->
-      <!--           </table> -->
-      <!--         </div> -->
-      <div>
-        <form action="#" th:action="@{/assessments}" method="POST">
-          <button class="button" type="submit" name="update" th:text="#{form.create}">New Assessment</button>
-        </form>
-      </div>
-    </div>
-  </div>
-  <div class="clear"></div>
+		<div>
+			<div th:if="${assessments eq null}">There are no assessments</div>
+			<div th:unless="${assessments eq null}">
+				<div class="list">
+					<ul>
+						<li th:each="assessment, row : *{assessments}">
+						<a th:href="@{/assessments/__${assessment.id}__}"
+							th:text="${assessment.id}"></a></li>
+					</ul>
+				</div>
+			</div>
+			<div>
+				<form action="#" th:action="@{/assessments}" method="POST">
+					<button class="button" type="submit" name="update"
+						th:text="#{form.create}">New Assessment</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="clear"></div>
 </body>
 </html>

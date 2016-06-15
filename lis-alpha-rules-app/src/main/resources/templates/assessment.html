@@ -22,6 +22,8 @@
     <div class="clear"></div>
 
     <div>
+      <div>
+        <a th:href="@{/assessments/}">Back to list</a></div>
       <div th:unless="${assessment eq null}"></div>
       <div>
         <form action="#" th:action="@{/assessments/__${id}__}" th:object="${assessment}" method="POST">
