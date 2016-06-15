@@ -19,30 +19,54 @@ public class FieldWalker {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(FieldWalker.class);
 	
+	/**
+	 * Interface for callback from field walk.
+	 */
 	public static interface Callback {
 		void field(Field<?> field);
 	}
 	
+	/**
+	 * Whether to traverse breadth or depth first.
+	 */
 	public static enum Traversal {
 		
 		BREADTH_FIRST,
 		
 		DEPTH_FIRST
 	}
-	
+
+	/**
+	 * Cache of objects already traversed.
+	 */
 	private Set<Object> cache = new HashSet<>();
 	
+	/**
+	 * Traversal pattern.
+	 */
 	private Traversal traversal;
 	
+	/**
+	 * Default constructor.
+	 */
+	public FieldWalker() {
+		traversal = Traversal.DEPTH_FIRST;
+	}
+
+	/**
+	 * Convenience constructor.
+	 * @param traversal
+	 */
 	public FieldWalker(Traversal traversal) {
 		super();
 		this.traversal = traversal;
 	}
 
-	public FieldWalker() {
-		traversal = Traversal.DEPTH_FIRST;
-	}
-
+	/**
+	 * Walk an object tree, calling back for every Field found.
+	 * @param o
+	 * @param callback
+	 */
 	public void walk(Object o, Callback callback) {
 		
 		Assert.notNull(callback);
@@ -59,6 +83,11 @@ public class FieldWalker {
 		}
 	}
 
+	/**
+	 * Notify callbacks.
+	 * @param fields
+	 * @param callback
+	 */
 	private void callback(List<Field<?>> fields, Callback callback) {
 		for (Field<?> field : fields) {
 			LOGGER.info("Callback for : {}", field);
@@ -66,6 +95,11 @@ public class FieldWalker {
 		}
 	}
 
+	/**
+	 * Recurse through tree.
+	 * @param fields
+	 * @param callback
+	 */
 	private void recurse(List<Field<?>> fields, Callback callback) {
 		for (Field<?> field : fields) {
 			Object v = field.getValue();
@@ -76,7 +110,7 @@ public class FieldWalker {
 	}
 
 	/**
-	 * Traverse Objects fields and collect all of type uk.nhs.nhsbsa.rules.types.Field.
+	 * Traverse object's java.reflect.Fields and collect all of type uk.nhs.nhsbsa.rules.types.Field.
 	 * @param o
 	 * @return
 	 */
@@ -97,12 +131,5 @@ public class FieldWalker {
 			}
 		}
 		return result;
-	}
-
-	private void callback(Callback callback, Field<?> f, Object v) {
-		if (v != null) {
-			LOGGER.info("Callback for field: {}", f);
-			callback.field(f);
-		}
 	}
 }
