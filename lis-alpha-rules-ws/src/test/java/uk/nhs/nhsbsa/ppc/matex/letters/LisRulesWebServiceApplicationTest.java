@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.Map;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Value;
@@ -36,6 +37,7 @@ public class LisRulesWebServiceApplicationTest {
 	private int mgt;
 
 	@Test
+	@Ignore
 	public void testGreeting() throws Exception {
 		ResponseEntity<Assessment> entity = new TestRestTemplate()
 				.getForEntity("http://localhost:" + this.port + "/assessments/123", Assessment.class);
