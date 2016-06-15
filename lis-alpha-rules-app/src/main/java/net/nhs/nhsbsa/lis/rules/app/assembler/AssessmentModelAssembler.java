@@ -13,7 +13,7 @@ import net.nhs.nhsbsa.lis.rules.app.model.AssessmentModel;
 import uk.nhs.nhsbsa.rules.types.Field;
 
 @Component
-public class AssessmentModelAssembler implements IAssembler<AssessmentModel, AssessmentModel> {
+public class AssessmentModelAssembler extends AbstractAssembler<AssessmentModel, AssessmentModel> {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(AssessmentModelAssembler.class);
 	
