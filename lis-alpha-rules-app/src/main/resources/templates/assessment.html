@@ -36,7 +36,10 @@
               <tbody>
                 <tr th:each="field, row : *{fields}">
                   <td th:text="#{field.__${field.name}__}"></td>
-                  <td><input type="text" th:field="*{fields[__${row.index}__].value}" /></td>
+                  <td>
+                    <input type="text" th:field="*{fields[__${row.index}__].value}" />
+                    <input type="hidden" th:field="*{fields[__${row.index}__].name}" />
+                  </td>
                 </tr>
               </tbody>
             </table>

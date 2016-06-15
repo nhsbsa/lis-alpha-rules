@@ -14,12 +14,12 @@ import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
 @RequestMapping("/assessments")
 public class AssessmentController {
 
-    @RequestMapping(value="/{id}", method=RequestMethod.GET)
-    public @ResponseBody Assessment get(@PathVariable String id) {
+    @RequestMapping(method=RequestMethod.POST)
+    public @ResponseBody Assessment get() {
     	
     	//TODO pad out a blank assessment with all the required fields.
-    	AssessmentBuilder builder = new AssessmentBuilder(id);
-    	builder.withAddress(); 
+    	AssessmentBuilder builder = new AssessmentBuilder();
+    	builder.withAddress();
     	return builder.getInstance();
     }
 

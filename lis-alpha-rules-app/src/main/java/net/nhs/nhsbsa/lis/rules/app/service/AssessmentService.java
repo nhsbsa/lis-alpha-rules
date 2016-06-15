@@ -43,7 +43,7 @@ public class AssessmentService implements IAssessmentService {
 	@Override
 	public AssessmentModel create() {
 		
-		assessmentRestClient.get("");
+		assessmentRestClient.post(); 
     	AssessmentModel result = new AssessmentModel();
         List<Field<?>> fields = Arrays.asList(
         		new Field<String>("forenames", "Bob"),

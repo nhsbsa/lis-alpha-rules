@@ -6,5 +6,5 @@ public interface IAssessmentRestClient {
 
 	public Assessment put(Assessment assessment);
 
-	Assessment get(String id);
+	public Assessment post();
 }

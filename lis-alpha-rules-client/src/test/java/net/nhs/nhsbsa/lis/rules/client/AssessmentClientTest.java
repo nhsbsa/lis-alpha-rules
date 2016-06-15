@@ -40,7 +40,7 @@ public class AssessmentClientTest {
 		mockServer.expect(requestTo("/assessments/42")).andExpect(method(HttpMethod.GET))
 				.andRespond(withSuccess(resource("/fixture/assessment.json"), MediaType.APPLICATION_JSON));
 
-		Assessment actual = client.get("42");
+		Assessment actual = client.post();
 		assertNotNull(actual);
 		assertEquals("42", actual.getId());
 
