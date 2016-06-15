@@ -16,8 +16,15 @@ public class AssessmentBuilder extends ModelBuilder<Assessment> {
 	
 	public AddressBuilder withAddress() {
 		
-		AddressBuilder result = new AddressBuilder(this, null);
+		AddressBuilder result = new AddressBuilder(this, "name", null);
 		instance.setAddress(result.getField());
+		return result;
+	}
+
+	public PersonBuilder withApplicant() {
+		
+		PersonBuilder result = new PersonBuilder(this, "applicant", null);
+		instance.setApplicant(result.getField());
 		return result;
 	}
 }

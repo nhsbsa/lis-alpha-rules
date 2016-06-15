@@ -12,9 +12,9 @@ public class ModelBuilder<T> extends AbstractBuilder<T> {
 		super();
 	}
 
-	public ModelBuilder(ModelBuilder<?> parent, T instance) {
+	public ModelBuilder(ModelBuilder<?> parent, String name, T instance) {
 		super(null, instance);
-		Field<T> field = new Field<>(this.instance);
+		Field<T> field = new Field<>(name, this.instance);
 		FieldBuilder<T> fieldParent = new FieldBuilder<T>(parent, field); 
 		this.parent = fieldParent;
 		modelParent = parent;

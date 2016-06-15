@@ -8,7 +8,7 @@ import org.springframework.web.client.RestTemplate;
 @Configuration
 public class RulesClientConfiguration {
 
-	@Value("assessments.uri")
+	@Value("${assessments.uri}")
 	String assessmentsUri;
 	
 	@Bean
@@ -18,9 +18,9 @@ public class RulesClientConfiguration {
 	
 	@Bean
 	public AssessmentRestClient getAssessmentRestClient() {
-		RestEndpointBuilder builder = new RestEndpointBuilder(assessmentsUri);
-		builder.withGetResource("/{id}")
-			.withPutResource("/{id}");
+		RestEndpointBuilder builder = new RestEndpointBuilder(assessmentsUri)
+				.withPostResource("")
+				.withPutResource("/{id}");
 		return new AssessmentRestClient(builder);
 	}
 	

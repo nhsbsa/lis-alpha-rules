@@ -44,7 +44,10 @@ public class AssessmentRestClient implements IAssessmentRestClient {
 	}
 
 	@Override
-	public Assessment get(String id) {
-		return restTemplate.getForObject(restEndpointBuilder.getGetResourceUri(), Assessment.class, "42");
+	public Assessment post() {
+		//HttpEntity<Assessment> requestEntity = new HttpEntity<Assessment>(assessment);
+		ResponseEntity<Assessment> responseEntity =
+				restTemplate.exchange(restEndpointBuilder.getPostResourceUri(), HttpMethod.POST, null, Assessment.class);
+		return responseEntity.getBody();
 	}
 }
