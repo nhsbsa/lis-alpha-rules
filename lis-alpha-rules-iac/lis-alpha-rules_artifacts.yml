@@ -1,8 +1,6 @@
 ---
-webapp_artifacts:
-  tomcat:
-    - group_id: net.nhs.nhsbsa.lis.lis-alpha-rules
-      artifact_id: lis-alpha-rules-ws
-      version:
-      type: jar
-      context: lis-rules
+spring_boot_artifacts:
+  - group_id: net.nhs.nhsbsa.lis.lis-alpha-rules
+    description: LIS Alpha Rules Engine
+    artifact_id: lis-alpha-rules-ws
+    version:
