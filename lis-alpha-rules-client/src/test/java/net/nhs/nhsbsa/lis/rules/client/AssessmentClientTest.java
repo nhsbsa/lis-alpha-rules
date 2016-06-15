@@ -29,15 +29,15 @@ public class AssessmentClientTest {
 		restTemplate = new RestTemplate();
 		mockServer = MockRestServiceServer.createServer(restTemplate);
 		RestEndpointBuilder restEndpointBuilder = new RestEndpointBuilder("/assessments")
-				.withGetResource("/{id}")
+				.withPostResource("")
 				.withPutResource("/{id}");
 		client = new AssessmentRestClient(restTemplate, restEndpointBuilder);
 	}
 
 	@Test
-	public void testGet() {
+	public void testPost() {
 
-		mockServer.expect(requestTo("/assessments/42")).andExpect(method(HttpMethod.GET))
+		mockServer.expect(requestTo("/assessments")).andExpect(method(HttpMethod.POST))
 				.andRespond(withSuccess(resource("/fixture/assessment.json"), MediaType.APPLICATION_JSON));
 
 		Assessment actual = client.post();

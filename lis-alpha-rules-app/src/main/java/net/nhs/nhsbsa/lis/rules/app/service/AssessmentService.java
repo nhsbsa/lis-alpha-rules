@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import net.nhs.nhsbsa.lis.rules.app.assembler.IAssembler;
+import net.nhs.nhsbsa.lis.rules.app.assembler.IAssemblerService;
 import net.nhs.nhsbsa.lis.rules.app.exception.ResourceNotFoundException;
 import net.nhs.nhsbsa.lis.rules.app.model.AssessmentModel;
 import net.nhs.nhsbsa.lis.rules.app.repository.IAssessmentRespository;
@@ -20,7 +20,7 @@ public class AssessmentService implements IAssessmentService {
 	private IAssessmentRespository assessmentRespository;
 	
 	@Autowired
-	private IAssembler<AssessmentModel, AssessmentModel> assembler;
+	private IAssemblerService assembler;
 	
 	@Autowired
 	private IAssessmentRestClient assessmentRestClient;
