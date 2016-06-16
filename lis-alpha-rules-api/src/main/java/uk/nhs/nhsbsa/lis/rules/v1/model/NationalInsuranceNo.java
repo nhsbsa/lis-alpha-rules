@@ -45,5 +45,12 @@ public class NationalInsuranceNo {
 		}
 		
 	}
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	public String toString(){
+		return "[NINO:"+nino+"]";
+	}
 
 }

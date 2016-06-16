@@ -1,7 +1,5 @@
 package uk.nhs.nhsbsa.lis.rules.v1.model;
 
-import uk.nhs.nhsbsa.rules.types.Field;
-
 public class Name {
 
 	private String title;
@@ -34,6 +32,15 @@ public class Name {
 		this.surname = surname;
 	}
 
-  
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	public String toString(){
+		StringBuffer returnStr=new StringBuffer()
+				.append(" title:").append(title)
+				.append(" forenames:").append(forenames)
+				.append(" surname:").append(surname);
+		return returnStr.toString();
+	}
 
 }
