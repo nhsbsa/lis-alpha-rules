@@ -1,7 +1,8 @@
 package uk.nhs.nhsbsa.lis.rules.v1.builder;
 
+import java.util.ArrayList;
+
 import uk.nhs.nhsbsa.lis.rules.v1.model.Address;
-import uk.nhs.nhsbsa.rules.types.Field;
 
 public class AddressBuilder extends ModelBuilder<Address>{
 
@@ -14,7 +15,17 @@ public class AddressBuilder extends ModelBuilder<Address>{
 	}
 
 	public AddressBuilder withPostcode(String postcode) {
-        instance.setPostcode(new Field<String>("postcode", postcode));
+        getInstance().setPostcode(postcode);
+        return this;
+	}
+	
+	public AddressBuilder withHouseNameNumber(String houseNameNumber) {
+        getInstance().setHouseNameNumber(houseNameNumber);
+        return this;
+	}
+	
+	public AddressBuilder withAddressLines(ArrayList<String> addressLines) {
+        getInstance().setAddressLines(addressLines);
         return this;
 	}
 }

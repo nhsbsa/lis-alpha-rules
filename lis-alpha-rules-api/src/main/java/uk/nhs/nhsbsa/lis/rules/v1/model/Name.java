@@ -4,34 +4,36 @@ import uk.nhs.nhsbsa.rules.types.Field;
 
 public class Name {
 
-	private Field<String> title;
+	private String title;
 	
-	private Field<String> forenames;
+	private String forenames;
 	
-	private Field<String> surname;
+	private String surname;
 
-    public Field<String> getTitle() {
-        return title;
-    }
+	public String getTitle() {
+		return title;
+	}
 
-    public void setTitle(Field<String> title) {
-        this.title = title;
-    }
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
-    public Field<String> getForenames() {
-        return forenames;
-    }
+	public String getForenames() {
+		return forenames;
+	}
 
-    public void setForenames(Field<String> forenames) {
-        this.forenames = forenames;
-    }
+	public void setForenames(String forenames) {
+		this.forenames = forenames;
+	}
 
-    public Field<String> getSurname() {
-        return surname;
-    }
+	public String getSurname() {
+		return surname;
+	}
 
-    public void setSurname(Field<String> surname) {
-        this.surname = surname;
-    }
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+
+  
 
 }

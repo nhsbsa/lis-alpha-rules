@@ -2,40 +2,55 @@ package uk.nhs.nhsbsa.lis.rules.v1.model;
 
 import java.util.Date;
 
-import uk.nhs.nhsbsa.rules.types.Field;
-
 public class Person {
 
-	Field<PersonType> type;
+	private PersonType type;
 	
-	Field<Name> name;
+	private Name name;
 	
-	Field<Date> dob;
+	private Date dob;
 	
+	private NationalInsuranceNo nino;
 	
-
-	public Field<PersonType> getType() {
+	public PersonType getType() {
 		return type;
 	}
 
-	public void setType(Field<PersonType> type) {
+	public void setType(PersonType type) {
 		this.type = type;
 	}
 
-	public Field<Name> getName() {
+	public Name getName() {
 		return name;
 	}
 
-	public void setName(Field<Name> name) {
+	public void setName(Name name) {
 		this.name = name;
 	}
 
-	public Field<Date> getDob() {
+	public Date getDob() {
 		return dob;
 	}
 
-	public void setDob(Field<Date> dob) {
+	public void setDob(Date dob) {
 		this.dob = dob;
 	}
+
+	public NationalInsuranceNo getNino() {
+		return nino;
+	}
+
+	public void setNino(NationalInsuranceNo nino) {
+		this.nino = nino;
+	}
+
+	public String toString(){
+		StringBuffer returnStr=new StringBuffer("type:").append(type)
+				.append(" name:").append(name)
+				.append(" dob:").append(dob)
+				.append(" nino:").append(nino);
+		return returnStr.toString();
+	}
+	
 	
 }

@@ -1,6 +1,6 @@
 package uk.nhs.nhsbsa.lis.rules.v1.model;
 
-import uk.nhs.nhsbsa.rules.types.Field;
+import java.util.ArrayList;
 
 /**
  * Represents the address for which the assessment is being made.
@@ -10,27 +10,56 @@ public class Address {
 	/**
 	 * Post code for address lookup
 	 */
-	private Field<String> postcode;
+	private String postcode;
 	
     /**
 	 * House name or number.
 	 */
-	private Field<String> houseNameNumber;
+	private String houseNameNumber;
+	
+	/**
+	 * Address lines
+	 * @return
+	 */
+	private ArrayList<String> addressLines;
 
-    public Field<String> getPostcode() {
-        return postcode;
-    }
+	public ArrayList<String> getAddressLines() {
+		return addressLines;
+	}
 
-    public void setPostcode(Field<String> postcode) {
-        this.postcode = postcode;
-    }
+	public void setAddressLines(ArrayList<String> addressLines) {
+		this.addressLines = addressLines;
+	}
 
-    public Field<String> getHouseNameNumber() {
-        return houseNameNumber;
-    }
+	public String getPostcode() {
+		return postcode;
+	}
 
-    public void setHouseNameNumber(Field<String> houseNameNumber) {
-        this.houseNameNumber = houseNameNumber;
-    }
+	public void setPostcode(String postcode) {
+		this.postcode = postcode;
+	}
+
+	public String getHouseNameNumber() {
+		return houseNameNumber;
+	}
+
+	/**
+	 * @param houseNameNumber
+	 */
+	public void setHouseNameNumber(String houseNameNumber) {
+		this.houseNameNumber = houseNameNumber;
+	}
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	public String toString(){
+		StringBuffer returnStr=new StringBuffer("houseNameNumber:").append(houseNameNumber)
+				.append(" addressLines").append(addressLines)
+				.append(" postcode").append(postcode);
+		return returnStr.toString();
+	}
+
+
 
 }
