@@ -54,9 +54,11 @@ public class Address {
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString(){
-		StringBuffer returnStr=new StringBuffer("houseNameNumber:").append(houseNameNumber)
-				.append(" addressLines").append(addressLines)
-				.append(" postcode").append(postcode);
+		StringBuffer returnStr=new StringBuffer(" houseNameNumber:").append(houseNameNumber);
+		if(addressLines!=null){
+			addressLines.forEach((addressLine)->{returnStr.append(" addressLine:").append(addressLine);});
+		}else{returnStr.append(" addressLine:NONE");}
+		returnStr.append(" postcode").append(postcode);
 		return returnStr.toString();
 	}
 

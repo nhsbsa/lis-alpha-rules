@@ -50,7 +50,7 @@ public class NationalInsuranceNo {
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString(){
-		return "[NINO:"+nino+"]";
+		return " NINO:"+nino;
 	}
 
 }
