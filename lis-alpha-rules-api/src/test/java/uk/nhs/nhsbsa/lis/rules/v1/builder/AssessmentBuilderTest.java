@@ -6,6 +6,8 @@ import static org.junit.Assert.assertSame;
 import org.junit.Test;
 
 public class AssessmentBuilderTest {
+	
+	TestData testData;
 
 	@Test
 	public void testNotNull() {
@@ -18,7 +20,7 @@ public class AssessmentBuilderTest {
 	public void testAddressBuilderNotNull() {
 
 		AssessmentBuilder b = new AssessmentBuilder();
-		AddressBuilder ab = b.withAddress();
+		AddressBuilder ab = b.withAddress(TestData.testAddress);
 		assertNotNull(ab);
 	}
 
@@ -26,7 +28,7 @@ public class AssessmentBuilderTest {
 	public void testAddressBuilderFieldBuilder() {
 
 		AssessmentBuilder b = new AssessmentBuilder();
-		AddressBuilder ab = b.withAddress();
+		AddressBuilder ab = b.withAddress(TestData.testAddress);
 		assertNotNull(ab.getFieldBuilder());
 		assertNotNull(ab.getField());
 		assertSame(ab.getInstance(), ab.getField().getValue());

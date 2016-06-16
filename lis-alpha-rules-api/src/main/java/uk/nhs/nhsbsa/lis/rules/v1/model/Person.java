@@ -1,5 +1,6 @@
 package uk.nhs.nhsbsa.lis.rules.v1.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Person {
@@ -12,6 +13,34 @@ public class Person {
 	
 	private NationalInsuranceNo nino;
 	
+	private ArrayList<Benefit>benefits;
+	private ArrayList<Income>incomes;
+	private ArrayList<Outgoing>outgoings;
+	
+	public ArrayList<Outgoing> getOutgoings() {
+		return outgoings;
+	}
+
+	public void setOutgoings(ArrayList<Outgoing> outgoings) {
+		this.outgoings = outgoings;
+	}
+
+	public ArrayList<Benefit> getBenefits() {
+		return benefits;
+	}
+
+	public void setBenefits(ArrayList<Benefit> benefits) {
+		this.benefits = benefits;
+	}
+
+	public ArrayList<Income> getIncomes() {
+		return incomes;
+	}
+
+	public void setIncomes(ArrayList<Income> incomes) {
+		this.incomes = incomes;
+	}
+
 	public PersonType getType() {
 		return type;
 	}
@@ -44,11 +73,23 @@ public class Person {
 		this.nino = nino;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	public String toString(){
 		StringBuffer returnStr=new StringBuffer("type:").append(type)
 				.append(" name:").append(name)
 				.append(" dob:").append(dob)
 				.append(" nino:").append(nino);
+		if(benefits!=null){
+			benefits.forEach((benefit)->{returnStr.append(" benefit:").append(benefit);});
+		}else{returnStr.append(" benefit:NONE");}
+		if(incomes!=null){
+			incomes.forEach((income)->{returnStr.append(" income:").append(income);});
+		}else{returnStr.append(" income:NONE");}
+		if(outgoings!=null){
+			outgoings.forEach((outgoing)->{returnStr.append(" outgoing:").append(outgoing);});
+		}else{returnStr.append(" outgoing:NONE");}
 		return returnStr.toString();
 	}
 	
