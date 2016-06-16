@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import net.nhs.nhsbsa.lis.rules.app.model.AssessmentModel;
 import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
 import uk.nhs.nhsbsa.rules.types.Field;
+import uk.nhs.nhsbsa.util.FieldUtils;
 import uk.nhs.nhsbsa.util.ObjectWalker;
 
 @Component
@@ -28,29 +29,31 @@ public class AssessmentToAssessmentModelAssembler extends AbstractAssembler<Asse
 		final List<Field<?>> fields = new ArrayList<>();
 		ObjectWalker walker = new ObjectWalker(source, (item) -> {
 
-			//add field to destination
-			fields.add(new Field<Object>(item.getPath(), item.getValue()));
-
-			//useful debug
-			Object newValue = item.getValue();
-			String key = item.getPath();
-			if (index.containsKey(key)) {
-				Field<?> dst = index.get(key);
-				Object oldValue = dst.getValue();
-				if (!Objects.equals(oldValue, newValue)) {
-					LOGGER.info("Changing {} from {} to {}", new Object[]{
-							dst.getName(),
-							oldValue,
-							newValue
-					});
-				}
+			if (FieldUtils.isPrimitive(item.getField().getType())) {
 				
-			} else {
-				LOGGER.info("Adding {} to {}", new Object[]{
-						item.getPath(),
-						newValue});
-			}
-
+				//add field to destination
+				fields.add(new Field<Object>(item.getPath(), item.getValue()));
+	
+				//useful debug
+				Object newValue = item.getValue();
+				String key = item.getPath();
+				if (index.containsKey(key)) {
+					Field<?> dst = index.get(key);
+					Object oldValue = dst.getValue();
+					if (!Objects.equals(oldValue, newValue)) {
+						LOGGER.info("Changing {} from {} to {}", new Object[]{
+								dst.getName(),
+								oldValue,
+								newValue
+						});
+					}
+					
+				} else {
+					LOGGER.info("Adding {} to {}", new Object[]{
+							item.getPath(),
+							newValue});
+				}
+			}	
 		});
 		walker.walk();
 		destination.setFields(fields);

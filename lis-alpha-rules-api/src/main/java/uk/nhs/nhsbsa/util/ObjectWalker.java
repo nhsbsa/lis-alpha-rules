@@ -149,21 +149,13 @@ public class ObjectWalker {
 	}
 
 	private void callback(CallbackItem item) {
-		if (isPrimitive(item)) {
-			LOGGER.info("Callback for : {} > {}: {} {}", new Object[]{
-					item.object,
-					item.field.getName(),
-					item.value,
-					item.path
-			});
-			callback.handle(item);
-		}
-	}
-
-	private boolean isPrimitive(CallbackItem item) {
-		Class<?> clazz = item.getField().getType();
-		return clazz.isPrimitive()
-				|| String.class.isAssignableFrom(clazz);
+		LOGGER.info("Callback for : {} > {}: {} {}", new Object[]{
+				item.object,
+				item.field.getName(),
+				item.value,
+				item.path
+		});
+		callback.handle(item);
 	}
 
 	/**

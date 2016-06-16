@@ -86,10 +86,10 @@ public class ObjectWalkerTest {
 		walker = new ObjectWalker(fixture, callback);
 		walker.walk();
 		
-		verifyCallback(fixture, "parent", null,    "/parent");
-		verifyCallback(fixture, "child",  null,    "/child");
-		verifyCallback(fixture, "id",     "id",    "/id");
-		verifyCallback(fixture, "field",  "value", "/field");
+		verifyCallback(fixture, "parent", null,    "parent");
+		verifyCallback(fixture, "child",  null,    "child");
+		verifyCallback(fixture, "id",     "id",    "id");
+		verifyCallback(fixture, "field",  "value", "field");
 	}
 
 	@Test
@@ -103,15 +103,15 @@ public class ObjectWalkerTest {
 		walker = new ObjectWalker(parent, callback, Traversal.DEPTH_FIRST);
 		walker.walk();
 
-		verifyCallback(parent, "parent", null,     "/parent");
-		verifyCallback(parent, "child",  child,    "/child");
-		verifyCallback(parent, "id",     "parent", "/id");
-		verifyCallback(parent, "field",  "pval",   "/field");
+		verifyCallback(parent, "parent", null,     "parent");
+		verifyCallback(parent, "child",  child,    "child");
+		verifyCallback(parent, "id",     "parent", "id");
+		verifyCallback(parent, "field",  "pval",   "field");
 		
-		verifyCallback(child, "parent", parent,  "/child/parent");
-		verifyCallback(child, "child",  null,    "/child/child");
-		verifyCallback(child, "id",     "child", "/child/id");
-		verifyCallback(child, "field",  "cval",  "/child/field");
+		verifyCallback(child, "parent", parent,  "child.parent");
+		verifyCallback(child, "child",  null,    "child.child");
+		verifyCallback(child, "id",     "child", "child.id");
+		verifyCallback(child, "field",  "cval",  "child.field");
 	}
 
 	@Test
@@ -122,9 +122,9 @@ public class ObjectWalkerTest {
 		walker = new ObjectWalker(fixture, callback);
 		walker.walk();
 		
-		verifyCallback(fixture, "values", "1",    "/values[0]");
-		verifyCallback(fixture, "values", "2",    "/values[1]");
-		verifyCallback(fixture, "values", "3",    "/values[2]");
+		verifyCallback(fixture, "values", "1",    "values[0]");
+		verifyCallback(fixture, "values", "2",    "values[1]");
+		verifyCallback(fixture, "values", "3",    "values[2]");
 	}
 
 	@Test
@@ -135,9 +135,9 @@ public class ObjectWalkerTest {
 		walker = new ObjectWalker(fixture, callback);
 		walker.walk();
 		
-		verifyCallback(fixture, "values", "1",    "/values[0]");
-		verifyCallback(fixture, "values", "2",    "/values[1]");
-		verifyCallback(fixture, "values", "3",    "/values[2]");
+		verifyCallback(fixture, "values", "1",    "values[0]");
+		verifyCallback(fixture, "values", "2",    "values[1]");
+		verifyCallback(fixture, "values", "3",    "values[2]");
 	}
 
 	@Test
@@ -151,9 +151,9 @@ public class ObjectWalkerTest {
 		walker = new ObjectWalker(fixture, callback);
 		walker.walk();
 		
-		verifyCallback(fixture, "values", "1",    "/values[A]");
-		verifyCallback(fixture, "values", "2",    "/values[B]");
-		verifyCallback(fixture, "values", "3",    "/values[C]");
+		verifyCallback(fixture, "values", "1",    "values[A]");
+		verifyCallback(fixture, "values", "2",    "values[B]");
+		verifyCallback(fixture, "values", "3",    "values[C]");
 	}
 
 //	@Test

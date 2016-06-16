@@ -12,6 +12,7 @@ import net.nhs.nhsbsa.lis.rules.app.model.AssessmentModel;
 import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
 import uk.nhs.nhsbsa.rules.types.Field;
 import uk.nhs.nhsbsa.util.ObjectWalker;
+import uk.nhs.nhsbsa.util.ObjectWalker.CallbackItem;
 
 @Component
 public class AssessmentModelToAssessmentAssembler extends AbstractAssembler<AssessmentModel, Assessment> {
@@ -26,7 +27,8 @@ public class AssessmentModelToAssessmentAssembler extends AbstractAssembler<Asse
 		final Map<String, Field<Object>> index = indexer.index(source);
 		ObjectWalker walker = new ObjectWalker(destination, (item) -> {
 			Field<Object> src = index.get(item.getPath());
-			if (src != null) {
+			if (src != null 
+					&& uk.nhs.nhsbsa.util.FieldUtils.isPrimitive(item.getField().getType())) {
 				Object oldValue = item.getValue();
 				Object newValue = src.getValue();
 				if (!Objects.equals(oldValue, newValue)) {
@@ -45,4 +47,5 @@ public class AssessmentModelToAssessmentAssembler extends AbstractAssembler<Asse
 		});
 		walker.walk();
 	}
+	
 }
