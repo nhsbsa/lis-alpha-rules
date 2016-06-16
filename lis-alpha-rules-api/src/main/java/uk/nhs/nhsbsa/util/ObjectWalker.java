@@ -25,27 +25,39 @@ public class ObjectWalker {
 	 * Interface for callback from object walk.
 	 */
 	public static interface Callback {
-		void handle(Object object, String fieldName, Object field, String path);
+		void handle(CallbackItem callbackItem);
 	}
 	
 	/**
 	 * Class to hold callback data.
 	 */
-	private static class CallbackItem {
+	public static class CallbackItem {
 		private Object object;
-		private Object field;
-		private String fieldName;
+		private Field field;
+		private Object value;
 		private String path;
-		public CallbackItem(Object object, String fieldName, Object field, String path) {
+		public CallbackItem(Object object, Field field, Object value, String path) {
 			super();
 			this.object = object;
-			this.fieldName = fieldName;
 			this.field = field;
+			this.value = value;
 			this.path = path;
 		}
 		@Override
 		public String toString() {
-			return object + "(" + fieldName + ") = " + field + " [" + path + "]";
+			return object + "(" + field.getName() + ") = " + field + " [" + path + "]";
+		}
+		public Object getObject() {
+			return object;
+		}
+		public Field getField() {
+			return field;
+		}
+		public Object getValue() {
+			return value;
+		}
+		public String getPath() {
+			return path;
 		}
 		
 	}
@@ -127,39 +139,35 @@ public class ObjectWalker {
 
 	/**
 	 * Notify callbacks.
-	 * @param fields
+	 * @param items
 	 * @param callback
 	 */
-	private void callback(List<CallbackItem> fields) {
-		for (CallbackItem field : fields) {
-			callback(field);
+	private void callback(List<CallbackItem> items) {
+		for (CallbackItem item : items) {
+			callback(item);
 		}
 	}
 
-	private void callback(CallbackItem field) {
+	private void callback(CallbackItem item) {
 		LOGGER.info("Callback for : {} > {}: {} {}", new Object[]{
-				field.field,
-				field.field,
-				field.fieldName,
-				field.path
+				item.object,
+				item.field.getName(),
+				item.value,
+				item.path
 		});
-		callback.handle(
-				field.object,
-				field.fieldName,
-				field.field,
-				field.path);
+		callback.handle(item);
 	}
 
 	/**
 	 * Recurse through tree.
-	 * @param fields
+	 * @param items
 	 * @param callback
 	 */
-	private void recurse(List<CallbackItem> fields) {
-		for (CallbackItem field : fields) {
-			Object v = field.field;
+	private void recurse(List<CallbackItem> items) {
+		for (CallbackItem item : items) {
+			Object v = item.value;
 			if (!cache.contains(v)) {
-				walk(field.path, field.field);
+				walk(item.path, item.value);
 			}
 		}
 	}
@@ -177,7 +185,7 @@ public class ObjectWalker {
 				String fieldName = field.getName();
 				String fieldPath = path + "/" + fieldName;
 				Object value = FieldUtils.readField(field, o, true);
-				addCallbackItems(result, o, fieldName, value, fieldPath);
+				addCallbackItems(result, o, field, value, fieldPath);
 
 			} catch (IllegalAccessException e) {
 				throw new IllegalArgumentException(e);
@@ -186,43 +194,45 @@ public class ObjectWalker {
 		return result;
 	}
 
-	@SuppressWarnings("rawtypes")
-	private void addCallbackItems(List<CallbackItem> items, Object o, String fieldName, Object value, String fieldPath) {
+	private void addCallbackItems(List<CallbackItem> items, Object o, Field field, Object value, String fieldPath) {
 
-		if (value instanceof Collection) {
-			Collection collection = (Collection)value;
-			addCollection(items, o, fieldName, fieldPath, collection);
+		if (value == null) {
+			items.add(new CallbackItem(o, field, value, fieldPath));
+			
+		} else if (value instanceof Collection) {
+			Collection<?> collection = (Collection<?>)value;
+			addCollection(items, o, field, fieldPath, collection);
 			
 		} else if (value.getClass().isArray()) {
-			Collection collection = Arrays.asList((Object[])value);
-			addCollection(items, o, fieldName, fieldPath, collection);
+			Collection<?> collection = Arrays.asList((Object[])value);
+			addCollection(items, o, field, fieldPath, collection);
 			
 		} else if (value instanceof Map) {
-			Map map = (Map)value;
-			addMap(items, o, fieldName, fieldPath, map);
+			Map<?, ?> map = (Map<?, ?>)value;
+			addMap(items, o, field, fieldPath, map);
 			
 		} else {
-			items.add(new CallbackItem(o, fieldName, value, fieldPath));
+			items.add(new CallbackItem(o, field, value, fieldPath));
 		}
 	}
 
-	private void addMap(List<CallbackItem> items, Object o, String fieldName, String fieldPath, Map<?, ?> map) {
+	private void addMap(List<CallbackItem> items, Object o, Field field, String fieldPath, Map<?, ?> map) {
 		
 		String itemPath;
-		for (Map.Entry entry : map.entrySet()) {
+		for (Map.Entry<?, ?> entry : map.entrySet()) {
 			itemPath = fieldPath + "[" + entry.getKey() + "]";
-			items.add(new CallbackItem(o, fieldName, entry.getValue(), itemPath));
+			items.add(new CallbackItem(o, field, entry.getValue(), itemPath));
 		}
 	}
 
-	private void addCollection(List<CallbackItem> items, Object o, String fieldName, String fieldPath,
-			Collection collection) {
+	private void addCollection(List<CallbackItem> items, Object o, Field field, String fieldPath,
+			Collection<?> collection) {
 
 		int i = 0;
 		String itemPath;
 		for (Object item : collection) {
 			itemPath = fieldPath + "[" + i++ + "]";
-			items.add(new CallbackItem(o, fieldName, item, itemPath));
+			items.add(new CallbackItem(o, field, item, itemPath));
 		}
 	}
 }

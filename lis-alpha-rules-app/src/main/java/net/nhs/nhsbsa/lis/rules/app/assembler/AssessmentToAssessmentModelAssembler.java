@@ -11,8 +11,8 @@ import org.springframework.stereotype.Component;
 
 import net.nhs.nhsbsa.lis.rules.app.model.AssessmentModel;
 import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
-import uk.nhs.nhsbsa.rules.builder.FieldWalker;
 import uk.nhs.nhsbsa.rules.types.Field;
+import uk.nhs.nhsbsa.util.ObjectWalker;
 
 @Component
 public class AssessmentToAssessmentModelAssembler extends AbstractAssembler<Assessment, AssessmentModel> {
@@ -26,15 +26,14 @@ public class AssessmentToAssessmentModelAssembler extends AbstractAssembler<Asse
 
 		Map<String, Field<Object>> index = indexer.index(destination);
 		List<Field<?>> fields = new ArrayList<>();
-		FieldWalker walker = new FieldWalker();
-		walker.walk(source, (src) -> {
-			
+		ObjectWalker walker = new ObjectWalker(source, (item) -> {
+
 			//add field to destination
-			fields.add(src);
+			fields.add(new Field<Object>(item.getPath(), item.getValue()));
 
 			//useful debug
-			Object newValue = src.getValue();
-			String key = key(src);
+			Object newValue = item.getValue();
+			String key = item.getPath();
 			if (index.containsKey(key)) {
 				Field<?> dst = index.get(key);
 				Object oldValue = dst.getValue();
@@ -48,11 +47,12 @@ public class AssessmentToAssessmentModelAssembler extends AbstractAssembler<Asse
 				
 			} else {
 				LOGGER.info("Adding {} to {}", new Object[]{
-						src.getName(),
+						item.getField().getName(),
 						newValue});
 			}
 
 		});
+		walker.walk();
 		destination.setFields(fields);
 		destination.setId(source.getId());
 	}

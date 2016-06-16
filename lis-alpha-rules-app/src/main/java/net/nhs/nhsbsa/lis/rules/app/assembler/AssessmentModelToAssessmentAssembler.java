@@ -3,14 +3,15 @@ package net.nhs.nhsbsa.lis.rules.app.assembler;
 import java.util.Map;
 import java.util.Objects;
 
+import org.apache.commons.lang3.reflect.FieldUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import net.nhs.nhsbsa.lis.rules.app.model.AssessmentModel;
 import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
-import uk.nhs.nhsbsa.rules.builder.FieldWalker;
 import uk.nhs.nhsbsa.rules.types.Field;
+import uk.nhs.nhsbsa.util.ObjectWalker;
 
 @Component
 public class AssessmentModelToAssessmentAssembler extends AbstractAssembler<AssessmentModel, Assessment> {
@@ -19,32 +20,29 @@ public class AssessmentModelToAssessmentAssembler extends AbstractAssembler<Asse
 	
 	AssessmentModelIndexer indexer = new AssessmentModelIndexer();
 	
-	@SuppressWarnings("unchecked")
 	@Override
 	public void map(AssessmentModel source, Assessment destination) {
 		
 		Map<String, Field<Object>> index = indexer.index(source);
-		FieldWalker walker = new FieldWalker();
-		walker.walk(destination, (dst) -> {
-			String key = key(dst);
-			Field<Object> src = index.get(key);
+		ObjectWalker walker = new ObjectWalker(source, (item) -> {
+			Field<Object> src = index.get(item.getPath());
 			if (src != null) {
-				Object oldValue = dst.getValue();
+				Object oldValue = item.getValue();
 				Object newValue = src.getValue();
 				if (!Objects.equals(oldValue, newValue)) {
 					LOGGER.info("Changing {} from {} to {}", new Object[]{
-							dst.getName(),
+							item.getField().getName(),
 							oldValue,
 							newValue
 					});
-					((Field<Object>)dst).setValue(newValue);
+					try {
+						FieldUtils.writeField(item.getField(), item.getObject(), newValue, true);
+					} catch (Exception e) {
+						throw new IllegalArgumentException(e);
+					}
 				}
 			}
 		});
+		walker.walk();
 	}
-
-	private String key(Field<?> field) {
-		return field.getName();
-	}
-
 }
