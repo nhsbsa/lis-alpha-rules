@@ -23,8 +23,8 @@ public class AssessmentModelToAssessmentAssembler extends AbstractAssembler<Asse
 	@Override
 	public void map(AssessmentModel source, Assessment destination) {
 		
-		Map<String, Field<Object>> index = indexer.index(source);
-		ObjectWalker walker = new ObjectWalker(source, (item) -> {
+		final Map<String, Field<Object>> index = indexer.index(source);
+		ObjectWalker walker = new ObjectWalker(destination, (item) -> {
 			Field<Object> src = index.get(item.getPath());
 			if (src != null) {
 				Object oldValue = item.getValue();

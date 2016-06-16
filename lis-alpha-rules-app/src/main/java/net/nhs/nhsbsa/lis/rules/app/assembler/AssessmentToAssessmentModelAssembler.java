@@ -24,8 +24,8 @@ public class AssessmentToAssessmentModelAssembler extends AbstractAssembler<Asse
 	@Override
 	public void map(Assessment source, AssessmentModel destination) {
 
-		Map<String, Field<Object>> index = indexer.index(destination);
-		List<Field<?>> fields = new ArrayList<>();
+		final Map<String, Field<Object>> index = indexer.index(destination);
+		final List<Field<?>> fields = new ArrayList<>();
 		ObjectWalker walker = new ObjectWalker(source, (item) -> {
 
 			//add field to destination
@@ -47,7 +47,7 @@ public class AssessmentToAssessmentModelAssembler extends AbstractAssembler<Asse
 				
 			} else {
 				LOGGER.info("Adding {} to {}", new Object[]{
-						item.getField().getName(),
+						item.getPath(),
 						newValue});
 			}
 
@@ -56,9 +56,4 @@ public class AssessmentToAssessmentModelAssembler extends AbstractAssembler<Asse
 		destination.setFields(fields);
 		destination.setId(source.getId());
 	}
-
-	private String key(Field<?> src) {
-		return src.getName();
-	}
-
 }

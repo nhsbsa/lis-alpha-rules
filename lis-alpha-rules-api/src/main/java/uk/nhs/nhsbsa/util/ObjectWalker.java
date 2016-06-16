@@ -109,7 +109,7 @@ public class ObjectWalker {
 	 * @param callback
 	 */
 	public void walk() {
-		walk("", root);
+		walk(null, root);
 	}
 
 	private void walk(String path, Object o) {
@@ -149,13 +149,21 @@ public class ObjectWalker {
 	}
 
 	private void callback(CallbackItem item) {
-		LOGGER.info("Callback for : {} > {}: {} {}", new Object[]{
-				item.object,
-				item.field.getName(),
-				item.value,
-				item.path
-		});
-		callback.handle(item);
+		if (isPrimitive(item)) {
+			LOGGER.info("Callback for : {} > {}: {} {}", new Object[]{
+					item.object,
+					item.field.getName(),
+					item.value,
+					item.path
+			});
+			callback.handle(item);
+		}
+	}
+
+	private boolean isPrimitive(CallbackItem item) {
+		Class<?> clazz = item.getField().getType();
+		return clazz.isPrimitive()
+				|| String.class.isAssignableFrom(clazz);
 	}
 
 	/**
@@ -183,7 +191,7 @@ public class ObjectWalker {
 		for (java.lang.reflect.Field field : fields) {
 			try {
 				String fieldName = field.getName();
-				String fieldPath = path + "/" + fieldName;
+				String fieldPath = append(path, fieldName);
 				Object value = FieldUtils.readField(field, o, true);
 				addCallbackItems(result, o, field, value, fieldPath);
 
@@ -192,6 +200,13 @@ public class ObjectWalker {
 			}
 		}
 		return result;
+	}
+
+	private String append(String path, String fieldName) {
+		if (path == null) {
+			return fieldName;
+		}
+		return path + "." + fieldName;
 	}
 
 	private void addCallbackItems(List<CallbackItem> items, Object o, Field field, Object value, String fieldPath) {
