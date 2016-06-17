@@ -61,6 +61,7 @@
             <webResources>
               <resource>
                 <directory>src/main/resources</directory>
+                <filtering>true</filtering>
               </resource>
             </webResources>
           </configuration>
@@ -129,7 +130,7 @@
 
       </plugins>
     </pluginManagement>
-    
+
   </build>
 
   <profiles>
