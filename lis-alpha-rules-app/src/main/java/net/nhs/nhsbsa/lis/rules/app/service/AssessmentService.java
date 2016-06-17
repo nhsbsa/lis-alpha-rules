@@ -1,8 +1,5 @@
 package net.nhs.nhsbsa.lis.rules.app.service;
 
-import java.util.Arrays;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +8,7 @@ import net.nhs.nhsbsa.lis.rules.app.exception.ResourceNotFoundException;
 import net.nhs.nhsbsa.lis.rules.app.model.AssessmentModel;
 import net.nhs.nhsbsa.lis.rules.app.repository.IAssessmentRespository;
 import net.nhs.nhsbsa.lis.rules.client.IAssessmentRestClient;
-import uk.nhs.nhsbsa.rules.types.Field;
+import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
 
 @Service
 public class AssessmentService implements IAssessmentService {
@@ -26,39 +23,40 @@ public class AssessmentService implements IAssessmentService {
 	private IAssessmentRestClient assessmentRestClient;
 
 	@Override
-	public Iterable<AssessmentModel> list() {
+	public Iterable<Assessment> list() {
 
 		return assessmentRespository.findAll();
 	}
 
 	@Override
 	public AssessmentModel get(String id) {
-		AssessmentModel result = assessmentRespository.findOne(id);
-		if (result == null) {
+		Assessment assessment = assessmentRespository.findOne(id);
+		if (assessment == null) {
 			throw new ResourceNotFoundException();
 		}
+    	AssessmentModel result = new AssessmentModel();
+    	assembler.map(assessment, result);
 		return result;
 	}
 
 	@Override
 	public AssessmentModel create() {
 		
-		assessmentRestClient.post(); 
+		Assessment assessment = assessmentRestClient.post();
+		assessment = assessmentRespository.save(assessment);
     	AssessmentModel result = new AssessmentModel();
-        List<Field<?>> fields = Arrays.asList(
-        		new Field<String>("forenames", "Bob"),
-        		new Field<String>("surname", "Builder")
-        		);
-        result.setFields(fields);
-		return assessmentRespository.save(result);
+    	assembler.map(assessment, result);
+		return result;
 	}
 
 	@Override
 	public AssessmentModel update(String id, AssessmentModel model) {
 		
-		AssessmentModel persisted = assessmentRespository.findOne(id);
-		assembler.map(model, persisted);
-		assessmentRespository.save(persisted);
-		return persisted;
+		Assessment assessment = assessmentRespository.findOne(id);
+		assembler.map(model, assessment);
+		assessmentRestClient.put(assessment);
+		assessmentRespository.save(assessment);
+		assembler.map(assessment, model);
+		return model;
 	}
 }

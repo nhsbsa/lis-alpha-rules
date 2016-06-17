@@ -3,6 +3,8 @@ package uk.nhs.nhsbsa.lis.rules.v1.model;
 import java.util.ArrayList;
 import java.util.Date;
 
+import org.springframework.data.annotation.Id;
+
 /**
  * The root class for a rules based LIS assessment.
  */
@@ -11,6 +13,7 @@ public class Assessment {
 	/**
 	 * ID for this assessment.
 	 */
+	@Id
 	private String id;
 	
 	/**

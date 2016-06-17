@@ -1,7 +1,6 @@
 package net.nhs.nhsbsa.lis.rules.app.assembler;
 
-import java.lang.reflect.ParameterizedType;
-
+import org.springframework.core.GenericTypeResolver;
 import org.springframework.util.TypeUtils;
 
 public abstract class AbstractAssembler<S, D> implements IAssembler<S, D> {
@@ -11,16 +10,16 @@ public abstract class AbstractAssembler<S, D> implements IAssembler<S, D> {
 	
 	@SuppressWarnings( "unchecked" )
 	public AbstractAssembler() {
-		this.sourceClass = (Class<S>) ((ParameterizedType) getClass()
-                .getGenericSuperclass()).getActualTypeArguments()[0];
-		this.destinationClass = (Class<D>) ((ParameterizedType) getClass()
-                .getGenericSuperclass()).getActualTypeArguments()[1];
+		Class<?>[] types = GenericTypeResolver.resolveTypeArguments(getClass(), IAssembler.class);
+		this.sourceClass = (Class<S>) types[0];
+		this.destinationClass = (Class<D>) types[1]; 
 	}
 	
 	@Override
 	public boolean accept(Class<?> source, Class<?> destination) {
-		return TypeUtils.isAssignable(sourceClass, source)
+		boolean result =  TypeUtils.isAssignable(sourceClass, source)
 				&& TypeUtils.isAssignable(destinationClass, destination);
+		return result;
 	}
 
 }
