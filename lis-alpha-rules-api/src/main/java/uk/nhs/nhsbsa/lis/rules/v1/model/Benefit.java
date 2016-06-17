@@ -7,12 +7,14 @@ package uk.nhs.nhsbsa.lis.rules.v1.model;
  */
 public class Benefit {
 	private BenefitType benefitType;
-		private ValueState benefitState;
+	private ValueState benefitState;
 	private String benefitValue; // TODO this may change to an object. at present can hold benefit info
+	private MoneyPeriod moneyPeriod;
 
 	public Benefit(){
 		benefitType=BenefitType.UNDEFINED;
 		benefitState=ValueState.UNDEFINED;
+		moneyPeriod=MoneyPeriod.UNDEFINED;
 	}
 	
 	public BenefitType getBenefitType() {
@@ -39,6 +41,14 @@ public class Benefit {
 		this.benefitValue = benefitValue;
 	}
 	
+	public MoneyPeriod getMoneyPeriod() {
+		return moneyPeriod;
+	}
+
+	public void setMoneyPeriod(MoneyPeriod moneyPeriod) {
+		this.moneyPeriod = moneyPeriod;
+	}
+	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
@@ -46,7 +56,17 @@ public class Benefit {
 		StringBuffer returnStr=new StringBuffer()
 				.append(" benefitType:").append(benefitType)
 				.append(" benefitState:").append(benefitState)
-				.append(" benefitValue:").append(benefitValue);
+				.append(" benefitValue:").append(benefitValue)
+				.append(" moneyPeriod:").append(moneyPeriod);
+		return returnStr.toString(); 
+	}
+	
+	public String toJSONString(){
+		StringBuffer returnStr=new StringBuffer()
+				.append("{ \"type\":\"").append(benefitType).append("\",")
+				.append(" \"state\":\"").append(benefitState).append("\",")
+				.append(" \"value\":\"").append(benefitValue).append("\",")
+				.append(" \"moneyPeriod\":\"").append(moneyPeriod).append("\" }");
 		return returnStr.toString(); 
 	}
 }

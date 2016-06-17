@@ -93,5 +93,44 @@ public class Person {
 		return returnStr.toString();
 	}
 	
+	/**
+	 * @return
+	 */
+	public String toJSONString(){
+		StringBuffer returnStr=new StringBuffer("{\"person\":{");
+		returnStr.append("\"name\":").append(name.toJSONString()).append(",");
+		returnStr.append("\"dob\":\"").append(dob).append("\",");
+		returnStr.append(nino.toJSONString()).append(",");
+		returnStr.append("\"benefits\":[");
+		if(benefits!=null){
+			boolean firstIteration=true;
+			for(Benefit benefit : benefits){
+				if(firstIteration==true){firstIteration=false;}
+				else{returnStr.append(",");}
+				returnStr.append(benefit.toJSONString());
+			}
+		}
+		returnStr.append("],\"incomes\":[");
+		if(benefits!=null){
+			boolean firstIteration=true;
+			for(Income income : incomes){
+				if(firstIteration==true){firstIteration=false;}
+				else{returnStr.append(",");}
+				returnStr.append(income.toJSONString());
+			}
+		}
+		returnStr.append("],\"outgoings\":[");
+		if(outgoings!=null){
+			boolean firstIteration=true;
+			for(Outgoing outgoing : outgoings){
+				if(firstIteration==true){firstIteration=false;}
+				else{returnStr.append(",");}
+				returnStr.append(outgoing.toJSONString());
+			}
+		}
+		returnStr.append("]}");
+		return returnStr.toString();
+	}
+	
 	
 }
