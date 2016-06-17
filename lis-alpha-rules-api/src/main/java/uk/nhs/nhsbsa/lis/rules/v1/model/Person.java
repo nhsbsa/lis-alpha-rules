@@ -1,41 +1,97 @@
 package uk.nhs.nhsbsa.lis.rules.v1.model;
 
+import java.util.ArrayList;
 import java.util.Date;
-
-import uk.nhs.nhsbsa.rules.types.Field;
 
 public class Person {
 
-	Field<PersonType> type;
+	private PersonType type;
 	
-	Field<Name> name;
+	private Name name;
 	
-	Field<Date> dob;
+	private Date dob;
 	
+	private NationalInsuranceNo nino;
 	
+	private ArrayList<Benefit>benefits;
+	private ArrayList<Income>incomes;
+	private ArrayList<Outgoing>outgoings;
+	
+	public ArrayList<Outgoing> getOutgoings() {
+		return outgoings;
+	}
 
-	public Field<PersonType> getType() {
+	public void setOutgoings(ArrayList<Outgoing> outgoings) {
+		this.outgoings = outgoings;
+	}
+
+	public ArrayList<Benefit> getBenefits() {
+		return benefits;
+	}
+
+	public void setBenefits(ArrayList<Benefit> benefits) {
+		this.benefits = benefits;
+	}
+
+	public ArrayList<Income> getIncomes() {
+		return incomes;
+	}
+
+	public void setIncomes(ArrayList<Income> incomes) {
+		this.incomes = incomes;
+	}
+
+	public PersonType getType() {
 		return type;
 	}
 
-	public void setType(Field<PersonType> type) {
+	public void setType(PersonType type) {
 		this.type = type;
 	}
 
-	public Field<Name> getName() {
+	public Name getName() {
 		return name;
 	}
 
-	public void setName(Field<Name> name) {
+	public void setName(Name name) {
 		this.name = name;
 	}
 
-	public Field<Date> getDob() {
+	public Date getDob() {
 		return dob;
 	}
 
-	public void setDob(Field<Date> dob) {
+	public void setDob(Date dob) {
 		this.dob = dob;
 	}
+
+	public NationalInsuranceNo getNino() {
+		return nino;
+	}
+
+	public void setNino(NationalInsuranceNo nino) {
+		this.nino = nino;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	public String toString(){
+		StringBuffer returnStr=new StringBuffer("type:").append(type)
+				.append(" name:").append(name)
+				.append(" dob:").append(dob)
+				.append(" nino:").append(nino);
+		if(benefits!=null){
+			benefits.forEach((benefit)->{returnStr.append(" benefit:").append(benefit);});
+		}else{returnStr.append(" benefit:NONE");}
+		if(incomes!=null){
+			incomes.forEach((income)->{returnStr.append(" income:").append(income);});
+		}else{returnStr.append(" income:NONE");}
+		if(outgoings!=null){
+			outgoings.forEach((outgoing)->{returnStr.append(" outgoing:").append(outgoing);});
+		}else{returnStr.append(" outgoing:NONE");}
+		return returnStr.toString();
+	}
+	
 	
 }

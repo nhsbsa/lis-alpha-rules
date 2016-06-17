@@ -29,7 +29,7 @@ public class AbstractBuilder<T> {
 	@SuppressWarnings("unchecked")
 	private void instantiate() {
 		
-		Class<T> clazz = GenericsUtils.genericClass(getClass(), 0);
+		Class<T> clazz = GenericsUtils.genericClass(getClass(), AbstractBuilder.class, 0);
 		instance = ClassUtil.createInstance(clazz, true);
 	}
 

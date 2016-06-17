@@ -15,5 +15,13 @@ public class FieldBuilder<T> extends AbstractBuilder<Field<T>> {
 		super(parent, instance);
 	}
 
-	
+	public FieldBuilder<T> withName(String name) {
+		instance.setName(name);
+		return this;
+	}
+
+	public FieldBuilder<T> withValue(T value) {
+		instance.setValue(value);
+		return this;
+	}
 }
