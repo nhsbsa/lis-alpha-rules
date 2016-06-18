@@ -50,7 +50,15 @@ public class NationalInsuranceNo {
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString(){
-		return " NINO:"+nino;
+		StringBuffer returnStr=new StringBuffer(" NINO:");
+		returnStr.append(nino);
+		return returnStr.toString();
+	}
+	
+	public String toJSONString(){
+		StringBuffer returnStr=new StringBuffer("\"NINO\":\"");
+		returnStr.append(nino).append("\"");
+		return returnStr.toString();
 	}
 
 }

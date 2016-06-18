@@ -5,9 +5,11 @@ import static org.junit.Assert.assertSame;
 
 import org.junit.Test;
 
+import uk.nhs.nhsbsa.lis.rules.v1.model.BillPersonaTestData;
+
 public class AssessmentBuilderTest {
 	
-	TestData testData;
+	BillPersonaTestData testData;
 
 	@Test
 	public void testNotNull() {
@@ -20,7 +22,7 @@ public class AssessmentBuilderTest {
 	public void testAddressBuilderNotNull() {
 
 		AssessmentBuilder b = new AssessmentBuilder();
-		AddressBuilder ab = b.withAddress(TestData.testAddress);
+		AddressBuilder ab = b.withAddress(BillPersonaTestData.testAddress);
 		assertNotNull(ab);
 	}
 
@@ -28,7 +30,7 @@ public class AssessmentBuilderTest {
 	public void testAddressBuilderFieldBuilder() {
 
 		AssessmentBuilder b = new AssessmentBuilder();
-		AddressBuilder ab = b.withAddress(TestData.testAddress);
+		AddressBuilder ab = b.withAddress(BillPersonaTestData.testAddress);
 		assertNotNull(ab.getFieldBuilder());
 		assertNotNull(ab.getField());
 		assertSame(ab.getInstance(), ab.getField().getValue());

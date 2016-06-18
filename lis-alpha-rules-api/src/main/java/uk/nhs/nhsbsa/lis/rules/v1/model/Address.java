@@ -58,7 +58,28 @@ public class Address {
 		if(addressLines!=null){
 			addressLines.forEach((addressLine)->{returnStr.append(" addressLine:").append(addressLine);});
 		}else{returnStr.append(" addressLine:NONE");}
-		returnStr.append(" postcode").append(postcode);
+		returnStr.append(" postcode:").append(postcode);
+		return returnStr.toString();
+	}
+	
+	/**
+	 * Return a JSON string representation of an address
+	 * @return
+	 */
+	public String toJSONString(){
+		StringBuffer returnStr=new StringBuffer("{ \"houseNameNumber\":\"").append(houseNameNumber);
+		returnStr.append("\", \"addressLines\":[");
+		if(addressLines!=null){
+			boolean firstIteration=true;
+			for(String addressLine : addressLines){
+				if(firstIteration==true){firstIteration=false;}
+				else{returnStr.append(",");}
+				returnStr.append("{ \"addressLine\":\"").append(addressLine).append("\"}");
+			}
+		}
+		//else{returnStr.append(" addressLine:NONE");}
+		returnStr.append("],");
+		returnStr.append(" \"postcode\":\"").append(postcode).append("\" }");
 		return returnStr.toString();
 	}
 
