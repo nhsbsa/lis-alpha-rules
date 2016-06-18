@@ -152,6 +152,7 @@ public class Assessment {
 		return returnStr.toString();
 	}
 	
+	//REVIEW PT don't hardcode represenations - use Jackson ObjectMapper when required
 	public String toJSONString(){
 		StringBuffer returnStr=new StringBuffer("{\"assessment\":{")
 				.append(" \"id\":\"").append(id).append("\",")
