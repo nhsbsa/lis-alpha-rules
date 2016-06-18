@@ -1,5 +1,7 @@
 package uk.nhs.nhsbsa.lis.rules.v1.model;
 
+//REVIEW PT enums should be all uppercase & underscore separated
+//REVIEW PT discuss whether enums should be abbreviations or full names
 public enum BenefitType {
 	UNDEFINED, // Default when not set
 	BAllce, //	Bereavement Allowance

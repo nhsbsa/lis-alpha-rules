@@ -6,8 +6,9 @@ package uk.nhs.nhsbsa.lis.rules.v1.model;
  *
  */
 public class Benefit {
+	
 	private BenefitType benefitType;
-		private ValueState benefitState;
+	private ValueState benefitState;
 	private String benefitValue; // TODO this may change to an object. at present can hold benefit info
 
 	public Benefit(){

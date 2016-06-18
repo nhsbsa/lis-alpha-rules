@@ -13,6 +13,8 @@ public class Person {
 	
 	private NationalInsuranceNo nino;
 	
+	//REVIEW PT Use interfaces not concrete types. i.e. List<>
+	//REVIEW PT consider using interface for all Incomes?
 	private ArrayList<Benefit>benefits;
 	private ArrayList<Income>incomes;
 	private ArrayList<Outgoing>outgoings;
