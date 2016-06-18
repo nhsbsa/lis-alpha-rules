@@ -23,7 +23,7 @@ feature-build:
     - /^feature.*$/
   script:
     # mvn to compile, test and qa changes
-    - mvn -B -Psonar clean install sonar:sonar
+    - mvn -B -Psonar -DsonarUrl=${SONAR_URL} -Dsonar.branch=${CI_BUILD_REF_NAME} clean install sonar:sonar
     - bsa-ci/sonarqube_job_status.rb
 
 # develop job
