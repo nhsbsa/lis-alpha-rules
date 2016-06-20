@@ -7,20 +7,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import uk.nhs.nhsbsa.lis.rules.v1.builder.AssessmentBuilder;
-import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
+import uk.nhs.nhsbsa.lis.rules.v1.IAssessmentWebService;
+import uk.nhs.nhsbsa.lis.rules.v1.builder.LisApplicationBuilder;
+import uk.nhs.nhsbsa.rules.model.rules.Assessment;
 
 @Controller
 @RequestMapping("/assessments")
-public class AssessmentController {
+public class AssessmentController implements IAssessmentWebService {
 
-    @RequestMapping(method=RequestMethod.POST)
-    public @ResponseBody Assessment get() {
+    @RequestMapping(value="/{id}", method=RequestMethod.GET)
+    public @ResponseBody Assessment get(@PathVariable String id) {
     	
     	//TODO pad out a blank assessment with all the required fields.
-    	AssessmentBuilder builder = new AssessmentBuilder();
-    	builder.withAddress();
-    	return builder.getInstance();
+    	LisApplicationBuilder builder = new LisApplicationBuilder();
+    	builder.withAddress(); 
+    	return new Assessment(id, builder.getInstance());
     }
 
     @RequestMapping(value="/{id}", method=RequestMethod.PUT)

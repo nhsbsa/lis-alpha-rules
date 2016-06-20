@@ -1,7 +1,7 @@
 package net.nhs.nhsbsa.lis.rules.app.service;
 
 import net.nhs.nhsbsa.lis.rules.app.model.AssessmentModel;
-import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
+import uk.nhs.nhsbsa.rules.model.rules.Assessment;
 
 public interface IAssessmentService {
 

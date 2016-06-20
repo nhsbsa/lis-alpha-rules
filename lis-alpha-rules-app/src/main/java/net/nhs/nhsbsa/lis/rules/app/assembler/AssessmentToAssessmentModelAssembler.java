@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import net.nhs.nhsbsa.lis.rules.app.model.AssessmentModel;
-import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
+import uk.nhs.nhsbsa.rules.model.rules.Assessment;
 import uk.nhs.nhsbsa.rules.types.Field;
 import uk.nhs.nhsbsa.util.FieldUtils;
 import uk.nhs.nhsbsa.util.ObjectWalker;
@@ -27,7 +27,7 @@ public class AssessmentToAssessmentModelAssembler extends AbstractAssembler<Asse
 
 		final Map<String, Field<Object>> index = indexer.index(destination);
 		final List<Field<?>> fields = new ArrayList<>();
-		ObjectWalker walker = new ObjectWalker(source, (item) -> {
+		ObjectWalker walker = new ObjectWalker(source.getApplication(), (item) -> {
 
 			if (FieldUtils.isPrimitive(item.getField().getType())) {
 				

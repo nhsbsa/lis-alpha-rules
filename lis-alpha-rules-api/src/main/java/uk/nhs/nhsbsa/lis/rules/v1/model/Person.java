@@ -78,7 +78,7 @@ public class Person {
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
-	public String toString(){
+	public String toString_(){
 		StringBuffer returnStr=new StringBuffer("type:").append(type)
 				.append(" name:").append(name)
 				.append(" dob:").append(dob)
@@ -95,10 +95,16 @@ public class Person {
 		return returnStr.toString();
 	}
 	
+	@Override
+	public String toString() {
+		return "Person [type=" + type + ", name=" + name + ", dob=" + dob + ", nino=" + nino + ", benefits=" + benefits
+				+ ", incomes=" + incomes + ", outgoings=" + outgoings + "]";
+	}
+
 	/**
 	 * @return
 	 */
-	public String toJSONString(){
+	public String toJSONString_(){
 		StringBuffer returnStr=new StringBuffer("{\"person\":{");
 		returnStr.append("\"name\":").append(name.toJSONString()).append(",");
 		returnStr.append("\"dob\":\"").append(dob).append("\",");
@@ -133,6 +139,6 @@ public class Person {
 		returnStr.append("]}");
 		return returnStr.toString();
 	}
-	
+
 	
 }

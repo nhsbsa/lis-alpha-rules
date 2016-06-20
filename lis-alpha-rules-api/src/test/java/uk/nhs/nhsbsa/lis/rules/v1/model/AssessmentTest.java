@@ -20,23 +20,21 @@ public class AssessmentTest {
 			e.printStackTrace();
 		}
 		
-		Assessment assessment=new Assessment();
+		LisApplication assessment=new LisApplication();
 		assessment.setAddress(BillPersonaTestData.testAddress);
 		assessment.setApplicant(BillPersonaTestData.testPerson);
 		assessment.setClaimDate(assessmentDate);
 		assessment.setProcessingDate(processingDate);
 		assessment.setDependants(null);
-		assessment.setId("01042016SMITHBB");
 		assessment.setPartner(null);
 		assessment.setNonDependants(null);
 		
-		
+		//REVIEW PT assertEquals!
 		assertSame(assessment.getAddress(),BillPersonaTestData.testAddress);
 		assertSame(assessment.getApplicant(),BillPersonaTestData.testPerson);
 		assertSame(assessment.getClaimDate(),assessmentDate);
 		assertSame(assessment.getProcessingDate(),processingDate);
 		assertSame(assessment.getDependants(),null);
-		assertSame(assessment.getId(),"01042016SMITHBB");
 		assertSame(assessment.getPartner(),null);
 		assertSame(assessment.getNonDependants(),null);
 		
@@ -44,7 +42,6 @@ public class AssessmentTest {
 		System.out.println("String Method");
 		System.out.println(assessment);
 		System.out.println("JSON String Method");
-		System.out.println(assessment.toJSONString());
 		
 	}
 	

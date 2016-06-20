@@ -1,10 +1,7 @@
 package net.nhs.nhsbsa.lis.rules.client;
 
-import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
+import uk.nhs.nhsbsa.lis.rules.v1.IAssessmentWebService;
 
-public interface IAssessmentRestClient {
+public interface IAssessmentRestClient extends IAssessmentWebService {
 
-	public Assessment put(Assessment assessment);
-
-	public Assessment post();
 }

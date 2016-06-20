@@ -6,8 +6,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import net.nhs.nhsbsa.lis.rules.app.model.AssessmentModel;
-import uk.nhs.nhsbsa.lis.rules.v1.builder.AssessmentBuilder;
-import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
+import uk.nhs.nhsbsa.lis.rules.v1.builder.LisApplicationBuilder;
+import uk.nhs.nhsbsa.rules.model.rules.Assessment;
 import uk.nhs.nhsbsa.rules.types.Field;
 
 public class AssemblerServiceTest {
@@ -26,9 +26,9 @@ public class AssemblerServiceTest {
 			new AssessmentToAssessmentModelAssembler()
 		}));
 		
-		AssessmentBuilder builder = new AssessmentBuilder();
+		LisApplicationBuilder builder = new LisApplicationBuilder();
 		builder.withAddress().withPostcode("ne1 1en");
-		assessment = builder.getInstance();
+		assessment = new Assessment("42", builder.getInstance());
 		assessmentModel = new AssessmentModel();
 		assessmentModel.setFields(Arrays.asList(new Field[]{
 				new Field("name", "bob")

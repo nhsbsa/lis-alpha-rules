@@ -14,14 +14,14 @@ public class AssessmentBuilderTest {
 	@Test
 	public void testNotNull() {
 
-		AssessmentBuilder builder = new AssessmentBuilder();
+		LisApplicationBuilder builder = new LisApplicationBuilder();
 		assertNotNull(builder.getInstance());
 	}
 
 	@Test
 	public void testAddressBuilderNotNull() {
 
-		AssessmentBuilder b = new AssessmentBuilder();
+		LisApplicationBuilder b = new LisApplicationBuilder();
 		AddressBuilder ab = b.withAddress(BillPersonaTestData.testAddress);
 		assertNotNull(ab);
 	}
@@ -29,7 +29,7 @@ public class AssessmentBuilderTest {
 	@Test
 	public void testAddressBuilderFieldBuilder() {
 
-		AssessmentBuilder b = new AssessmentBuilder();
+		LisApplicationBuilder b = new LisApplicationBuilder();
 		AddressBuilder ab = b.withAddress(BillPersonaTestData.testAddress);
 		assertNotNull(ab.getFieldBuilder());
 		assertNotNull(ab.getField());

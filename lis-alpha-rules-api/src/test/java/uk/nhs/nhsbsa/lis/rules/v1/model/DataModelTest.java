@@ -1,18 +1,28 @@
 package uk.nhs.nhsbsa.lis.rules.v1.model;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
 
 import java.text.ParseException;
 
+import org.junit.Before;
 import org.junit.Test;
 
-
-
-import uk.nhs.nhsbsa.lis.rules.v1.model.PersonType;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 public class DataModelTest {
 	
 	BillPersonaTestData testData;
+	
+	ObjectMapper jackson = new ObjectMapper();
+	
+	@Before
+	public void setup() {
+		jackson.enable(SerializationFeature.INDENT_OUTPUT);
+	}
 	
 	@Test
 	public void testAddress(){
@@ -75,7 +85,7 @@ public class DataModelTest {
 	}
 	
 	@Test
-	public void testBillPersona(){
+	public void testBillPersona() throws JsonProcessingException{
 		assertTrue(BillPersonaTestData.testPerson.getNino().equals(BillPersonaTestData.personNino));
 		try {
 			assertTrue(BillPersonaTestData.testPerson.getDob().equals(BillPersonaTestData.dateFormat.parse("01/02/1946")));
@@ -94,6 +104,6 @@ public class DataModelTest {
 		System.out.println("String Method");
 		System.out.println(BillPersonaTestData.testPerson);
 		System.out.println("JSON String Method");
-		System.out.println(BillPersonaTestData.testPerson.toJSONString());
+		System.out.println(jackson.writeValueAsString(BillPersonaTestData.testPerson));
 	}
 }

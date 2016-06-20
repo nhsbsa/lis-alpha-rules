@@ -20,6 +20,7 @@ public class RulesClientConfiguration {
 	public AssessmentRestClient getAssessmentRestClient() {
 		RestEndpointBuilder builder = new RestEndpointBuilder(assessmentsUri)
 				.withPostResource("")
+				.withGetResource("/{id}")
 				.withPutResource("/{id}");
 		return new AssessmentRestClient(builder);
 	}

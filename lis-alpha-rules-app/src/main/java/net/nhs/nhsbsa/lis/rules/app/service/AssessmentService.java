@@ -8,7 +8,7 @@ import net.nhs.nhsbsa.lis.rules.app.exception.ResourceNotFoundException;
 import net.nhs.nhsbsa.lis.rules.app.model.AssessmentModel;
 import net.nhs.nhsbsa.lis.rules.app.repository.IAssessmentRespository;
 import net.nhs.nhsbsa.lis.rules.client.IAssessmentRestClient;
-import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
+import uk.nhs.nhsbsa.rules.model.rules.Assessment;
 
 @Service
 public class AssessmentService implements IAssessmentService {
@@ -42,7 +42,7 @@ public class AssessmentService implements IAssessmentService {
 	@Override
 	public AssessmentModel create() {
 		
-		Assessment assessment = assessmentRestClient.post();
+		Assessment assessment = assessmentRestClient.get(null);
 		assessment = assessmentRespository.save(assessment);
     	AssessmentModel result = new AssessmentModel();
     	assembler.map(assessment, result);
@@ -54,7 +54,7 @@ public class AssessmentService implements IAssessmentService {
 		
 		Assessment assessment = assessmentRespository.findOne(id);
 		assembler.map(model, assessment);
-		assessmentRestClient.put(assessment);
+		assessmentRestClient.put(id, assessment);
 		assessmentRespository.save(assessment);
 		assembler.map(assessment, model);
 		return model;

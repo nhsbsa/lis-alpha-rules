@@ -3,18 +3,10 @@ package uk.nhs.nhsbsa.lis.rules.v1.model;
 import java.util.ArrayList;
 import java.util.Date;
 
-import org.springframework.data.annotation.Id;
-
 /**
  * The root class for a rules based LIS assessment.
  */
-public class Assessment {
-	
-	/**
-	 * ID for this assessment.
-	 */
-	@Id
-	private String id;
+public class LisApplication {
 	
 	/**
 	 * Assessment is based on claim date.
@@ -113,32 +105,14 @@ public class Assessment {
 	/**
 	 * Default constructor.
 	 */
-	public Assessment() {
+	public LisApplication() {
 	}
 	
-	/**
-	 * Convenience constructor.
-	 * @param id
-	 */
-	public Assessment(String id) {
-		super();
-		this.id = id;
-	}
-	
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString(){
-		StringBuffer returnStr=new StringBuffer("id:").append(id)
-				.append(" claimDate:").append(claimDate)
+		StringBuffer returnStr=new StringBuffer("claimDate:").append(claimDate)
 				.append(" processingDate:").append(processingDate)
 				.append(" address:").append(address)
 				.append(" applicant:").append(applicant)
@@ -149,40 +123,6 @@ public class Assessment {
 		if(nonDependants!=null){
 			nonDependants.forEach((nonDependant)->{returnStr.append(" nonDependant:").append(nonDependant);});
 		}else{returnStr.append(" nonDependant:NONE");}
-		return returnStr.toString();
-	}
-	
-	public String toJSONString(){
-		StringBuffer returnStr=new StringBuffer("{\"assessment\":{")
-				.append(" \"id\":\"").append(id).append("\",")
-				.append(" \"claimDate\":\"").append(claimDate).append("\",")
-				.append(" \"processingDate\":\"").append(processingDate).append("\",")
-				.append(" \"address\":").append(address.toJSONString()).append(",")
-				.append(" \"mainApplicant\":").append(applicant.toJSONString());
-		returnStr.append("}, \"partner\":");
-		if(partner!=null){
-			returnStr.append(partner.toJSONString()).append("}");
-		}else{returnStr.append("{}");}
-		// TODO Test this
-		returnStr.append(",").append("\"dependants\":[");
-		if(dependants!=null){
-			boolean firstIteration=true;
-			for(Person dependent : dependants){
-				if(firstIteration==true){firstIteration=false;}
-				else{returnStr.append(",");}
-				returnStr.append(dependent.toJSONString());
-			}
-		}
-		returnStr.append("],\"nonDependants\":[");
-		if(dependants!=null){
-			boolean firstIteration=true;
-			for(Person nonDependent : nonDependants){
-				if(firstIteration==true){firstIteration=false;}
-				else{returnStr.append(",");}
-				returnStr.append(nonDependent.toJSONString());
-			}
-		}
-		returnStr.append("]}}");
 		return returnStr.toString();
 	}
 	

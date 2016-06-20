@@ -15,7 +15,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.client.MockRestServiceServer;
 import org.springframework.web.client.RestTemplate;
 
-import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
+import uk.nhs.nhsbsa.rules.model.rules.Assessment;
 
 public class AssessmentClientTest {
 
@@ -29,18 +29,18 @@ public class AssessmentClientTest {
 		restTemplate = new RestTemplate();
 		mockServer = MockRestServiceServer.createServer(restTemplate);
 		RestEndpointBuilder restEndpointBuilder = new RestEndpointBuilder("/assessments")
-				.withPostResource("")
+				.withGetResource("/{id}")
 				.withPutResource("/{id}");
 		client = new AssessmentRestClient(restTemplate, restEndpointBuilder);
 	}
 
 	@Test
-	public void testPost() {
+	public void testGet() {
 
-		mockServer.expect(requestTo("/assessments")).andExpect(method(HttpMethod.POST))
+		mockServer.expect(requestTo("/assessments/42")).andExpect(method(HttpMethod.GET))
 				.andRespond(withSuccess(resource("/fixture/assessment.json"), MediaType.APPLICATION_JSON));
 
-		Assessment actual = client.post();
+		Assessment actual = client.get("42");
 		assertNotNull(actual);
 		assertEquals("42", actual.getId());
 
@@ -53,9 +53,9 @@ public class AssessmentClientTest {
 		mockServer.expect(requestTo("/assessments/42")).andExpect(method(HttpMethod.PUT))
 				.andRespond(withSuccess(resource("/fixture/assessment.json"), MediaType.APPLICATION_JSON));
 
-		Assessment input = new Assessment("42");
+		Assessment input = new Assessment("42", null);
 		
-		Assessment actual = client.put(input);
+		Assessment actual = client.put("42", input);
 		assertNotNull(actual);
 		assertEquals("42", actual.getId());
 

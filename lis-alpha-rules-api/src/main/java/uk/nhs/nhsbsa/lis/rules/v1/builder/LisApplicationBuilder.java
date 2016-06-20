@@ -1,19 +1,14 @@
 package uk.nhs.nhsbsa.lis.rules.v1.builder;
 
 import uk.nhs.nhsbsa.lis.rules.v1.model.Address;
-import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
+import uk.nhs.nhsbsa.lis.rules.v1.model.LisApplication;
 import uk.nhs.nhsbsa.lis.rules.v1.model.Person;
 
-public class AssessmentBuilder extends ModelBuilder<Assessment> {
+public class LisApplicationBuilder extends ModelBuilder<LisApplication> {
 
 	
-	public AssessmentBuilder() {
+	public LisApplicationBuilder() {
 		super();
-	}
-	
-	public AssessmentBuilder(String id) {
-		super();
-		instance.setId(id);
 	}
 	
 	/**
