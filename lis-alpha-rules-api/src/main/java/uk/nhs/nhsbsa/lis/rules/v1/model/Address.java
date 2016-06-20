@@ -1,6 +1,7 @@
 package uk.nhs.nhsbsa.lis.rules.v1.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Represents the address for which the assessment is being made.
@@ -21,13 +22,13 @@ public class Address {
 	 * Address lines
 	 * @return
 	 */
-	private ArrayList<String> addressLines;
+	private List<String> addressLines;
 
-	public ArrayList<String> getAddressLines() {
+	public List<String> getAddressLines() {
 		return addressLines;
 	}
 
-	public void setAddressLines(ArrayList<String> addressLines) {
+	public void setAddressLines(List<String> addressLines) {
 		this.addressLines = addressLines;
 	}
 

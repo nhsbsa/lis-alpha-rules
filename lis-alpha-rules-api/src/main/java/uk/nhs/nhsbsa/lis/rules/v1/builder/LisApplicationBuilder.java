@@ -17,22 +17,15 @@ public class LisApplicationBuilder extends ModelBuilder<LisApplication> {
 	 */
 	public AddressBuilder withAddress() {
 		
-		AddressBuilder result = new AddressBuilder(this, "name", null);
-		getInstance().setAddress(new Address());
+		AddressBuilder result = new AddressBuilder(this, "name", new Address());
+		getInstance().setAddress(result.getInstance());
 		return result;
 	}
 	
-	public AddressBuilder withAddress(Address address) {
+	public PersonBuilder withApplicant() {
 		
-		AddressBuilder result = new AddressBuilder(this, "name", null);
-		getInstance().setAddress(address);
-		return result;
-	}
-
-	public PersonBuilder withApplicant(Person person) {
-		
-		PersonBuilder result = new PersonBuilder(this, "applicant", null);
-		getInstance().setApplicant(person);
+		PersonBuilder result = new PersonBuilder(this, "applicant", new Person());
+		getInstance().setApplicant(result.getInstance());
 		return result;
 	}
 }

@@ -1,6 +1,6 @@
 package uk.nhs.nhsbsa.lis.rules.v1.builder;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 
 import uk.nhs.nhsbsa.lis.rules.v1.model.Address;
 
@@ -24,8 +24,8 @@ public class AddressBuilder extends ModelBuilder<Address>{
         return this;
 	}
 	
-	public AddressBuilder withAddressLines(ArrayList<String> addressLines) {
-        getInstance().setAddressLines(addressLines);
+	public AddressBuilder withAddressLines(String... addressLines) {
+        getInstance().setAddressLines(Arrays.asList(addressLines));
         return this;
 	}
 }

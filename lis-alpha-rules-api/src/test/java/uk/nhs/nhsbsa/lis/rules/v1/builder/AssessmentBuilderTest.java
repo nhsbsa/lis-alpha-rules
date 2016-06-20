@@ -22,7 +22,7 @@ public class AssessmentBuilderTest {
 	public void testAddressBuilderNotNull() {
 
 		LisApplicationBuilder b = new LisApplicationBuilder();
-		AddressBuilder ab = b.withAddress(BillPersonaTestData.testAddress);
+		AddressBuilder ab = b.withAddress();
 		assertNotNull(ab);
 	}
 
@@ -30,7 +30,7 @@ public class AssessmentBuilderTest {
 	public void testAddressBuilderFieldBuilder() {
 
 		LisApplicationBuilder b = new LisApplicationBuilder();
-		AddressBuilder ab = b.withAddress(BillPersonaTestData.testAddress);
+		AddressBuilder ab = b.withAddress();
 		assertNotNull(ab.getFieldBuilder());
 		assertNotNull(ab.getField());
 		assertSame(ab.getInstance(), ab.getField().getValue());

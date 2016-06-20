@@ -18,26 +18,29 @@ public class AssessmentModelToAssessmentAssembler extends AbstractAssembler<Asse
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(AssessmentModelToAssessmentAssembler.class);
 	
-	AssessmentModelIndexer indexer = new AssessmentModelIndexer();
+	FieldIndexer indexer = new FieldIndexer();
 	
 	@Override
 	public void map(AssessmentModel source, Assessment destination) {
 		
-		final Map<String, Field<Object>> index = indexer.index(source);
+		final Map<String, Field<Object>> index = indexer.index(source.getFields());
 		ObjectWalker walker = new ObjectWalker(destination.getApplication(), (item) -> {
 			Field<Object> src = index.get(item.getPath());
 			if (src != null 
 					&& uk.nhs.nhsbsa.util.FieldUtils.isPrimitive(item.getField().getType())) {
 				Object oldValue = item.getValue();
 				Object newValue = src.getValue();
+				
+				//change when dirty
 				if (!Objects.equals(oldValue, newValue)) {
-					LOGGER.info("Changing {} from {} to {}", new Object[]{
-							item.getField().getName(),
-							oldValue,
-							newValue
-					});
 					try {
+						LOGGER.info("Changing {} from {} to {}", new Object[]{
+								item.getField().getName(),
+								oldValue,
+								newValue
+						});
 						FieldUtils.writeField(item.getField(), item.getObject(), newValue, true);
+
 					} catch (Exception e) {
 						throw new IllegalArgumentException(e);
 					}
