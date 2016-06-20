@@ -5,10 +5,9 @@ import org.springframework.stereotype.Service;
 
 import net.nhs.nhsbsa.lis.rules.app.assembler.IAssemblerService;
 import net.nhs.nhsbsa.lis.rules.app.exception.ResourceNotFoundException;
-import net.nhs.nhsbsa.lis.rules.app.model.AssessmentModel;
 import net.nhs.nhsbsa.lis.rules.app.repository.IAssessmentRespository;
 import net.nhs.nhsbsa.lis.rules.client.IAssessmentRestClient;
-import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
+import uk.nhs.nhsbsa.rules.model.rules.Assessment;
 
 @Service
 public class AssessmentService implements IAssessmentService {
@@ -29,34 +28,30 @@ public class AssessmentService implements IAssessmentService {
 	}
 
 	@Override
-	public AssessmentModel get(String id) {
-		Assessment assessment = assessmentRespository.findOne(id);
-		if (assessment == null) {
+	public Assessment get(String id) {
+		Assessment result = assessmentRespository.findOne(id);
+		if (result == null) {
 			throw new ResourceNotFoundException();
 		}
-    	AssessmentModel result = new AssessmentModel();
-    	assembler.map(assessment, result);
 		return result;
 	}
 
 	@Override
-	public AssessmentModel create() {
-		
-		Assessment assessment = assessmentRestClient.post();
-		assessment = assessmentRespository.save(assessment);
-    	AssessmentModel result = new AssessmentModel();
-    	assembler.map(assessment, result);
+	public Assessment create() {
+	
+		Assessment assessment = assessmentRestClient.post(null);
+		Assessment result = assessmentRespository.save(assessment);
 		return result;
 	}
 
 	@Override
-	public AssessmentModel update(String id, AssessmentModel model) {
+	public Assessment update(String id, Assessment updated) {
 		
-		Assessment assessment = assessmentRespository.findOne(id);
-		assembler.map(model, assessment);
-		assessmentRestClient.put(assessment);
-		assessmentRespository.save(assessment);
-		assembler.map(assessment, model);
-		return model;
+		Assessment existing = assessmentRespository.findOne(id);
+		assembler.map(updated, existing);
+		assessmentRestClient.put(id, existing);
+		Assessment result = assessmentRespository.save(existing);
+		return result;
 	}
+
 }

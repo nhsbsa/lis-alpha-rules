@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.nhs.nhsbsa.lis.rules.app.MvcUtils;
-import net.nhs.nhsbsa.lis.rules.app.model.AssessmentModel;
+import net.nhs.nhsbsa.lis.rules.app.repository.IAssessmentRespository;
 import net.nhs.nhsbsa.lis.rules.app.service.IAssessmentService;
-import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
+import uk.nhs.nhsbsa.rules.model.rules.Assessment;
 
 @Controller
 @RequestMapping(path="/assessments")
@@ -19,6 +19,9 @@ public class AssessmentController {
 
 	@Autowired
 	private IAssessmentService assessmentService;
+	
+	@Autowired
+	private IAssessmentRespository assessmentRespository;
 	
     @RequestMapping(method=RequestMethod.GET)
     public ModelAndView list() {
@@ -33,14 +36,17 @@ public class AssessmentController {
 
 	@RequestMapping(method=RequestMethod.POST)
     private String create() {
-		AssessmentModel result = assessmentService.create();
-        return MvcUtils.redirect("assessments/{}", result.getId());
+		Assessment result = assessmentService.create();
+        return MvcUtils.redirect("/assessments/{}", result.getId());
 	}
 
     @RequestMapping(path="/{id}", method=RequestMethod.GET)
     public ModelAndView get(@PathVariable("id") String id) {
 
-		AssessmentModel assessment = assessmentService.get(id);
+		Assessment assessment = assessmentRespository.findOne(id);
+		if (assessment == null) {
+			return new ModelAndView(create());
+		}
     	
 		//setup MV and render
     	ModelAndView result = new ModelAndView("assessment");
@@ -51,10 +57,10 @@ public class AssessmentController {
 
 	@RequestMapping(path="/{id}", method=RequestMethod.POST)
     public String update(@PathVariable("id") String id, 
-    		final AssessmentModel model,
+    		final Assessment model,
     		final BindingResult bindingResult) {
 		
-		AssessmentModel persisted = assessmentService.update(id, model);
+		Assessment persisted = assessmentService.update(id, model);
 		return MvcUtils.redirect("/assessments/{}", persisted.getId());
     }
 

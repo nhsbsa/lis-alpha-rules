@@ -36,16 +36,41 @@
                 </tr>
               </thead>
               <tbody>
-                <tr th:each="field, row : *{fields}">
-                  <td th:text="#{field.__${field.name}__}"></td>
+                <tr>
+                  <td>Title</td>
                   <td>
-                    <input type="text" th:field="*{fields[__${row.index}__].value}" />
-                    <input type="hidden" th:field="*{fields[__${row.index}__].name}" />
+                    <input type="text" th:field="${assessment.application.applicant.name.title}" />
+                  </td>
+                </tr>
+                <tr>
+                  <td>Forenames</td>
+                  <td>
+                    <input type="text" th:field="${assessment.application.applicant.name.forenames}" />
+                  </td>
+                </tr>
+                <tr>
+                  <td>Surname</td>
+                  <td>
+                    <input type="text" th:field="${assessment.application.applicant.name.surname}" />
                   </td>
                 </tr>
               </tbody>
+              
+              <tbody th:each="benefit, benefitRow : ${assessment.application.applicant.benefits}">
+          
+                <tr>
+                  <td th:text="*{application.applicant.benefits[__${benefitRow.index}__].type + ' Benefit'} "></td>
+                  <td>
+                    <input type="text" th:field="*{application.applicant.benefits[__${benefitRow.index}__].value}" />
+                    <input type="hidden" th:field="*{application.applicant.benefits[__${benefitRow.index}__].type}" />
+                  </td>
+                </tr>
+              
+              </tbody>
             </table>
           </div>
+    
+
           <div>
             <button class="button" type="submit" name="update" th:text="#{form.update}">Remove row</button>
           </div>

@@ -6,7 +6,8 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
-import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
+import uk.nhs.nhsbsa.lis.rules.v1.model.LisApplication;
+import uk.nhs.nhsbsa.rules.model.rules.Assessment;
 
 public class AssessmentRestClient implements IAssessmentRestClient {
 
@@ -36,18 +37,32 @@ public class AssessmentRestClient implements IAssessmentRestClient {
 	}
 
 	@Override
-	public Assessment put(Assessment assessment) {
-		HttpEntity<Assessment> requestEntity = new HttpEntity<Assessment>(assessment);
+	public Assessment post(LisApplication application) {
+		HttpEntity<LisApplication> requestEntity = new HttpEntity<LisApplication>(application);
 		ResponseEntity<Assessment> responseEntity =
-				restTemplate.exchange(restEndpointBuilder.getPutResourceUri(), HttpMethod.PUT, requestEntity, Assessment.class, "42");
+				restTemplate.exchange(
+						restEndpointBuilder.getPostResourceUri(),
+						HttpMethod.POST, 
+						requestEntity, 
+						Assessment.class);
 		return responseEntity.getBody();
 	}
 
 	@Override
-	public Assessment post() {
-		//HttpEntity<Assessment> requestEntity = new HttpEntity<Assessment>(assessment);
+	public Assessment get(String id) {
+		return restTemplate.getForObject(restEndpointBuilder.getGetResourceUri(), Assessment.class, id);
+	}
+
+	@Override
+	public Assessment put(String id, Assessment assessment) {
+		HttpEntity<Assessment> requestEntity = new HttpEntity<Assessment>(assessment);
 		ResponseEntity<Assessment> responseEntity =
-				restTemplate.exchange(restEndpointBuilder.getPostResourceUri(), HttpMethod.POST, null, Assessment.class);
+				restTemplate.exchange(
+						restEndpointBuilder.getPutResourceUri(),
+						HttpMethod.PUT, 
+						requestEntity, 
+						Assessment.class, id);
 		return responseEntity.getBody();
 	}
+
 }
