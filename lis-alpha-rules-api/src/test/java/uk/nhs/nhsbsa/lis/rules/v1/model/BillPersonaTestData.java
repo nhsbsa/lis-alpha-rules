@@ -19,8 +19,7 @@ import uk.nhs.nhsbsa.lis.rules.v1.model.PersonType;
 import uk.nhs.nhsbsa.lis.rules.v1.model.ValueState;
 
 public class BillPersonaTestData {
-	// date format to use in testing
-		public static SimpleDateFormat dateFormat;
+		public static SimpleDateFormat dateFormat=new SimpleDateFormat("dd/MM/yyyy");
 		// test data
 		public static Address testAddress;
 		public static NationalInsuranceNo personNino;
@@ -34,7 +33,6 @@ public class BillPersonaTestData {
 				
 		/** create test data **/
 		static{
-			dateFormat=new SimpleDateFormat("dd/MM/yyyy");
 			createAddress();
 			createNINO();
 			createBillName();
@@ -54,8 +52,8 @@ public class BillPersonaTestData {
 		}
 		
 		private static void createNINO(){
-			testNino=new NationalInsuranceNo("NX 96 22 13 B");
-			personNino=new NationalInsuranceNo("NX 96 22 13 B");
+			testNino=new NationalInsuranceNo("NX 96 33 13 B");
+			personNino=new NationalInsuranceNo("NX 96 33 13 B");
 		}
 		
 		private static void createBillName(){

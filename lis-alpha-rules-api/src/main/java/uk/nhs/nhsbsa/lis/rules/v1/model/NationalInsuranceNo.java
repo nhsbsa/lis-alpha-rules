@@ -1,9 +1,5 @@
 package uk.nhs.nhsbsa.lis.rules.v1.model;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import java.util.regex.PatternSyntaxException;
-
 /**
  * Class for National Insurance No (NINO)
  * @author lorob
@@ -31,25 +27,7 @@ public class NationalInsuranceNo {
 		nino = nINO;
 	}
 	
-	/**
-	 * TODO find a better place for this
-	 * @return
-	 */
-	public boolean isValidNINO(){
-		String NINOPattern = "^\\s*[a-zA-Z]{2}(?:\\s*\\d\\s*){6}[a-zA-Z]?\\s*$";
-
-	    // Create a Pattern object
-		if(nino==null||nino.length()==0){ return false;}
-		try{
-			Pattern pattern = Pattern.compile(NINOPattern);
-			Matcher m = pattern.matcher(nino);
-			return m.matches();
-		}catch(PatternSyntaxException pe){
-			return false;
-		}
-		
-	}
-
+	
 	@Override
 	public String toString() {
 		return "NationalInsuranceNo [nino=" + nino + "]";

@@ -3,6 +3,9 @@ package uk.nhs.nhsbsa.lis.rules.v1.model;
 import static org.junit.Assert.*;
 
 import java.text.ParseException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
 
 import org.junit.Test;
 
@@ -17,9 +20,9 @@ public class DataModelTest {
 	@Test
 	public void testAddress(){
 		System.out.println("testAddress:");
-		assertSame(BillPersonaTestData.testAddress.getHouseNameNumber(),"1");
-		assertSame(BillPersonaTestData.testAddress.getPostcode(),"NE33 5TY");
-		assertSame(BillPersonaTestData.testAddress.getAddressLines(),BillPersonaTestData.addressLines);
+		assertTrue(BillPersonaTestData.testAddress.getHouseNameNumber().equals("1"));
+		assertTrue(BillPersonaTestData.testAddress.getPostcode().equals("NE33 5TY"));
+		assertTrue(BillPersonaTestData.testAddress.getAddressLines().equals(BillPersonaTestData.addressLines));
 		System.out.println("String Method");
 		System.out.println(BillPersonaTestData.testAddress);
 	}
@@ -28,16 +31,16 @@ public class DataModelTest {
 	public void testNINO(){
 		System.out.println("testNINO:");
 		// NINO with spaces
-		BillPersonaTestData.testNino.setNINO("NX 96 22 13 B");
-		assertTrue(BillPersonaTestData.testNino.isValidNINO());
+		BillPersonaTestData.testNino.setNINO("NX 96 33 13 B");
+		assertTrue(isValidNINO(BillPersonaTestData.testNino));
 		
 		// NINO without spaces
-		BillPersonaTestData.testNino.setNINO("NX962213B");
-		assertTrue(BillPersonaTestData.testNino.isValidNINO());
+		BillPersonaTestData.testNino.setNINO("NX963313B");
+		assertTrue(isValidNINO(BillPersonaTestData.testNino));
 		
 		// Invalid NINO
 		BillPersonaTestData.testNino.setNINO("N123456N");
-		assertFalse(BillPersonaTestData.testNino.isValidNINO());
+		assertFalse(isValidNINO(BillPersonaTestData.testNino));
 		
 		System.out.println("String Method");
 		System.out.println(BillPersonaTestData.testNino);
@@ -74,14 +77,33 @@ public class DataModelTest {
 			e.printStackTrace();
 			assertTrue(false);
 		}
-		assertSame(BillPersonaTestData.testPerson.getName(),BillPersonaTestData.testName);
-		assertSame(BillPersonaTestData.testPerson.getType(),PersonType.MAIN_APPLICANT);
-		assertSame(BillPersonaTestData.testPerson.getBenefits(),BillPersonaTestData.testBenefits);
-		assertSame(BillPersonaTestData.testPerson.getOutgoings(),BillPersonaTestData.testOutgoings);
-		assertSame(BillPersonaTestData.testPerson.getIncomes(),BillPersonaTestData.testIncomes);
+		assertTrue(BillPersonaTestData.testPerson.getName().equals(BillPersonaTestData.testName));
+		assertTrue(BillPersonaTestData.testPerson.getType().equals(PersonType.MAIN_APPLICANT));
+		assertTrue(BillPersonaTestData.testPerson.getBenefits().equals(BillPersonaTestData.testBenefits));
+		assertTrue(BillPersonaTestData.testPerson.getOutgoings().equals(BillPersonaTestData.testOutgoings));
+		assertTrue(BillPersonaTestData.testPerson.getIncomes().equals(BillPersonaTestData.testIncomes));
 		
 		System.out.println("testBillPersona:");
 		System.out.println("String Method");
 		System.out.println(BillPersonaTestData.testPerson);
+	}
+	
+	/**
+	 * TODO find a better place for this
+	 * @return
+	 */
+	public boolean isValidNINO(NationalInsuranceNo nino){
+		String NINOPattern = "^\\s*[a-zA-Z]{2}(?:\\s*\\d\\s*){6}[a-zA-Z]?\\s*$";
+
+	    // Create a Pattern object
+		if(nino.getNINO()==null||nino.getNINO().length()==0){ return false;}
+		try{
+			Pattern pattern = Pattern.compile(NINOPattern);
+			Matcher m = pattern.matcher(nino.getNINO());
+			return m.matches();
+		}catch(PatternSyntaxException pe){
+			return false;
+		}
+		
 	}
 }
