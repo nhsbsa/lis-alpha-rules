@@ -5,41 +5,41 @@ package uk.nhs.nhsbsa.lis.rules.v1.model;
  * @author lorob
  *
  */
-public class Benefit {
+public class Benefit implements IIncome{
 	
-	private BenefitType benefitType;
-	private ValueState benefitState;
-	private String benefitValue; // TODO this may change to an object. at present can hold benefit info
+	private BenefitType type;
+	private ValueState state;
+	private String value; // TODO this may change to an object. at present can hold benefit info
 	private MoneyPeriod moneyPeriod;
 
 	public Benefit(){
-		benefitType=BenefitType.UNDEFINED;
-		benefitState=ValueState.UNDEFINED;
+		type=BenefitType.UNDEFINED;
+		state=ValueState.UNDEFINED;
 		moneyPeriod=MoneyPeriod.UNDEFINED;
 	}
 	
-	public BenefitType getBenefitType() {
-		return benefitType;
+	public BenefitType getType() {
+		return type;
 	}
 
-	public void setBenefitType(BenefitType benefitType) {
-		this.benefitType = benefitType;
+	public void setType(BenefitType type) {
+		this.type = type;
 	}
 
-	public ValueState getBenefitState() {
-		return benefitState;
+	public ValueState getState() {
+		return state;
 	}
 
-	public void setBenefitState(ValueState benefitState) {
-		this.benefitState = benefitState;
+	public void setState(ValueState state) {
+		this.state = state;
 	}
 
-	public String getBenefitValue() {
-		return benefitValue;
+	public String getValue() {
+		return value;
 	}
 
-	public void setBenefitValue(String benefitValue) {
-		this.benefitValue = benefitValue;
+	public void setValue(String value) {
+		this.value = value;
 	}
 	
 	public MoneyPeriod getMoneyPeriod() {
@@ -49,33 +49,18 @@ public class Benefit {
 	public void setMoneyPeriod(MoneyPeriod moneyPeriod) {
 		this.moneyPeriod = moneyPeriod;
 	}
-	
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	public String toString(){
-		StringBuffer returnStr=new StringBuffer()
-				.append(" benefitType:").append(benefitType)
-				.append(" benefitState:").append(benefitState)
-				.append(" benefitValue:").append(benefitValue)
-				.append(" moneyPeriod:").append(moneyPeriod);
-		return returnStr.toString(); 
-	}
-	
-	public String toJSONString(){
-		StringBuffer returnStr=new StringBuffer()
-				.append("{ \"type\":\"").append(benefitType).append("\",")
-				.append(" \"state\":\"").append(benefitState).append("\",")
-				.append(" \"value\":\"").append(benefitValue).append("\",")
-				.append(" \"moneyPeriod\":\"").append(moneyPeriod).append("\" }");
-		return returnStr.toString(); 
-	}
 
+	@Override
+	public String toString() {
+		return "Benefit [benefitType=" + type + ", benefitState=" + state + ", benefitValue="
+				+ value + ", moneyPeriod=" + moneyPeriod + "]";
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((benefitType == null) ? 0 : benefitType.hashCode());
+		result = prime * result + ((type == null) ? 0 : type.hashCode());
 		return result;
 	}
 
@@ -86,11 +71,13 @@ public class Benefit {
 		if (obj == null)
 			return false;
 		if (getClass() != obj.getClass()) {
-			System.out.println(getClass().getClassLoader() + " != " + obj.getClass().getClassLoader());
+			//TODO handle SpringBoot devtools classloader defect:
+			//https://github.com/spring-projects/spring-boot/issues/3316
+			System.err.println(getClass().getClassLoader() + " != " + obj.getClass().getClassLoader());
 			return false;
 		}
 		Benefit other = (Benefit) obj;
-		if (benefitType != other.benefitType)
+		if (type != other.type)
 			return false;
 		return true;
 	}

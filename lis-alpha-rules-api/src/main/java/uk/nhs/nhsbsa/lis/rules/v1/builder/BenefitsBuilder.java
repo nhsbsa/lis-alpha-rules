@@ -2,8 +2,6 @@ package uk.nhs.nhsbsa.lis.rules.v1.builder;
 
 import java.util.List;
 
-import org.apache.commons.collections.ListUtils;
-
 import uk.nhs.nhsbsa.lis.rules.v1.model.Benefit;
 import uk.nhs.nhsbsa.lis.rules.v1.model.BenefitType;
 
@@ -17,13 +15,13 @@ public class BenefitsBuilder extends ModelBuilder<List<Benefit>>{
 		super(parent, name, instance);
 	}
 
-	public BenefitsBuilder withBenefitValue(String benefitValue) {
-		getItem().setBenefitValue(benefitValue);
+	public BenefitsBuilder withBenefitValue(String value) {
+		getItem().setValue(value);
 		return this;
 	}
 
-	public BenefitsBuilder withBenefitType(BenefitType benefitType) {
-		getItem().setBenefitType(benefitType);
+	public BenefitsBuilder withBenefitType(BenefitType type) {
+		getItem().setType(type);
 		return this;
 	}
 

@@ -19,8 +19,7 @@ import uk.nhs.nhsbsa.lis.rules.v1.model.PersonType;
 import uk.nhs.nhsbsa.lis.rules.v1.model.ValueState;
 
 public class BillPersonaTestData {
-	// date format to use in testing
-		public static SimpleDateFormat dateFormat;
+		public static SimpleDateFormat dateFormat=new SimpleDateFormat("dd/MM/yyyy");
 		// test data
 		public static Address testAddress;
 		public static NationalInsuranceNo personNino;
@@ -31,10 +30,10 @@ public class BillPersonaTestData {
 		public static ArrayList<Income> testIncomes;
 		public static ArrayList<Benefit> testBenefits;
 		public static ArrayList<Outgoing> testOutgoings;
+		public static ContactDetails contactDetails;
 				
 		/** create test data **/
 		static{
-			dateFormat=new SimpleDateFormat("dd/MM/yyyy");
 			createAddress();
 			createNINO();
 			createBillName();
@@ -51,11 +50,17 @@ public class BillPersonaTestData {
 			addressLines.add("Northumberland");
 			testAddress.setAddressLines(addressLines);
 			testAddress.setPostcode("NE33 5TY");
+			
+			contactDetails=new ContactDetails();
+			contactDetails.setEmailAddress("BillSmithPersona@noname.com");
+			contactDetails.setTelephoneNumber("01234 567890");
+			contactDetails.setMobileNumber("0789 0123456");
+			contactDetails.setPreferredContactValue("0789 0123456");
 		}
 		
 		private static void createNINO(){
-			testNino=new NationalInsuranceNo("NX 96 22 13 B");
-			personNino=new NationalInsuranceNo("NX 96 22 13 B");
+			testNino=new NationalInsuranceNo("NX 96 33 13 B");
+			personNino=new NationalInsuranceNo("NX 96 33 13 B");
 		}
 		
 		private static void createBillName(){
@@ -68,31 +73,31 @@ public class BillPersonaTestData {
 		private static void createBillIncomeAndExpenditure(){
 			testIncomes=new ArrayList<Income>();
 			Income testIncome=new Income();
-			testIncome.setIncomeState(ValueState.SET);
-			testIncome.setIncomeType(IncomeType.OCC_PENSION);
+			testIncome.setState(ValueState.SET);
+			testIncome.setType(IncomeType.OCC_PENSION);
 			testIncome.setIncomeValue("50");
 			testIncome.setMoneyPeriod(MoneyPeriod.weekly);
 			testIncomes.add(testIncome);
 			
 			testBenefits=new ArrayList<Benefit>();
 			Benefit testBenefit=new Benefit();
-			testBenefit.setBenefitState(ValueState.SET);
-			testBenefit.setBenefitType(BenefitType.RetirementPension);
-			testBenefit.setBenefitValue("119.30");
+			testBenefit.setState(ValueState.SET);
+			testBenefit.setType(BenefitType.RETIREMENT_PENSION);
+			testBenefit.setValue("119.30");
 			testBenefit.setMoneyPeriod(MoneyPeriod.weekly);
 			testBenefits.add(testBenefit);
 			
 			testOutgoings=new ArrayList<Outgoing>();
 			Outgoing testOutgoing1=new Outgoing();
-			testOutgoing1.setOutgoingState(ValueState.SET);
-			testOutgoing1.setOutgoingType(OutgoingType.CommunityCharge);
-			testOutgoing1.setOutgoingValue("20");
+			testOutgoing1.setState(ValueState.SET);
+			testOutgoing1.setType(OutgoingType.COMMUNITY_CHARGE);
+			testOutgoing1.setValue("20");
 			testOutgoing1.setMoneyPeriod(MoneyPeriod.weekly);
 			
 			Outgoing testOutgoing2=new Outgoing();
-			testOutgoing2.setOutgoingState(ValueState.SET);
-			testOutgoing2.setOutgoingType(OutgoingType.Rent);
-			testOutgoing2.setOutgoingValue("60");
+			testOutgoing2.setState(ValueState.SET);
+			testOutgoing2.setType(OutgoingType.RENT);
+			testOutgoing2.setValue("60");
 			testOutgoing2.setMoneyPeriod(MoneyPeriod.weekly);
 			
 			testOutgoings.add(testOutgoing1);

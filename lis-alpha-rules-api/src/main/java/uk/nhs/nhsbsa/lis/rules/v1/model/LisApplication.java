@@ -1,7 +1,10 @@
 package uk.nhs.nhsbsa.lis.rules.v1.model;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Date;
+
+import org.springframework.data.annotation.Id;
+
 
 /**
  * The root class for a rules based LIS assessment.
@@ -9,12 +12,14 @@ import java.util.Date;
 public class LisApplication {
 	
 	/**
-	 * Assessment is based on claim date.
+	 * Assessment is based on claim date. This is the date the claim
+	 * arrived in the post or the initial date the claim is created.
+	 * If claim is save \ restored do we use the initial date or the save date?
 	 */
 	private Date claimDate;
 	
 	/**
-	 * Processing date
+	 * Processing date. The date the claim is processed by the operative or the rules engine
 	 */
 	private Date processingDate;
 	
@@ -22,6 +27,11 @@ public class LisApplication {
 	 * Address.
 	 */
 	private Address address;
+	
+	/** Contact Details
+	 * 
+	 */
+	private ContactDetails contactDetails;
 	
 	/**
 	 * Main applicant.
@@ -36,12 +46,25 @@ public class LisApplication {
 	/**
 	 * Dependants
 	 */
-	private ArrayList<Person>dependants;
+	private List<Person>dependants;
 	
 	/**
 	 * Non-Dependants
 	 */
-	private ArrayList<Person>nonDependants;
+	private List<Person>nonDependants;
+	
+	/**
+	 * Part 4 Savings
+	 */
+	private List<Saving>Savings;
+
+	public List<Saving> getSavings() {
+		return Savings;
+	}
+
+	public void setSavings(List<Saving> savings) {
+		Savings = savings;
+	}
 
 	public Date getClaimDate() {
 		return claimDate;
@@ -83,47 +106,35 @@ public class LisApplication {
 		this.partner = partner;
 	}
 
-	public ArrayList<Person> getDependants() {
+	public List<Person> getDependants() {
 		return dependants;
 	}
 
-	public void setDependants(ArrayList<Person> dependants) {
+	public void setDependants(List<Person> dependants) {
 		this.dependants = dependants;
 	}
 
-	public ArrayList<Person> getNonDependants() {
+	public List<Person> getNonDependants() {
 		return nonDependants;
 	}
 
-	public void setNonDependants(ArrayList<Person> nonDependants) {
+	public void setNonDependants(List<Person> nonDependants) {
 		this.nonDependants = nonDependants;
 	}
 
-	
-	
-	
-	/**
-	 * Default constructor.
-	 */
-	public LisApplication() {
+	public ContactDetails getContactDetails() {
+		return contactDetails;
+	}
+
+	public void setContactDetails(ContactDetails contactDetails) {
+		this.contactDetails = contactDetails;
 	}
 	
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	public String toString(){
-		StringBuffer returnStr=new StringBuffer("claimDate:").append(claimDate)
-				.append(" processingDate:").append(processingDate)
-				.append(" address:").append(address)
-				.append(" applicant:").append(applicant)
-				.append(" partner:").append(partner);
-		if(dependants!=null){
-			dependants.forEach((dependant)->{returnStr.append(" dependant:").append(dependant);});
-		}else{returnStr.append(" dependant:NONE");}
-		if(nonDependants!=null){
-			nonDependants.forEach((nonDependant)->{returnStr.append(" nonDependant:").append(nonDependant);});
-		}else{returnStr.append(" nonDependant:NONE");}
-		return returnStr.toString();
+	@Override
+	public String toString() {
+		return "Assessment [claimDate=" + claimDate + ", processingDate=" + processingDate + ", address="
+				+ address + ", contactDetails=" + contactDetails + ", applicant=" + applicant + ", partner=" + partner
+				+ ", dependants=" + dependants + ", nonDependants=" + nonDependants + ", Savings=" + Savings + "]";
 	}
-	
+
 }

@@ -33,8 +33,8 @@ public class AssessmentRulesService implements IAssessmentRulesService {
 		applicant
 			.withName();
 		applicant.withBenefits()
-			.add().withBenefitType(BenefitType.ArmedForcesIndependencePayment)
-			.add().withBenefitType(BenefitType.ChildBenefit)
+			.add().withBenefitType(BenefitType.ARMED_FORCES_INDEPENDENCE_PAYMENT)
+			.add().withBenefitType(BenefitType.CHILD_BENEFIT)
 			;
 		return builder.getInstance();
 	}

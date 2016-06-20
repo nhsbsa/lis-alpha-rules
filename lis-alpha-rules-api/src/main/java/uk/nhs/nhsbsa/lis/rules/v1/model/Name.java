@@ -32,23 +32,10 @@ public class Name {
 		this.surname = surname;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	public String toString(){
-		StringBuffer returnStr=new StringBuffer()
-				.append(" title:").append(title)
-				.append(" forenames:").append(forenames)
-				.append(" surname:").append(surname);
-		return returnStr.toString();
-	}
-	
-	public String toJSONString(){
-		StringBuffer returnStr=new StringBuffer()
-				.append("{ \"title\":\"").append(title).append("\",")
-				.append(" \"forenames\":\"").append(forenames).append("\",")
-				.append(" \"surname\":\"").append(surname).append("\" }");
-		return returnStr.toString(); 
+	@Override
+	public String toString() {
+		return "Name [title=" + title + ", forenames=" + forenames + ", surname=" + surname + "]";
 	}
 
+	
 }
