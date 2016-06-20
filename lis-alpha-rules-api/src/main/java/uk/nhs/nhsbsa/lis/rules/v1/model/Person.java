@@ -1,7 +1,8 @@
 package uk.nhs.nhsbsa.lis.rules.v1.model;
 
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.List;
 
 public class Person {
 
@@ -15,31 +16,31 @@ public class Person {
 	
 	//REVIEW PT Use interfaces not concrete types. i.e. List<>
 	//REVIEW PT consider using interface for all Incomes?
-	private ArrayList<Benefit>benefits;
-	private ArrayList<Income>incomes;
-	private ArrayList<Outgoing>outgoings;
+	private List<Benefit>benefits;
+	private List<Income>incomes;
+	private List<Outgoing>outgoings;
 	
-	public ArrayList<Outgoing> getOutgoings() {
+	public List<Outgoing> getOutgoings() {
 		return outgoings;
 	}
 
-	public void setOutgoings(ArrayList<Outgoing> outgoings) {
+	public void setOutgoings(List<Outgoing> outgoings) {
 		this.outgoings = outgoings;
 	}
 
-	public ArrayList<Benefit> getBenefits() {
+	public List<Benefit> getBenefits() {
 		return benefits;
 	}
 
-	public void setBenefits(ArrayList<Benefit> benefits) {
+	public void setBenefits(List<Benefit> benefits) {
 		this.benefits = benefits;
 	}
 
-	public ArrayList<Income> getIncomes() {
+	public List<Income> getIncomes() {
 		return incomes;
 	}
 
-	public void setIncomes(ArrayList<Income> incomes) {
+	public void setIncomes(List<Income> incomes) {
 		this.incomes = incomes;
 	}
 

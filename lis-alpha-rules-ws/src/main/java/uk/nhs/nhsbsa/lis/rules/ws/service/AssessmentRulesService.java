@@ -3,6 +3,7 @@ package uk.nhs.nhsbsa.lis.rules.ws.service;
 import org.springframework.stereotype.Service;
 
 import uk.nhs.nhsbsa.lis.rules.v1.builder.LisApplicationBuilder;
+import uk.nhs.nhsbsa.lis.rules.v1.builder.PersonBuilder;
 import uk.nhs.nhsbsa.lis.rules.v1.model.LisApplication;
 import uk.nhs.nhsbsa.rules.model.rules.Assessment;
 
@@ -27,8 +28,10 @@ public class AssessmentRulesService implements IAssessmentRulesService {
 		LisApplicationBuilder builder = new LisApplicationBuilder();
 		builder.withAddress()
 			.withAddressLines("", "", "");
-		builder.withApplicant()
+		PersonBuilder applicant = builder.withApplicant();
+		applicant
 			.withName();
+		applicant.withBenefits().add();
 		return builder.getInstance();
 	}
 }
