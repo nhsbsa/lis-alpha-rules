@@ -8,11 +8,6 @@ import java.util.List;
 public class Address {
 
 	/**
-	 * Post code for address lookup
-	 */
-	private String postcode;
-	
-    /**
 	 * House name or number.
 	 */
 	private String houseNameNumber;
@@ -22,6 +17,11 @@ public class Address {
 	 * @return
 	 */
 	private List<String> addressLines;
+	
+	/**
+	 * Post code for address lookup
+	 */
+	private String postcode;
 
 	public List<String> getAddressLines() {
 		return addressLines;

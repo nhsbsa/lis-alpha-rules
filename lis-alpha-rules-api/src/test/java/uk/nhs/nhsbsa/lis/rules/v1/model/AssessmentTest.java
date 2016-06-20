@@ -33,7 +33,7 @@ public class AssessmentTest {
 		assessment.setId("01042016SMITHBB");
 		assessment.setPartner(null);
 		assessment.setNonDependants(null);
-		
+		assessment.setContactDetails(BillPersonaTestData.contactDetails);
 		
 		assertTrue(assessment.getAddress().equals(BillPersonaTestData.testAddress));
 		assertTrue(assessment.getApplicant().equals(BillPersonaTestData.testPerson));
@@ -43,6 +43,7 @@ public class AssessmentTest {
 		assertTrue(assessment.getId().equals("01042016SMITHBB"));
 		assertTrue(assessment.getPartner()==null);
 		assertTrue(assessment.getNonDependants()==null);
+		assertTrue(assessment.getContactDetails().equals(BillPersonaTestData.contactDetails));
 		
 		System.out.println("testBillAssessment:");
 		System.out.println("String Method");
@@ -69,10 +70,19 @@ public class AssessmentTest {
 		assessment.setDependants(null);
 		assessment.setId("01052016JONESM");
 		assessment.setPartner(null);
+		assessment.setContactDetails(MiriamPersonaTestData.contactDetails);
 		
 		List<Person> nonDependants=new ArrayList<Person>();
 		nonDependants.add(MiriamPersonaTestData.testPerson2);
 		assessment.setNonDependants(nonDependants);
+		
+		List<Saving> testSavings=new ArrayList<Saving>();
+		Saving saving=new Saving();
+		saving.setState(ValueState.SET);
+		saving.setType(SavingType.ACCOUNTS);
+		saving.setValue("1000.00");
+		testSavings.add(saving);
+		assessment.setSavings(testSavings);
 		
 		assertTrue(assessment.getAddress().equals(MiriamPersonaTestData.testAddress));
 		assertTrue(assessment.getApplicant().equals(MiriamPersonaTestData.testPerson));
@@ -82,6 +92,7 @@ public class AssessmentTest {
 		assertTrue(assessment.getId().equals("01052016JONESM"));
 		assertTrue(assessment.getPartner()==null);
 		assertTrue(assessment.getNonDependants().equals(nonDependants));
+		assertTrue(assessment.getContactDetails().equals(MiriamPersonaTestData.contactDetails));
 		
 		System.out.println("testMiriamAssessment:");
 		System.out.println("String Method");

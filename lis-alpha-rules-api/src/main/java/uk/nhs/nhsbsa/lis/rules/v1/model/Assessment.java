@@ -34,6 +34,11 @@ public class Assessment {
 	 */
 	private Address address;
 	
+	/** Contact Details
+	 * 
+	 */
+	private ContactDetails contactDetails;
+	
 	/**
 	 * Main applicant.
 	 */
@@ -53,6 +58,19 @@ public class Assessment {
 	 * Non-Dependants
 	 */
 	private List<Person>nonDependants;
+	
+	/**
+	 * Part 4 Savings
+	 */
+	private List<Saving>Savings;
+
+	public List<Saving> getSavings() {
+		return Savings;
+	}
+
+	public void setSavings(List<Saving> savings) {
+		Savings = savings;
+	}
 
 	public Date getClaimDate() {
 		return claimDate;
@@ -139,8 +157,16 @@ public class Assessment {
 	@Override
 	public String toString() {
 		return "Assessment [id=" + id + ", claimDate=" + claimDate + ", processingDate=" + processingDate + ", address="
-				+ address + ", applicant=" + applicant + ", partner=" + partner + ", dependants=" + dependants
-				+ ", nonDependants=" + nonDependants + "]";
+				+ address + ", contactDetails=" + contactDetails + ", applicant=" + applicant + ", partner=" + partner
+				+ ", dependants=" + dependants + ", nonDependants=" + nonDependants + ", Savings=" + Savings + "]";
+	}
+
+	public ContactDetails getContactDetails() {
+		return contactDetails;
+	}
+
+	public void setContactDetails(ContactDetails contactDetails) {
+		this.contactDetails = contactDetails;
 	}
 	
 }

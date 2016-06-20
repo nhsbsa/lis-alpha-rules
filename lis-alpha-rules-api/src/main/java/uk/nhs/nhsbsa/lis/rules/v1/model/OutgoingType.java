@@ -8,6 +8,7 @@ public enum OutgoingType {
 	UNDEFINED,
 	COMMUNITY_CHARGE,
 	RENT,
+	GROUND_RENT,
 	MORTGAGE,
 	LIGHT,
 	HEATING,

@@ -19,10 +19,13 @@ public class MiriamPersonaTestData {
 	public static List<Income> testIncomes;
 	public static List<Benefit> testBenefits;
 	public static List<Outgoing> testOutgoings;
+	
 	// son
 	public static List<Income> testIncomes2;
 	public static List<Benefit> testBenefits2;
 	public static List<Outgoing> testOutgoings2;
+	
+	public static ContactDetails contactDetails;
 			
 	/** create test data **/
 	static{
@@ -43,6 +46,12 @@ public class MiriamPersonaTestData {
 		addressLines.add("London");
 		testAddress.setAddressLines(addressLines);
 		testAddress.setPostcode("LN5 4RT");
+		
+		contactDetails=new ContactDetails();
+		contactDetails.setEmailAddress("MiriamJonesPersona@noname.com");
+		contactDetails.setTelephoneNumber("02341 657890");
+		contactDetails.setMobileNumber("0798 1234560");
+		contactDetails.setPreferredContactValue("0798 1234560");
 	}
 	
 	private static void createMiriamName(){
@@ -77,21 +86,21 @@ public class MiriamPersonaTestData {
 		testBenefits.add(testBenefit);
 		
 		testOutgoings=new ArrayList<Outgoing>();
-		Outgoing testOutgoing1=new Outgoing();
-		testOutgoing1.setState(ValueState.SET);
-		testOutgoing1.setType(OutgoingType.COMMUNITY_CHARGE);
-		testOutgoing1.setValue("20");
-		testOutgoing1.setMoneyPeriod(MoneyPeriod.weekly);
+		Outgoing testOutgoing=new Outgoing();
+		testOutgoing.setState(ValueState.SET);
+		testOutgoing.setType(OutgoingType.COMMUNITY_CHARGE);
+		testOutgoing.setValue("20");
+		testOutgoing.setMoneyPeriod(MoneyPeriod.weekly);
+		testOutgoings.add(testOutgoing);
 		
-		Outgoing testOutgoing2=new Outgoing();
-		testOutgoing2.setState(ValueState.SET);
-		testOutgoing2.setType(OutgoingType.MORTGAGE);
-		testOutgoing2.setValue("175");
-		testOutgoing2.setMoneyPeriod(MoneyPeriod.monthly);
+		testOutgoing=new Outgoing();
+		testOutgoing.setState(ValueState.SET);
+		testOutgoing.setType(OutgoingType.MORTGAGE);
+		testOutgoing.setValue("175");
+		testOutgoing.setMoneyPeriod(MoneyPeriod.monthly);
+		testOutgoings.add(testOutgoing);
 		
-		testOutgoings.add(testOutgoing1);
-		testOutgoings.add(testOutgoing2);
-		
+		// son
 		testIncomes2=new ArrayList<Income>();
 		testIncome=new Income();
 		testIncome.setState(ValueState.SET);

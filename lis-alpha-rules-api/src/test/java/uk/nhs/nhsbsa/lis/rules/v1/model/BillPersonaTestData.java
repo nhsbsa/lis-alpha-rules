@@ -30,6 +30,7 @@ public class BillPersonaTestData {
 		public static ArrayList<Income> testIncomes;
 		public static ArrayList<Benefit> testBenefits;
 		public static ArrayList<Outgoing> testOutgoings;
+		public static ContactDetails contactDetails;
 				
 		/** create test data **/
 		static{
@@ -49,6 +50,12 @@ public class BillPersonaTestData {
 			addressLines.add("Northumberland");
 			testAddress.setAddressLines(addressLines);
 			testAddress.setPostcode("NE33 5TY");
+			
+			contactDetails=new ContactDetails();
+			contactDetails.setEmailAddress("BillSmithPersona@noname.com");
+			contactDetails.setTelephoneNumber("01234 567890");
+			contactDetails.setMobileNumber("0789 0123456");
+			contactDetails.setPreferredContactValue("0789 0123456");
 		}
 		
 		private static void createNINO(){
