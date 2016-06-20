@@ -70,7 +70,7 @@ rc-zap-test:
   services:
     - nhsbsa/owasp-zap:latest
   script:
-    - bsa-ci/zap_test.rb -n -v -a spring_boot_artifacts -c spring_boot_config
+    - bsa-ci/zap_test.rb -v -a spring_boot_artifacts -c spring_boot_config
     # # clone iac
     # - git clone git@${CI_GIT_HOST}:devops/iac-control.git
     # - eval $(cd iac-control && bin/generate_tfvars.rb)
