@@ -1,9 +1,10 @@
 package uk.nhs.nhsbsa.lis.rules.v1.model;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Date;
 
 import org.springframework.data.annotation.Id;
+
 
 /**
  * The root class for a rules based LIS assessment.
@@ -17,12 +18,14 @@ public class Assessment {
 	private String id;
 	
 	/**
-	 * Assessment is based on claim date.
+	 * Assessment is based on claim date. This is the date the claim
+	 * arrived in the post or the initial date the claim is created.
+	 * If claim is save \ restored do we use the initial date or the save date?
 	 */
 	private Date claimDate;
 	
 	/**
-	 * Processing date
+	 * Processing date. The date the claim is processed by the operative or the rules engine
 	 */
 	private Date processingDate;
 	
@@ -44,12 +47,12 @@ public class Assessment {
 	/**
 	 * Dependants
 	 */
-	private ArrayList<Person>dependants;
+	private List<Person>dependants;
 	
 	/**
 	 * Non-Dependants
 	 */
-	private ArrayList<Person>nonDependants;
+	private List<Person>nonDependants;
 
 	public Date getClaimDate() {
 		return claimDate;
@@ -91,19 +94,19 @@ public class Assessment {
 		this.partner = partner;
 	}
 
-	public ArrayList<Person> getDependants() {
+	public List<Person> getDependants() {
 		return dependants;
 	}
 
-	public void setDependants(ArrayList<Person> dependants) {
+	public void setDependants(List<Person> dependants) {
 		this.dependants = dependants;
 	}
 
-	public ArrayList<Person> getNonDependants() {
+	public List<Person> getNonDependants() {
 		return nonDependants;
 	}
 
-	public void setNonDependants(ArrayList<Person> nonDependants) {
+	public void setNonDependants(List<Person> nonDependants) {
 		this.nonDependants = nonDependants;
 	}
 
@@ -133,57 +136,11 @@ public class Assessment {
 		this.id = id;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	public String toString(){
-		StringBuffer returnStr=new StringBuffer("id:").append(id)
-				.append(" claimDate:").append(claimDate)
-				.append(" processingDate:").append(processingDate)
-				.append(" address:").append(address)
-				.append(" applicant:").append(applicant)
-				.append(" partner:").append(partner);
-		if(dependants!=null){
-			dependants.forEach((dependant)->{returnStr.append(" dependant:").append(dependant);});
-		}else{returnStr.append(" dependant:NONE");}
-		if(nonDependants!=null){
-			nonDependants.forEach((nonDependant)->{returnStr.append(" nonDependant:").append(nonDependant);});
-		}else{returnStr.append(" nonDependant:NONE");}
-		return returnStr.toString();
-	}
-	
-	public String toJSONString(){
-		StringBuffer returnStr=new StringBuffer("{\"assessment\":{")
-				.append(" \"id\":\"").append(id).append("\",")
-				.append(" \"claimDate\":\"").append(claimDate).append("\",")
-				.append(" \"processingDate\":\"").append(processingDate).append("\",")
-				.append(" \"address\":").append(address.toJSONString()).append(",")
-				.append(" \"mainApplicant\":").append(applicant.toJSONString());
-		returnStr.append("}, \"partner\":");
-		if(partner!=null){
-			returnStr.append(partner.toJSONString()).append("}");
-		}else{returnStr.append("{}");}
-		// TODO Test this
-		returnStr.append(",").append("\"dependants\":[");
-		if(dependants!=null){
-			boolean firstIteration=true;
-			for(Person dependent : dependants){
-				if(firstIteration==true){firstIteration=false;}
-				else{returnStr.append(",");}
-				returnStr.append(dependent.toJSONString());
-			}
-		}
-		returnStr.append("],\"nonDependants\":[");
-		if(dependants!=null){
-			boolean firstIteration=true;
-			for(Person nonDependent : nonDependants){
-				if(firstIteration==true){firstIteration=false;}
-				else{returnStr.append(",");}
-				returnStr.append(nonDependent.toJSONString());
-			}
-		}
-		returnStr.append("]}}");
-		return returnStr.toString();
+	@Override
+	public String toString() {
+		return "Assessment [id=" + id + ", claimDate=" + claimDate + ", processingDate=" + processingDate + ", address="
+				+ address + ", applicant=" + applicant + ", partner=" + partner + ", dependants=" + dependants
+				+ ", nonDependants=" + nonDependants + "]";
 	}
 	
 }

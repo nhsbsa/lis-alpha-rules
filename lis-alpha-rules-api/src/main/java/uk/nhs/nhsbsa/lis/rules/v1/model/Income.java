@@ -56,29 +56,12 @@ public class Income {
 		this.moneyPeriod = moneyPeriod;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	public String toString(){
-		StringBuffer returnStr=new StringBuffer()
-				.append(" incomeType:").append(incomeType)
-				.append(" incomeState:").append(incomeState)
-				.append(" incomeValue:").append(incomeValue)
-				.append(" moneyPeriod:").append(moneyPeriod);
-		return returnStr.toString();
-				
+	@Override
+	public String toString() {
+		return "Income [incomeType=" + incomeType + ", incomeState=" + incomeState + ", incomeValue=" + incomeValue
+				+ ", moneyPeriod=" + moneyPeriod + "]";
 	}
-	
-	/**
-	 * @return
-	 */
-	public String toJSONString(){
-		StringBuffer returnStr=new StringBuffer()
-				.append("{ \"type\":\"").append(incomeType).append("\",")
-				.append(" \"state\":\"").append(incomeState).append("\",")
-				.append(" \"value\":\"").append(incomeValue).append("\",")
-				.append(" \"moneyPeriod\":\"").append(moneyPeriod).append("\" }");
-		return returnStr.toString(); 
-	}
+
+
 	
 }

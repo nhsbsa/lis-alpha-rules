@@ -5,6 +5,8 @@ import java.util.Date;
 
 import org.junit.Test;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 public class AssessmentTest {
 	
 	BillPersonaTestData testData;
@@ -44,8 +46,26 @@ public class AssessmentTest {
 		System.out.println("String Method");
 		System.out.println(assessment);
 		System.out.println("JSON String Method");
-		System.out.println(assessment.toJSONString());
+		System.out.println(toJSONString(assessment));
 		
 	}
+	
+	/**
+	 * Just for outputting 
+	 * @return
+	 */
+	public String toJSONString(Assessment assessment){
+			ObjectMapper mapper = new ObjectMapper();
+			mapper.setDateFormat(BillPersonaTestData.dateFormat);
+			try{
+				String jsonInString = mapper.writeValueAsString(assessment);
+				return jsonInString;
+			}catch(Exception e){
+				e.printStackTrace();
+
+			}
+			return "";
+			
+		}
 	
 }

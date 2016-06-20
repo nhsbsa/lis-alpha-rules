@@ -31,6 +31,10 @@ public class NationalInsuranceNo {
 		nino = nINO;
 	}
 	
+	/**
+	 * TODO find a better place for this
+	 * @return
+	 */
 	public boolean isValidNINO(){
 		String NINOPattern = "^\\s*[a-zA-Z]{2}(?:\\s*\\d\\s*){6}[a-zA-Z]?\\s*$";
 
@@ -45,20 +49,12 @@ public class NationalInsuranceNo {
 		}
 		
 	}
-	
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	public String toString(){
-		StringBuffer returnStr=new StringBuffer(" NINO:");
-		returnStr.append(nino);
-		return returnStr.toString();
+
+	@Override
+	public String toString() {
+		return "NationalInsuranceNo [nino=" + nino + "]";
 	}
 	
-	public String toJSONString(){
-		StringBuffer returnStr=new StringBuffer("\"NINO\":\"");
-		returnStr.append(nino).append("\"");
-		return returnStr.toString();
-	}
+	
 
 }

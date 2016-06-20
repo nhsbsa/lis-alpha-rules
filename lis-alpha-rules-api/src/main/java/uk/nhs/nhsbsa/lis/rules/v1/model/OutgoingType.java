@@ -7,12 +7,12 @@ package uk.nhs.nhsbsa.lis.rules.v1.model;
  */
 public enum OutgoingType {
 	UNDEFINED,
-	CommunityCharge,
-	Rent,
-	Mortgage,
-	Light,
-	Heating,
-	Cooking,
-	Water,
-	CommunalFacilities;
+	COMMUNITY_CHARGE,
+	RENT,
+	MORTGAGE,
+	LIGHT,
+	HEATING,
+	COOKING,
+	WATER,
+	COMMUNAL_FACILITIES;
 }

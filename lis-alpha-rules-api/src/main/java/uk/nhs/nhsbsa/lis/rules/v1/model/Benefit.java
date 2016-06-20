@@ -48,25 +48,12 @@ public class Benefit {
 	public void setMoneyPeriod(MoneyPeriod moneyPeriod) {
 		this.moneyPeriod = moneyPeriod;
 	}
-	
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	public String toString(){
-		StringBuffer returnStr=new StringBuffer()
-				.append(" benefitType:").append(benefitType)
-				.append(" benefitState:").append(benefitState)
-				.append(" benefitValue:").append(benefitValue)
-				.append(" moneyPeriod:").append(moneyPeriod);
-		return returnStr.toString(); 
+
+	@Override
+	public String toString() {
+		return "Benefit [benefitType=" + benefitType + ", benefitState=" + benefitState + ", benefitValue="
+				+ benefitValue + ", moneyPeriod=" + moneyPeriod + "]";
 	}
 	
-	public String toJSONString(){
-		StringBuffer returnStr=new StringBuffer()
-				.append("{ \"type\":\"").append(benefitType).append("\",")
-				.append(" \"state\":\"").append(benefitState).append("\",")
-				.append(" \"value\":\"").append(benefitValue).append("\",")
-				.append(" \"moneyPeriod\":\"").append(moneyPeriod).append("\" }");
-		return returnStr.toString(); 
-	}
+	
 }

@@ -22,8 +22,6 @@ public class DataModelTest {
 		assertSame(BillPersonaTestData.testAddress.getAddressLines(),BillPersonaTestData.addressLines);
 		System.out.println("String Method");
 		System.out.println(BillPersonaTestData.testAddress);
-		System.out.println("JSON String Method");
-		System.out.println(BillPersonaTestData.testAddress.toJSONString());
 	}
 	
 	@Test
@@ -43,8 +41,6 @@ public class DataModelTest {
 		
 		System.out.println("String Method");
 		System.out.println(BillPersonaTestData.testNino);
-		System.out.println("JSON String Method");
-		System.out.println(BillPersonaTestData.testNino.toJSONString());
 	}
 	
 	@Test
@@ -52,8 +48,6 @@ public class DataModelTest {
 		System.out.println("testIncome:");
 		System.out.println("String Method");
 		System.out.println(BillPersonaTestData.testIncomes.get(0));
-		System.out.println("JSON String Method");
-		System.out.println(BillPersonaTestData.testIncomes.get(0).toJSONString());
 	}
 	
 	@Test
@@ -61,8 +55,6 @@ public class DataModelTest {
 		System.out.println("testBenefit:");
 		System.out.println("String Method");
 		System.out.println(BillPersonaTestData.testBenefits.get(0));
-		System.out.println("JSON String Method");
-		System.out.println(BillPersonaTestData.testBenefits.get(0).toJSONString());
 	}
 	
 	@Test
@@ -70,8 +62,6 @@ public class DataModelTest {
 		System.out.println("testOutgoings:");
 		System.out.println("String Method");
 		System.out.println(BillPersonaTestData.testOutgoings.get(0));
-		System.out.println("JSON String Method");
-		System.out.println(BillPersonaTestData.testOutgoings.get(0).toJSONString());
 	}
 	
 	@Test
@@ -93,7 +83,5 @@ public class DataModelTest {
 		System.out.println("testBillPersona:");
 		System.out.println("String Method");
 		System.out.println(BillPersonaTestData.testPerson);
-		System.out.println("JSON String Method");
-		System.out.println(BillPersonaTestData.testPerson.toJSONString());
 	}
 }

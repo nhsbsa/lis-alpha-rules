@@ -48,26 +48,13 @@ public class Outgoing {
 	public void setMoneyPeriod(MoneyPeriod moneyPeriod) {
 		this.moneyPeriod = moneyPeriod;
 	}
-	
-	public String toString(){
-		StringBuffer returnStr=new StringBuffer()
-				.append(" outgoingType:").append(outgoingType)
-				.append(" outgoingState:").append(outgoingState)
-				.append(" outgoingValue:").append(outgoingValue)
-				.append(" moneyPeriod:").append(moneyPeriod);
-		return returnStr.toString(); 
+
+	@Override
+	public String toString() {
+		return "Outgoing [outgoingType=" + outgoingType + ", outgoingState=" + outgoingState + ", outgoingValue="
+				+ outgoingValue + ", moneyPeriod=" + moneyPeriod + "]";
 	}
 	
-	/**
-	 * @return
-	 */
-	public String toJSONString(){
-		StringBuffer returnStr=new StringBuffer()
-				.append("{ \"type\":\"").append(outgoingType).append("\",")
-				.append(" \"state\":\"").append(outgoingState).append("\",")
-				.append(" \"value\":\"").append(outgoingValue).append("\",")
-				.append(" \"moneyPeriod\":\"").append(moneyPeriod).append("\" }");
-		return returnStr.toString(); 
-	}
+	
 
 }
