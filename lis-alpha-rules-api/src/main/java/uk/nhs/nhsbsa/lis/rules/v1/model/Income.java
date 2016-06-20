@@ -11,14 +11,9 @@ public class Income {
 	private IncomeType incomeType;
 	private ValueState incomeState;
 	private String incomeValue; // TODO this may change to an object. at present can hold income info
+	private MoneyPeriod moneyPeriod;
 	
-	public String getIncomeValue() {
-		return incomeValue;
-	}
-
-	public void setIncomeValue(String incomeValue) {
-		this.incomeValue = incomeValue;
-	}
+	
 
 	/**
 	 * Constructor
@@ -26,6 +21,15 @@ public class Income {
 	public Income(){
 		incomeType=IncomeType.UNDEFINED;
 		incomeState=ValueState.UNDEFINED;
+		moneyPeriod=MoneyPeriod.UNDEFINED;
+	}
+	
+	public String getIncomeValue() {
+		return incomeValue;
+	}
+
+	public void setIncomeValue(String incomeValue) {
+		this.incomeValue = incomeValue;
 	}
 
 	public IncomeType getIncomeType() {
@@ -44,6 +48,14 @@ public class Income {
 		this.incomeState = incomeState;
 	}
 	
+	public MoneyPeriod getMoneyPeriod() {
+		return moneyPeriod;
+	}
+
+	public void setMoneyPeriod(MoneyPeriod moneyPeriod) {
+		this.moneyPeriod = moneyPeriod;
+	}
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
@@ -51,9 +63,22 @@ public class Income {
 		StringBuffer returnStr=new StringBuffer()
 				.append(" incomeType:").append(incomeType)
 				.append(" incomeState:").append(incomeState)
-				.append(" incomeValue:").append(incomeValue);
+				.append(" incomeValue:").append(incomeValue)
+				.append(" moneyPeriod:").append(moneyPeriod);
 		return returnStr.toString();
 				
+	}
+	
+	/**
+	 * @return
+	 */
+	public String toJSONString(){
+		StringBuffer returnStr=new StringBuffer()
+				.append("{ \"type\":\"").append(incomeType).append("\",")
+				.append(" \"state\":\"").append(incomeState).append("\",")
+				.append(" \"value\":\"").append(incomeValue).append("\",")
+				.append(" \"moneyPeriod\":\"").append(moneyPeriod).append("\" }");
+		return returnStr.toString(); 
 	}
 	
 }

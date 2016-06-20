@@ -133,5 +133,57 @@ public class Assessment {
 		this.id = id;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	public String toString(){
+		StringBuffer returnStr=new StringBuffer("id:").append(id)
+				.append(" claimDate:").append(claimDate)
+				.append(" processingDate:").append(processingDate)
+				.append(" address:").append(address)
+				.append(" applicant:").append(applicant)
+				.append(" partner:").append(partner);
+		if(dependants!=null){
+			dependants.forEach((dependant)->{returnStr.append(" dependant:").append(dependant);});
+		}else{returnStr.append(" dependant:NONE");}
+		if(nonDependants!=null){
+			nonDependants.forEach((nonDependant)->{returnStr.append(" nonDependant:").append(nonDependant);});
+		}else{returnStr.append(" nonDependant:NONE");}
+		return returnStr.toString();
+	}
+	
+	public String toJSONString(){
+		StringBuffer returnStr=new StringBuffer("{\"assessment\":{")
+				.append(" \"id\":\"").append(id).append("\",")
+				.append(" \"claimDate\":\"").append(claimDate).append("\",")
+				.append(" \"processingDate\":\"").append(processingDate).append("\",")
+				.append(" \"address\":").append(address.toJSONString()).append(",")
+				.append(" \"mainApplicant\":").append(applicant.toJSONString());
+		returnStr.append("}, \"partner\":");
+		if(partner!=null){
+			returnStr.append(partner.toJSONString()).append("}");
+		}else{returnStr.append("{}");}
+		// TODO Test this
+		returnStr.append(",").append("\"dependants\":[");
+		if(dependants!=null){
+			boolean firstIteration=true;
+			for(Person dependent : dependants){
+				if(firstIteration==true){firstIteration=false;}
+				else{returnStr.append(",");}
+				returnStr.append(dependent.toJSONString());
+			}
+		}
+		returnStr.append("],\"nonDependants\":[");
+		if(dependants!=null){
+			boolean firstIteration=true;
+			for(Person nonDependent : nonDependants){
+				if(firstIteration==true){firstIteration=false;}
+				else{returnStr.append(",");}
+				returnStr.append(nonDependent.toJSONString());
+			}
+		}
+		returnStr.append("]}}");
+		return returnStr.toString();
+	}
 	
 }

@@ -42,5 +42,13 @@ public class Name {
 				.append(" surname:").append(surname);
 		return returnStr.toString();
 	}
+	
+	public String toJSONString(){
+		StringBuffer returnStr=new StringBuffer()
+				.append("{ \"title\":\"").append(title).append("\",")
+				.append(" \"forenames\":\"").append(forenames).append("\",")
+				.append(" \"surname\":\"").append(surname).append("\" }");
+		return returnStr.toString(); 
+	}
 
 }
