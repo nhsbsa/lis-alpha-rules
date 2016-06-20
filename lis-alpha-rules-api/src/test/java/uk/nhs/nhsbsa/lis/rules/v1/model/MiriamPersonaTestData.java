@@ -89,7 +89,7 @@ public class MiriamPersonaTestData {
 		Outgoing testOutgoing=new Outgoing();
 		testOutgoing.setState(ValueState.SET);
 		testOutgoing.setType(OutgoingType.COMMUNITY_CHARGE);
-		testOutgoing.setValue("20");
+		testOutgoing.setValue("40");
 		testOutgoing.setMoneyPeriod(MoneyPeriod.weekly);
 		testOutgoings.add(testOutgoing);
 		
@@ -105,9 +105,17 @@ public class MiriamPersonaTestData {
 		testIncome=new Income();
 		testIncome.setState(ValueState.SET);
 		testIncome.setType(IncomeType.EARNS);
-		testIncome.setIncomeValue("400");
-		testIncome.setMoneyPeriod(MoneyPeriod.weekly);
+		testIncome.setIncomeValue("1600");
+		testIncome.setMoneyPeriod(MoneyPeriod.monthly);
 		testIncomes2.add(testIncome);
+		
+		testOutgoings2=new ArrayList<Outgoing>();
+		testOutgoing=new Outgoing();
+		testOutgoing.setState(ValueState.SET);
+		testOutgoing.setType(OutgoingType.PENSION);
+		testOutgoing.setValue("100");
+		testOutgoing.setMoneyPeriod(MoneyPeriod.monthly);
+		testOutgoings2.add(testOutgoing);
 	}
 	
 	private static void createMiriamPersona(){
@@ -138,6 +146,7 @@ public class MiriamPersonaTestData {
 		testPerson2.setNino(personNino2);
 		testPerson2.setType(PersonType.HOUSEHOLDER);
 		testPerson2.setIncomes(testIncomes2);
+		testPerson2.setOutgoings(testOutgoings2);
 	}
 
 
