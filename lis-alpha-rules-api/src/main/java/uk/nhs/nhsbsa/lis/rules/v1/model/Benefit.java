@@ -5,40 +5,41 @@ package uk.nhs.nhsbsa.lis.rules.v1.model;
  * @author lorob
  *
  */
-public class Benefit {
-	private BenefitType benefitType;
-	private ValueState benefitState;
-	private String benefitValue; // TODO this may change to an object. at present can hold benefit info
+public class Benefit implements IIncome{
+	
+	private BenefitType type;
+	private ValueState state;
+	private String value; // TODO this may change to an object. at present can hold benefit info
 	private MoneyPeriod moneyPeriod;
 
 	public Benefit(){
-		benefitType=BenefitType.UNDEFINED;
-		benefitState=ValueState.UNDEFINED;
+		type=BenefitType.UNDEFINED;
+		state=ValueState.UNDEFINED;
 		moneyPeriod=MoneyPeriod.UNDEFINED;
 	}
 	
-	public BenefitType getBenefitType() {
-		return benefitType;
+	public BenefitType getType() {
+		return type;
 	}
 
-	public void setBenefitType(BenefitType benefitType) {
-		this.benefitType = benefitType;
+	public void setType(BenefitType type) {
+		this.type = type;
 	}
 
-	public ValueState getBenefitState() {
-		return benefitState;
+	public ValueState getState() {
+		return state;
 	}
 
-	public void setBenefitState(ValueState benefitState) {
-		this.benefitState = benefitState;
+	public void setState(ValueState state) {
+		this.state = state;
 	}
 
-	public String getBenefitValue() {
-		return benefitValue;
+	public String getValue() {
+		return value;
 	}
 
-	public void setBenefitValue(String benefitValue) {
-		this.benefitValue = benefitValue;
+	public void setValue(String value) {
+		this.value = value;
 	}
 	
 	public MoneyPeriod getMoneyPeriod() {
@@ -51,8 +52,8 @@ public class Benefit {
 
 	@Override
 	public String toString() {
-		return "Benefit [benefitType=" + benefitType + ", benefitState=" + benefitState + ", benefitValue="
-				+ benefitValue + ", moneyPeriod=" + moneyPeriod + "]";
+		return "Benefit [benefitType=" + type + ", benefitState=" + state + ", benefitValue="
+				+ value + ", moneyPeriod=" + moneyPeriod + "]";
 	}
 	
 	

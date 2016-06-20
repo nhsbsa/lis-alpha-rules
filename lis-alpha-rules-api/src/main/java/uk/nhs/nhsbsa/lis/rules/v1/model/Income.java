@@ -7,45 +7,43 @@ package uk.nhs.nhsbsa.lis.rules.v1.model;
  * @author lorob
  *
  */
-public class Income {
-	private IncomeType incomeType;
-	private ValueState incomeState;
-	private String incomeValue; // TODO this may change to an object. at present can hold income info
+public class Income implements IIncome{
+	private IncomeType type;
+	private ValueState state;
+	private String value; // TODO this may change to an object. at present can hold income info
 	private MoneyPeriod moneyPeriod;
-	
-	
 
 	/**
 	 * Constructor
 	 */
 	public Income(){
-		incomeType=IncomeType.UNDEFINED;
-		incomeState=ValueState.UNDEFINED;
+		type=IncomeType.UNDEFINED;
+		state=ValueState.UNDEFINED;
 		moneyPeriod=MoneyPeriod.UNDEFINED;
 	}
 	
-	public String getIncomeValue() {
-		return incomeValue;
+	public String getValue() {
+		return value;
 	}
 
-	public void setIncomeValue(String incomeValue) {
-		this.incomeValue = incomeValue;
+	public void setIncomeValue(String value) {
+		this.value = value;
 	}
 
-	public IncomeType getIncomeType() {
-		return incomeType;
+	public IncomeType getType() {
+		return type;
 	}
 
-	public void setIncomeType(IncomeType incomeType) {
-		this.incomeType = incomeType;
+	public void setType(IncomeType type) {
+		this.type = type;
 	}
 
-	public ValueState getIncomeState() {
-		return incomeState;
+	public ValueState getState() {
+		return state;
 	}
 
-	public void setIncomeState(ValueState incomeState) {
-		this.incomeState = incomeState;
+	public void setState(ValueState state) {
+		this.state = state;
 	}
 	
 	public MoneyPeriod getMoneyPeriod() {
@@ -58,7 +56,7 @@ public class Income {
 
 	@Override
 	public String toString() {
-		return "Income [incomeType=" + incomeType + ", incomeState=" + incomeState + ", incomeValue=" + incomeValue
+		return "Income [incomeType=" + type + ", incomeState=" + state + ", incomeValue=" + value
 				+ ", moneyPeriod=" + moneyPeriod + "]";
 	}
 

@@ -1,6 +1,10 @@
 ---
 spring_boot_artifacts:
   - group_id: net.nhs.nhsbsa.lis.lis-alpha-rules
-    description: LIS Alpha Rules Engine
+    description: LIS Alpha Rules Engine WS
     artifact_id: lis-alpha-rules-ws
+    version:
+  - group_id: net.nhs.nhsbsa.lis.lis-alpha-rules
+    description: LIS Alpha Rules Engine App
+    artifact_id: lis-alpha-rules-app
     version:

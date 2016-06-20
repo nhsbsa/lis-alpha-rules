@@ -5,6 +5,7 @@ package uk.nhs.nhsbsa.lis.rules.v1.model;
  * @author lorob
  *
  */
+//REVIEW PT discuss whether enums should be abbreviations or full names
 public enum BenefitType {
 	UNDEFINED, // Default when not set
 	ARMED_FORCES_INDEPENDENCE_PAYMENT,

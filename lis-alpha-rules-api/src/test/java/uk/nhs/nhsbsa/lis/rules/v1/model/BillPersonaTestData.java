@@ -68,31 +68,31 @@ public class BillPersonaTestData {
 		private static void createBillIncomeAndExpenditure(){
 			testIncomes=new ArrayList<Income>();
 			Income testIncome=new Income();
-			testIncome.setIncomeState(ValueState.SET);
-			testIncome.setIncomeType(IncomeType.OCC_PENSION);
+			testIncome.setState(ValueState.SET);
+			testIncome.setType(IncomeType.OCC_PENSION);
 			testIncome.setIncomeValue("50");
 			testIncome.setMoneyPeriod(MoneyPeriod.weekly);
 			testIncomes.add(testIncome);
 			
 			testBenefits=new ArrayList<Benefit>();
 			Benefit testBenefit=new Benefit();
-			testBenefit.setBenefitState(ValueState.SET);
-			testBenefit.setBenefitType(BenefitType.RETIREMENT_PENSION);
-			testBenefit.setBenefitValue("119.30");
+			testBenefit.setState(ValueState.SET);
+			testBenefit.setType(BenefitType.RETIREMENT_PENSION);
+			testBenefit.setValue("119.30");
 			testBenefit.setMoneyPeriod(MoneyPeriod.weekly);
 			testBenefits.add(testBenefit);
 			
 			testOutgoings=new ArrayList<Outgoing>();
 			Outgoing testOutgoing1=new Outgoing();
-			testOutgoing1.setOutgoingState(ValueState.SET);
-			testOutgoing1.setOutgoingType(OutgoingType.COMMUNITY_CHARGE);
-			testOutgoing1.setOutgoingValue("20");
+			testOutgoing1.setState(ValueState.SET);
+			testOutgoing1.setType(OutgoingType.COMMUNITY_CHARGE);
+			testOutgoing1.setValue("20");
 			testOutgoing1.setMoneyPeriod(MoneyPeriod.weekly);
 			
 			Outgoing testOutgoing2=new Outgoing();
-			testOutgoing2.setOutgoingState(ValueState.SET);
-			testOutgoing2.setOutgoingType(OutgoingType.RENT);
-			testOutgoing2.setOutgoingValue("60");
+			testOutgoing2.setState(ValueState.SET);
+			testOutgoing2.setType(OutgoingType.RENT);
+			testOutgoing2.setValue("60");
 			testOutgoing2.setMoneyPeriod(MoneyPeriod.weekly);
 			
 			testOutgoings.add(testOutgoing1);

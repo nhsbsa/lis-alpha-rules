@@ -16,6 +16,8 @@ public class Person {
 	private List<Benefit>benefits;
 	private List<Income>incomes;
 	private List<Outgoing>outgoings;
+
+	//REVIEW PT consider using interface for all Incomes?
 	
 	public List<Outgoing> getOutgoings() {
 		return outgoings;
