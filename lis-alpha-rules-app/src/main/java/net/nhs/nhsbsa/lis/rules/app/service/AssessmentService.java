@@ -38,9 +38,8 @@ public class AssessmentService implements IAssessmentService {
 
 	@Override
 	public Assessment create() {
-		
-		Assessment assessment = new Assessment();
-		assessment = assessmentRestClient.put("new", assessment);
+	
+		Assessment assessment = assessmentRestClient.post(null);
 		Assessment result = assessmentRespository.save(assessment);
 		return result;
 	}

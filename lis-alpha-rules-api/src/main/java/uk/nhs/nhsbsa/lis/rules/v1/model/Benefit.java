@@ -70,4 +70,28 @@ public class Benefit {
 				.append(" \"moneyPeriod\":\"").append(moneyPeriod).append("\" }");
 		return returnStr.toString(); 
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((benefitType == null) ? 0 : benefitType.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass()) {
+			System.out.println(getClass().getClassLoader() + " != " + obj.getClass().getClassLoader());
+			return false;
+		}
+		Benefit other = (Benefit) obj;
+		if (benefitType != other.benefitType)
+			return false;
+		return true;
+	}
 }

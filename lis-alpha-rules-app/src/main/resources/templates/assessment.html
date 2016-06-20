@@ -59,9 +59,10 @@
               <tbody th:each="benefit, benefitRow : ${assessment.application.applicant.benefits}">
           
                 <tr>
-                  <td>Benefit Value</td>
+                  <td th:text="*{application.applicant.benefits[__${benefitRow.index}__].benefitType + ' Benefit'} "></td>
                   <td>
                     <input type="text" th:field="*{application.applicant.benefits[__${benefitRow.index}__].benefitValue}" />
+                    <input type="hidden" th:field="*{application.applicant.benefits[__${benefitRow.index}__].benefitType}" />
                   </td>
                 </tr>
               

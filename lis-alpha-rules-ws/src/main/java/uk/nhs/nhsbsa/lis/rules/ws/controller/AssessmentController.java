@@ -25,10 +25,11 @@ public class AssessmentController implements IAssessmentWebService {
 	IAssessmentRulesService assessmentRulesService;
 	
 	@Override
-	public Assessment post(LisApplication application) {
+	@RequestMapping(method=RequestMethod.POST)
+	public @ResponseBody Assessment post(LisApplication application) {
 
     	LOGGER.info("POST /assessments");
-		return assess(new Assessment(null, application));
+		return assess(new Assessment(null, null));
 	}
 
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)

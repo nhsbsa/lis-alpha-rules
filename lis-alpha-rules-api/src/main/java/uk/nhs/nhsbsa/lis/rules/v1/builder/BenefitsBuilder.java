@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.commons.collections.ListUtils;
 
 import uk.nhs.nhsbsa.lis.rules.v1.model.Benefit;
+import uk.nhs.nhsbsa.lis.rules.v1.model.BenefitType;
 
 public class BenefitsBuilder extends ModelBuilder<List<Benefit>>{
 
@@ -18,6 +19,11 @@ public class BenefitsBuilder extends ModelBuilder<List<Benefit>>{
 
 	public BenefitsBuilder withBenefitValue(String benefitValue) {
 		getItem().setBenefitValue(benefitValue);
+		return this;
+	}
+
+	public BenefitsBuilder withBenefitType(BenefitType benefitType) {
+		getItem().setBenefitType(benefitType);
 		return this;
 	}
 

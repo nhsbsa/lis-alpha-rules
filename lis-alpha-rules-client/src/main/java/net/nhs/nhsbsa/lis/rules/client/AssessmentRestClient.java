@@ -40,20 +40,28 @@ public class AssessmentRestClient implements IAssessmentRestClient {
 	public Assessment post(LisApplication application) {
 		HttpEntity<LisApplication> requestEntity = new HttpEntity<LisApplication>(application);
 		ResponseEntity<Assessment> responseEntity =
-				restTemplate.exchange(restEndpointBuilder.getPutResourceUri(), HttpMethod.POST, requestEntity, Assessment.class);
+				restTemplate.exchange(
+						restEndpointBuilder.getPostResourceUri(),
+						HttpMethod.POST, 
+						requestEntity, 
+						Assessment.class);
 		return responseEntity.getBody();
 	}
 
 	@Override
 	public Assessment get(String id) {
-		return restTemplate.getForObject(restEndpointBuilder.getGetResourceUri(), Assessment.class, "42");
+		return restTemplate.getForObject(restEndpointBuilder.getGetResourceUri(), Assessment.class, id);
 	}
 
 	@Override
 	public Assessment put(String id, Assessment assessment) {
 		HttpEntity<Assessment> requestEntity = new HttpEntity<Assessment>(assessment);
 		ResponseEntity<Assessment> responseEntity =
-				restTemplate.exchange(restEndpointBuilder.getPutResourceUri(), HttpMethod.PUT, requestEntity, Assessment.class, "42");
+				restTemplate.exchange(
+						restEndpointBuilder.getPutResourceUri(),
+						HttpMethod.PUT, 
+						requestEntity, 
+						Assessment.class, id);
 		return responseEntity.getBody();
 	}
 

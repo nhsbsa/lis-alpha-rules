@@ -21,4 +21,8 @@ public class AssessmentToAssessmentAssembler extends AbstractAssembler<Assessmen
 
 		dozer.map(source, destination);
 	}
+
+	public void setDozer(DozerBeanMapper dozer) {
+		this.dozer = dozer;
+	}
 }
