@@ -53,7 +53,7 @@ a:hover {
 	position: relative;
 	font-size: 2em;
 	font-weight: bold;
-	padding: 5px 0px 5px 10px;
+	padding: 5px 0px 5px 0px;
 	color: #0065BD;
 }
 .headerlogo {
@@ -80,6 +80,7 @@ a:hover {
 	margin: 0 20px;
 }
 .intro h2 {
+	margin-top: 20px;
 	font-size: 1.5em;
 	color: #0065BD;
 	font-weight:bold;

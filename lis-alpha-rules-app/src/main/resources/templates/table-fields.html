@@ -5,7 +5,16 @@
 
   <table>
     <tr th:fragment="textfield(path)">
-      <td th:text="#{__${path}__}">Title</td>
+      <td th:text="#{__${path}__}">Text Field</td>
+      <td>
+        <input type="text" th:field="*{__${path}__}" />
+      </td>
+      <td th:text="${assessment.requirements['__${path}__']}"
+            th:if="${assessment.requirements ne null}"></td>
+    </tr>
+
+    <tr th:fragment="datefield(path)">
+      <td th:text="#{__${path}__}">Date Field</td>
       <td>
         <input type="text" th:field="*{__${path}__}" />
       </td>

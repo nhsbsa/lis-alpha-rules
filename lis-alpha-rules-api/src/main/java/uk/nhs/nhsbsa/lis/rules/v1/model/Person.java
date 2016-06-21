@@ -11,7 +11,7 @@ public class Person {
 	
 	private Date dob;
 	
-	private NationalInsuranceNo nino;
+	private String nino;
 	
 	private List<Benefit>benefits;
 	private List<Income>incomes;
@@ -65,11 +65,11 @@ public class Person {
 		this.dob = dob;
 	}
 
-	public NationalInsuranceNo getNino() {
+	public String getNino() {
 		return nino;
 	}
 
-	public void setNino(NationalInsuranceNo nino) {
+	public void setNino(String nino) {
 		this.nino = nino;
 	}
 
