@@ -1,9 +1,7 @@
 package uk.nhs.nhsbsa.lis.rules.v1.model;
 
-import java.util.List;
 import java.util.Date;
-
-import org.springframework.data.annotation.Id;
+import java.util.List;
 
 
 /**

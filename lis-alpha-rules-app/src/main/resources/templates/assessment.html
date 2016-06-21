@@ -8,76 +8,137 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
 <link rel="stylesheet" type="text/css" href="../css/application.css" media="all" />
+<link rel="stylesheet" type="text/css" href="../css/style.css" media="all" />
 </head>
 
 <body>
   <div id="content">
 
-    <div class="header">
-      <div class="headerlogo">
-        <p>Version ${project.version}</p>
+    <div class="container">
+      <div class="header">
+        <div class="headerlogo">
+          <p>Version ${project.version}</p>
+        </div>
       </div>
-    </div>
-
-    <div class="clear"></div>
-
-    <div>
-      <div>
-        <a th:href="@{/assessments/}">Back to list</a></div>
-      <div th:unless="${assessment eq null}"></div>
-      <div>
-        <form action="#" th:action="@{/assessments/__${id}__}" th:object="${assessment}" method="POST">
-          <div class="list">
-            <table class="form">
-              <thead>
-                <tr>
-                  <th th:text="#{attribute.name}">Name</th>
-                  <th th:text="#{attribute.value}">Value</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Title</td>
-                  <td>
-                    <input type="text" th:field="${assessment.application.applicant.name.title}" />
-                  </td>
-                </tr>
-                <tr>
-                  <td>Forenames</td>
-                  <td>
-                    <input type="text" th:field="${assessment.application.applicant.name.forenames}" />
-                  </td>
-                </tr>
-                <tr>
-                  <td>Surname</td>
-                  <td>
-                    <input type="text" th:field="${assessment.application.applicant.name.surname}" />
-                  </td>
-                </tr>
-              </tbody>
-              
-              <tbody th:each="benefit, benefitRow : ${assessment.application.applicant.benefits}">
-          
-                <tr>
-                  <td th:text="*{application.applicant.benefits[__${benefitRow.index}__].type + ' Benefit'} "></td>
-                  <td>
-                    <input type="text" th:field="*{application.applicant.benefits[__${benefitRow.index}__].value}" />
-                    <input type="hidden" th:field="*{application.applicant.benefits[__${benefitRow.index}__].type}" />
-                  </td>
-                </tr>
-              
-              </tbody>
-            </table>
-          </div>
+  
+      <div class="clear"></div>
+  
+      <div class="intro">
+        <div>
+          <a th:href="@{/assessments/}">Back to list</a></div>
+        <div th:unless="${assessment eq null}"></div>
+        <div>
+          <form action="#" th:action="@{/assessments/__${id}__}" th:object="${assessment}" method="POST">
+            <h1>Household</h1>
+            <h2>Address</h2>
+            <div class="list">
+              <table>
+                <thead>
+                  <tr>
+                    <th th:text="#{attribute.name}">Name</th>
+                    <th th:text="#{attribute.value}">Value</th>
+                    <th th:text="#{attribute.required}">Required</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr th:include="table-fields :: textfield('application.address.houseNameNumber')">
+                      <td>name</td>
+                      <td>value</td>
+                      <td>required</td>
+                  </tr>
+                  <tr th:include="table-fields :: textfield('application.address.addressLine1')">
+                      <td>name</td>
+                      <td>value</td>
+                      <td>required</td>
+                  </tr>
+                  <tr th:include="table-fields :: textfield('application.address.addressLine2')">
+                      <td>name</td>
+                      <td>value</td>
+                      <td>required</td>
+                  </tr>
+                  <tr th:include="table-fields :: textfield('application.address.addressLine3')">
+                      <td>name</td>
+                      <td>value</td>
+                      <td>required</td>
+                  </tr>
+                  <tr th:include="table-fields :: textfield('application.address.postcode')">
+                      <td>name</td>
+                      <td>value</td>
+                      <td>required</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <h1>Main Applicant</h1>
+            <h2>Personal Details</h2>
+            <div class="list">
+              <table>
+                <thead>
+                  <tr>
+                    <th th:text="#{attribute.name}">Name</th>
+                    <th th:text="#{attribute.value}">Value</th>
+                    <th th:text="#{attribute.required}">Required</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr th:include="table-fields :: textfield('application.applicant.name.title')">
+                      <td>name</td>
+                      <td>value</td>
+                      <td>required</td>
+                  </tr>
+                  <tr th:include="table-fields :: textfield('application.applicant.name.forenames')">
+                      <td>name</td>
+                      <td>value</td>
+                      <td>required</td>
+                  </tr>
+                  <tr th:include="table-fields :: textfield('application.applicant.name.surname')">
+                      <td>name</td>
+                      <td>value</td>
+                      <td>required</td>
+                  </tr> 
+                  <tr th:include="table-fields :: datefield('application.applicant.dob')">
+                      <td>name</td>
+                      <td>value</td>
+                      <td>required</td>
+                  </tr>
+                  <tr th:include="table-fields :: textfield('application.applicant.nino')">
+                      <td>name</td>
+                      <td>value</td>
+                      <td>required</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h2>Benefits</h2>
+              <table>
+                <thead>
+                  <tr>
+                    <th th:text="#{attribute.name}">Name</th>
+                    <th th:text="#{attribute.value}">Value</th>
+                    <th th:text="#{attribute.required}">Required</th>
+                  </tr>
+                </thead>
+                <tbody th:each="benefit, benefitRow : ${assessment.application.applicant.benefits}">
+                  <tr>
+                    <td th:text="*{application.applicant.benefits[__${benefitRow.index}__].type + ' Benefit'} "></td>
+                    <td>
+                      <input type="text" th:field="*{application.applicant.benefits[__${benefitRow.index}__].value}" />
+                      <input type="hidden" th:field="*{application.applicant.benefits[__${benefitRow.index}__].type}" />
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+      
+  
+            <div>
+              <button class="button" type="submit" name="update" th:text="#{form.update}">Remove row</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="clear"></div>
     
-
-          <div>
-            <button class="button" type="submit" name="update" th:text="#{form.update}">Remove row</button>
-          </div>
-        </form>
-      </div>
     </div>
-    <div class="clear"></div>
   </div>
 </body>
 </html>

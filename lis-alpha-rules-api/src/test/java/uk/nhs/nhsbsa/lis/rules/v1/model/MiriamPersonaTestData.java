@@ -9,9 +9,11 @@ public class MiriamPersonaTestData {
 	public static SimpleDateFormat dateFormat=new SimpleDateFormat("dd/MM/yyyy");
 	// test data
 	public static Address testAddress;
-	public static NationalInsuranceNo personNino;
-	public static NationalInsuranceNo personNino2;
-	public static List<String>addressLines;
+	public static String personNino;
+	public static String personNino2;
+	public static String addressLine1;
+	public static String addressLine2;
+	public static String addressLine3;
 	public static Person testPerson;
 	public static Person testPerson2;
 	public static Name testName;
@@ -40,11 +42,9 @@ public class MiriamPersonaTestData {
 	private static void createAddress(){
 		testAddress=new Address();
 		testAddress.setHouseNameNumber("42");
-		addressLines=new ArrayList<String>();
-		addressLines.add("Station Road");
-		addressLines.add("Winbledon");
-		addressLines.add("London");
-		testAddress.setAddressLines(addressLines);
+		testAddress.setAddressLine1("Station Road");
+		testAddress.setAddressLine2("Winbledon");
+		testAddress.setAddressLine3("London");
 		testAddress.setPostcode("LN5 4RT");
 		
 		contactDetails=new ContactDetails();
@@ -126,7 +126,7 @@ public class MiriamPersonaTestData {
 			e.printStackTrace();
 		}
 		testPerson.setName(testName);
-		personNino=new NationalInsuranceNo("NX 98 44 13 B");
+		personNino="NX984413B";
 		testPerson.setNino(personNino);
 		testPerson.setType(PersonType.MAIN_APPLICANT);
 		testPerson.setIncomes(testIncomes);
@@ -142,7 +142,7 @@ public class MiriamPersonaTestData {
 			e.printStackTrace();
 		}
 		testPerson2.setName(testName2);
-		personNino2=new NationalInsuranceNo("NX 90 44 13 C");
+		personNino2="NX 90 44 13 C";
 		testPerson2.setNino(personNino2);
 		testPerson2.setType(PersonType.HOUSEHOLDER);
 		testPerson2.setIncomes(testIncomes2);

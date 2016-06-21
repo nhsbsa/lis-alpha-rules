@@ -1,7 +1,7 @@
 package uk.nhs.nhsbsa.lis.rules.v1.model;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
 import java.text.ParseException;
@@ -30,9 +30,9 @@ public class DataModelTest {
 	@Test
 	public void testAddress(){
 		System.out.println("testAddress:");
-		assertTrue(BillPersonaTestData.testAddress.getHouseNameNumber().equals("1"));
+		assertEquals(BillPersonaTestData.testAddress.getHouseNameNumber(), "1");
 		assertTrue(BillPersonaTestData.testAddress.getPostcode().equals("NE33 5TY"));
-		assertTrue(BillPersonaTestData.testAddress.getAddressLines().equals(BillPersonaTestData.addressLines));
+		//TODO assertTrue(BillPersonaTestData.testAddress.getAddressLine1().equals(BillPersonaTestData.addressLine1));
 		System.out.println("String Method");
 		System.out.println(BillPersonaTestData.testAddress);
 	}
@@ -41,15 +41,15 @@ public class DataModelTest {
 	public void testNINO(){
 		System.out.println("testNINO:");
 		// NINO with spaces
-		BillPersonaTestData.testNino.setNINO("NX 96 33 13 B");
+		BillPersonaTestData.testNino = "NX963313B";
 		assertTrue(isValidNINO(BillPersonaTestData.testNino));
 		
 		// NINO without spaces
-		BillPersonaTestData.testNino.setNINO("NX963313B");
+		BillPersonaTestData.testNino = "NX963313B";
 		assertTrue(isValidNINO(BillPersonaTestData.testNino));
 		
 		// Invalid NINO
-		BillPersonaTestData.testNino.setNINO("N123456N");
+		BillPersonaTestData.testNino = "N123456N";
 		assertFalse(isValidNINO(BillPersonaTestData.testNino));
 		
 		System.out.println("String Method");
@@ -102,14 +102,14 @@ public class DataModelTest {
 	 * TODO find a better place for this
 	 * @return
 	 */
-	public boolean isValidNINO(NationalInsuranceNo nino){
+	public boolean isValidNINO(String nino){
 		String NINOPattern = "^\\s*[a-zA-Z]{2}(?:\\s*\\d\\s*){6}[a-zA-Z]?\\s*$";
 
 	    // Create a Pattern object
-		if(nino.getNINO()==null||nino.getNINO().length()==0){ return false;}
+		if(nino==null||nino.length()==0){ return false;}
 		try{
 			Pattern pattern = Pattern.compile(NINOPattern);
-			Matcher m = pattern.matcher(nino.getNINO());
+			Matcher m = pattern.matcher(nino);
 			return m.matches();
 		}catch(PatternSyntaxException pe){
 			return false;

@@ -8,12 +8,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
-<link rel="stylesheet" type="text/css" href="../css/application.css"
-	media="all" />
+<link rel="stylesheet" type="text/css" href="../css/application.css" media="all" />
+<link rel="stylesheet" type="text/css" href="../css/style.css" media="all" />
 </head>
 
 <body>
-	<div id="content">
+  <div id="content">
+
+    <div class="container">
 
 		<div class="header">
 			<div class="headerlogo">
@@ -23,7 +25,7 @@
 
 		<div class="clear"></div>
 
-		<div>
+		<div class="intro">
 			<div th:if="${assessments eq null}">There are no assessments</div>
 			<div th:unless="${assessments eq null}">
 				<div class="list">
@@ -43,5 +45,6 @@
 		</div>
 	</div>
 	<div class="clear"></div>
+  </div>
 </body>
 </html>

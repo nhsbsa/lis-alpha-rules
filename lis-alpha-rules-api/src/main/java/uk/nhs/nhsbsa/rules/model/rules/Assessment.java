@@ -1,6 +1,6 @@
 package uk.nhs.nhsbsa.rules.model.rules;
 
-import java.util.List;
+import java.util.Map;
 
 import org.springframework.data.annotation.Id;
 
@@ -24,7 +24,7 @@ public class Assessment {
 	 */
 	private LisApplication application;
 	
-	private List<Requirement> requirements;
+	private Map<String, Boolean> requirements;
 
 	
 	public Assessment() {
@@ -34,11 +34,11 @@ public class Assessment {
 		this.application = application;
 	}
 
-	public List<Requirement> getRequirements() {
+	public Map<String, Boolean> getRequirements() {
 		return requirements;
 	}
 
-	public void setRequirements(List<Requirement> requirements) {
+	public void setRequirements(Map<String, Boolean> requirements) {
 		this.requirements = requirements;
 	}
 

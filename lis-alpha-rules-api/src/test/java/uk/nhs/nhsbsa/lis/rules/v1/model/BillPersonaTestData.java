@@ -4,27 +4,15 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-import uk.nhs.nhsbsa.lis.rules.v1.model.Address;
-import uk.nhs.nhsbsa.lis.rules.v1.model.Benefit;
-import uk.nhs.nhsbsa.lis.rules.v1.model.BenefitType;
-import uk.nhs.nhsbsa.lis.rules.v1.model.Income;
-import uk.nhs.nhsbsa.lis.rules.v1.model.IncomeType;
-import uk.nhs.nhsbsa.lis.rules.v1.model.MoneyPeriod;
-import uk.nhs.nhsbsa.lis.rules.v1.model.Name;
-import uk.nhs.nhsbsa.lis.rules.v1.model.NationalInsuranceNo;
-import uk.nhs.nhsbsa.lis.rules.v1.model.Outgoing;
-import uk.nhs.nhsbsa.lis.rules.v1.model.OutgoingType;
-import uk.nhs.nhsbsa.lis.rules.v1.model.Person;
-import uk.nhs.nhsbsa.lis.rules.v1.model.PersonType;
-import uk.nhs.nhsbsa.lis.rules.v1.model.ValueState;
-
 public class BillPersonaTestData {
 		public static SimpleDateFormat dateFormat=new SimpleDateFormat("dd/MM/yyyy");
 		// test data
 		public static Address testAddress;
-		public static NationalInsuranceNo personNino;
-		public static NationalInsuranceNo testNino;
-		public static ArrayList<String>addressLines;
+		public static String personNino;
+		public static String testNino;
+		public static String addressLine1;
+		public static String addressLine2;
+		public static String addressLine3;
 		public static Person testPerson;
 		public static Name testName;
 		public static ArrayList<Income> testIncomes;
@@ -44,11 +32,9 @@ public class BillPersonaTestData {
 		private static void createAddress(){
 			testAddress=new Address();
 			testAddress.setHouseNameNumber("1");
-			addressLines=new ArrayList<String>();
-			addressLines.add("Accacia Avenue");
-			addressLines.add("New Hamlington");
-			addressLines.add("Northumberland");
-			testAddress.setAddressLines(addressLines);
+			testAddress.setAddressLine1("Accacia Avenue");
+			testAddress.setAddressLine2("New Hamlington");
+			testAddress.setAddressLine3("Northumberland");
 			testAddress.setPostcode("NE33 5TY");
 			
 			contactDetails=new ContactDetails();
@@ -59,8 +45,8 @@ public class BillPersonaTestData {
 		}
 		
 		private static void createNINO(){
-			testNino=new NationalInsuranceNo("NX 96 33 13 B");
-			personNino=new NationalInsuranceNo("NX 96 33 13 B");
+			testNino = "NX963313B";
+			personNino = "NX963313B";
 		}
 		
 		private static void createBillName(){
