@@ -8,19 +8,18 @@
       <td th:text="#{__${path}__}">Text Field</td>
       <td>
         <input type="text" th:field="*{__${path}__}" 
-            th:disabled="!${assessment.requirements['__${path}__']}" />
+            th:disabled="!${assessment.requirements.isRequired('__${path}__')}" />
       </td>
-      <td th:text="${assessment.requirements['__${path}__']}"
-            th:if="${assessment.requirements ne null}"></td>
+      <td th:text="${assessment.requirements.isRequired('__${path}__')}"></td>
     </tr>
 
     <tr th:fragment="datefield(path)">
       <td th:text="#{__${path}__}">Date Field</td>
       <td>
-        <input type="text" th:field="*{__${path}__}" />
+        <input type="text" th:field="*{__${path}__}" 
+            th:disabled="!${assessment.requirements.isRequired('__${path}__')}" />
       </td>
-      <td th:text="${assessment.requirements['__${path}__']}"
-            th:if="${assessment.requirements ne null}"></td>
+      <td th:text="${assessment.requirements.isRequired('__${path}__')}"></td>
     </tr>
   </table>
 
