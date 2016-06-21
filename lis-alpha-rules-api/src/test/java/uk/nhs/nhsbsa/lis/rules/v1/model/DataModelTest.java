@@ -31,8 +31,10 @@ public class DataModelTest {
 	public void testAddress(){
 		System.out.println("testAddress:");
 		assertEquals(BillPersonaTestData.testAddress.getHouseNameNumber(), "1");
-		assertTrue(BillPersonaTestData.testAddress.getPostcode().equals("NE33 5TY"));
-		//TODO assertTrue(BillPersonaTestData.testAddress.getAddressLine1().equals(BillPersonaTestData.addressLine1));
+		assertEquals(BillPersonaTestData.testAddress.getPostcode(),"NE33 5TY");
+		assertEquals(BillPersonaTestData.testAddress.getAddressLine1(),BillPersonaTestData.addressLine1);
+		assertEquals(BillPersonaTestData.testAddress.getAddressLine2(),BillPersonaTestData.addressLine2);
+		assertEquals(BillPersonaTestData.testAddress.getAddressLine3(),BillPersonaTestData.addressLine3);
 		System.out.println("String Method");
 		System.out.println(BillPersonaTestData.testAddress);
 	}
@@ -81,18 +83,18 @@ public class DataModelTest {
 	public void testBillPersona() throws JsonProcessingException{
 		assertTrue(BillPersonaTestData.testPerson.getNino().equals(BillPersonaTestData.personNino));
 		try {
-			assertTrue(BillPersonaTestData.testPerson.getDob().equals(BillPersonaTestData.dateFormat.parse("01/02/1946")));
+			assertEquals(BillPersonaTestData.testPerson.getDob(),BillPersonaTestData.dateFormat.parse("01/02/1946"));
 		} catch (ParseException e) {
 			// Catch null pointers or invalid date
 			e.printStackTrace();
 			assertTrue(false);
 		}
-		assertTrue(BillPersonaTestData.testPerson.getName().equals(BillPersonaTestData.testName));
-		assertTrue(BillPersonaTestData.testPerson.getType().equals(PersonType.MAIN_APPLICANT));
-		assertTrue(BillPersonaTestData.testPerson.getBenefits().equals(BillPersonaTestData.testBenefits));
-		assertTrue(BillPersonaTestData.testPerson.getOutgoings().equals(BillPersonaTestData.testOutgoings));
-		assertTrue(BillPersonaTestData.testPerson.getIncomes().equals(BillPersonaTestData.testIncomes));
-		
+		assertEquals(BillPersonaTestData.testPerson.getName(),BillPersonaTestData.testName);
+		assertEquals(BillPersonaTestData.testPerson.getType(),PersonType.MAIN_APPLICANT);
+		assertEquals(BillPersonaTestData.testPerson.getBenefits(),BillPersonaTestData.testBenefits);
+		assertEquals(BillPersonaTestData.testPerson.getOutgoings(),BillPersonaTestData.testOutgoings);
+		assertEquals(BillPersonaTestData.testPerson.getIncomes(),BillPersonaTestData.testIncomes);
+				
 		System.out.println("testBillPersona:");
 		System.out.println("String Method");
 		System.out.println(BillPersonaTestData.testPerson);

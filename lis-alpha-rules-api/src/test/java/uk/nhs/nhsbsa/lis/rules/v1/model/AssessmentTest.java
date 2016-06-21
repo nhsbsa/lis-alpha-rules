@@ -34,15 +34,14 @@ public class AssessmentTest {
 		assessment.setNonDependants(null);
 		assessment.setContactDetails(BillPersonaTestData.contactDetails);
 		
-		//REVIEW PT use Assert.assertEquals!
-		assertTrue(assessment.getAddress().equals(BillPersonaTestData.testAddress));
-		assertTrue(assessment.getApplicant().equals(BillPersonaTestData.testPerson));
-		assertTrue(assessment.getClaimDate().equals(assessmentDate));
-		assertTrue(assessment.getProcessingDate().equals(processingDate));
-		assertTrue(assessment.getDependants()==null);
-		assertTrue(assessment.getPartner()==null);
-		assertTrue(assessment.getNonDependants()==null);
-		assertTrue(assessment.getContactDetails().equals(BillPersonaTestData.contactDetails));
+		assertEquals(assessment.getAddress(),BillPersonaTestData.testAddress);
+		assertEquals(assessment.getApplicant(),BillPersonaTestData.testPerson);
+		assertEquals(assessment.getClaimDate(),assessmentDate);
+		assertEquals(assessment.getProcessingDate(),processingDate);
+		assertEquals(assessment.getDependants(),null);
+		assertEquals(assessment.getPartner(),null);
+		assertEquals(assessment.getNonDependants(),null);
+		assertEquals(assessment.getContactDetails(),BillPersonaTestData.contactDetails);
 		
 		System.out.println(toJSONString(assessment));
 		
@@ -78,14 +77,14 @@ public class AssessmentTest {
 		testSavings.add(saving);
 		assessment.setSavings(testSavings);
 		
-		assertTrue(assessment.getAddress().equals(MiriamPersonaTestData.testAddress));
-		assertTrue(assessment.getApplicant().equals(MiriamPersonaTestData.testPerson));
-		assertTrue(assessment.getClaimDate().equals(assessmentDate));
-		assertTrue(assessment.getProcessingDate().equals(processingDate));
-		assertTrue(assessment.getDependants()==null);
-		assertTrue(assessment.getPartner()==null);
-		assertTrue(assessment.getNonDependants().equals(nonDependants));
-		assertTrue(assessment.getContactDetails().equals(MiriamPersonaTestData.contactDetails));
+		assertEquals(assessment.getAddress(),MiriamPersonaTestData.testAddress);
+		assertEquals(assessment.getApplicant(),MiriamPersonaTestData.testPerson);
+		assertEquals(assessment.getClaimDate(),assessmentDate);
+		assertEquals(assessment.getProcessingDate(),processingDate);
+		assertEquals(assessment.getDependants(),null);
+		assertEquals(assessment.getPartner(),null);
+		assertEquals(assessment.getNonDependants(),nonDependants);
+		assertEquals(assessment.getContactDetails(),MiriamPersonaTestData.contactDetails);
 		
 		System.out.println("testMiriamAssessment:");
 		System.out.println("String Method");

@@ -11,9 +11,9 @@ public class MiriamPersonaTestData {
 	public static Address testAddress;
 	public static String personNino;
 	public static String personNino2;
-	public static String addressLine1;
-	public static String addressLine2;
-	public static String addressLine3;
+	public static String addressLine1="Station Road";
+	public static String addressLine2="Winbledon";
+	public static String addressLine3="London";
 	public static Person testPerson;
 	public static Person testPerson2;
 	public static Name testName;
@@ -42,9 +42,9 @@ public class MiriamPersonaTestData {
 	private static void createAddress(){
 		testAddress=new Address();
 		testAddress.setHouseNameNumber("42");
-		testAddress.setAddressLine1("Station Road");
-		testAddress.setAddressLine2("Winbledon");
-		testAddress.setAddressLine3("London");
+		testAddress.setAddressLine1(addressLine1);
+		testAddress.setAddressLine2(addressLine2);
+		testAddress.setAddressLine3(addressLine3);
 		testAddress.setPostcode("LN5 4RT");
 		
 		contactDetails=new ContactDetails();
