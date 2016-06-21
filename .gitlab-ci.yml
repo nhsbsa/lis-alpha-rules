@@ -124,7 +124,7 @@ rc-iac-deploy:
     - git clone git@${CI_GIT_HOST}:devops/iac-control.git
 
     # update the lis-alpha-rules_artifacts.yml
-    - cp lis-alpha-rules-iac/hlis-alpha-rules_artifacts.yml iac-control/ansible/vars/lis-alpha-rules_artifacts.yml
+    - cp lis-alpha-rules-iac/lis-alpha-rules_artifacts.yml iac-control/ansible/vars/lis-alpha-rules_artifacts.yml
 
     # commit new artifacts yml into iac-control
     - POM_VERSION=$(bsa-ci/ci-mvn-version.sh get)
