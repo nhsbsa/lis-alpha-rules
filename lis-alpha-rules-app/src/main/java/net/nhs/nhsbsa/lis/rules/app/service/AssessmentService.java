@@ -49,8 +49,8 @@ public class AssessmentService implements IAssessmentService {
 		
 		Assessment existing = assessmentRespository.findOne(id);
 		assembler.map(updated, existing);
-		assessmentRestClient.put(id, existing);
-		Assessment result = assessmentRespository.save(existing);
+		Assessment result = assessmentRestClient.put(id, existing);
+		result = assessmentRespository.save(result);
 		return result;
 	}
 

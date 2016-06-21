@@ -1,5 +1,8 @@
 package uk.nhs.nhsbsa.lis.rules.ws.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.stereotype.Service;
 
 import uk.nhs.nhsbsa.lis.rules.v1.builder.LisApplicationBuilder;
@@ -21,7 +24,20 @@ public class AssessmentRulesService implements IAssessmentRulesService {
 		} else {
 			result.setApplication(assessment.getApplication());
 		}
+		
+		//handle required fields
+		updateRequired(result);
+		
 		return result;
+	}
+
+	private void updateRequired(Assessment result) {
+		
+		Map<String, Boolean> requireMap = new HashMap<>();
+		requireMap.put("application.applicant.name.title", Boolean.FALSE);
+		requireMap.put("application.applicant.name.forenames", Boolean.TRUE);
+		requireMap.put("application.applicant.name.surname", Boolean.TRUE);
+		result.setRequirements(requireMap);
 	}
 
 	private LisApplication defaultApplication() {
