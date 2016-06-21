@@ -77,21 +77,22 @@ rc-acceptance-test:
   only:
     - /^rc.*$/
   script:
-    # iac to get environment subnet
-    - git clone git@${CI_GIT_HOST}:devops/iac-control.git
-    - eval $(cd iac-control && bin/generate_tfvars.rb)
-    #### THE MECHANISM FOR OBTAINING THE URL AND PORT NEEDS TO BE CHANGED
-    # update the lis-alpha-rules_artifacts.yml
-    - cp lis-alpha-rules-iac/lis-alpha-rules_artifacts.yml iac-control/ansible/vars/lis-alpha-rules_artifacts.yml
-    # Pull down the tests
-    - git clone git@${CI_GIT_HOST}:lis/lis-alpha-rules-acceptance-test.git
-    # test ws component
-    - (cd lis-alpha-rules-acceptance-test && bundle install)
-    - baseUrl="http://env${subnet}-lis-alpha-rules00.node.consul:10010"
-    - (cd lis-alpha-rules-acceptance-test && cucumber testurl=$baseUrl lis-alpha-rules-ws.feature )
-    # test app component
-    - baseUrl="http://env${subnet}-lis-alpha-rules00.node.consul:10020"
-    - (cd lis-alpha-rules-acceptance-test && cucumber testurl=$baseUrl lis-alpha-rules-ws.feature )
+    - bsa-ci/acceptance_test.rb -v -a spring_boot_artifacts -c spring_boot_config
+    # # iac to get environment subnet
+    # - git clone git@${CI_GIT_HOST}:devops/iac-control.git
+    # - eval $(cd iac-control && bin/generate_tfvars.rb)
+    # #### THE MECHANISM FOR OBTAINING THE URL AND PORT NEEDS TO BE CHANGED
+    # # update the lis-alpha-rules_artifacts.yml
+    # - cp lis-alpha-rules-iac/lis-alpha-rules_artifacts.yml iac-control/ansible/vars/lis-alpha-rules_artifacts.yml
+    # # Pull down the tests
+    # - git clone git@${CI_GIT_HOST}:lis/lis-alpha-rules-acceptance-test.git
+    # # test ws component
+    # - (cd lis-alpha-rules-acceptance-test && bundle install)
+    # - baseUrl="http://env${subnet}-lis-alpha-rules00.node.consul:10010"
+    # - (cd lis-alpha-rules-acceptance-test && cucumber testurl=$baseUrl lis-alpha-rules-ws.feature )
+    # # test app component
+    # - baseUrl="http://env${subnet}-lis-alpha-rules00.node.consul:10020"
+    # - (cd lis-alpha-rules-acceptance-test && cucumber testurl=$baseUrl lis-alpha-rules-app.feature )
 
 rc-capacity-test:
   stage: test
