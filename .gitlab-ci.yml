@@ -107,10 +107,10 @@ rc-capacity-test:
     # test ws component
     - (cd lis-alpha-rules-load-test && bundle install)
     - baseUrl="http://env${subnet}-lis-alpha-rules00.node.consul:10010"
-    - (cd lis-alpha-rules-load-test && simple_load_test.rb $baseUrl)
+    - (cd lis-alpha-rules-load-test && ./simple_load_test.rb $baseUrl)
     # test app component
     - baseUrl="http://env${subnet}-lis-alpha-rules00.node.consul:10020"
-    - (cd lis-alpha-rules-load-test && simple_load_test.rb $baseUrl)
+    - (cd lis-alpha-rules-load-test && ./simple_load_test.rb $baseUrl)
 
 rc-iac-deploy:
   stage: deploy
