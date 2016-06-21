@@ -25,7 +25,16 @@ public class AddressBuilder extends ModelBuilder<Address>{
 	}
 	
 	public AddressBuilder withAddressLines(String... addressLines) {
-        getInstance().setAddressLines(Arrays.asList(addressLines));
+        getInstance().setAddressLine1(getLine(addressLines, 0));
+        getInstance().setAddressLine2(getLine(addressLines, 1));
+        getInstance().setAddressLine3(getLine(addressLines, 2));
         return this;
+	}
+
+	private String getLine(String[] addressLines, int index) {
+		if (addressLines.length > index) {
+			return addressLines[index];
+		}
+		return null;
 	}
 }

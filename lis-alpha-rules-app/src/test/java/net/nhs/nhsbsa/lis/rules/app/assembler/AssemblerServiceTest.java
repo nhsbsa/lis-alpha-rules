@@ -18,8 +18,10 @@ public class AssemblerServiceTest {
 	public void setup() {
 		
 		service = new AssemblerService();
+		AssessmentToAssessmentAssembler assembler = new AssessmentToAssessmentAssembler();
+		assembler.setDozer(new AssemblerConfiguration().dozerMapper());
 		service.setAssemblers(Arrays.asList(new IAssembler[]{
-			new AssessmentToAssessmentAssembler()
+			assembler
 		}));
 		
 		LisApplicationBuilder builder = new LisApplicationBuilder();

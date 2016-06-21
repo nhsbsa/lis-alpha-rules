@@ -10,7 +10,9 @@ public class BillPersonaTestData {
 		public static Address testAddress;
 		public static String personNino;
 		public static String testNino;
-		public static ArrayList<String>addressLines;
+		public static String addressLine1;
+		public static String addressLine2;
+		public static String addressLine3;
 		public static Person testPerson;
 		public static Name testName;
 		public static ArrayList<Income> testIncomes;
@@ -30,11 +32,9 @@ public class BillPersonaTestData {
 		private static void createAddress(){
 			testAddress=new Address();
 			testAddress.setHouseNameNumber("1");
-			addressLines=new ArrayList<String>();
-			addressLines.add("Accacia Avenue");
-			addressLines.add("New Hamlington");
-			addressLines.add("Northumberland");
-			testAddress.setAddressLines(addressLines);
+			testAddress.setAddressLine1("Accacia Avenue");
+			testAddress.setAddressLine2("New Hamlington");
+			testAddress.setAddressLine3("Northumberland");
 			testAddress.setPostcode("NE33 5TY");
 			
 			contactDetails=new ContactDetails();
