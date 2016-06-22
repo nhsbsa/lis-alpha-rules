@@ -1,10 +1,8 @@
 package net.nhs.nhsbsa.lis.rules.app.controller;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -15,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.nhs.nhsbsa.lis.rules.app.MvcUtils;
+import net.nhs.nhsbsa.lis.rules.app.propertyeditors.LocalDatePropertyEditor;
 import net.nhs.nhsbsa.lis.rules.app.repository.IAssessmentRespository;
 import net.nhs.nhsbsa.lis.rules.app.service.IAssessmentService;
 import uk.nhs.nhsbsa.rules.model.rules.Assessment;
@@ -72,6 +71,6 @@ public class AssessmentController {
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
-		binder.registerCustomEditor(Date.class, new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd"), true, 10));
+		binder.registerCustomEditor(LocalDate.class, new LocalDatePropertyEditor());
 	}
 }

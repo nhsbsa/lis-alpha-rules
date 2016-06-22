@@ -2,6 +2,7 @@ package uk.nhs.nhsbsa.lis.rules.v1.model;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -120,11 +121,7 @@ public class MiriamPersonaTestData {
 	
 	private static void createMiriamPersona(){
 		testPerson=new Person();
-		try {
-			testPerson.setDob(dateFormat.parse("01/03/1954"));
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+		testPerson.setDob(LocalDate.parse("1954-03-01"));
 		testPerson.setName(testName);
 		personNino="NX984413B";
 		testPerson.setNino(personNino);
@@ -136,11 +133,7 @@ public class MiriamPersonaTestData {
 	
 	private static void createMiriamSonPersona(){
 		testPerson2=new Person();
-		try {
-			testPerson2.setDob(dateFormat.parse("31/03/1996"));
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+		testPerson2.setDob(LocalDate.parse("1996-03-31"));
 		testPerson2.setName(testName2);
 		personNino2="NX 90 44 13 C";
 		testPerson2.setNino(personNino2);

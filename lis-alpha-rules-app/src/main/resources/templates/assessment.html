@@ -117,13 +117,9 @@
                     <th th:text="#{attribute.required}">Required</th>
                   </tr>
                 </thead>
+                
                 <tbody th:each="benefit, benefitRow : ${assessment.application.applicant.benefits}">
-                  <tr>
-                    <td th:text="*{application.applicant.benefits[__${benefitRow.index}__].type + ' Benefit'} "></td>
-                    <td>
-                      <input type="text" th:field="*{application.applicant.benefits[__${benefitRow.index}__].value}" />
-                      <input type="hidden" th:field="*{application.applicant.benefits[__${benefitRow.index}__].type}" />
-                    </td>
+                  <tr th:include="table-fields :: benefit('application.applicant.benefits[__${benefitRow.index}__]', 'application.applicant.benefits[__${benefit.type}__]')">
                   </tr>
                 </tbody>
               </table>

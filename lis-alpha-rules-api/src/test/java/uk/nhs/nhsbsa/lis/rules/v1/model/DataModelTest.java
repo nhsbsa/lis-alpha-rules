@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import java.text.ParseException;
+import java.time.LocalDate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
@@ -80,13 +80,7 @@ public class DataModelTest {
 	@Test
 	public void testBillPersona() throws JsonProcessingException{
 		assertTrue(BillPersonaTestData.testPerson.getNino().equals(BillPersonaTestData.personNino));
-		try {
-			assertTrue(BillPersonaTestData.testPerson.getDob().equals(BillPersonaTestData.dateFormat.parse("01/02/1946")));
-		} catch (ParseException e) {
-			// Catch null pointers or invalid date
-			e.printStackTrace();
-			assertTrue(false);
-		}
+		assertTrue(BillPersonaTestData.testPerson.getDob().equals(LocalDate.parse("1946-02-01")));
 		assertTrue(BillPersonaTestData.testPerson.getName().equals(BillPersonaTestData.testName));
 		assertTrue(BillPersonaTestData.testPerson.getType().equals(PersonType.MAIN_APPLICANT));
 		assertTrue(BillPersonaTestData.testPerson.getBenefits().equals(BillPersonaTestData.testBenefits));

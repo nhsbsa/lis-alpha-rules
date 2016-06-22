@@ -1,7 +1,12 @@
 package uk.nhs.nhsbsa.lis.rules.v1.model;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 
 
 /**
@@ -14,12 +19,16 @@ public class LisApplication {
 	 * arrived in the post or the initial date the claim is created.
 	 * If claim is save \ restored do we use the initial date or the save date?
 	 */
-	private Date claimDate;
+	@JsonDeserialize(using = LocalDateTimeDeserializer.class)
+	@JsonSerialize(using = LocalDateTimeSerializer.class)
+	private LocalDateTime claimDate;
 	
 	/**
 	 * Processing date. The date the claim is processed by the operative or the rules engine
 	 */
-	private Date processingDate;
+	@JsonDeserialize(using = LocalDateTimeDeserializer.class)
+	@JsonSerialize(using = LocalDateTimeSerializer.class)
+	private LocalDateTime processingDate;
 	
 	/**
 	 * Address.
@@ -64,19 +73,19 @@ public class LisApplication {
 		Savings = savings;
 	}
 
-	public Date getClaimDate() {
+	public LocalDateTime getClaimDate() {
 		return claimDate;
 	}
 
-	public void setClaimDate(Date claimDate) {
+	public void setClaimDate(LocalDateTime claimDate) {
 		this.claimDate = claimDate;
 	}
 
-	public Date getProcessingDate() {
+	public LocalDateTime getProcessingDate() {
 		return processingDate;
 	}
 
-	public void setProcessingDate(Date processingDate) {
+	public void setProcessingDate(LocalDateTime processingDate) {
 		this.processingDate = processingDate;
 	}
 

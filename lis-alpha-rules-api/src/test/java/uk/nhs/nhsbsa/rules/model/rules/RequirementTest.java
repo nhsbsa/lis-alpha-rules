@@ -49,4 +49,13 @@ public class RequirementTest {
 		assertFalse(requirement.isRequired("a"));
 	}
 
+	@Test
+	public void testBrackets() {
+	
+		requirement.include("a");
+		requirement.exclude("a.b");
+		
+		assertFalse(requirement.isRequired("a.b[index]"));
+	}
+	
 }
