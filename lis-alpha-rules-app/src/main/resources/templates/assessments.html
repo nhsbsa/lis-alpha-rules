@@ -31,13 +31,18 @@
 				<div class="list">
 					<ul>
 						<li th:each="assessment, row : *{assessments}">
-						<a th:href="@{/assessments/__${assessment.id}__}"
-							th:text="${assessment.id}"></a></li>
+                          <form action="#" th:action="@{/assessments/__${assessment.id}__}" th:method="DELETE">
+                            <a th:href="@{/assessments/__${assessment.id}__}"
+    							th:text="${assessment.id}"></a>
+                            <button class="button delete" type="submit" name="update"
+                                th:text="#{form.delete}">Delete</button>
+                          </form>
+                        </li>
 					</ul>
 				</div>
 			</div>
 			<div>
-				<form action="#" th:action="@{/assessments}" method="POST">
+				<form action="#" th:action="@{/assessments}" th:method="POST">
 					<button class="button" type="submit" name="update"
 						th:text="#{form.create}">New Assessment</button>
 				</form>

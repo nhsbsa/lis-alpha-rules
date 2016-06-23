@@ -60,13 +60,20 @@ public class AssessmentController {
         return result;
     }
 
-	@RequestMapping(path="/{id}", method=RequestMethod.POST)
+	@RequestMapping(path="/{id}", method=RequestMethod.PUT)
     public String update(@PathVariable("id") String id, 
     		final Assessment model,
     		final BindingResult bindingResult) {
 		
 		Assessment persisted = assessmentService.update(id, model);
 		return MvcUtils.redirect("/assessments/{}", persisted.getId());
+    }
+
+	@RequestMapping(path="/{id}", method=RequestMethod.DELETE)
+    public String delete(@PathVariable("id") String id) {
+		
+		assessmentService.delete(id);
+		return MvcUtils.redirect("/assessments");
     }
 
 	@InitBinder
