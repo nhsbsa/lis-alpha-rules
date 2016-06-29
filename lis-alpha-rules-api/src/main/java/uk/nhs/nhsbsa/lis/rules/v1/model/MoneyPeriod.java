@@ -13,5 +13,5 @@ public enum MoneyPeriod {
 	monthly,
 	yearly,
 	tenMonthly,
-	sixMonthtly;
+	sixMonthly;
 }

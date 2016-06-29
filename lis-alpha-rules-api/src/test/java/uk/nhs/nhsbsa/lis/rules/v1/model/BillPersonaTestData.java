@@ -4,31 +4,33 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class BillPersonaTestData {
-
+	
 		// test data
-		public static Address testAddress;
-		public static String personNino;
-		public static String testNino;
-		public static String addressLine1;
-		public static String addressLine2;
-		public static String addressLine3;
-		public static Person testPerson;
-		public static Name testName;
-		public static ArrayList<Income> testIncomes;
-		public static ArrayList<Benefit> testBenefits;
-		public static ArrayList<Outgoing> testOutgoings;
-		public static ContactDetails contactDetails;
-				
-		/** create test data **/
-		static{
-			createAddress();
-			createNINO();
-			createBillName();
-			createBillIncomeAndExpenditure();
-			createBillPersona();
+		public Address testAddress;
+		public String personNino;
+		public String testNino;
+		public String addressLine1;
+		public String addressLine2;
+		public String addressLine3;
+		public Person testPerson;
+		public Name testName;
+		public ArrayList<Income> testIncomes;
+		public ArrayList<Benefit> testBenefits;
+		public ArrayList<Outgoing> testOutgoings;
+		public ContactDetails contactDetails;
+		
+		/**
+		 * Not very efficient - but allows values to be changed
+		 */
+		public BillPersonaTestData(){
+				createAddress();
+				createNINO();
+				createBillName();
+				createBillIncomeAndExpenditure();
+				createBillPersona();
 		}
 		
-		private static void createAddress(){
+		private void createAddress(){
 			testAddress=new Address();
 			testAddress.setHouseNameNumber("1");
 			testAddress.setAddressLine1("Accacia Avenue");
@@ -43,19 +45,19 @@ public class BillPersonaTestData {
 			contactDetails.setPreferredContactValue("0789 0123456");
 		}
 		
-		private static void createNINO(){
+		private void createNINO(){
 			testNino = "NX963313B";
 			personNino = "NX963313B";
 		}
 		
-		private static void createBillName(){
+		private void createBillName(){
 			testName=new Name();
 			testName.setTitle("Mr");
 			testName.setForenames("Bill");
 			testName.setSurname("Smith");
 		}
 		
-		private static void createBillIncomeAndExpenditure(){
+		private void createBillIncomeAndExpenditure(){
 			testIncomes=new ArrayList<Income>();
 			Income testIncome=new Income();
 			testIncome.setState(ValueState.SET);
@@ -90,7 +92,7 @@ public class BillPersonaTestData {
 			
 		}
 		
-		private static void createBillPersona(){
+		private void createBillPersona(){
 			testPerson=new Person();
 			testPerson.setDob(LocalDate.parse("1946-02-01"));
 			testPerson.setName(testName);

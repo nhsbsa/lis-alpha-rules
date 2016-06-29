@@ -8,7 +8,6 @@ import java.util.List;
 import org.junit.Test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationConfig;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
 public class AssessmentTest {
@@ -23,24 +22,25 @@ public class AssessmentTest {
 		processingDate=LocalDateTime.parse("2016-04-01T00:00:00");
 		
 		LisApplication assessment=new LisApplication();
-		assessment.setAddress(BillPersonaTestData.testAddress);
-		assessment.setApplicant(BillPersonaTestData.testPerson);
+		BillPersonaTestData billPersonaTestData=new BillPersonaTestData();
+		assessment.setAddress(billPersonaTestData.testAddress);
+		assessment.setApplicant(billPersonaTestData.testPerson);
 		assessment.setClaimDate(assessmentDate);
 		assessment.setProcessingDate(processingDate);
 		assessment.setDependants(null);
 		assessment.setPartner(null);
 		assessment.setNonDependants(null);
-		assessment.setContactDetails(BillPersonaTestData.contactDetails);
+		assessment.setContactDetails(billPersonaTestData.contactDetails);
 		
 		//REVIEW PT use Assert.assertEquals!
-		assertTrue(assessment.getAddress().equals(BillPersonaTestData.testAddress));
-		assertTrue(assessment.getApplicant().equals(BillPersonaTestData.testPerson));
+		assertTrue(assessment.getAddress().equals(billPersonaTestData.testAddress));
+		assertTrue(assessment.getApplicant().equals(billPersonaTestData.testPerson));
 		assertTrue(assessment.getClaimDate().equals(assessmentDate));
 		assertTrue(assessment.getProcessingDate().equals(processingDate));
 		assertTrue(assessment.getDependants()==null);
 		assertTrue(assessment.getPartner()==null);
 		assertTrue(assessment.getNonDependants()==null);
-		assertTrue(assessment.getContactDetails().equals(BillPersonaTestData.contactDetails));
+		assertTrue(assessment.getContactDetails().equals(billPersonaTestData.contactDetails));
 		
 		System.out.println(toJSONString(assessment));
 		
@@ -52,16 +52,17 @@ public class AssessmentTest {
 		processingDate=LocalDateTime.parse("2016-05-01T00:00:00");
 		
 		LisApplication assessment=new LisApplication();
-		assessment.setAddress(MiriamPersonaTestData.testAddress);
-		assessment.setApplicant(MiriamPersonaTestData.testPerson);
+		MiriamPersonaTestData miriamPersonaTestData=new MiriamPersonaTestData();
+		assessment.setAddress(miriamPersonaTestData.testAddress);
+		assessment.setApplicant(miriamPersonaTestData.testPerson);
 		assessment.setClaimDate(assessmentDate);
 		assessment.setProcessingDate(processingDate);
 		assessment.setDependants(null);
 		assessment.setPartner(null);
-		assessment.setContactDetails(MiriamPersonaTestData.contactDetails);
+		assessment.setContactDetails(miriamPersonaTestData.contactDetails);
 		
 		List<Person> nonDependants=new ArrayList<Person>();
-		nonDependants.add(MiriamPersonaTestData.testPerson2);
+		nonDependants.add(miriamPersonaTestData.testPerson2);
 		assessment.setNonDependants(nonDependants);
 		
 		List<Saving> testSavings=new ArrayList<Saving>();
@@ -72,14 +73,14 @@ public class AssessmentTest {
 		testSavings.add(saving);
 		assessment.setSavings(testSavings);
 		
-		assertTrue(assessment.getAddress().equals(MiriamPersonaTestData.testAddress));
-		assertTrue(assessment.getApplicant().equals(MiriamPersonaTestData.testPerson));
+		assertTrue(assessment.getAddress().equals(miriamPersonaTestData.testAddress));
+		assertTrue(assessment.getApplicant().equals(miriamPersonaTestData.testPerson));
 		assertTrue(assessment.getClaimDate().equals(assessmentDate));
 		assertTrue(assessment.getProcessingDate().equals(processingDate));
 		assertTrue(assessment.getDependants()==null);
 		assertTrue(assessment.getPartner()==null);
 		assertTrue(assessment.getNonDependants().equals(nonDependants));
-		assertTrue(assessment.getContactDetails().equals(MiriamPersonaTestData.contactDetails));
+		assertTrue(assessment.getContactDetails().equals(miriamPersonaTestData.contactDetails));
 		
 		System.out.println("testMiriamAssessment:");
 		System.out.println("String Method");

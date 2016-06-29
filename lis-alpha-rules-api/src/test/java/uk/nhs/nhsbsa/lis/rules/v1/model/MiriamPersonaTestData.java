@@ -1,37 +1,37 @@
 package uk.nhs.nhsbsa.lis.rules.v1.model;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MiriamPersonaTestData {
-	public static SimpleDateFormat dateFormat=new SimpleDateFormat("dd/MM/yyyy");
+	
 	// test data
-	public static Address testAddress;
-	public static String personNino;
-	public static String personNino2;
-	public static String addressLine1;
-	public static String addressLine2;
-	public static String addressLine3;
-	public static Person testPerson;
-	public static Person testPerson2;
-	public static Name testName;
-	public static Name testName2;
-	public static List<Income> testIncomes;
-	public static List<Benefit> testBenefits;
-	public static List<Outgoing> testOutgoings;
+	public Address testAddress;
+	public String personNino;
+	public String personNino2;
+	public String addressLine1;
+	public String addressLine2;
+	public String addressLine3;
+	public Person testPerson;
+	public Person testPerson2;
+	public Name testName;
+	public Name testName2;
+	public List<Income> testIncomes;
+	public List<Benefit> testBenefits;
+	public List<Outgoing> testOutgoings;
 	
 	// son
-	public static List<Income> testIncomes2;
-	public static List<Benefit> testBenefits2;
-	public static List<Outgoing> testOutgoings2;
+	public List<Income> testIncomes2;
+	public List<Benefit> testBenefits2;
+	public List<Outgoing> testOutgoings2;
 	
-	public static ContactDetails contactDetails;
-			
-	/** create test data **/
-	static{
+	public ContactDetails contactDetails;
+	
+	/**
+	 * Not very efficient - but allows values to be changed
+	 */
+	public MiriamPersonaTestData(){
 		createAddress();
 		createMiriamName();
 		createMiriamSonName();
@@ -39,8 +39,8 @@ public class MiriamPersonaTestData {
 		createMiriamPersona();
 		createMiriamSonPersona();
 	}
-	
-	private static void createAddress(){
+			
+	private void createAddress(){
 		testAddress=new Address();
 		testAddress.setHouseNameNumber("42");
 		testAddress.setAddressLine1("Station Road");
@@ -55,21 +55,21 @@ public class MiriamPersonaTestData {
 		contactDetails.setPreferredContactValue("0798 1234560");
 	}
 	
-	private static void createMiriamName(){
+	private void createMiriamName(){
 		testName=new Name();
 		testName.setTitle("Mrs");
 		testName.setForenames("Miriam");
 		testName.setSurname("Jones");
 	}
 	
-	private static void createMiriamSonName(){
+	private void createMiriamSonName(){
 		testName2=new Name();
 		testName2.setTitle("Mr");
 		testName2.setForenames("Thomas");
 		testName2.setSurname("Jones");
 	}
 	
-	private static void createIncomeAndExpenditure(){
+	private void createIncomeAndExpenditure(){
 		testIncomes=new ArrayList<Income>();
 		Income testIncome=new Income();
 		testIncome.setState(ValueState.SET);
@@ -119,7 +119,7 @@ public class MiriamPersonaTestData {
 		testOutgoings2.add(testOutgoing);
 	}
 	
-	private static void createMiriamPersona(){
+	private void createMiriamPersona(){
 		testPerson=new Person();
 		testPerson.setDob(LocalDate.parse("1954-03-01"));
 		testPerson.setName(testName);
@@ -131,7 +131,7 @@ public class MiriamPersonaTestData {
 		testPerson.setOutgoings(testOutgoings);
 	}
 	
-	private static void createMiriamSonPersona(){
+	private void createMiriamSonPersona(){
 		testPerson2=new Person();
 		testPerson2.setDob(LocalDate.parse("1996-03-31"));
 		testPerson2.setName(testName2);

@@ -18,8 +18,6 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 
 public class DataModelTest {
 	
-	BillPersonaTestData testData;
-	
 	ObjectMapper jackson = new ObjectMapper();
 	
 	@Before
@@ -30,66 +28,72 @@ public class DataModelTest {
 	@Test
 	public void testAddress(){
 		System.out.println("testAddress:");
-		assertEquals(BillPersonaTestData.testAddress.getHouseNameNumber(), "1");
-		assertTrue(BillPersonaTestData.testAddress.getPostcode().equals("NE33 5TY"));
-		//TODO assertTrue(BillPersonaTestData.testAddress.getAddressLine1().equals(BillPersonaTestData.addressLine1));
+		BillPersonaTestData billPersonaTestData=new BillPersonaTestData();
+		assertEquals(billPersonaTestData.testAddress.getHouseNameNumber(), "1");
+		assertTrue(billPersonaTestData.testAddress.getPostcode().equals("NE33 5TY"));
+		//TODO assertTrue(billPersonaTestData.testAddress.getAddressLine1().equals(billPersonaTestData.addressLine1));
 		System.out.println("String Method");
-		System.out.println(BillPersonaTestData.testAddress);
+		System.out.println(billPersonaTestData.testAddress);
 	}
 	
 	@Test
 	public void testNINO(){
 		System.out.println("testNINO:");
 		// NINO with spaces
-		BillPersonaTestData.testNino = "NX963313B";
-		assertTrue(isValidNINO(BillPersonaTestData.testNino));
+		BillPersonaTestData billPersonaTestData=new BillPersonaTestData();
+		billPersonaTestData.testNino = "NX963313B";
+		assertTrue(isValidNINO(billPersonaTestData.testNino));
 		
 		// NINO without spaces
-		BillPersonaTestData.testNino = "NX963313B";
-		assertTrue(isValidNINO(BillPersonaTestData.testNino));
+		billPersonaTestData.testNino = "NX963313B";
+		assertTrue(isValidNINO(billPersonaTestData.testNino));
 		
 		// Invalid NINO
-		BillPersonaTestData.testNino = "N123456N";
-		assertFalse(isValidNINO(BillPersonaTestData.testNino));
+		billPersonaTestData.testNino = "N123456N";
+		assertFalse(isValidNINO(billPersonaTestData.testNino));
 		
 		System.out.println("String Method");
-		System.out.println(BillPersonaTestData.testNino);
+		System.out.println(billPersonaTestData.testNino);
 	}
 	
 	@Test
 	public void testIncome(){
+		BillPersonaTestData billPersonaTestData=new BillPersonaTestData();
 		System.out.println("testIncome:");
 		System.out.println("String Method");
-		System.out.println(BillPersonaTestData.testIncomes.get(0));
+		System.out.println(billPersonaTestData.testIncomes.get(0));
 	}
 	
 	@Test
 	public void testBenefit(){
+		BillPersonaTestData billPersonaTestData=new BillPersonaTestData();
 		System.out.println("testBenefit:");
 		System.out.println("String Method");
-		System.out.println(BillPersonaTestData.testBenefits.get(0));
+		System.out.println(billPersonaTestData.testBenefits.get(0));
 	}
 	
 	@Test
 	public void testOutgoings(){
+		BillPersonaTestData billPersonaTestData=new BillPersonaTestData();
 		System.out.println("testOutgoings:");
 		System.out.println("String Method");
-		System.out.println(BillPersonaTestData.testOutgoings.get(0));
+		System.out.println(billPersonaTestData.testOutgoings.get(0));
 	}
 	
 	@Test
 	public void testBillPersona() throws JsonProcessingException{
-		assertTrue(BillPersonaTestData.testPerson.getNino().equals(BillPersonaTestData.personNino));
-		assertTrue(BillPersonaTestData.testPerson.getDob().equals(LocalDate.parse("1946-02-01")));
-		assertTrue(BillPersonaTestData.testPerson.getName().equals(BillPersonaTestData.testName));
-		assertTrue(BillPersonaTestData.testPerson.getType().equals(PersonType.MAIN_APPLICANT));
-		assertTrue(BillPersonaTestData.testPerson.getBenefits().equals(BillPersonaTestData.testBenefits));
-		assertTrue(BillPersonaTestData.testPerson.getOutgoings().equals(BillPersonaTestData.testOutgoings));
-		assertTrue(BillPersonaTestData.testPerson.getIncomes().equals(BillPersonaTestData.testIncomes));
+		BillPersonaTestData billPersonaTestData=new BillPersonaTestData();
+		assertTrue(billPersonaTestData.testPerson.getNino().equals(billPersonaTestData.personNino));
+		assertTrue(billPersonaTestData.testPerson.getDob().equals(LocalDate.parse("1946-02-01")));
+		assertTrue(billPersonaTestData.testPerson.getName().equals(billPersonaTestData.testName));
+		assertTrue(billPersonaTestData.testPerson.getType().equals(PersonType.MAIN_APPLICANT));
+		assertTrue(billPersonaTestData.testPerson.getBenefits().equals(billPersonaTestData.testBenefits));
+		assertTrue(billPersonaTestData.testPerson.getOutgoings().equals(billPersonaTestData.testOutgoings));
+		assertTrue(billPersonaTestData.testPerson.getIncomes().equals(billPersonaTestData.testIncomes));
 		
 		System.out.println("testBillPersona:");
 		System.out.println("String Method");
-		System.out.println(BillPersonaTestData.testPerson);
+		System.out.println(billPersonaTestData.testPerson);
 	}
 	
 	/**
