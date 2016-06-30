@@ -37,6 +37,7 @@
   <modules>
     <module>lis-alpha-rules-api</module>
     <module>lis-alpha-rules-client</module>
+    <module>lis-alpha-rules-drools</module>
     <module>lis-alpha-rules-ws</module>
     <module>lis-alpha-rules-app</module>
   </modules>

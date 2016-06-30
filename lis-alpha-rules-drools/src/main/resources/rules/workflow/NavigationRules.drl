@@ -1,0 +1,76 @@
+package uk.nhs.nhsbsa.lis.rules.v1.droolsengine.workflow;
+ 
+import uk.nhs.nhsbsa.lis.rules.v1.model.LisApplication;
+import uk.nhs.nhsbsa.lis.rules.v1.model.Person;
+import uk.nhs.nhsbsa.lis.rules.v1.droolsengine.*; 
+import uk.nhs.nhsbsa.lis.rules.v1.droolsengine.HelperFunctions;
+ 
+rule "Has Applicant"
+	salience 100
+    when
+        lisApplication : LisApplication( applicant != null, myApplicant : applicant )
+        workflowState : WorkflowState (workflowState!=null)
+    then
+    	HelperFunctions.logWorkflowRule(workflowState,"Has Applicant");
+end
+
+rule "Is Single"
+	salience 100
+ 	when
+        lisApplication : LisApplication( applicant != null, partner == null, myApplicant : applicant )
+        workflowState : WorkflowState (workflowState!=null)
+    then
+    	HelperFunctions.logWorkflowRule(workflowState,"Is Single");
+end
+
+rule "Has Partner"
+	salience 100
+ 	when
+        lisApplication : LisApplication( applicant != null, partner != null, myPartner : partner )
+        workflowState : WorkflowState (workflowState!=null)
+    then
+    	HelperFunctions.logWorkflowRule(workflowState,"Has Partner");
+end
+
+rule "Has Non Dependents"
+	salience 100
+ 	when
+        lisApplication : LisApplication( applicant != null, nonDependants != null, myNonDependents : nonDependants )
+        workflowState : WorkflowState (workflowState!=null)
+    then
+    	HelperFunctions.logWorkflowRule(workflowState,"Has Non Dependants");
+end
+
+rule "Has Dependents"
+	salience 100
+ 	when
+        lisApplication : LisApplication( applicant != null, dependants != null, myDependents : dependants )
+        workflowState : WorkflowState (workflowState!=null)
+    then
+    	HelperFunctions.logWorkflowRule(workflowState,"Has Dependants");
+end
+
+rule "Missing Applicant DOB"
+	 salience 50
+	 when
+        lisApplication : LisApplication( applicant != null, myDOB : applicant.dob, myDOB == null )
+        workflowState : WorkflowState (workflowState!=null)
+    then
+    	HelperFunctions.logWorkflowRule(workflowState,"Missing Applicant DOB");
+    	workflowState.getErrorList().getErrors().add(new WorkflowError("field","Missing Applicant DOB","Missing Applicant DOB"));
+end
+
+// This rule is a guessimate to test the helperfunction. TODO verify age on forms.
+rule "Underage Applicant DOB"
+	 salience 50
+	 when
+        lisApplication : LisApplication( applicant != null, myDOB : applicant.dob, myDOB != null,claimDate : claimDate  )
+        workflowState : WorkflowState (workflowState!=null)
+    then
+    	HelperFunctions.logWorkflowRule(workflowState,"Underage Applicant DOB");
+    	int age = HelperFunctions.ageCalculation(claimDate,myDOB);
+    	if(age <18){
+    		workflowState.getErrorList().getErrors().add(new WorkflowError("field","Underage Applicant DOB","Underage Applicant DOB. Applicant must be 18 or greater"));
+    	}
+end
+

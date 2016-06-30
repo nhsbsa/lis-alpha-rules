@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>net.nhs.nhsbsa.lis</groupId>
+    <artifactId>lis-alpha-rules</artifactId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+
+  <groupId>net.nhs.nhsbsa.lis.lis-alpha-rules</groupId>
+  <artifactId>lis-alpha-rules-drools</artifactId>
+  <packaging>jar</packaging>
+
+  <properties>
+    <version.drools>6.4.0.Final</version.drools>
+    <version.eclipse>3.7.0</version.eclipse>
+    <version.eclipse.resources>3.7.100</version.eclipse.resources>
+  </properties>
+  <dependencies>
+    <dependency>
+      <groupId>net.nhs.nhsbsa.lis.lis-alpha-rules</groupId>
+      <artifactId>lis-alpha-rules-api</artifactId>
+      <version>1.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>org.drools</groupId>
+      <artifactId>drools-core</artifactId>
+      <version>${version.drools}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.drools</groupId>
+      <artifactId>drools-compiler</artifactId>
+      <version>${version.drools}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.core</groupId>
+      <artifactId>org.eclipse.core.runtime</artifactId>
+      <version>${version.eclipse}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.core</groupId>
+      <artifactId>org.eclipse.core.resources</artifactId>
+      <version>${version.eclipse.resources}</version>
+    </dependency>
+  </dependencies>
+</project>
