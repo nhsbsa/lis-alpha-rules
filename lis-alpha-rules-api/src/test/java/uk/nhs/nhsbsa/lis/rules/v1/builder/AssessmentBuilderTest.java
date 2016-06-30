@@ -1,7 +1,6 @@
 package uk.nhs.nhsbsa.lis.rules.v1.builder;
 
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertSame;
 
 import org.junit.Test;
 
@@ -24,16 +23,6 @@ public class AssessmentBuilderTest {
 		LisApplicationBuilder b = new LisApplicationBuilder();
 		AddressBuilder ab = b.withAddress();
 		assertNotNull(ab);
-	}
-
-	@Test
-	public void testAddressBuilderFieldBuilder() {
-
-		LisApplicationBuilder b = new LisApplicationBuilder();
-		AddressBuilder ab = b.withAddress();
-		assertNotNull(ab.getFieldBuilder());
-		assertNotNull(ab.getField());
-		assertSame(ab.getInstance(), ab.getField().getValue());
 	}
 
 }

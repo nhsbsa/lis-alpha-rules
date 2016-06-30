@@ -5,13 +5,13 @@ import java.util.List;
 import uk.nhs.nhsbsa.lis.rules.v1.model.Benefit;
 import uk.nhs.nhsbsa.lis.rules.v1.model.BenefitType;
 
-public class BenefitsBuilder extends ModelBuilder<List<Benefit>>{
+public class BenefitsBuilder extends AbstractBuilder<List<Benefit>>{
 
 	public BenefitsBuilder() {
 		super();
 	}
 
-	public BenefitsBuilder(ModelBuilder<?> parent, String name, List<Benefit> instance) {
+	public BenefitsBuilder(AbstractBuilder<?> parent, String name, List<Benefit> instance) {
 		super(parent, name, instance);
 	}
 

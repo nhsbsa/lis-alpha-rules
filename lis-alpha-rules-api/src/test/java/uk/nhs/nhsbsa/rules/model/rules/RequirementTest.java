@@ -5,6 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import uk.nhs.nhsbsa.lis.rules.v1.model.Requirement;
+
 public class RequirementTest {
 
 	private Requirement requirement;

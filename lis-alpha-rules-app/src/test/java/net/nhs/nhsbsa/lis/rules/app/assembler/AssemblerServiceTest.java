@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import uk.nhs.nhsbsa.lis.rules.v1.builder.LisApplicationBuilder;
-import uk.nhs.nhsbsa.rules.model.rules.Assessment;
+import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
 
 public class AssemblerServiceTest {
 

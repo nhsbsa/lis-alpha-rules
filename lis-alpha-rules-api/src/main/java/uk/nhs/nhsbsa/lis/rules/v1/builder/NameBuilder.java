@@ -2,13 +2,13 @@ package uk.nhs.nhsbsa.lis.rules.v1.builder;
 
 import uk.nhs.nhsbsa.lis.rules.v1.model.Name;
 
-public class NameBuilder extends ModelBuilder<Name>{
+public class NameBuilder extends AbstractBuilder<Name>{
 
 	public NameBuilder() {
 		super();
 	}
 
-	public NameBuilder(ModelBuilder<?> parent, String name, Name instance) {
+	public NameBuilder(AbstractBuilder<?> parent, String name, Name instance) {
 		super(parent, name, instance);
 	}
 

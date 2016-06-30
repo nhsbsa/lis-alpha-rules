@@ -15,7 +15,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.client.MockRestServiceServer;
 import org.springframework.web.client.RestTemplate;
 
-import uk.nhs.nhsbsa.rules.model.rules.Assessment;
+import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
 
 public class AssessmentClientTest {
 

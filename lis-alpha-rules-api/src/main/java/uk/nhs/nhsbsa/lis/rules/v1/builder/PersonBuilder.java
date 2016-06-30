@@ -7,13 +7,13 @@ import uk.nhs.nhsbsa.lis.rules.v1.model.Benefit;
 import uk.nhs.nhsbsa.lis.rules.v1.model.Name;
 import uk.nhs.nhsbsa.lis.rules.v1.model.Person;
 
-public class PersonBuilder extends ModelBuilder<Person>{
+public class PersonBuilder extends AbstractBuilder<Person>{
 
 	public PersonBuilder() {
 		super();
 	}
 
-	public PersonBuilder(ModelBuilder<?> parent, String name, Person instance) {
+	public PersonBuilder(AbstractBuilder<?> parent, String name, Person instance) {
 		super(parent, name, instance);
 	}
 

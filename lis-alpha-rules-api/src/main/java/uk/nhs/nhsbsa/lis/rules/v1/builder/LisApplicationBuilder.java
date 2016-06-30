@@ -4,7 +4,7 @@ import uk.nhs.nhsbsa.lis.rules.v1.model.Address;
 import uk.nhs.nhsbsa.lis.rules.v1.model.LisApplication;
 import uk.nhs.nhsbsa.lis.rules.v1.model.Person;
 
-public class LisApplicationBuilder extends ModelBuilder<LisApplication> {
+public class LisApplicationBuilder extends AbstractBuilder<LisApplication> {
 
 	
 	public LisApplicationBuilder() {
