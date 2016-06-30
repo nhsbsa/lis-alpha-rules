@@ -1,7 +1,12 @@
 package uk.nhs.nhsbsa.lis.rules.v1.model;
 
+import java.time.LocalDate;
 import java.util.List;
-import java.util.Date;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
 public class Person {
 
@@ -9,7 +14,9 @@ public class Person {
 	
 	private Name name;
 	
-	private Date dob;
+	@JsonDeserialize(using = LocalDateDeserializer.class)
+	@JsonSerialize(using = LocalDateSerializer.class)
+	private LocalDate dob;
 	
 	private String nino;
 	
@@ -57,11 +64,11 @@ public class Person {
 		this.name = name;
 	}
 
-	public Date getDob() {
+	public LocalDate getDob() {
 		return dob;
 	}
 
-	public void setDob(Date dob) {
+	public void setDob(LocalDate dob) {
 		this.dob = dob;
 	}
 

@@ -1,14 +1,19 @@
 package net.nhs.nhsbsa.lis.rules.app.controller;
 
+import java.time.LocalDate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.nhs.nhsbsa.lis.rules.app.MvcUtils;
+import net.nhs.nhsbsa.lis.rules.app.propertyeditors.LocalDatePropertyEditor;
 import net.nhs.nhsbsa.lis.rules.app.repository.IAssessmentRespository;
 import net.nhs.nhsbsa.lis.rules.app.service.IAssessmentService;
 import uk.nhs.nhsbsa.rules.model.rules.Assessment;
@@ -55,7 +60,7 @@ public class AssessmentController {
         return result;
     }
 
-	@RequestMapping(path="/{id}", method=RequestMethod.POST)
+	@RequestMapping(path="/{id}", method=RequestMethod.PUT)
     public String update(@PathVariable("id") String id, 
     		final Assessment model,
     		final BindingResult bindingResult) {
@@ -64,4 +69,15 @@ public class AssessmentController {
 		return MvcUtils.redirect("/assessments/{}", persisted.getId());
     }
 
+	@RequestMapping(path="/{id}", method=RequestMethod.DELETE)
+    public String delete(@PathVariable("id") String id) {
+		
+		assessmentService.delete(id);
+		return MvcUtils.redirect("/assessments");
+    }
+
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		binder.registerCustomEditor(LocalDate.class, new LocalDatePropertyEditor());
+	}
 }

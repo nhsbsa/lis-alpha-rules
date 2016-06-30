@@ -12,4 +12,6 @@ public interface IAssessmentService {
 
 	Assessment update(String id, Assessment model);
 
+	void delete(String id);
+
 }

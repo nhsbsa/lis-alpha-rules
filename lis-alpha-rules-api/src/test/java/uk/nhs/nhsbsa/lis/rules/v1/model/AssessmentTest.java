@@ -1,28 +1,25 @@
 package uk.nhs.nhsbsa.lis.rules.v1.model;
-import static org.junit.Assert.*;
-import java.text.ParseException;
+import static org.junit.Assert.assertEquals;
+
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.junit.Test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 public class AssessmentTest {
 	
 	BillPersonaTestData testData;
-	Date assessmentDate;
-	Date processingDate;
+	LocalDateTime assessmentDate;
+	LocalDateTime processingDate;
 	
 	@Test
 	public void testBillAssessment(){
-		try {
-			assessmentDate=(BillPersonaTestData.dateFormat.parse("01/04/2016"));
-			processingDate=(BillPersonaTestData.dateFormat.parse("01/04/2016"));
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+		assessmentDate=LocalDateTime.parse("2016-04-01T00:00:00");
+		processingDate=LocalDateTime.parse("2016-04-01T00:00:00");
 		
 		LisApplication assessment=new LisApplication();
 		assessment.setAddress(BillPersonaTestData.testAddress);
@@ -49,12 +46,8 @@ public class AssessmentTest {
 	
 	@Test
 	public void testMiriamAssessment(){
-		try {
-			assessmentDate=(BillPersonaTestData.dateFormat.parse("01/05/2016"));
-			processingDate=(BillPersonaTestData.dateFormat.parse("01/05/2016"));
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+		assessmentDate=LocalDateTime.parse("2016-05-01T00:00:00");
+		processingDate=LocalDateTime.parse("2016-05-01T00:00:00");
 		
 		LisApplication assessment=new LisApplication();
 		assessment.setAddress(MiriamPersonaTestData.testAddress);
@@ -100,7 +93,7 @@ public class AssessmentTest {
 	 */
 	public String toJSONString(LisApplication assessment){
 			ObjectMapper mapper = new ObjectMapper();
-			mapper.setDateFormat(BillPersonaTestData.dateFormat);
+			mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
 			try{
 				String jsonInString = mapper.writeValueAsString(assessment);
 				return jsonInString;

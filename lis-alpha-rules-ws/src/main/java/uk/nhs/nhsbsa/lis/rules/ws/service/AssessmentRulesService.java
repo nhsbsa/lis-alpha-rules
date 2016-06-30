@@ -1,7 +1,7 @@
 package uk.nhs.nhsbsa.lis.rules.ws.service;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 import org.springframework.stereotype.Service;
 
@@ -9,7 +9,9 @@ import uk.nhs.nhsbsa.lis.rules.v1.builder.LisApplicationBuilder;
 import uk.nhs.nhsbsa.lis.rules.v1.builder.PersonBuilder;
 import uk.nhs.nhsbsa.lis.rules.v1.model.BenefitType;
 import uk.nhs.nhsbsa.lis.rules.v1.model.LisApplication;
+import uk.nhs.nhsbsa.lis.rules.v1.model.Person;
 import uk.nhs.nhsbsa.rules.model.rules.Assessment;
+import uk.nhs.nhsbsa.rules.model.rules.Requirement;
 
 @Service
 public class AssessmentRulesService implements IAssessmentRulesService {
@@ -33,11 +35,26 @@ public class AssessmentRulesService implements IAssessmentRulesService {
 
 	private void updateRequired(Assessment result) {
 		
-		Map<String, Boolean> requireMap = new HashMap<>();
-		requireMap.put("application.applicant.name.title", Boolean.FALSE);
-		requireMap.put("application.applicant.name.forenames", Boolean.TRUE);
-		requireMap.put("application.applicant.name.surname", Boolean.TRUE);
-		result.setRequirements(requireMap);
+		Requirement requirements = new Requirement();
+		requirements.include("application.address");
+		requirements.include("application.applicant");
+		requirements.exclude("application.applicant.benefits");
+		
+		//handle pensionable applicants
+		applyPensionableRequirements(requirements, result.getApplication().getApplicant());
+		
+		result.setRequirements(requirements);
+	}
+
+	private void applyPensionableRequirements(Requirement requirements, Person applicant) {
+		
+		LocalDate dob = applicant.getDob();
+		if (dob != null) {
+			long age = ChronoUnit.YEARS.between(dob, LocalDate.now());
+			if (age > 60) {
+				requirements.include("application.applicant.benefits[RETIREMENT_PENSION]");
+			}
+		}
 	}
 
 	private LisApplication defaultApplication() {
@@ -49,8 +66,7 @@ public class AssessmentRulesService implements IAssessmentRulesService {
 		applicant
 			.withName();
 		applicant.withBenefits()
-			.add().withBenefitType(BenefitType.ARMED_FORCES_INDEPENDENCE_PAYMENT)
-			.add().withBenefitType(BenefitType.CHILD_BENEFIT)
+			.add().withBenefitType(BenefitType.RETIREMENT_PENSION)
 			;
 		return builder.getInstance();
 	}

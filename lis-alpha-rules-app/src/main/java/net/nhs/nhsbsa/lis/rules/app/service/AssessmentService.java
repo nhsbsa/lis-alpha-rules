@@ -54,4 +54,13 @@ public class AssessmentService implements IAssessmentService {
 		return result;
 	}
 
+	@Override
+	public void delete(String id) {
+		Assessment result = assessmentRespository.findOne(id);
+		if (result == null) {
+			throw new ResourceNotFoundException();
+		}
+		assessmentRespository.delete(id);
+	}
+
 }

@@ -1,11 +1,10 @@
 package uk.nhs.nhsbsa.lis.rules.v1.model;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class BillPersonaTestData {
-		public static SimpleDateFormat dateFormat=new SimpleDateFormat("dd/MM/yyyy");
+
 		// test data
 		public static Address testAddress;
 		public static String personNino;
@@ -93,11 +92,7 @@ public class BillPersonaTestData {
 		
 		private static void createBillPersona(){
 			testPerson=new Person();
-			try {
-				testPerson.setDob(dateFormat.parse("01/02/1946"));
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
+			testPerson.setDob(LocalDate.parse("1946-02-01"));
 			testPerson.setName(testName);
 			
 			testPerson.setNino(personNino);
