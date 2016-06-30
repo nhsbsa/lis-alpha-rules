@@ -29,9 +29,10 @@ public class DataModelTest {
 	public void testAddress(){
 		System.out.println("testAddress:");
 		BillPersonaTestData billPersonaTestData=new BillPersonaTestData();
-		assertEquals(billPersonaTestData.testAddress.getHouseNameNumber(), "1");
-		assertTrue(billPersonaTestData.testAddress.getPostcode().equals("NE33 5TY"));
 		//TODO assertTrue(billPersonaTestData.testAddress.getAddressLine1().equals(billPersonaTestData.addressLine1));
+
+		assertEquals(billPersonaTestData.testAddress.getHouseNameNumber(), "1");
+		assertEquals(billPersonaTestData.testAddress.getPostcode(),"NE33 5TY");
 		System.out.println("String Method");
 		System.out.println(billPersonaTestData.testAddress);
 	}

@@ -1,5 +1,5 @@
 package uk.nhs.nhsbsa.lis.rules.v1.model;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -32,15 +32,14 @@ public class AssessmentTest {
 		assessment.setNonDependants(null);
 		assessment.setContactDetails(billPersonaTestData.contactDetails);
 		
-		//REVIEW PT use Assert.assertEquals!
-		assertTrue(assessment.getAddress().equals(billPersonaTestData.testAddress));
-		assertTrue(assessment.getApplicant().equals(billPersonaTestData.testPerson));
-		assertTrue(assessment.getClaimDate().equals(assessmentDate));
-		assertTrue(assessment.getProcessingDate().equals(processingDate));
-		assertTrue(assessment.getDependants()==null);
-		assertTrue(assessment.getPartner()==null);
-		assertTrue(assessment.getNonDependants()==null);
-		assertTrue(assessment.getContactDetails().equals(billPersonaTestData.contactDetails));
+		assertEquals(assessment.getAddress(),billPersonaTestData.testAddress);
+		assertEquals(assessment.getApplicant(),billPersonaTestData.testPerson);
+		assertEquals(assessment.getClaimDate(),assessmentDate);
+		assertEquals(assessment.getProcessingDate(),processingDate);
+		assertEquals(assessment.getDependants(),null);
+		assertEquals(assessment.getPartner(),null);
+		assertEquals(assessment.getNonDependants(),null);
+		assertEquals(assessment.getContactDetails(),billPersonaTestData.contactDetails);
 		
 		System.out.println(toJSONString(assessment));
 		
@@ -73,14 +72,14 @@ public class AssessmentTest {
 		testSavings.add(saving);
 		assessment.setSavings(testSavings);
 		
-		assertTrue(assessment.getAddress().equals(miriamPersonaTestData.testAddress));
-		assertTrue(assessment.getApplicant().equals(miriamPersonaTestData.testPerson));
-		assertTrue(assessment.getClaimDate().equals(assessmentDate));
-		assertTrue(assessment.getProcessingDate().equals(processingDate));
-		assertTrue(assessment.getDependants()==null);
-		assertTrue(assessment.getPartner()==null);
-		assertTrue(assessment.getNonDependants().equals(nonDependants));
-		assertTrue(assessment.getContactDetails().equals(miriamPersonaTestData.contactDetails));
+		assertEquals(assessment.getAddress(),miriamPersonaTestData.testAddress);
+		assertEquals(assessment.getApplicant(),miriamPersonaTestData.testPerson);
+		assertEquals(assessment.getClaimDate(),assessmentDate);
+		assertEquals(assessment.getProcessingDate(),processingDate);
+		assertEquals(assessment.getDependants(),null);
+		assertEquals(assessment.getPartner(),null);
+		assertEquals(assessment.getNonDependants(),nonDependants);
+		assertEquals(assessment.getContactDetails(),miriamPersonaTestData.contactDetails);
 		
 		System.out.println("testMiriamAssessment:");
 		System.out.println("String Method");

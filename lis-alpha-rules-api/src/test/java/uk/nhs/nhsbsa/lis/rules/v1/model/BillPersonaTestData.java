@@ -33,9 +33,9 @@ public class BillPersonaTestData {
 		private void createAddress(){
 			testAddress=new Address();
 			testAddress.setHouseNameNumber("1");
-			testAddress.setAddressLine1("Accacia Avenue");
-			testAddress.setAddressLine2("New Hamlington");
-			testAddress.setAddressLine3("Northumberland");
+			testAddress.setAddressLine1(addressLine1);
+			testAddress.setAddressLine2(addressLine2);
+			testAddress.setAddressLine3(addressLine3);
 			testAddress.setPostcode("NE33 5TY");
 			
 			contactDetails=new ContactDetails();

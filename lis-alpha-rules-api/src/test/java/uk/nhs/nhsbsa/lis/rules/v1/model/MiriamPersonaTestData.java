@@ -43,9 +43,9 @@ public class MiriamPersonaTestData {
 	private void createAddress(){
 		testAddress=new Address();
 		testAddress.setHouseNameNumber("42");
-		testAddress.setAddressLine1("Station Road");
-		testAddress.setAddressLine2("Winbledon");
-		testAddress.setAddressLine3("London");
+		testAddress.setAddressLine1(addressLine1);
+		testAddress.setAddressLine2(addressLine2);
+		testAddress.setAddressLine3(addressLine3);
 		testAddress.setPostcode("LN5 4RT");
 		
 		contactDetails=new ContactDetails();

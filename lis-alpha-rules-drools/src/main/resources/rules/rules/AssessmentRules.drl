@@ -1,0 +1,147 @@
+package uk.nhs.nhsbsa.lis.rules.v1.droolsengine.assessment;
+ 
+import uk.nhs.nhsbsa.lis.rules.v1.model.LisApplication;
+import uk.nhs.nhsbsa.lis.rules.v1.droolsengine.assessment.AssessmentCalculation;
+import uk.nhs.nhsbsa.lis.rules.v1.model.*;
+import uk.nhs.nhsbsa.lis.rules.v1.droolsengine.HelperFunctions;
+import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.util.List;
+
+
+
+rule "Has Applicant"
+	salience 100
+    when
+        lisApplication : LisApplication( applicant != null, myApplicant : applicant )
+        assessmentCalc : AssessmentCalculation(assessmentCalc!=null)
+    then
+    	HelperFunctions.logRule(assessmentCalc,"Has Applicant");
+end
+
+rule "Is Single"
+	salience 100
+ 	when
+        lisApplication : LisApplication( applicant != null, partner == null, myApplicant : applicant )
+        assessmentCalc : AssessmentCalculation(assessmentCalc!=null)
+    then
+    	HelperFunctions.logRule(assessmentCalc,"Is Single");
+    	assessmentCalc.setHasPartner(false);
+end
+
+rule "Has Partner"
+	salience 100
+ 	when
+        lisApplication : LisApplication( applicant != null, partner != null, myPartner : partner )
+        assessmentCalc : AssessmentCalculation(assessmentCalc!=null)
+    then
+    	HelperFunctions.logRule(assessmentCalc,"Has Partner");
+    	assessmentCalc.setHasPartner(true);
+end
+
+rule "Has Non Dependents"
+	salience 100
+ 	when
+        lisApplication : LisApplication( applicant != null, nonDependants != null, myNonDependents : nonDependants )
+        assessmentCalc : AssessmentCalculation(assessmentCalc!=null)
+    then	
+    	HelperFunctions.logRule(assessmentCalc, "Has Non Dependants" );
+end
+
+rule "Has Dependents"
+	salience 100
+ 	when
+        lisApplication : LisApplication( applicant != null, dependants != null, myDependents : dependants )
+        assessmentCalc : AssessmentCalculation(assessmentCalc!=null)
+    then
+    	HelperFunctions.logRule(assessmentCalc, "Has Dependants" );
+end
+
+rule "Applicant Age Calculation"
+	salience 90
+	when
+		lisApplication : LisApplication( applicant != null, myDOB : applicant.dob, claimDate : claimDate )
+		assessmentCalc : AssessmentCalculation(assessmentCalc!=null)
+	then
+		HelperFunctions.logRule(assessmentCalc, "Applicant Age Calculation" );
+		int age = HelperFunctions.ageCalculation(claimDate,myDOB);
+		assessmentCalc.setMainClaimantAge(age); 
+end
+
+rule "Partner Age Calculation"
+	salience 90
+	when 
+		lisApplication : LisApplication( partner != null, myDOB : partner.dob, claimDate : claimDate )
+		assessmentCalc : AssessmentCalculation(assessmentCalc!=null)
+	then
+		HelperFunctions.logRule(assessmentCalc,"Partner Age Calculation");
+		int age = HelperFunctions.ageCalculation(claimDate,myDOB);
+		assessmentCalc.setParterAge(age); 
+end
+
+rule "Community Charge Rule"
+	salience 80
+when 
+		lisApplication : LisApplication( applicant != null, myApplicant : applicant )
+		assessmentCalc : AssessmentCalculation(assessmentCalc!=null)
+	then
+		HelperFunctions.logRule(assessmentCalc,"Community Charge Rule");
+		List<String> communityCharge = HelperFunctions.communityChargeCalculation(myApplicant);
+		
+		if(communityCharge.size()>0){
+			// TODO assume only 1 community charge for now, but what about duplicates?
+			assessmentCalc.setCouncilTax(Double.parseDouble(communityCharge.get(0)));
+		}
+end
+
+rule "Rent Rule"
+	salience 80
+when 
+		lisApplication : LisApplication( applicant != null, myApplicant : applicant )
+		assessmentCalc : AssessmentCalculation(assessmentCalc!=null)
+	then
+		HelperFunctions.logRule(assessmentCalc,"Rent Rule");
+		
+		List<String> rent = HelperFunctions.rentCalculation(myApplicant);
+		if(rent.size()>0){
+			// TODO assume only 1 rent for now, but what about duplicates?
+			assessmentCalc.setRent(Double.parseDouble(rent.get(0)));
+		}
+end
+
+rule "Mortgage Rule"
+	salience 80
+when 
+		lisApplication : LisApplication( applicant != null, myApplicant : applicant )
+		assessmentCalc : AssessmentCalculation(assessmentCalc!=null)
+	then
+		HelperFunctions.logRule(assessmentCalc,"Mortgage Rule");
+		
+		List<String> mortgage = HelperFunctions.mortgageCalculation(myApplicant);
+		if(mortgage.size()>0){
+			// TODO assume only 1 mortgage for now, but what about duplicates?
+			assessmentCalc.setMortgage(Double.parseDouble(mortgage.get(0)));
+		}
+end
+
+/*
+rule "State Pension Rule"
+	salience 80
+when 
+		lisApplication : LisApplication( applicant != null, myApplicant : applicant )
+		assessmentCalc : AssessmentCalculation(assessmentCalc!=null)
+	then
+		HelperFunctions.logRule(assessmentCalc,"Income Rule");
+		
+		List<String> statePension = HelperFunctions.pensionBenefit(myApplicant);
+		if(statePension.size()>0){
+			// assume only state pension
+			assessmentCalc.getIncomeCapitals().add(
+				new IncomeCapital("State Pension","Applicant",BigDecimal(statePension.get(0)))
+			
+			Double.parseDouble(statePension.get(0)));
+		}
+end	
+*/
+
+	

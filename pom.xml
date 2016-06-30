@@ -37,6 +37,7 @@
   <modules>
     <module>lis-alpha-rules-api</module>
     <module>lis-alpha-rules-client</module>
+    <module>lis-alpha-rules-drools</module>
     <module>lis-alpha-rules-ws</module>
     <module>lis-alpha-rules-app</module>
   </modules>
@@ -48,6 +49,16 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.12</version>
+        <scope>test</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
   <build>
     <pluginManagement>
