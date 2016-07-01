@@ -8,6 +8,7 @@ import org.kie.api.KieServices;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 
+import uk.nhs.nhsbsa.lis.rules.v1.model.AssessmentCalculation;
 import uk.nhs.nhsbsa.lis.rules.v1.model.LisApplication;
 
 /**

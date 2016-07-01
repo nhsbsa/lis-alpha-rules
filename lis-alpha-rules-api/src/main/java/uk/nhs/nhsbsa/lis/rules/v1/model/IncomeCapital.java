@@ -1,4 +1,4 @@
-package uk.nhs.nhsbsa.lis.rules.v1.droolsengine.assessment;
+package uk.nhs.nhsbsa.lis.rules.v1.model;
 
 import java.math.BigDecimal;
 

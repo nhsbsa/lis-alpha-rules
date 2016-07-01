@@ -1,14 +1,12 @@
-package uk.nhs.nhsbsa.lis.rules.v1.droolsengine.assessment;
+package uk.nhs.nhsbsa.lis.rules.v1.model;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
-
 import java.util.logging.Level;
-import uk.nhs.nhsbsa.lis.rules.v1.model.ClientGroup;
+import java.util.logging.Logger;
 
 /**
  * Class to hold the values used in the assessment calculation
