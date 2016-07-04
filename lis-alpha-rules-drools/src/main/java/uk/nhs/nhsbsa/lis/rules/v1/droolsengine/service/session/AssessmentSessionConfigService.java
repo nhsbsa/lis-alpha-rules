@@ -23,14 +23,17 @@ public class AssessmentSessionConfigService implements ISessionConfigService {
 
 	private void insert(KieSession session, LisApplication application) {
 
-		session.insert(application);
-		insert(session, application.getApplicant());
-		insert(session, application.getPartner());
+		if (application != null) {
+			session.insert(application);
+			insert(session, application.getApplicant());
+			insert(session, application.getPartner());
+		}
 	}
 
 	private void insert(KieSession session, Person person) {
-		
-		session.insert(person);
+		if (person != null) {
+			session.insert(person);
+		}
 	}
 
 
