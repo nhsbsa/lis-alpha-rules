@@ -18,8 +18,10 @@ package uk.nhs.nhsbsa.lis.rules.ws;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
+@ComponentScan(basePackages={"uk.nhs.nhsbsa.lis"})
 public class LisRulesWebServiceApplication {
 
 	public static void main(String[] args) {

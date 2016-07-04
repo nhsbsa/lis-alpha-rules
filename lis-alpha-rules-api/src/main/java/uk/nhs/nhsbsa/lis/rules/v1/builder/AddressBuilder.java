@@ -4,13 +4,13 @@ import java.util.Arrays;
 
 import uk.nhs.nhsbsa.lis.rules.v1.model.Address;
 
-public class AddressBuilder extends ModelBuilder<Address>{
+public class AddressBuilder extends AbstractBuilder<Address>{
 
 	public AddressBuilder() {
 		super();
 	}
 
-	public AddressBuilder(ModelBuilder<?> parent, String name, Address instance) {
+	public AddressBuilder(AbstractBuilder<?> parent, String name, Address instance) {
 		super(parent, name, instance);
 	}
 

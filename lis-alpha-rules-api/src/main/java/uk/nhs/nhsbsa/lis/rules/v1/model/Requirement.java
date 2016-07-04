@@ -1,4 +1,4 @@
-package uk.nhs.nhsbsa.rules.model.rules;
+package uk.nhs.nhsbsa.lis.rules.v1.model;
 
 import java.util.HashSet;
 import java.util.Set;

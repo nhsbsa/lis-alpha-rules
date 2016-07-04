@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 import org.junit.Test;
 
-import uk.nhs.nhsbsa.rules.model.rules.Assessment;
+import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
 
 public class AssessmentRulesServiceTest {
 

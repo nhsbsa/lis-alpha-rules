@@ -1,8 +1,6 @@
-package uk.nhs.nhsbsa.rules.model.rules;
+package uk.nhs.nhsbsa.lis.rules.v1.model;
 
 import org.springframework.data.annotation.Id;
-
-import uk.nhs.nhsbsa.lis.rules.v1.model.LisApplication;
 
 /**
  * An assessment of an application.

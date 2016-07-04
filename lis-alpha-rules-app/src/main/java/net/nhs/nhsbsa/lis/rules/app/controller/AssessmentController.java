@@ -16,7 +16,7 @@ import net.nhs.nhsbsa.lis.rules.app.MvcUtils;
 import net.nhs.nhsbsa.lis.rules.app.propertyeditors.LocalDatePropertyEditor;
 import net.nhs.nhsbsa.lis.rules.app.repository.IAssessmentRespository;
 import net.nhs.nhsbsa.lis.rules.app.service.IAssessmentService;
-import uk.nhs.nhsbsa.rules.model.rules.Assessment;
+import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
 
 @Controller
 @RequestMapping(path="/assessments")

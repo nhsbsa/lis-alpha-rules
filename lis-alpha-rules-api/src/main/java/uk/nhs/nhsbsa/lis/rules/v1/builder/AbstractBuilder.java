@@ -1,4 +1,4 @@
-package uk.nhs.nhsbsa.rules.builder;
+package uk.nhs.nhsbsa.lis.rules.v1.builder;
 
 import com.fasterxml.jackson.databind.util.ClassUtil;
 
@@ -9,17 +9,20 @@ public class AbstractBuilder<T> {
 	protected AbstractBuilder<?> parent;
 	
 	protected T instance;
+	
+	private String name;
 
 	public AbstractBuilder() {
-		this(null, null);
+		this(null, null, null);
 	}
 
-	public AbstractBuilder(AbstractBuilder<?> parent, T instance) {
+	public AbstractBuilder(AbstractBuilder<?> parent, String name, T instance) {
 		if (instance == null) {
 			instantiate();
 		} else {
 			this.instance = instance;
 		}
+		this.name = name;
 		this.parent = parent;
 	}
 
@@ -39,6 +42,10 @@ public class AbstractBuilder<T> {
 
 	public AbstractBuilder<?> getParent() {
 		return parent;
+	}
+
+	public String getName() {
+		return name;
 	}
 
 }

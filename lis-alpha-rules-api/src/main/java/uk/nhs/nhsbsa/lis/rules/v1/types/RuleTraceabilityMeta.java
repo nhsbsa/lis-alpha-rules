@@ -1,4 +1,4 @@
-package uk.nhs.nhsbsa.rules.types;
+package uk.nhs.nhsbsa.lis.rules.v1.types;
 
 /**
  * Meta class to describe the origin for a business rule.

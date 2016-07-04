@@ -10,11 +10,11 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import uk.nhs.nhsbsa.lis.rules.v1.droolsengine.assessment.AssessmentCalculation;
-import uk.nhs.nhsbsa.lis.rules.v1.droolsengine.assessment.IncomeCapital;
+import uk.nhs.nhsbsa.lis.rules.v1.model.AssessmentCalculation;
 import uk.nhs.nhsbsa.lis.rules.v1.model.Benefit;
 import uk.nhs.nhsbsa.lis.rules.v1.model.BenefitType;
 import uk.nhs.nhsbsa.lis.rules.v1.model.Income;
+import uk.nhs.nhsbsa.lis.rules.v1.model.IncomeCapital;
 import uk.nhs.nhsbsa.lis.rules.v1.model.IncomeType;
 import uk.nhs.nhsbsa.lis.rules.v1.model.MoneyPeriod;
 import uk.nhs.nhsbsa.lis.rules.v1.model.Outgoing;

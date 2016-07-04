@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import uk.nhs.nhsbsa.rules.model.rules.Assessment;
+import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
 
 @Component
 public class AssessmentToAssessmentAssembler extends AbstractAssembler<Assessment, Assessment> {
