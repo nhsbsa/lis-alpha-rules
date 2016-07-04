@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import uk.nhs.nhsbsa.lis.rules.v1.droolsengine.assessment.AssessmentCalculation;
+import uk.nhs.nhsbsa.lis.rules.v1.droolsengine.assessment.IncomeCapital;
 import uk.nhs.nhsbsa.lis.rules.v1.model.Benefit;
 import uk.nhs.nhsbsa.lis.rules.v1.model.BenefitType;
 import uk.nhs.nhsbsa.lis.rules.v1.model.Income;
@@ -247,13 +248,84 @@ public class HelperFunctions {
 	    return bd.doubleValue();
 	}
 	
+	/**
+	 * Log that this rule has been triggered
+	 * @param container
+	 * @param rule
+	 */
 	public static void logRule(AssessmentCalculation container,String rule){
 		logger.log(Level.INFO,"Executing rule:"+rule);
 		container.getRuleList().add(rule);
 	}
 	
+	/**
+	 * Log that this rule has been triggered
+	 * @param container
+	 * @param rule
+	 */
 	public static void logWorkflowRule(WorkflowState container,String rule){
 		logger.log(Level.INFO,"Executing rule:"+rule);
 		container.getRuleList().add(rule);
+	}
+	
+	/**
+	 * Sum the premiums from the assessment
+	 * @param assessmentCalc
+	 */
+	public static void sumPremiums(AssessmentCalculation assessmentCalc){
+		if(assessmentCalc.getPersonalAllowance()!=null){
+			assessmentCalc.setRunningPremiums(assessmentCalc.getRunningPremiums()+assessmentCalc.getPersonalAllowance());		
+		}
+		if(assessmentCalc.getDependantsAllowance()!=null){
+			assessmentCalc.setRunningPremiums(assessmentCalc.getRunningPremiums()+assessmentCalc.getDependantsAllowance());		
+		}
+		if(assessmentCalc.getDisabledChildPremium()!=null){
+			assessmentCalc.setRunningPremiums(assessmentCalc.getRunningPremiums()+assessmentCalc.getDisabledChildPremium());		
+		}
+		if(assessmentCalc.getClientGroupPremium()!=null){
+			assessmentCalc.setRunningPremiums(assessmentCalc.getRunningPremiums()+assessmentCalc.getClientGroupPremium());		
+		}
+		if(assessmentCalc.getEnhancedDisabilityPremium()!=null){
+			assessmentCalc.setRunningPremiums(assessmentCalc.getRunningPremiums()+assessmentCalc.getEnhancedDisabilityPremium());		
+		}
+		if(assessmentCalc.getFamilyPremium()!=null){
+			assessmentCalc.setRunningPremiums(assessmentCalc.getRunningPremiums()+assessmentCalc.getFamilyPremium());		
+		}
+		if(assessmentCalc.getSevereDisabilityPremium()!=null){
+			assessmentCalc.setRunningPremiums(assessmentCalc.getRunningPremiums()+assessmentCalc.getSevereDisabilityPremium());		
+		}
+		if(assessmentCalc.getCarerPreium()!=null){
+			assessmentCalc.setRunningPremiums(assessmentCalc.getRunningPremiums()+assessmentCalc.getCarerPreium());		
+		}
+		if(assessmentCalc.getCouncilTax()!=null){
+			assessmentCalc.setRunningPremiums(assessmentCalc.getRunningPremiums()+assessmentCalc.getCouncilTax());		
+		}
+	}
+	
+	/**
+	 * Sum the housing costs
+	 * @param assessmentCalc
+	 */
+	public static void sumHousingCosts(AssessmentCalculation assessmentCalc){
+		if(assessmentCalc.getMortgage()!=null){
+			assessmentCalc.setTotalHousing(assessmentCalc.getMortgage());
+		}
+		if(assessmentCalc.getRent()!=null){
+			assessmentCalc.setTotalHousing(assessmentCalc.getTotalHousing()+assessmentCalc.getRent());
+		}
+		if(assessmentCalc.getGroundRent()!=null){
+			assessmentCalc.setTotalHousing(assessmentCalc.getTotalHousing()+assessmentCalc.getGroundRent());
+		}
+		if(assessmentCalc.getNonDependantDeductions()!=null){
+			assessmentCalc.setTotalHousing(assessmentCalc.getTotalHousing()+assessmentCalc.getNonDependantDeductions());
+		}
+		assessmentCalc.setRunningPremiums(assessmentCalc.getRunningPremiums()+assessmentCalc.getTotalHousing());
+	}
+	
+	public static void sumIncomeAndCapital(AssessmentCalculation assessmentCalc){
+		List<IncomeCapital> incomes=assessmentCalc.getIncomeCapitals();
+		for(IncomeCapital incomeCapital : incomes){
+			
+		}
 	}
 }

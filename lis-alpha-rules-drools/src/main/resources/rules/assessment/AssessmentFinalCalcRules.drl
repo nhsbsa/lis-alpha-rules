@@ -16,7 +16,9 @@ when
 		assessmentCalc : AssessmentCalculation(assessmentCalc!=null)
 	then
 		HelperFunctions.logRule(assessmentCalc,"Total Outgoings");
-			
+		assessmentCalc.setRunningPremiums(0.0);
+		HelperFunctions.sumPremiums(assessmentCalc);
+		HelperFunctions.sumHousingCosts(assessmentCalc);
 end
 
 

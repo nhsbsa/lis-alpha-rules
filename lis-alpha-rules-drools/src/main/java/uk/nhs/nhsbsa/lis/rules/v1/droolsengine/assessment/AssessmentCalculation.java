@@ -21,6 +21,8 @@ public class AssessmentCalculation {
 	private Double runningTotal;
 	private Double runningPremiums;
 	private Double runningIncome;
+	private Double totalHousing;
+	
 	
 	private Double personalAllowance;
 	private Double dependantsAllowance;
@@ -259,21 +261,33 @@ public class AssessmentCalculation {
 	public void setClaimDate(LocalDateTime claimDate) {
 		this.claimDate = claimDate;
 	}
+	
+	public Double getTotalHousing() {
+		return totalHousing;
+	}
 
+	public void setTotalHousing(Double totalHousing) {
+		this.totalHousing = totalHousing;
+	}
+
+
+	
+	
 	@Override
 	public String toString() {
 		return "AssessmentCalculation [runningTotal=" + runningTotal + ", runningPremiums=" + runningPremiums
-				+ ", runningIncome=" + runningIncome + ", personalAllowance=" + personalAllowance
-				+ ", dependantsAllowance=" + dependantsAllowance + ", disabledChildPremium=" + disabledChildPremium
-				+ ", clientGroupPremium=" + clientGroupPremium + ", enhancedDisabilityPremium="
+				+ ", runningIncome=" + runningIncome + ", totalHousing=" + totalHousing + ", personalAllowance="
+				+ personalAllowance + ", dependantsAllowance=" + dependantsAllowance + ", disabledChildPremium="
+				+ disabledChildPremium + ", clientGroupPremium=" + clientGroupPremium + ", enhancedDisabilityPremium="
 				+ enhancedDisabilityPremium + ", familyPremium=" + familyPremium + ", severeDisabilityPremium="
-				+ severeDisabilityPremium + ", carerPreium=" + carerPreium + ", councilTax=" + councilTax + ", mortage="
-				+ mortgage + ", rent=" + rent + ", groundRent=" + groundRent + ", otherCosts=" + otherCosts
-				+ ", nonDependantDeductions=" + nonDependantDeductions + ", incomeCapitals=" + incomeCapitals
-				+ ", clientGroups=" + clientGroups + ", claimDate=" + claimDate + ", hasPartner=" + hasPartner
-				+ ", mainClaimantAge=" + mainClaimantAge + ", parterAge=" + parterAge + ", ruleList=" + ruleList + "]";
+				+ severeDisabilityPremium + ", carerPreium=" + carerPreium + ", councilTax=" + councilTax
+				+ ", mortgage=" + mortgage + ", rent=" + rent + ", groundRent=" + groundRent + ", otherCosts="
+				+ otherCosts + ", nonDependantDeductions=" + nonDependantDeductions + ", incomeCapitals="
+				+ incomeCapitals + ", clientGroups=" + clientGroups + ", claimDate=" + claimDate + ", zeroHour="
+				+ zeroHour + ", hasPartner=" + hasPartner + ", mainClaimantAge=" + mainClaimantAge + ", parterAge="
+				+ parterAge + ", ruleList=" + ruleList + ", logger=" + logger + "]";
 	}
-	
+
 	/**
 	 * Compare the internal date to the handed dates.
 	 * If the internal handed claim is equal to forDate or lives between the dates
