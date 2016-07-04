@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import uk.nhs.nhsbsa.lis.rules.v1.IAssessmentRulesService;
+import uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.session.ISessionConfigService;
 import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
 
 @Service

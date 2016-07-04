@@ -1,4 +1,4 @@
-package uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service;
+package uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.session;
 
 import org.kie.api.runtime.KieSession;
 import org.springframework.stereotype.Service;
