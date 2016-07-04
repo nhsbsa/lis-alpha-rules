@@ -1,5 +1,7 @@
 package uk.nhs.nhsbsa.lis.rules.v1.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 /**
  * Benefit class to hold benefit information
  * @author lorob
@@ -7,9 +9,15 @@ package uk.nhs.nhsbsa.lis.rules.v1.model;
  */
 public class Benefit implements IIncome{
 	
+	@JsonBackReference
+	private Person owner;
+	
 	private BenefitType type;
+	
 	private ValueState state;
+	
 	private String value; // TODO this may change to an object. at present can hold benefit info
+	
 	private MoneyPeriod moneyPeriod;
 
 	public Benefit(){
@@ -80,5 +88,13 @@ public class Benefit implements IIncome{
 		if (type != other.type)
 			return false;
 		return true;
+	}
+
+	public Person getOwner() {
+		return owner;
+	}
+
+	public void setOwner(Person owner) {
+		this.owner = owner;
 	}
 }

@@ -3,6 +3,7 @@ package uk.nhs.nhsbsa.lis.rules.v1.model;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
@@ -20,7 +21,9 @@ public class Person {
 	
 	private String nino;
 	
+	@JsonManagedReference
 	private List<Benefit>benefits;
+	
 	private List<Income>incomes;
 	private List<Outgoing>outgoings;
 	
