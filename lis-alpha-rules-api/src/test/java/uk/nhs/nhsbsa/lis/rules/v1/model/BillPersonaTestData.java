@@ -1,6 +1,7 @@
 package uk.nhs.nhsbsa.lis.rules.v1.model;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class BillPersonaTestData {
@@ -18,7 +19,7 @@ public class BillPersonaTestData {
 		public ArrayList<Benefit> testBenefits;
 		public ArrayList<Outgoing> testOutgoings;
 		public ContactDetails contactDetails;
-		
+
 		/**
 		 * Not very efficient - but allows values to be changed
 		 */
@@ -28,6 +29,27 @@ public class BillPersonaTestData {
 				createBillName();
 				createBillIncomeAndExpenditure();
 				createBillPersona();
+		}
+		
+		public LisApplication createApplication(){
+			
+			LocalDateTime assessmentDate;
+			LocalDateTime processingDate;
+			
+			assessmentDate=LocalDateTime.parse("2016-07-01T00:00:00");
+			processingDate=LocalDateTime.parse("2016-07-01T00:00:00");
+			
+			LisApplication billApplication=new LisApplication();
+			BillPersonaTestData billPersonaTestData=new BillPersonaTestData();
+			billApplication.setAddress(billPersonaTestData.testAddress);
+			billApplication.setApplicant(billPersonaTestData.testPerson);
+			billApplication.setClaimDate(assessmentDate);
+			billApplication.setProcessingDate(processingDate);
+			billApplication.setDependants(null);
+			billApplication.setPartner(null);
+			billApplication.setNonDependants(null);
+			billApplication.setContactDetails(billPersonaTestData.contactDetails);
+			return billApplication;
 		}
 		
 		private void createAddress(){

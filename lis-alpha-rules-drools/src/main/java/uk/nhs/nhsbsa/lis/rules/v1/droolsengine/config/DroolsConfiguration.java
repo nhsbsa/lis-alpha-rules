@@ -10,7 +10,6 @@ import org.kie.api.builder.KieModule;
 import org.kie.api.builder.KieRepository;
 import org.kie.api.builder.ReleaseId;
 import org.kie.api.runtime.KieContainer;
-import org.kie.api.runtime.KieSession;
 import org.kie.internal.io.ResourceFactory;
 import org.kie.spring.KModuleBeanFactoryPostProcessor;
 import org.springframework.context.annotation.Bean;
@@ -19,28 +18,31 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
 
-import uk.nhs.nhsbsa.lis.rules.v1.IAssessmentRulesService;
-import uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.DroolsAssessmentRulesService;
-
 @Configuration
 public class DroolsConfiguration {
 
 	private static final String RULES_PATH = "rules/";
 
-	@Bean
-	public IAssessmentRulesService getAssessmentRulesService() {
-		return new DroolsAssessmentRulesService();
-	}
+	private KieFileSystem kieFileSystem;
 	
-//	@Bean
+	private KieContainer kieContainer;
+	
+	private KieServices kieServices;
+	
+	@Bean
 	public KieFileSystem kieFileSystem() throws IOException {
-	    KieFileSystem kieFileSystem = getKieServices().newKieFileSystem();
-	    for (Resource file : getRuleFiles()) {
-	        kieFileSystem.write(ResourceFactory.newUrlResource(file.getURL()));
-	    }        
+		if (kieFileSystem == null) {
+			kieFileSystem = getKieServices().newKieFileSystem();
+		    for (Resource file : getRuleFiles()) {
+		        kieFileSystem.write(ResourceFactory.newUrlResource(file.getURL()));
+		    }
+		}
 	    return kieFileSystem;
 	}
 
+	/**
+	 * Use Spring pattern matching to retrieve Rules files.
+	 */
 	private Resource[] getRuleFiles() throws IOException {
 	    ResourcePatternResolver resourcePatternResolver = new PathMatchingResourcePatternResolver();
 	    return resourcePatternResolver.getResources("classpath*:" + RULES_PATH + "**/*.*");
@@ -48,32 +50,35 @@ public class DroolsConfiguration {
 
 	@Bean
 	public KieContainer kieContainer() throws IOException {
-	    final KieRepository kieRepository = getKieServices().getRepository();
-
-	    kieRepository.addKieModule(new KieModule() {
-	        public ReleaseId getReleaseId() {
-	            return kieRepository.getDefaultReleaseId();
-	        }
-	    });
-
-	    KieBuilder kieBuilder = getKieServices().newKieBuilder(kieFileSystem()); 
-	    kieBuilder.buildAll();
-
-	    return getKieServices().newKieContainer(kieRepository.getDefaultReleaseId());
+		
+		if (kieContainer == null) {
+		    final KieRepository kieRepository = getKieServices().getRepository();
+	
+		    kieRepository.addKieModule(new KieModule() {
+		        public ReleaseId getReleaseId() {
+		            return kieRepository.getDefaultReleaseId();
+		        }
+		    });
+	
+		    KieBuilder kieBuilder = getKieServices().newKieBuilder(kieFileSystem()); 
+		    kieBuilder.buildAll();
+	
+		    kieContainer = getKieServices().newKieContainer(kieRepository.getDefaultReleaseId());
+		}
+		return kieContainer;
 	}
 
-	private KieServices getKieServices() {
-	    return KieServices.Factory.get();
+	@Bean
+	public KieServices getKieServices() {
+		if (kieServices == null) {
+			kieServices = KieServices.Factory.get();
+		}
+		return kieServices;
 	}
 
 	@Bean
 	public KieBase kieBase() throws IOException {
 	    return kieContainer().getKieBase();
-	}
-
-	@Bean
-	public KieSession kieSession() throws IOException {
-	    return kieContainer().newKieSession();
 	}
 
 	@Bean

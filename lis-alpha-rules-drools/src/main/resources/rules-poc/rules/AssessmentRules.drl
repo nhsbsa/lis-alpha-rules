@@ -8,7 +8,8 @@ import java.time.LocalDateTime;
 import java.time.LocalDate;
 import java.util.List;
 
-
+@Autowired
+MyService service;
 
 rule "Has Applicant"
 	salience 100

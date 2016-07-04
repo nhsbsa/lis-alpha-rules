@@ -22,6 +22,7 @@ public class Assessment {
 	
 	private Requirement requirements;
 
+	private AssessmentCalculation calculation;
 	
 	public Assessment() {
 	}
@@ -52,5 +53,13 @@ public class Assessment {
 
 	public void setApplication(LisApplication application) {
 		this.application = application;
+	}
+
+	public AssessmentCalculation getCalculation() {
+		return calculation;
+	}
+
+	public void setCalculation(AssessmentCalculation calculation) {
+		this.calculation = calculation;
 	}
 }
