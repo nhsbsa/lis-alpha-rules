@@ -90,7 +90,7 @@ public class HelperFunctions {
 	 * @param person
 	 * @return
 	 */
-	public static List <String> pensionBenefit(Person person){
+	public static List <String> statePensionBenefit(Person person){
 		return HelperFunctions.benefitCalculation(person,BenefitType.RETIREMENT_PENSION);
 	}
 	
@@ -308,7 +308,7 @@ public class HelperFunctions {
 	 */
 	public static void sumHousingCosts(AssessmentCalculation assessmentCalc){
 		if(assessmentCalc.getMortgage()!=null){
-			assessmentCalc.setTotalHousing(assessmentCalc.getMortgage());
+			assessmentCalc.setTotalHousing(assessmentCalc.getTotalHousing()+assessmentCalc.getMortgage());
 		}
 		if(assessmentCalc.getRent()!=null){
 			assessmentCalc.setTotalHousing(assessmentCalc.getTotalHousing()+assessmentCalc.getRent());
@@ -325,7 +325,24 @@ public class HelperFunctions {
 	public static void sumIncomeAndCapital(AssessmentCalculation assessmentCalc){
 		List<IncomeCapital> incomes=assessmentCalc.getIncomeCapitals();
 		for(IncomeCapital incomeCapital : incomes){
-			
+			Double thisIncome=Double.parseDouble(incomeCapital.getWeeklyAmount().toString());
+			assessmentCalc.setRunningIncome(assessmentCalc.getRunningIncome()+thisIncome);
+		}
+	}
+	
+	public static void sumRunningTotal(AssessmentCalculation assessmentCalc){
+		assessmentCalc.setRunningTotal(assessmentCalc.getRunningPremiums()
+				+assessmentCalc.getTotalHousing()
+				-assessmentCalc.getRunningIncome());
+	}
+	
+	public static void sumIncomeList(AssessmentCalculation assessmentCalc,List<String> incomes,String incomeName,String owner){
+		if(incomes.size()>0){
+			for(String incomeCapital : incomes){
+				Double parseDouble=Double.parseDouble(incomeCapital);
+				assessmentCalc.getIncomeCapitals().add(
+					new IncomeCapital(incomeName,owner,new BigDecimal(parseDouble)));
+			}
 		}
 	}
 }
