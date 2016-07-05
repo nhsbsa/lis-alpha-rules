@@ -22,7 +22,7 @@ rule "Default Applicant"
     then
         logger.info("Default Applicant");
         Person $applicant = factory.defaultPerson(PersonType.MAIN_APPLICANT);
-        modify ($application) { setApplicant($applicant) };
+        $application.setApplicant($applicant);
         insert ($applicant);
 end
 
@@ -32,10 +32,6 @@ rule "Default Partner"
     then
         logger.info("Default Partner");
         Person $partner = factory.defaultPerson(PersonType.PARTNER);
-        modify ($application) { setPartner($partner) };
+        $application.setPartner($partner);
         insert ($partner);
 end
-
-
-
-	

@@ -1,24 +1,31 @@
 package uk.nhs.nhsbsa.util;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import uk.nhs.nhsbsa.util.ObjectWalker.CallbackItem;
 
 public class ObjectIndex {
 
-	private Map<String, Object> pathIndex;
-	private Map<Object, String> objectIndex;
+	private Map<String, Object> pathIndex = new HashMap<>();
+	private Map<Object, String> objectIndex = new HashMap<>();
 	
 	public ObjectIndex(Object root) {
-		index(root);
+		index(null, root);
 	}
 	
-	private void index(Object root) {
+	public void reindex(Object o) {
+		String path = path(o);
+		index(path + "/", o);
+	}
+	
+	private void index(final String path, Object root) {
 		ObjectWalker walker = new ObjectWalker(root, new ObjectWalker.Callback() {
 			@Override
 			public void handle(CallbackItem callbackItem) {
-				pathIndex.put(callbackItem.getPath(), callbackItem.getValue());
-				objectIndex.put(callbackItem.getValue(), callbackItem.getPath());
+				String fullpath = path == null ? callbackItem.getPath() : path + callbackItem.getPath();
+				pathIndex.put(fullpath, callbackItem.getValue());
+				objectIndex.put(callbackItem.getValue(), fullpath);
 			}
 		});
 		walker.walk();

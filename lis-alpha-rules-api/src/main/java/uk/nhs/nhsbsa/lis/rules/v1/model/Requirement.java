@@ -79,4 +79,10 @@ public class Requirement {
 		this.excludes = excludes;
 	}
 
+	@Override
+	public String toString() {
+		return "Requirement [includes=" + includes + ", excludes=" + excludes + "]";
+	}
+
+	
 }

@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.IAssessmentFactoryService;
+import uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.IRequireService;
 import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
 
 public class SessionGlobalsProcessor extends DefaultSessionProcessor {
@@ -15,10 +16,14 @@ public class SessionGlobalsProcessor extends DefaultSessionProcessor {
 	@Autowired
 	IAssessmentFactoryService assessmentFactoryService;
 	
+	@Autowired
+	IRequireService requireService;
+	
 	@Override
 	public void preProcess(KieSession session, Assessment assessment) {
 		session.setGlobal("logger", RULE_LOGGER);
 		session.setGlobal("factory", assessmentFactoryService);
+		session.setGlobal("requireService", requireService);
 	}
 
 }

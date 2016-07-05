@@ -12,13 +12,15 @@ rule "Age"
         $person : Person( dob != null )
         not Age( person == $person )
     then
+        logger.info("Age");
         insert ( new Age($application, $person) );
 end
 
-rule "Pensioner"
+rule "IsPensioner"
     when
         $person : (Person( type == PersonType.MAIN_APPLICANT) or Person( type == PersonType.PARTNER ))
         $age : Age( person == $person, value >= 60 )
     then
+    	logger.info("IsPensioner");
         insert ( new IsPensioner($person) );
 end

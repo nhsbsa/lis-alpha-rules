@@ -41,4 +41,9 @@ public class DroolsServiceConfiguration {
 	public IAssessmentFactoryService createAssessmentFactoryService() {
 		return new AssessmentFactoryService();
 	}
+
+	@Bean
+	public IRequireService createRequireService() {
+		return new RequireService();
+	}
 }
