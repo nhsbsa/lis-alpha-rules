@@ -27,9 +27,9 @@
       <td>
         <input type="hidden" th:field="*{__${path}__.type}" />
         <input type="text" th:field="*{__${path}__.value}" 
-            th:disabled="!${assessment.requirements.isRequired('__${key}__')}" />
+            th:disabled="!${assessment.requirements.isRequired('__${path}__')}" />
       </td>
-      <td th:text="${assessment.requirements.isRequired('__${key}__')}"></td>
+      <td th:text="${assessment.requirements.isRequired('__${path}__')}"></td>
     </tr>
   </table>
 

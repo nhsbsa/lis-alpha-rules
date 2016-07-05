@@ -16,7 +16,7 @@ public class ObjectIndex {
 	
 	public void reindex(Object o) {
 		String path = path(o);
-		index(path + "/", o);
+		index(path + ".", o);
 	}
 	
 	private void index(final String path, Object root) {

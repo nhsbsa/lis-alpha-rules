@@ -1,6 +1,7 @@
 package uk.nhs.nhsbsa.util;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -131,8 +132,11 @@ public class ObjectWalker {
 		boolean result = false;
 		if (o != null) {
 			Class<?> clazz = o.getClass();
-			result &= ClassUtils.isPrimitiveOrWrapper(clazz);
-			result &= !(o instanceof String);
+			if (!ClassUtils.isPrimitiveOrWrapper(clazz)
+					&& !(o instanceof String)
+					&& !clazz.isEnum()) {
+				result = true;
+			}
 		}
 		return result;
 	}
@@ -181,14 +185,16 @@ public class ObjectWalker {
 		List<CallbackItem> result = new ArrayList<>();
 		List<Field> fields = FieldUtils.getAllFieldsList(o.getClass());
 		for (java.lang.reflect.Field field : fields) {
-			try {
-				String fieldName = field.getName();
-				String fieldPath = append(path, fieldName);
-				Object value = FieldUtils.readField(field, o, true);
-				addCallbackItems(result, o, field, value, fieldPath);
+			if (!Modifier.isStatic(field.getModifiers())) {
+				try {
+					String fieldName = field.getName();
+					String fieldPath = append(path, fieldName);
+					Object value = FieldUtils.readField(field, o, true);
+					addCallbackItems(result, o, field, value, fieldPath);
 
-			} catch (IllegalAccessException e) {
-				throw new IllegalArgumentException(e);
+				} catch (IllegalAccessException e) {
+					throw new IllegalArgumentException(e);
+				}
 			}
 		}
 		return result;
