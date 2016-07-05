@@ -7,6 +7,7 @@ import uk.nhs.nhsbsa.lis.rules.v1.droolsengine.HelperFunctions;
 import java.time.LocalDateTime;
 import java.time.LocalDate;
 import java.util.List;
+import java.math.BigDecimal;
 
 @Autowired
 MyService service;
@@ -125,24 +126,30 @@ when
 		}
 end
 
-/*
+
 rule "State Pension Rule"
 	salience 80
 when 
 		lisApplication : LisApplication( applicant != null, myApplicant : applicant )
 		assessmentCalc : AssessmentCalculation(assessmentCalc!=null)
 	then
-		HelperFunctions.logRule(assessmentCalc,"Income Rule");
+		HelperFunctions.logRule(assessmentCalc,"State Pension Rule");
 		
-		List<String> statePension = HelperFunctions.pensionBenefit(myApplicant);
-		if(statePension.size()>0){
-			// assume only state pension
-			assessmentCalc.getIncomeCapitals().add(
-				new IncomeCapital("State Pension","Applicant",BigDecimal(statePension.get(0)))
-			
-			Double.parseDouble(statePension.get(0)));
-		}
+		List<String> statePension = HelperFunctions.statePensionBenefit(myApplicant);
+		HelperFunctions.sumIncomeList(assessmentCalc,statePension,"State Pension","Applicant");
 end	
-*/
+
+rule "Private Pension Rule"
+	salience 80
+when 
+		lisApplication : LisApplication( applicant != null, myApplicant : applicant )
+		assessmentCalc : AssessmentCalculation(assessmentCalc!=null)
+	then
+		HelperFunctions.logRule(assessmentCalc,"Private Pension Rule");
+		
+		List<String> privatePension = HelperFunctions.privatePensionBenefit(myApplicant);
+		HelperFunctions.sumIncomeList(assessmentCalc,privatePension,"Private Pension","Applicant");
+end	
+
 
 	

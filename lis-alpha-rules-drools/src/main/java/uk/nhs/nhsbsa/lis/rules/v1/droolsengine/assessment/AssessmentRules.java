@@ -53,6 +53,7 @@ public class AssessmentRules {
 			// work out premiums
 			premiumKSession.insert(assessmentCalc);
 			premiumKSession.fireAllRules();
+			
 			// now do assessment
 			assessmentKSession.insert(assessmentCalc);
 			assessmentKSession.insert(application);

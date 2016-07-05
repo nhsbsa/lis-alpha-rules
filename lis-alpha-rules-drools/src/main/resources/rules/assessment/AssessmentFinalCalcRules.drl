@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 
+// Not much of a rule to sum the values
 rule "Total Outgoings"
 	salience 40
 when 
@@ -16,7 +17,42 @@ when
 		assessmentCalc : AssessmentCalculation(assessmentCalc!=null)
 	then
 		HelperFunctions.logRule(assessmentCalc,"Total Outgoings");
-			
+		assessmentCalc.setRunningPremiums(0.0);
+		assessmentCalc.setTotalHousing(0.0);
+		assessmentCalc.setRunningIncome(0.0);
+		HelperFunctions.sumPremiums(assessmentCalc);
+		HelperFunctions.sumHousingCosts(assessmentCalc);
+		HelperFunctions.sumIncomeAndCapital(assessmentCalc);
+		HelperFunctions.sumRunningTotal(assessmentCalc);
+	end
+
+
+// Assessment. The rules need to be clarified
+rule "HC LIS Assessment"
+	salience 20
+when
+	lisApplication : LisApplication( applicant != null, myApplicant : applicant )
+	assessmentCalc : AssessmentCalculation(assessmentCalc!=null,runningPremiums != 0)
+	
+then
+	HelperFunctions.logRule(assessmentCalc,"HC LIS Assessment");
+	Double lowerLimit=assessmentCalc.getPrescriptionPrice()/2;
+	Double upperLimit=(assessmentCalc.getPrescriptionPrice()/2)-assessmentCalc.getUpperLimitHC3Amount();
+	if(assessmentCalc.getRunningTotal() >= lowerLimit){
+		// HC2
+		HelperFunctions.logRule(assessmentCalc,"HC2");
+	}
+	else if(assessmentCalc.getRunningTotal() < lowerLimit
+			&& 
+			assessmentCalc.getRunningTotal() >= upperLimit){
+		// HC3
+		HelperFunctions.logRule(assessmentCalc,"HC3");
+	}
+	else{
+		// HC5
+		HelperFunctions.logRule(assessmentCalc,"HC5");
+	}
+	 
 end
 
 
