@@ -9,9 +9,6 @@ import java.time.LocalDate;
 import java.util.List;
 import java.math.BigDecimal;
 
-@Autowired
-MyService service;
-
 rule "Has Applicant"
 	salience 100
     when

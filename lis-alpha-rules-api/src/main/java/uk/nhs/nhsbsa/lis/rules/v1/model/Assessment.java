@@ -20,14 +20,17 @@ public class Assessment {
 	 */
 	private LisApplication application;
 	
-	private Requirement requirements = new Requirement();
+	private Requirement requirements;
 
 	private AssessmentCalculation calculation;
 	
 	public Assessment() {
+		requirements = new Requirement();
+		requirements.include("application");
 	}
 	
 	public Assessment(String id, LisApplication application) {
+		this();
 		this.application = application;
 	}
 
