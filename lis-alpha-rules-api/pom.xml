@@ -13,8 +13,6 @@
   <artifactId>lis-alpha-rules-api</artifactId>
   <packaging>jar</packaging>
 
-
-
   <dependencies>
     <dependency>
       <groupId>org.apache.commons</groupId>

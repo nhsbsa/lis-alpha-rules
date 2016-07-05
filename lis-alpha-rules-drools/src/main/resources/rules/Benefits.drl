@@ -1,0 +1,20 @@
+package uk.nhs.nhsbsa.lis.rules.v1.droolsengine.assessment;
+ 
+import uk.nhs.nhsbsa.lis.rules.v1.model.*;
+import uk.nhs.nhsbsa.lis.rules.v1.droolsengine.model.*;
+
+global org.slf4j.Logger logger
+global uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.IAssessmentFactoryService factory
+
+rule "Default State Pension"
+    when 
+        $person : (Person( type == PersonType.MAIN_APPLICANT) or Person( type == PersonType.PARTNER ))
+        exists $pensioner : IsPensioner ( person == $person )
+        not Benefit( type == BenefitType.RETIREMENT_PENSION )
+    then
+        logger.info("Default State Pension");
+        Benefit $benefit = factory.defaultBenefit(BenefitType.RETIREMENT_PENSION);
+        modify ($person) { addBenefit($benefit) };
+        insert ($benefit);
+end
+

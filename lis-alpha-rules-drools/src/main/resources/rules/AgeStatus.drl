@@ -14,3 +14,11 @@ rule "Age"
     then
         insert ( new Age($application, $person) );
 end
+
+rule "Pensioner"
+    when
+        $person : (Person( type == PersonType.MAIN_APPLICANT) or Person( type == PersonType.PARTNER ))
+        $age : Age( person == $person, value >= 60 )
+    then
+        insert ( new IsPensioner($person) );
+end

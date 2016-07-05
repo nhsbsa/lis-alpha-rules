@@ -1,6 +1,7 @@
 package uk.nhs.nhsbsa.lis.rules.v1.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -81,6 +82,13 @@ public class Person {
 
 	public void setNino(String nino) {
 		this.nino = nino;
+	}
+	
+	public void addBenefit(Benefit benefit) {
+		if (benefits == null) {
+			benefits = new ArrayList<>();
+		}
+		benefits.add(benefit);
 	}
 
 	@Override

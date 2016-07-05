@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.commons.lang3.ClassUtils;
 import org.apache.commons.lang3.reflect.FieldUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -130,9 +131,8 @@ public class ObjectWalker {
 		boolean result = false;
 		if (o != null) {
 			Class<?> clazz = o.getClass();
-			if (!clazz.isPrimitive()) {
-				result = !(o instanceof String);
-			}
+			result &= ClassUtils.isPrimitiveOrWrapper(clazz);
+			result &= !(o instanceof String);
 		}
 		return result;
 	}
