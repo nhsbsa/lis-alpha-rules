@@ -6,7 +6,7 @@ global org.slf4j.Logger logger
 global uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.IAssessmentFactoryService factory
 
 rule "Default Application"
-    when
+    when 
         $assessment : Assessment( )
         not LisApplication( )
     then
