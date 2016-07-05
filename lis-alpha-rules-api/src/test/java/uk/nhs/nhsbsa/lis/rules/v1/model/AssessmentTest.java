@@ -1,7 +1,7 @@
 package uk.nhs.nhsbsa.lis.rules.v1.model;
 import static org.junit.Assert.assertEquals;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,13 +13,13 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 public class AssessmentTest {
 	
 	BillPersonaTestData testData;
-	LocalDateTime assessmentDate;
-	LocalDateTime processingDate;
+	LocalDate assessmentDate;
+	LocalDate processingDate;
 	
 	@Test
 	public void testBillAssessment(){
-		assessmentDate=LocalDateTime.parse("2016-04-01T00:00:00");
-		processingDate=LocalDateTime.parse("2016-04-01T00:00:00");
+		assessmentDate=LocalDate.parse("2016-04-01");
+		processingDate=LocalDate.parse("2016-04-01");
 		
 		LisApplication assessment=new LisApplication();
 		BillPersonaTestData billPersonaTestData=new BillPersonaTestData();
@@ -47,8 +47,8 @@ public class AssessmentTest {
 	
 	@Test
 	public void testMiriamAssessment(){
-		assessmentDate=LocalDateTime.parse("2016-05-01T00:00:00");
-		processingDate=LocalDateTime.parse("2016-05-01T00:00:00");
+		assessmentDate=LocalDate.parse("2016-05-01");
+		processingDate=LocalDate.parse("2016-05-01");
 		
 		LisApplication assessment=new LisApplication();
 		MiriamPersonaTestData miriamPersonaTestData=new MiriamPersonaTestData();

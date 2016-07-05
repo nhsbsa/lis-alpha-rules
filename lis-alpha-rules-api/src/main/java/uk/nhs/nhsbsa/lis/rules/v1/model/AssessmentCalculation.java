@@ -1,7 +1,6 @@
 package uk.nhs.nhsbsa.lis.rules.v1.model;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -46,13 +45,13 @@ public class AssessmentCalculation {
 	 * arrived in the post or the initial date the claim is created.
 	 * If claim is save \ restored do we use the initial date or the save date?
 	 */
-	private LocalDateTime claimDate;
+	private LocalDate claimDate;
 	private LocalTime zeroHour=LocalTime.parse("00:00");
 	
 	// TODO Other factors used in calculation - not sure if this should be here or elsewhere
 	private Boolean hasPartner;
-	private Integer mainClaimantAge;
-	private Integer parterAge;
+	private Long mainClaimantAge;
+	private Long parterAge;
 	
 	private Double prescriptionPrice;
 	private Double upperLimitHC3Amount;
@@ -223,19 +222,19 @@ public class AssessmentCalculation {
 		this.clientGroups = clientGroups;
 	}
 
-	public Integer getMainClaimantAge() {
+	public Long getMainClaimantAge() {
 		return mainClaimantAge;
 	}
 
-	public void setMainClaimantAge(Integer mainClaimantAge) {
+	public void setMainClaimantAge(Long mainClaimantAge) {
 		this.mainClaimantAge = mainClaimantAge;
 	}
 
-	public Integer getParterAge() {
+	public Long getParterAge() {
 		return parterAge;
 	}
 
-	public void setParterAge(Integer parterAge) {
+	public void setParterAge(Long parterAge) {
 		this.parterAge = parterAge;
 	}
 
@@ -255,11 +254,11 @@ public class AssessmentCalculation {
 		this.hasPartner = hasPartner;
 	}
 	
-	public LocalDateTime getClaimDate() {
+	public LocalDate getClaimDate() {
 		return claimDate;
 	}
 
-	public void setClaimDate(LocalDateTime claimDate) {
+	public void setClaimDate(LocalDate claimDate) {
 		this.claimDate = claimDate;
 	}
 	
@@ -323,12 +322,10 @@ public class AssessmentCalculation {
 			}
 			LocalDate fromDate =LocalDate.parse(lookupFromDate);
 			LocalDate toDate =LocalDate.parse(lookupToDate);
-			LocalDateTime fromDateTime =LocalDateTime.of(fromDate,zeroHour);
-			LocalDateTime toDateTime =LocalDateTime.of(toDate,zeroHour);
-			if(claimDate.equals(fromDateTime)){
+			if(claimDate.equals(fromDate)){
 				return true;
 			}
-			if(claimDate.isBefore(toDateTime)&&claimDate.isAfter(fromDateTime)){
+			if(claimDate.isBefore(toDate)&&claimDate.isAfter(fromDate)){
 				logger.log(Level.INFO,"FOUND DATE="+lookupFromDate);
 				return true;
 			}

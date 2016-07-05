@@ -34,7 +34,7 @@ public class Name {
 
 	@Override
 	public String toString() {
-		return "Name [title=" + title + ", forenames=" + forenames + ", surname=" + surname + "]";
+		return title + " " + forenames + " " + surname;
 	}
 
 	

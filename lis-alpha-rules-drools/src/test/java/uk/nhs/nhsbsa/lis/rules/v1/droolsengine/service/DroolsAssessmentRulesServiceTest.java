@@ -34,9 +34,8 @@ public class DroolsAssessmentRulesServiceTest extends AbstractJUnit4SpringContex
 		Assessment input = new Assessment("123", bill);
 		
 		Assessment actual = service.assess(input);
-		actual = service.assess(input);
 		
 		assertNotNull(actual);
 	}
-
+	
 }

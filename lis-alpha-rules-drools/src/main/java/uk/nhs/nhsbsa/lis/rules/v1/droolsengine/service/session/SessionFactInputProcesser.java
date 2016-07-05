@@ -6,10 +6,10 @@ import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
 import uk.nhs.nhsbsa.lis.rules.v1.model.LisApplication;
 import uk.nhs.nhsbsa.lis.rules.v1.model.Person;
 
-public class AssessmentSessionConfigService implements ISessionConfigService {
+public class SessionFactInputProcesser extends DefaultSessionProcessor {
 
 	@Override
-	public void configure(KieSession session, Assessment assessment) {
+	public void preProcess(KieSession session, Assessment assessment) {
 		insert(session, assessment);
 	}
 

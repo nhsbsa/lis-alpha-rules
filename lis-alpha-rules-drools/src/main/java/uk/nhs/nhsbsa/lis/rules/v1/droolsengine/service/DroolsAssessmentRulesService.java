@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import uk.nhs.nhsbsa.lis.rules.v1.IAssessmentRulesService;
-import uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.session.ISessionConfigService;
+import uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.session.ISessionProcessor;
 import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
 
 public class DroolsAssessmentRulesService implements IAssessmentRulesService {
@@ -20,7 +20,7 @@ public class DroolsAssessmentRulesService implements IAssessmentRulesService {
 	private KieContainer kieContainer;
 	
 	@Autowired
-	private List<ISessionConfigService> configServices;
+	private List<ISessionProcessor> configServices;
 
 	@Override
 	public Assessment assess(Assessment assessment) {
@@ -28,8 +28,9 @@ public class DroolsAssessmentRulesService implements IAssessmentRulesService {
 		KieSession session = null;
 		try {
 			session = kieSession();
-			configure(session, assessment);
+			preProcess(session, assessment);
 			session.fireAllRules();
+			postProcess(session, assessment);
 			return assessment;
 			
 		} finally {
@@ -40,14 +41,29 @@ public class DroolsAssessmentRulesService implements IAssessmentRulesService {
 		
 	}
 
+	private Object getFacts(KieSession session) {
+		return null;
+	}
+
 	/**
-	 * Delegate to config the session.
+	 * Delegate to preProcess the session.
 	 * @param session
 	 * @param assessment
 	 */
-	private void configure(KieSession session, Assessment assessment) {
-		for (ISessionConfigService configurer : configServices) {
-			configurer.configure(session, assessment);
+	private void preProcess(KieSession session, Assessment assessment) {
+		for (ISessionProcessor configurer : configServices) {
+			configurer.preProcess(session, assessment);
+		}
+	}
+
+	/**
+	 * Delegate to postProcess the session.
+	 * @param session
+	 * @param assessment
+	 */
+	private void postProcess(KieSession session, Assessment assessment) {
+		for (ISessionProcessor configurer : configServices) {
+			configurer.postProcess(session, assessment);
 		}
 	}
 

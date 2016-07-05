@@ -85,8 +85,7 @@ public class Person {
 
 	@Override
 	public String toString() {
-		return "Person [type=" + type + ", name=" + name + ", dob=" + dob + ", nino=" + nino + ", benefits=" + benefits
-				+ ", incomes=" + incomes + ", outgoings=" + outgoings + "]";
+		return name.toString();
 	}
 
 }

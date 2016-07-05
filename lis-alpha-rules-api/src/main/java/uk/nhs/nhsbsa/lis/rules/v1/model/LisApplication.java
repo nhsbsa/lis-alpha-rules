@@ -1,6 +1,6 @@
 package uk.nhs.nhsbsa.lis.rules.v1.model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -21,14 +21,14 @@ public class LisApplication {
 	 */
 	@JsonDeserialize(using = LocalDateTimeDeserializer.class)
 	@JsonSerialize(using = LocalDateTimeSerializer.class)
-	private LocalDateTime claimDate;
+	private LocalDate claimDate = LocalDate.now();
 	
 	/**
 	 * Processing date. The date the claim is processed by the operative or the rules engine
 	 */
 	@JsonDeserialize(using = LocalDateTimeDeserializer.class)
 	@JsonSerialize(using = LocalDateTimeSerializer.class)
-	private LocalDateTime processingDate;
+	private LocalDate processingDate;
 	
 	/**
 	 * Address.
@@ -73,19 +73,19 @@ public class LisApplication {
 		Savings = savings;
 	}
 
-	public LocalDateTime getClaimDate() {
+	public LocalDate getClaimDate() {
 		return claimDate;
 	}
 
-	public void setClaimDate(LocalDateTime claimDate) {
+	public void setClaimDate(LocalDate claimDate) {
 		this.claimDate = claimDate;
 	}
 
-	public LocalDateTime getProcessingDate() {
+	public LocalDate getProcessingDate() {
 		return processingDate;
 	}
 
-	public void setProcessingDate(LocalDateTime processingDate) {
+	public void setProcessingDate(LocalDate processingDate) {
 		this.processingDate = processingDate;
 	}
 

@@ -1,14 +1,12 @@
 package uk.nhs.nhsbsa.lis.rules.v1.droolsengine.workflow;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 import org.junit.Ignore;
 import org.junit.Test;
 
 import uk.nhs.nhsbsa.lis.rules.v1.droolsengine.WorkflowState;
 import uk.nhs.nhsbsa.lis.rules.v1.droolsengine.data.TestData;
-import uk.nhs.nhsbsa.lis.rules.v1.droolsengine.workflow.NavigationRules;
 import uk.nhs.nhsbsa.lis.rules.v1.model.LisApplication;
 
 /**
@@ -63,7 +61,7 @@ public class NavigationRulesTest {
 		NavigationRules navigationCheck=new NavigationRules();
 		TestData testData=new TestData();
 		LisApplication billApplication=testData.createBillAssessment();
-		billApplication.setClaimDate(LocalDateTime.parse("2016-01-01T00:00:00"));
+		billApplication.setClaimDate(LocalDate.parse("2016-01-01"));
 		billApplication.getApplicant().setDob(LocalDate.parse("2010-01-01"));
 		WorkflowState workflow=navigationCheck.runWorkflowRules(billApplication);
 		System.out.println("\n>>>>Missing Age workflow="+workflow);

@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.IAssessmentFactoryService;
 import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
 
-public class GlobalsSessionConfigService implements ISessionConfigService {
+public class SessionGlobalsProcessor extends DefaultSessionProcessor {
 
 	private static final Logger RULE_LOGGER = LoggerFactory.getLogger("LisRules");
 
@@ -16,7 +16,7 @@ public class GlobalsSessionConfigService implements ISessionConfigService {
 	IAssessmentFactoryService assessmentFactoryService;
 	
 	@Override
-	public void configure(KieSession session, Assessment assessment) {
+	public void preProcess(KieSession session, Assessment assessment) {
 		session.setGlobal("logger", RULE_LOGGER);
 		session.setGlobal("factory", assessmentFactoryService);
 	}

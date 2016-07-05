@@ -1,5 +1,7 @@
 package uk.nhs.nhsbsa.lis.rules.v1.model;
 
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
 
 /**
@@ -23,6 +25,8 @@ public class Assessment {
 	private Requirement requirements;
 
 	private AssessmentCalculation calculation;
+	
+	private List<Object> facts;
 	
 	public Assessment() {
 		requirements = new Requirement();
@@ -64,5 +68,13 @@ public class Assessment {
 
 	public void setCalculation(AssessmentCalculation calculation) {
 		this.calculation = calculation;
+	}
+
+	public List<Object> getFacts() {
+		return facts;
+	}
+
+	public void setFacts(List<Object> facts) {
+		this.facts = facts;
 	}
 }

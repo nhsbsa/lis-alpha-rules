@@ -5,6 +5,7 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -31,22 +32,8 @@ public class HelperFunctions {
 	 * @param dob
 	 * @return
 	 */
-	public static int ageCalculation(LocalDateTime claimDate,LocalDate dob){
-		int dayofMonth=claimDate.getDayOfMonth();
-		int monthOfDay=claimDate.getMonthValue();
-		int year=claimDate.getYear();
-		
-		int dayofMonth2=dob.getDayOfMonth();
-		int monthOfDay2=dob.getMonthValue();
-		int year2=dob.getYear();
-		int age=(year-year2)-1;
-		
-		if(monthOfDay>monthOfDay2){
-			age++;
-		}else if(monthOfDay==monthOfDay2&&dayofMonth2>=dayofMonth){
-				age++;
-		}
-		return age;
+	public static Long ageCalculation(LocalDate claimDate,LocalDate dob){
+		return ChronoUnit.YEARS.between(claimDate, dob);
 	}
 	
 	/**

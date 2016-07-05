@@ -1,6 +1,6 @@
 package uk.nhs.nhsbsa.lis.rules.v1.droolsengine.data;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,11 +16,11 @@ public class TestData {
 	
 	public LisApplication createBillAssessment(){
 		
-		LocalDateTime assessmentDate;
-		LocalDateTime processingDate;
+		LocalDate assessmentDate;
+		LocalDate processingDate;
 		
-		assessmentDate=LocalDateTime.parse("2016-07-01T00:00:00");
-		processingDate=LocalDateTime.parse("2016-07-01T00:00:00");
+		assessmentDate=LocalDate.parse("2016-07-01");
+		processingDate=LocalDate.parse("2016-07-01");
 		
 		LisApplication billApplication=new LisApplication();
 		BillPersonaTestData billPersonaTestData=new BillPersonaTestData();
@@ -37,11 +37,11 @@ public class TestData {
 	
 	public LisApplication createMiriamAssessment(){
 		
-		LocalDateTime assessmentDate;
-		LocalDateTime processingDate;
+		LocalDate assessmentDate;
+		LocalDate processingDate;
 		
-		assessmentDate=LocalDateTime.parse("2016-02-01T00:00:00");
-		processingDate=LocalDateTime.parse("2016-05-01T00:00:00");
+		assessmentDate=LocalDate.parse("2016-02-01");
+		processingDate=LocalDate.parse("2016-05-01");
 		
 		LisApplication miriamApplication=new LisApplication();
 		MiriamPersonaTestData miriamPersonaTestData=new MiriamPersonaTestData();

@@ -1,7 +1,6 @@
 package uk.nhs.nhsbsa.lis.rules.v1.model;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class BillPersonaTestData {
@@ -33,11 +32,11 @@ public class BillPersonaTestData {
 		
 		public LisApplication createApplication(){
 			
-			LocalDateTime assessmentDate;
-			LocalDateTime processingDate;
+			LocalDate assessmentDate;
+			LocalDate processingDate;
 			
-			assessmentDate=LocalDateTime.parse("2016-07-01T00:00:00");
-			processingDate=LocalDateTime.parse("2016-07-01T00:00:00");
+			assessmentDate=LocalDate.parse("2016-07-01");
+			processingDate=LocalDate.parse("2016-07-01");
 			
 			LisApplication billApplication=new LisApplication();
 			BillPersonaTestData billPersonaTestData=new BillPersonaTestData();

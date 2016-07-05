@@ -63,7 +63,7 @@ rule "Applicant Age Calculation"
 		assessmentCalc : AssessmentCalculation(assessmentCalc!=null)
 	then
 		HelperFunctions.logRule(assessmentCalc, "Applicant Age Calculation" );
-		int age = HelperFunctions.ageCalculation(claimDate,myDOB);
+		Long age = HelperFunctions.ageCalculation(claimDate,myDOB);
 		assessmentCalc.setMainClaimantAge(age); 
 end
 
@@ -74,7 +74,7 @@ rule "Partner Age Calculation"
 		assessmentCalc : AssessmentCalculation(assessmentCalc!=null)
 	then
 		HelperFunctions.logRule(assessmentCalc,"Partner Age Calculation");
-		int age = HelperFunctions.ageCalculation(claimDate,myDOB);
+		Long age = HelperFunctions.ageCalculation(claimDate,myDOB);
 		assessmentCalc.setParterAge(age); 
 end
 
