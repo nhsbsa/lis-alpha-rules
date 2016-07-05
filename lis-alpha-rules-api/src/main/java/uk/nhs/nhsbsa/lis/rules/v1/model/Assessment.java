@@ -20,7 +20,7 @@ public class Assessment {
 	 */
 	private LisApplication application;
 	
-	private Requirement requirements;
+	private Requirement requirements = new Requirement();
 
 	private AssessmentCalculation calculation;
 	

@@ -69,7 +69,9 @@ public class AssessmentRules {
 	 * Clear out the rules 
 	 */
 	public void clearRules(){
-		 kSession.getAgenda().clear();
+		if (kSession != null) {
+			 kSession.getAgenda().clear();
+		}
 	}
 	
 	/**

@@ -1,13 +1,11 @@
 package uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.session;
 
 import org.kie.api.runtime.KieSession;
-import org.springframework.stereotype.Service;
 
 import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
 import uk.nhs.nhsbsa.lis.rules.v1.model.LisApplication;
 import uk.nhs.nhsbsa.lis.rules.v1.model.Person;
 
-@Service
 public class AssessmentSessionConfigService implements ISessionConfigService {
 
 	@Override

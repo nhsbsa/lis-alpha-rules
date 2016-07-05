@@ -3,6 +3,7 @@ package uk.nhs.nhsbsa.lis.rules.v1.droolsengine.workflow;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import uk.nhs.nhsbsa.lis.rules.v1.droolsengine.WorkflowState;
@@ -15,6 +16,7 @@ import uk.nhs.nhsbsa.lis.rules.v1.model.LisApplication;
  * @author lorob
  *
  */
+@Ignore
 public class NavigationRulesTest {
 	//static LisApplication billApplication;
 	//static LisApplication miriamApplication;

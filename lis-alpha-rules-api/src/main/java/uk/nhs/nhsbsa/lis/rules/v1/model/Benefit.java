@@ -1,5 +1,7 @@
 package uk.nhs.nhsbsa.lis.rules.v1.model;
 
+import org.springframework.data.annotation.Transient;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 /**
@@ -10,7 +12,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 public class Benefit implements IIncome{
 	
 	@JsonBackReference
-	private Person owner;
+	@Transient
+	transient private Person owner;
 	
 	private BenefitType type;
 	

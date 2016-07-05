@@ -7,13 +7,11 @@ import org.kie.api.runtime.KieSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import uk.nhs.nhsbsa.lis.rules.v1.IAssessmentRulesService;
 import uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.session.ISessionConfigService;
 import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
 
-@Service
 public class DroolsAssessmentRulesService implements IAssessmentRulesService {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(DroolsAssessmentRulesService.class);
