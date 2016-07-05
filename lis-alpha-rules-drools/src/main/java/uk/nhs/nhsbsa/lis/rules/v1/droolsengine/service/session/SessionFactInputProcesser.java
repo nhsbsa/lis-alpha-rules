@@ -14,7 +14,6 @@ public class SessionFactInputProcesser extends DefaultSessionProcessor {
 	}
 
 	private void insert(KieSession session, Assessment assessment) {
-		
 		session.insert(assessment);
 		insert(session, assessment.getApplication());
 	}

@@ -8,7 +8,7 @@ global uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.IAssessmentFactoryService
 
 rule "Default State Pension"
     when 
-        $person : (Person( type == PersonType.MAIN_APPLICANT) or Person( type == PersonType.PARTNER ))
+        $person : Person ( type in ( PersonType.MAIN_APPLICANT, PersonType.PARTNER ) )
         exists $pensioner : IsPensioner ( person == $person )
         not Benefit( type == BenefitType.RETIREMENT_PENSION )
     then
