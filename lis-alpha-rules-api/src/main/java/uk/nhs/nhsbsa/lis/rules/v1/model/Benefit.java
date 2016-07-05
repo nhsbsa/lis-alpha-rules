@@ -19,6 +19,8 @@ public class Benefit implements IIncome{
 	
 	private ValueState state;
 	
+	private Boolean receives;
+	
 	private String value; // TODO this may change to an object. at present can hold benefit info
 	
 	private MoneyPeriod moneyPeriod;

@@ -8,7 +8,8 @@ global uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.IAssessmentFactoryService
 rule "Default Application"
     salience 100
     when
-        $assessment : Assessment( application == null )
+        $assessment : Assessment( )
+        not LisApplication( )
     then
         logger.info("Default Application");
         LisApplication $application = factory.defaultApplication();
@@ -19,7 +20,8 @@ end
 rule "Default Applicant"
     salience 100
     when
-        $application: LisApplication ( applicant == null )
+        $application: LisApplication ( )
+        not Person( type == PersonType.MAIN_APPLICANT )
     then
         logger.info("Default Applicant");
         Person $applicant = factory.defaultPerson(PersonType.MAIN_APPLICANT);
@@ -30,7 +32,8 @@ end
 rule "Default Partner"
     salience 100
     when
-        $application: LisApplication ( partner == null )
+        $application: LisApplication ( )
+        not Person( type == PersonType.PARTNER )
     then
         logger.info("Default Partner");
         Person $partner = factory.defaultPerson(PersonType.PARTNER);
