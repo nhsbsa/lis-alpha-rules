@@ -32,7 +32,7 @@ rule "HC LIS Assessment"
 	salience 20
 when
 	lisApplication : LisApplication( applicant != null, myApplicant : applicant )
-	assessmentCalc : AssessmentCalculation(assessmentCalc!=null,runningPremiums != 0)
+	assessmentCalc : AssessmentCalculation(assessmentCalc!=null, hasPremiums() )
 	
 then
 	HelperFunctions.logRule(assessmentCalc,"HC LIS Assessment");

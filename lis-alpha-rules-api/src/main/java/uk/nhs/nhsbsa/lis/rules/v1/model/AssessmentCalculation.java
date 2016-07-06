@@ -4,8 +4,9 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Class to hold the values used in the assessment calculation
@@ -14,6 +15,9 @@ import java.util.logging.Logger;
  *
  */
 public class AssessmentCalculation {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(AssessmentCalculation.class);
+
 	// HC3 Fields
 	private Double runningTotal;
 	private Double runningPremiums;
@@ -60,8 +64,6 @@ public class AssessmentCalculation {
 	
 	// Rules
 	private List<String> ruleList; // holds a string based list of rules used in the calculation
-	
-	private Logger logger=Logger.getLogger("uk.nhs.nhsbsa.lis.rules.v1.droolsengine.assessment.AssessmentCalculation");
 	
 	/**
 	 * Constructor
@@ -301,7 +303,40 @@ public class AssessmentCalculation {
 		this.exemptionOutcome = exemptionOutcome;
 	}
 
-	
+	/**
+	 * Compare the internal date to the handed dates.
+	 * If the internal handed claim is equal to forDate or lives between the dates
+	 * return true. Otherwise return false. 
+	 * @param lookupFromDate
+	 * @param lookupToDate
+	 * @return
+	 */
+	public boolean compareToClaimDate(String lookupFromDate,String lookupToDate) throws Exception{
+		try{
+			if(claimDate==null){
+				LOGGER.warn("Trying to compare a claim date to null internal date");
+				throw new Exception("Trying to compare a claim date to null internal date");
+			}
+			LocalDate fromDate =LocalDate.parse(lookupFromDate);
+			LocalDate toDate =LocalDate.parse(lookupToDate);
+			if(claimDate.equals(fromDate)){
+				return true;
+			}
+			if(claimDate.isBefore(toDate)&&claimDate.isAfter(fromDate)){
+				LOGGER.info("FOUND DATE="+lookupFromDate);
+				return true;
+			}
+			return false;
+		}
+		catch(Exception e){
+			LOGGER.warn("Unable to process dates : {} : {}", lookupFromDate, lookupToDate);
+			throw e;
+		}
+	}
+
+	public boolean hasPremiums() {
+		return runningPremiums != null && runningPremiums > 0;
+	}
 
 	@Override
 	public String toString() {
@@ -316,40 +351,7 @@ public class AssessmentCalculation {
 				+ incomeCapitals + ", clientGroups=" + clientGroups + ", claimDate=" + claimDate + ", zeroHour="
 				+ zeroHour + ", hasPartner=" + hasPartner + ", mainClaimantAge=" + mainClaimantAge + ", parterAge="
 				+ parterAge + ", prescriptionPrice=" + prescriptionPrice + ", upperLimitHC3Amount="
-				+ upperLimitHC3Amount + ", exemptionOutcome=" + exemptionOutcome + ", ruleList=" + ruleList
-				+ ", logger=" + logger + "]";
+				+ upperLimitHC3Amount + ", exemptionOutcome=" + exemptionOutcome + ", ruleList=" + ruleList + "]";
 	}
-
-	/**
-	 * Compare the internal date to the handed dates.
-	 * If the internal handed claim is equal to forDate or lives between the dates
-	 * return true. Otherwise return false. 
-	 * @param lookupFromDate
-	 * @param lookupToDate
-	 * @return
-	 */
-	public boolean compareToClaimDate(String lookupFromDate,String lookupToDate) throws Exception{
-		try{
-			if(claimDate==null){
-				logger.log(Level.WARNING, "Trying to compare a claim date to null internal date");
-				throw new Exception("Trying to compare a claim date to null internal date");
-			}
-			LocalDate fromDate =LocalDate.parse(lookupFromDate);
-			LocalDate toDate =LocalDate.parse(lookupToDate);
-			if(claimDate.equals(fromDate)){
-				return true;
-			}
-			if(claimDate.isBefore(toDate)&&claimDate.isAfter(fromDate)){
-				logger.log(Level.INFO,"FOUND DATE="+lookupFromDate);
-				return true;
-			}
-			return false;
-		}
-		catch(Exception e){
-			logger.log(Level.WARNING,"Unable to process dates : "+lookupFromDate+" : " + lookupToDate);
-			throw e;
-		}
-	}
-
 	
 }

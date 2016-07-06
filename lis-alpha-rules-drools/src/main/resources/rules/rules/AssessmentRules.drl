@@ -3,6 +3,7 @@ package uk.nhs.nhsbsa.lis.rules.v1.droolsengine.assessment;
 import uk.nhs.nhsbsa.lis.rules.v1.model.LisApplication;
 import uk.nhs.nhsbsa.lis.rules.v1.model.AssessmentCalculation;
 import uk.nhs.nhsbsa.lis.rules.v1.model.*;
+import uk.nhs.nhsbsa.lis.rules.v1.droolsengine.model.*;
 import uk.nhs.nhsbsa.lis.rules.v1.droolsengine.HelperFunctions;
 import java.time.LocalDateTime;
 import java.time.LocalDate;
@@ -13,7 +14,7 @@ rule "Has Applicant"
 	salience 100
     when
         lisApplication : LisApplication( applicant != null, myApplicant : applicant )
-        assessmentCalc : AssessmentCalculation(assessmentCalc!=null)
+        assessmentCalc : AssessmentCalculation()
     then
     	HelperFunctions.logRule(assessmentCalc,"Has Applicant");
 end
@@ -22,7 +23,7 @@ rule "Is Single"
 	salience 100
  	when
         lisApplication : LisApplication( applicant != null, partner == null, myApplicant : applicant )
-        assessmentCalc : AssessmentCalculation(assessmentCalc!=null)
+        assessmentCalc : AssessmentCalculation()
     then
     	HelperFunctions.logRule(assessmentCalc,"Is Single");
     	assessmentCalc.setHasPartner(false);
@@ -32,7 +33,7 @@ rule "Has Partner"
 	salience 100
  	when
         lisApplication : LisApplication( applicant != null, partner != null, myPartner : partner )
-        assessmentCalc : AssessmentCalculation(assessmentCalc!=null)
+        assessmentCalc : AssessmentCalculation()
     then
     	HelperFunctions.logRule(assessmentCalc,"Has Partner");
     	assessmentCalc.setHasPartner(true);
@@ -42,7 +43,7 @@ rule "Has Non Dependents"
 	salience 100
  	when
         lisApplication : LisApplication( applicant != null, nonDependants != null, myNonDependents : nonDependants )
-        assessmentCalc : AssessmentCalculation(assessmentCalc!=null)
+        assessmentCalc : AssessmentCalculation()
     then	
     	HelperFunctions.logRule(assessmentCalc, "Has Non Dependants" );
 end
@@ -51,7 +52,7 @@ rule "Has Dependents"
 	salience 100
  	when
         lisApplication : LisApplication( applicant != null, dependants != null, myDependents : dependants )
-        assessmentCalc : AssessmentCalculation(assessmentCalc!=null)
+        assessmentCalc : AssessmentCalculation()
     then
     	HelperFunctions.logRule(assessmentCalc, "Has Dependants" );
 end
@@ -59,30 +60,30 @@ end
 rule "Applicant Age Calculation"
 	salience 90
 	when
-		lisApplication : LisApplication( applicant != null, myDOB : applicant.dob, claimDate : claimDate )
-		assessmentCalc : AssessmentCalculation(assessmentCalc!=null)
+	    $person : Person ( type == PersonType.MAIN_APPLICANT )
+	    $age : Age ( person == $person )
+	    $assessmentCalc : AssessmentCalculation()
 	then
-		HelperFunctions.logRule(assessmentCalc, "Applicant Age Calculation" );
-		Long age = HelperFunctions.ageCalculation(claimDate,myDOB);
-		assessmentCalc.setMainClaimantAge(age); 
+		HelperFunctions.logRule($assessmentCalc, "Applicant Age Calculation" );
+		$assessmentCalc.setMainClaimantAge($age.getValue()); 
 end
 
 rule "Partner Age Calculation"
 	salience 90
-	when 
-		lisApplication : LisApplication( partner != null, myDOB : partner.dob, claimDate : claimDate )
-		assessmentCalc : AssessmentCalculation(assessmentCalc!=null)
-	then
-		HelperFunctions.logRule(assessmentCalc,"Partner Age Calculation");
-		Long age = HelperFunctions.ageCalculation(claimDate,myDOB);
-		assessmentCalc.setParterAge(age); 
+    when
+        $person : Person ( type == PersonType.PARTNER )
+        $age : Age ( person == $person )
+        $assessmentCalc : AssessmentCalculation()
+    then
+        HelperFunctions.logRule($assessmentCalc, "Partner Age Calculation" );
+        $assessmentCalc.setParterAge($age.getValue()); 
 end
 
 rule "Community Charge Rule"
 	salience 80
 when 
 		lisApplication : LisApplication( applicant != null, myApplicant : applicant )
-		assessmentCalc : AssessmentCalculation(assessmentCalc!=null)
+		assessmentCalc : AssessmentCalculation()
 	then
 		HelperFunctions.logRule(assessmentCalc,"Community Charge Rule");
 		List<String> communityCharge = HelperFunctions.communityChargeCalculation(myApplicant);
@@ -97,7 +98,7 @@ rule "Rent Rule"
 	salience 80
 when 
 		lisApplication : LisApplication( applicant != null, myApplicant : applicant )
-		assessmentCalc : AssessmentCalculation(assessmentCalc!=null)
+		assessmentCalc : AssessmentCalculation()
 	then
 		HelperFunctions.logRule(assessmentCalc,"Rent Rule");
 		
@@ -112,7 +113,7 @@ rule "Mortgage Rule"
 	salience 80
 when 
 		lisApplication : LisApplication( applicant != null, myApplicant : applicant )
-		assessmentCalc : AssessmentCalculation(assessmentCalc!=null)
+		assessmentCalc : AssessmentCalculation()
 	then
 		HelperFunctions.logRule(assessmentCalc,"Mortgage Rule");
 		
@@ -128,7 +129,7 @@ rule "State Pension Rule"
 	salience 80
 when 
 		lisApplication : LisApplication( applicant != null, myApplicant : applicant )
-		assessmentCalc : AssessmentCalculation(assessmentCalc!=null)
+		assessmentCalc : AssessmentCalculation()
 	then
 		HelperFunctions.logRule(assessmentCalc,"State Pension Rule");
 		
@@ -140,7 +141,7 @@ rule "Private Pension Rule"
 	salience 80
 when 
 		lisApplication : LisApplication( applicant != null, myApplicant : applicant )
-		assessmentCalc : AssessmentCalculation(assessmentCalc!=null)
+		assessmentCalc : AssessmentCalculation()
 	then
 		HelperFunctions.logRule(assessmentCalc,"Private Pension Rule");
 		

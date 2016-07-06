@@ -9,6 +9,8 @@ public class IncomeCapital {
 	private BigDecimal earningsDisregard; // TODO verify whether this is an amount or string
 	private BigDecimal otherDisregard; // TODO verify whether this is an amount or string
 	
+	public IncomeCapital() {
+	}
 	public IncomeCapital(String type,String paidTo,BigDecimal weeklyAmount){
 		this.type=type;
 		this.paidTo=paidTo;

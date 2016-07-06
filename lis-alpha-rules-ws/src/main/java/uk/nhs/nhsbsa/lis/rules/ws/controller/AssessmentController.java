@@ -31,7 +31,7 @@ public class AssessmentController implements IAssessmentWebService {
 	public @ResponseBody Assessment post(LisApplication application) {
 
     	LOGGER.info("POST /assessments");
-		return assess(new Assessment(null, null));
+		return assess(new Assessment(null, application));
 	}
 
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)

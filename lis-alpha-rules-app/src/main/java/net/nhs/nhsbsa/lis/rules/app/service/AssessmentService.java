@@ -1,5 +1,7 @@
 package net.nhs.nhsbsa.lis.rules.app.service;
 
+import java.time.LocalDate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -8,6 +10,7 @@ import net.nhs.nhsbsa.lis.rules.app.exception.ResourceNotFoundException;
 import net.nhs.nhsbsa.lis.rules.app.repository.IAssessmentRespository;
 import net.nhs.nhsbsa.lis.rules.client.IAssessmentRestClient;
 import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
+import uk.nhs.nhsbsa.lis.rules.v1.model.LisApplication;
 
 @Service
 public class AssessmentService implements IAssessmentService {
@@ -39,7 +42,9 @@ public class AssessmentService implements IAssessmentService {
 	@Override
 	public Assessment create() {
 	
-		Assessment assessment = assessmentRestClient.post(null);
+		LisApplication application = new LisApplication();
+		application.setClaimDate(LocalDate.now());
+		Assessment assessment = assessmentRestClient.post(application);
 		Assessment result = assessmentRespository.save(assessment);
 		return result;
 	}

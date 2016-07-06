@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.apache.commons.lang3.math.NumberUtils;
+
 import uk.nhs.nhsbsa.lis.rules.v1.model.AssessmentCalculation;
 import uk.nhs.nhsbsa.lis.rules.v1.model.Benefit;
 import uk.nhs.nhsbsa.lis.rules.v1.model.BenefitType;
@@ -22,6 +24,7 @@ import uk.nhs.nhsbsa.lis.rules.v1.model.OutgoingType;
 import uk.nhs.nhsbsa.lis.rules.v1.model.Person;
 
 public class HelperFunctions {
+	private static final double ZERO_DOUBLE = 0D;
 	private static Logger logger=Logger.getLogger("uk.nhs.nhsbsa.lis.rules.v1.droolsengine.HelperFunctions");
 	private static DecimalFormat decimalFormat = new DecimalFormat("#.00"); 
 	
@@ -95,17 +98,19 @@ public class HelperFunctions {
 	  * @return a list of values that match or empty list
 	 */
 	public static List <String> outgoingCalculation(Person person,OutgoingType type){
+		List<String>result = new ArrayList<String>();
 		List<Outgoing>outgoings=person.getOutgoings();
-		List<String>values=new ArrayList<String>();
-		for(Outgoing outgoing : outgoings){
-			if(outgoing.getType() == type){
-				String value=outgoing.getValue();
-				MoneyPeriod moneyPeriod=outgoing.getMoneyPeriod();
-				value=convertMoney(value,moneyPeriod,MoneyPeriod.weekly);
-				values.add(value);
-			}
-		} 
-		return values;
+		if (outgoings != null) {
+			for(Outgoing outgoing : outgoings){
+				if(outgoing.getType() == type){
+					String value=outgoing.getValue();
+					MoneyPeriod moneyPeriod=outgoing.getMoneyPeriod();
+					value=convertMoney(value,moneyPeriod,MoneyPeriod.weekly);
+					result.add(value);
+				}
+			} 
+		}
+		return result;
 	}
 	
 	/** Calculate the benefits from the handed person. Converts the value to weekly
@@ -114,18 +119,20 @@ public class HelperFunctions {
 	 * @return a list of values that match or empty list
 	 */
 	public static List <String> benefitCalculation(Person person,BenefitType type){
-		List<Benefit>benefits=person.getBenefits();
-		List<String>values=new ArrayList<String>();
-		for(Benefit benefit : benefits){
-			if(benefit.getType() == type){
-				String value=benefit.getValue();
-				MoneyPeriod moneyPeriod=benefit.getMoneyPeriod();
-				// convert to weekly
-				value=convertMoney(value,moneyPeriod,MoneyPeriod.weekly);
-				values.add(value);
-			}
-		} 
-		return values;
+		List<String>result = new ArrayList<String>();
+		List<Benefit>benefits = person.getBenefits();
+		if (benefits != null) {
+			for(Benefit benefit : benefits){
+				if(benefit.getType() == type){
+					String value=benefit.getValue();
+					MoneyPeriod moneyPeriod=benefit.getMoneyPeriod();
+					// convert to weekly
+					value=convertMoney(value,moneyPeriod,MoneyPeriod.weekly);
+					result.add(value);
+				}
+			} 
+		}
+		return result;
 	}
 	
 	/** Calculate the outgoing from the handed person. Converts the value to weekly
@@ -134,17 +141,19 @@ public class HelperFunctions {
 	  * @return a list of values that match or empty list
 	 */
 	public static List <String> incomeCalculation(Person person,IncomeType type){
-		List<Income>incomes=person.getIncomes();
-		List<String>values=new ArrayList<String>();
-		for(Income income : incomes){
-			if(income.getType() == type){
-				String value=income.getValue();
-				MoneyPeriod moneyPeriod=income.getMoneyPeriod();
-				value=convertMoney(value,moneyPeriod,MoneyPeriod.weekly);
-				values.add(value);
-			}
-		} 
-		return values;
+		List<String>result = new ArrayList<String>();
+		List<Income>incomes = person.getIncomes();
+		if (incomes != null) {
+			for(Income income : incomes){
+				if(income.getType() == type){
+					String value=income.getValue();
+					MoneyPeriod moneyPeriod=income.getMoneyPeriod();
+					value=convertMoney(value,moneyPeriod,MoneyPeriod.weekly);
+					result.add(value);
+				}
+			} 
+		}
+		return result;
 	}
 	
 	/**
@@ -163,7 +172,7 @@ public class HelperFunctions {
 		else if (inputMoneyPeriod==MoneyPeriod.UNDEFINED||requestedMoneyPeriod==MoneyPeriod.UNDEFINED){
 			logger.log(Level.WARNING,"Calling convertMoney with UNDEFINED conversion");
 		}
-		double inputValue=Double.parseDouble(input);
+		double inputValue=NumberUtils.toDouble(input);
 		// convert to weekly
 		switch(inputMoneyPeriod)
 		{
@@ -311,7 +320,7 @@ public class HelperFunctions {
 	public static void sumIncomeAndCapital(AssessmentCalculation assessmentCalc){
 		List<IncomeCapital> incomes=assessmentCalc.getIncomeCapitals();
 		for(IncomeCapital incomeCapital : incomes){
-			Double thisIncome=Double.parseDouble(incomeCapital.getWeeklyAmount().toString());
+			Double thisIncome=NumberUtils.toDouble(incomeCapital.getWeeklyAmount().toString());
 			assessmentCalc.setRunningIncome(assessmentCalc.getRunningIncome()+thisIncome);
 		}
 	}
@@ -325,10 +334,11 @@ public class HelperFunctions {
 	public static void sumIncomeList(AssessmentCalculation assessmentCalc,List<String> incomes,String incomeName,String owner){
 		if(incomes.size()>0){
 			for(String incomeCapital : incomes){
-				Double parseDouble=Double.parseDouble(incomeCapital);
+				Double parseDouble=NumberUtils.toDouble(incomeCapital);
 				assessmentCalc.getIncomeCapitals().add(
 					new IncomeCapital(incomeName,owner,new BigDecimal(parseDouble)));
 			}
 		}
 	}
+	
 }
