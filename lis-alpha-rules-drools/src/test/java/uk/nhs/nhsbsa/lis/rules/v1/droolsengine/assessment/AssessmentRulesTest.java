@@ -8,7 +8,6 @@ import uk.nhs.nhsbsa.lis.rules.v1.model.AssessmentCalculation;
 import uk.nhs.nhsbsa.lis.rules.v1.model.LisApplication;
 
 
-
 public class AssessmentRulesTest {
 	
 	//public static LisApplication billApplication;

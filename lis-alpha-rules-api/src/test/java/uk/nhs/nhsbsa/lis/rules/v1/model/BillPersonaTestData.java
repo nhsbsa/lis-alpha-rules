@@ -23,6 +23,8 @@ public class BillPersonaTestData {
 		 * Not very efficient - but allows values to be changed
 		 */
 		public BillPersonaTestData(){
+				
+			testPerson=new Person();
 				createAddress();
 				createNINO();
 				createBillName();
@@ -93,6 +95,7 @@ public class BillPersonaTestData {
 			testBenefit.setType(BenefitType.RETIREMENT_PENSION);
 			testBenefit.setValue("119.30");
 			testBenefit.setMoneyPeriod(MoneyPeriod.weekly);
+			testBenefit.setOwner(testPerson);
 			testBenefits.add(testBenefit);
 			
 			testOutgoings=new ArrayList<Outgoing>();
@@ -114,7 +117,6 @@ public class BillPersonaTestData {
 		}
 		
 		private void createBillPersona(){
-			testPerson=new Person();
 			testPerson.setDob(LocalDate.parse("1946-02-01"));
 			testPerson.setName(testName);
 			
