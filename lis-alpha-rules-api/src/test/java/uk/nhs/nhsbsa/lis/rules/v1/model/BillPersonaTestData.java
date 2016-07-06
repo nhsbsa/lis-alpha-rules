@@ -24,7 +24,7 @@ public class BillPersonaTestData {
 		 */
 		public BillPersonaTestData(){
 				
-				testPerson=new Person();
+			testPerson=new Person();
 				createAddress();
 				createNINO();
 				createBillName();
