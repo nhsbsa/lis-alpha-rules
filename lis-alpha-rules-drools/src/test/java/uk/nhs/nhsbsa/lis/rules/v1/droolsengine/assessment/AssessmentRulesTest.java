@@ -1,5 +1,6 @@
 package uk.nhs.nhsbsa.lis.rules.v1.droolsengine.assessment;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import uk.nhs.nhsbsa.lis.rules.v1.droolsengine.assessment.AssessmentRules;
@@ -7,7 +8,7 @@ import uk.nhs.nhsbsa.lis.rules.v1.droolsengine.data.TestData;
 import uk.nhs.nhsbsa.lis.rules.v1.model.AssessmentCalculation;
 import uk.nhs.nhsbsa.lis.rules.v1.model.LisApplication;
 
-
+@Ignore
 public class AssessmentRulesTest {
 	
 	//public static LisApplication billApplication;
