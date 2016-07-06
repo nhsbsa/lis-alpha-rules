@@ -72,7 +72,7 @@ public class MapAssessmentRespository implements IAssessmentRespository {
 			String id = UUID.randomUUID().toString();
 			assessment.setId(id);
 		}
-		store.put(id, (Assessment)assessment);
+		store.put(assessment.getId(), (Assessment)assessment);
 		return assessment;
 	}
 
