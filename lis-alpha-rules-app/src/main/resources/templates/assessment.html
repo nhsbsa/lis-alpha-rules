@@ -123,8 +123,49 @@
                   </tr>
                 </tbody>
               </table>
+              <h2>Income</h2>
+              <table>
+                <thead>
+                  <tr>
+                    <th th:text="#{attribute.name}">Name</th>
+                    <th th:text="#{attribute.value}">Value</th>
+                    <th th:text="#{attribute.enabled}">Enabled</th>
+                  </tr>
+                </thead>
+                
+                <tbody th:each="income, incomeRow : ${assessment.application.applicant.incomes}">
+                  <tr th:include="table-fields :: income('application.applicant.incomes[__${incomeRow.index}__]', 'application.applicant.incomes[__${income.type}__]')">
+                  </tr>
+                </tbody>
+              </table>
+              <h2>Outgoing</h2>
+              <table>
+                <thead>
+                  <tr>
+                    <th th:text="#{attribute.name}">Name</th>
+                    <th th:text="#{attribute.value}">Value</th>
+                    <th th:text="#{attribute.enabled}">Enabled</th>
+                  </tr>
+                </thead>
+                
+                <tbody th:each="outgoing, outgoingRow : ${assessment.application.applicant.outgoings}">
+                  <tr th:include="table-fields :: outgoing('application.applicant.outgoings[__${outgoingRow.index}__]', 'application.applicant.outgoings[__${outgoing.type}__]')">
+                  </tr>
+                </tbody>
+              </table>
             </div>
-      
+      		<div>
+      			<H2>Calculation</H2>
+      			<table>
+      			<thead>
+      				<tr>
+      				</tr>
+      			</thead>
+      			<tbody>
+      				<tr></tr>
+      			</tbody>
+      			</table>
+      		</div>
   
             <div>
               <button class="button" type="submit" name="update" th:text="#{form.update}">Remove row</button>

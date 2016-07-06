@@ -72,11 +72,13 @@ public class AssessmentRulesService implements IAssessmentRulesService {
 		requirements.exclude("application.applicant.benefits");
 		
 		//handle pensionable applicants
-		applyPensionableRequirements(requirements, result.getApplication().getApplicant());
+		// REVIEW LOROB test removal
+		//applyPensionableRequirements(requirements, result.getApplication().getApplicant());
 		
 		result.setRequirements(requirements);
 	}
-
+/*
+// REVIEW LOROB test removal
 	private void applyPensionableRequirements(Requirement requirements, Person applicant) {
 		
 		LocalDate dob = applicant.getDob();
@@ -87,7 +89,7 @@ public class AssessmentRulesService implements IAssessmentRulesService {
 			}
 		}
 	}
-
+*/
 	private LisApplication defaultApplication() {
 		
 		LisApplicationBuilder builder = new LisApplicationBuilder();
@@ -96,9 +98,8 @@ public class AssessmentRulesService implements IAssessmentRulesService {
 		PersonBuilder applicant = builder.withApplicant();
 		applicant
 			.withName();
-		applicant.withBenefits()
-			.add().withBenefitType(BenefitType.RETIREMENT_PENSION)
-			;
+		// REVIEW LOROB test removal
+		//applicant.withBenefits().add().withBenefitType(BenefitType.RETIREMENT_PENSION);
 		return builder.getInstance();
 	}
 }

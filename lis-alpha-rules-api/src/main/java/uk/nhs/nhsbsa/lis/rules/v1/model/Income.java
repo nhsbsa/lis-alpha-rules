@@ -1,5 +1,9 @@
 package uk.nhs.nhsbsa.lis.rules.v1.model;
 
+import org.springframework.data.annotation.Transient;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 /**
  * class to represent an income
  * An income has a type and whether a value has been set or not.
@@ -8,6 +12,10 @@ package uk.nhs.nhsbsa.lis.rules.v1.model;
  *
  */
 public class Income implements IIncome{
+	@JsonBackReference
+	@Transient
+	transient private Person owner;
+	
 	private IncomeType type;
 	private ValueState state;
 	private String value; // TODO this may change to an object. at present can hold income info
@@ -24,6 +32,10 @@ public class Income implements IIncome{
 	
 	public String getValue() {
 		return value;
+	}
+	
+	public void setValue(String value){
+		this.value=value;
 	}
 
 	public void setIncomeValue(String value) {
@@ -60,6 +72,39 @@ public class Income implements IIncome{
 				+ ", moneyPeriod=" + moneyPeriod + "]";
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 41;
+		int result = 1;
+		result = prime * result + ((type == null) ? 0 : type.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass()) {
+			//TODO handle SpringBoot devtools classloader defect:
+			//https://github.com/spring-projects/spring-boot/issues/3316
+			System.err.println(getClass().getClassLoader() + " != " + obj.getClass().getClassLoader());
+			return false;
+		}
+		Income other = (Income) obj;
+		if (type != other.type)
+			return false;
+		return true;
+	}
+	
+	public Person getOwner() {
+		return owner;
+	}
+
+	public void setOwner(Person owner) {
+		this.owner = owner;
+	}
 
 	
 }

@@ -25,7 +25,10 @@ public class Person {
 	@JsonManagedReference
 	private List<Benefit>benefits;
 	
+	@JsonManagedReference
 	private List<Income>incomes;
+	
+	@JsonManagedReference
 	private List<Outgoing>outgoings;
 	
 	public List<Outgoing> getOutgoings() {
@@ -88,7 +91,24 @@ public class Person {
 		if (benefits == null) {
 			benefits = new ArrayList<>();
 		}
+		benefit.setOwner(this);
 		benefits.add(benefit);
+	}
+	
+	public void addIncome(Income income) {
+		if (incomes == null) {
+			incomes = new ArrayList<>();
+		}
+		income.setOwner(this);
+		incomes.add(income);
+	}
+	
+	public void addOutgoing(Outgoing outgoing) {
+		if (outgoings == null) {
+			outgoings = new ArrayList<>();
+		}
+		outgoing.setOwner(this);
+		outgoings.add(outgoing);
 	}
 
 	@Override

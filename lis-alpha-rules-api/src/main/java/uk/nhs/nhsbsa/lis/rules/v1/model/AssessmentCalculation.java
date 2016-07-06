@@ -56,6 +56,8 @@ public class AssessmentCalculation {
 	private Double prescriptionPrice;
 	private Double upperLimitHC3Amount;
 	
+	private ExemptionOutcome exemptionOutcome;
+	
 	// Rules
 	private List<String> ruleList; // holds a string based list of rules used in the calculation
 	
@@ -68,6 +70,7 @@ public class AssessmentCalculation {
 		incomeCapitals=new ArrayList<IncomeCapital>();
 		clientGroups=new ArrayList<ClientGroup>();
 		ruleList=new ArrayList<String>();
+		exemptionOutcome=ExemptionOutcome.UNDEFINED;
 	}
 
 	public Double getRunningTotal() {
@@ -290,6 +293,16 @@ public class AssessmentCalculation {
 
 	
 
+	public ExemptionOutcome getExemptionOutcome() {
+		return exemptionOutcome;
+	}
+
+	public void setExemptionOutcome(ExemptionOutcome exemptionOutcome) {
+		this.exemptionOutcome = exemptionOutcome;
+	}
+
+	
+
 	@Override
 	public String toString() {
 		return "AssessmentCalculation [runningTotal=" + runningTotal + ", runningPremiums=" + runningPremiums
@@ -303,7 +316,8 @@ public class AssessmentCalculation {
 				+ incomeCapitals + ", clientGroups=" + clientGroups + ", claimDate=" + claimDate + ", zeroHour="
 				+ zeroHour + ", hasPartner=" + hasPartner + ", mainClaimantAge=" + mainClaimantAge + ", parterAge="
 				+ parterAge + ", prescriptionPrice=" + prescriptionPrice + ", upperLimitHC3Amount="
-				+ upperLimitHC3Amount + ", ruleList=" + ruleList + ", logger=" + logger + "]";
+				+ upperLimitHC3Amount + ", exemptionOutcome=" + exemptionOutcome + ", ruleList=" + ruleList
+				+ ", logger=" + logger + "]";
 	}
 
 	/**
