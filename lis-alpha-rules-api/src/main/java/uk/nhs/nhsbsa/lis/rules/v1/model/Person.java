@@ -93,7 +93,10 @@ public class Person {
 
 	@Override
 	public String toString() {
-		return name.toString();
+		if (name != null) {
+			return name.toString();
+		}
+		return super.toString();
 	}
 
 }

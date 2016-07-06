@@ -34,7 +34,17 @@ public class Name {
 
 	@Override
 	public String toString() {
-		return title + " " + forenames + " " + surname;
+		StringBuilder sb = new StringBuilder();
+		if (title != null) {
+			sb.append(title).append(" ");
+		}
+		if (forenames != null) {
+			sb.append(forenames).append(" ");
+		}
+		if (surname != null) {
+			sb.append(surname).append(" ");
+		}
+		return sb.toString().trim();
 	}
 
 	
