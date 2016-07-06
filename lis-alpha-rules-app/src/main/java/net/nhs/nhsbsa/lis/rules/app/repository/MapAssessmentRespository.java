@@ -68,8 +68,10 @@ public class MapAssessmentRespository implements IAssessmentRespository {
 
 	@Override
 	public <S extends Assessment> S save(S assessment) {
-		String id = UUID.randomUUID().toString();
-		assessment.setId(id);
+		if (assessment.getId() == null) {
+			String id = UUID.randomUUID().toString();
+			assessment.setId(id);
+		}
 		store.put(id, (Assessment)assessment);
 		return assessment;
 	}
