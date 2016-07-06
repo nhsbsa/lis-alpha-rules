@@ -1,12 +1,12 @@
 package uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.session;
 
-import java.util.Iterator;
 import java.util.List;
 
 import org.kie.api.runtime.KieSession;
 
 import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
 import uk.nhs.nhsbsa.lis.rules.v1.model.Benefit;
+import uk.nhs.nhsbsa.lis.rules.v1.model.Income;
 import uk.nhs.nhsbsa.lis.rules.v1.model.LisApplication;
 import uk.nhs.nhsbsa.lis.rules.v1.model.Person;
 
@@ -35,6 +35,7 @@ public class SessionFactInputProcesser extends DefaultSessionProcessor {
 		if (person != null) {
 			session.insert(person);
 			insertBenefits(session, person.getBenefits());
+			insertIncomes(session, person.getIncomes());
 		}
 	}
 
@@ -50,6 +51,21 @@ public class SessionFactInputProcesser extends DefaultSessionProcessor {
 	private void insert(KieSession session, Benefit benefit) {
 
 		session.insert(benefit);
+	}
+
+
+	private void insertIncomes(KieSession session, List<Income> incomes) {
+
+		if (incomes != null) {
+			for (Income income : incomes) {
+				insert(session, income);
+			}
+		}
+	}
+
+	private void insert(KieSession session, Income income) {
+
+		session.insert(income);
 	}
 
 
