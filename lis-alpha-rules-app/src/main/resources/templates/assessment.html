@@ -29,11 +29,11 @@
           <a th:href="@{/assessments/}">Back to list</a></div>
         <div th:unless="${assessment eq null}"></div>
         <div>
-          <form class="pure-form pure-form-aligned" action="#" 
+          <form class="pure-form pure-form-aligned"  action="#" 
           		th:action="@{/assessments/__${id}__}" th:object="${assessment}" th:method="PUT">
             <h1>Household</h1>
             <h2>Address</h2>
-            <div>
+            <fieldset >
 	            <div class="pure-control-group" th:include="table-fields :: textfield('application.address.houseNameNumber')">
 	            </div>
 	            <div class="pure-control-group" th:include="table-fields :: textfield('application.address.addressLine1')">
@@ -44,10 +44,10 @@
 	            </div>
 	            <div class="pure-control-group" th:include="table-fields :: textfield('application.address.postcode')">
 	            </div>
-            </div>
+            </fieldset>
             <h1>Main Applicant</h1>
             <h2>Personal Details</h2>
-            <div>
+            <fieldset>
                   <div class="pure-control-group" th:include="table-fields :: textfield('application.applicant.name.title')">
                   </div>
                   <div class="pure-control-group" th:include="table-fields :: textfield('application.applicant.name.forenames')">
@@ -58,16 +58,14 @@
                   </div>
                   <div class="pure-control-group" th:include="table-fields :: textfield('application.applicant.nino')">
                   </div>
-			</div>
+			</fieldset>
 			
             <h2>Benefits</h2>
-            <div th:each="benefit, benefitRow : ${assessment.application.applicant.benefits}">
-				<fieldset>
-					<div class="pure-control-group"
-						th:include="table-fields :: benefit('application.applicant.benefits[__${benefitRow.index}__]', 'application.applicant.benefits[__${benefit.type}__]')">
-					</div>
-				</fieldset>
-			</div>
+            <fieldset th:each="benefit, benefitRow : ${assessment.application.applicant.benefits}">
+				<div 
+					th:include="table-fields :: benefit('application.applicant.benefits[__${benefitRow.index}__]', 'application.applicant.benefits[__${benefit.type}__]')">
+				</div>
+			</fieldset>
 
             <h2>Income</h2>
             <div th:each="income, incomeRow : ${assessment.application.applicant.incomes}">

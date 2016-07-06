@@ -17,8 +17,8 @@
 		<span th:text="${assessment.requirements.isRequired('__${path}__')}"></span>
 	</div>
 
-	<div th:fragment="benefit(path, key)">
-		<div>
+	<div th:fragment="benefit(path, key)" class="pure-control-group">
+		<div class="pure-control-group">
 			<label th:text="#{__${key}__}">Benefit Field</label>
 			<input type="hidden" th:field="*{__${path}__.type}" /> <input
 			type="text" th:field="*{__${path}__.value}"
@@ -27,8 +27,8 @@
 		</div>
 	</div>
 	
-	<div th:fragment="income(path, key)">
-		<div>
+	<div  th:fragment="income(path, key)">
+		<div class="pure-control-group">
 			<label th:text="#{__${key}__}">Income Field</label>
 			<input type="hidden" th:field="*{__${path}__.type}" /> <input
 			type="text" th:field="*{__${path}__.value}"
