@@ -75,7 +75,7 @@ public class MiriamPersonaTestData {
 		testIncome.setState(ValueState.SET);
 		testIncome.setType(IncomeType.OCC_PENSION);
 		testIncome.setIncomeValue("50");
-		testIncome.setMoneyPeriod(MoneyPeriod.weekly);
+		testIncome.setMoneyPeriod(Interval.WEEKLY);
 		testIncomes.add(testIncome);
 		
 		testBenefits=new ArrayList<Benefit>();
@@ -83,7 +83,7 @@ public class MiriamPersonaTestData {
 		testBenefit.setState(ValueState.SET);
 		testBenefit.setType(BenefitType.RETIREMENT_PENSION);
 		testBenefit.setValue("119.30");
-		testBenefit.setMoneyPeriod(MoneyPeriod.weekly);
+		testBenefit.setMoneyPeriod(Interval.WEEKLY);
 		testBenefits.add(testBenefit);
 		
 		testOutgoings=new ArrayList<Outgoing>();
@@ -91,14 +91,14 @@ public class MiriamPersonaTestData {
 		testOutgoing.setState(ValueState.SET);
 		testOutgoing.setType(OutgoingType.COMMUNITY_CHARGE);
 		testOutgoing.setValue("40");
-		testOutgoing.setMoneyPeriod(MoneyPeriod.weekly);
+		testOutgoing.setMoneyPeriod(Interval.WEEKLY);
 		testOutgoings.add(testOutgoing);
 		
 		testOutgoing=new Outgoing();
 		testOutgoing.setState(ValueState.SET);
 		testOutgoing.setType(OutgoingType.MORTGAGE);
 		testOutgoing.setValue("175");
-		testOutgoing.setMoneyPeriod(MoneyPeriod.monthly);
+		testOutgoing.setMoneyPeriod(Interval.MONTHLY);
 		testOutgoings.add(testOutgoing);
 		
 		// son
@@ -107,7 +107,7 @@ public class MiriamPersonaTestData {
 		testIncome.setState(ValueState.SET);
 		testIncome.setType(IncomeType.EARNS);
 		testIncome.setIncomeValue("1600");
-		testIncome.setMoneyPeriod(MoneyPeriod.monthly);
+		testIncome.setMoneyPeriod(Interval.MONTHLY);
 		testIncomes2.add(testIncome);
 		
 		testOutgoings2=new ArrayList<Outgoing>();
@@ -115,7 +115,7 @@ public class MiriamPersonaTestData {
 		testOutgoing.setState(ValueState.SET);
 		testOutgoing.setType(OutgoingType.PENSION);
 		testOutgoing.setValue("100");
-		testOutgoing.setMoneyPeriod(MoneyPeriod.monthly);
+		testOutgoing.setMoneyPeriod(Interval.MONTHLY);
 		testOutgoings2.add(testOutgoing);
 	}
 	

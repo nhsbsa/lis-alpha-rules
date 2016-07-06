@@ -5,13 +5,12 @@ package uk.nhs.nhsbsa.lis.rules.v1.model;
  * @author lorob
  *
  */
-public enum MoneyPeriod {
-	UNDEFINED,
-	weekly,
-	fortnightly,
-	fourWeekly,
-	monthly,
-	yearly,
-	tenMonthly,
-	sixMonthly;
+public enum Interval {
+	WEEKLY,
+	FORTNIGHTLY,
+	FOURWEEKLY,
+	MONTHLY,
+	YEARLY,
+	TEN_MONTHLY,
+	SIX_MONTHLY;
 }

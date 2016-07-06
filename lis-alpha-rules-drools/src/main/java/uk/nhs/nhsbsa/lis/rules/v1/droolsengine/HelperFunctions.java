@@ -18,7 +18,7 @@ import uk.nhs.nhsbsa.lis.rules.v1.model.BenefitType;
 import uk.nhs.nhsbsa.lis.rules.v1.model.Income;
 import uk.nhs.nhsbsa.lis.rules.v1.model.IncomeCapital;
 import uk.nhs.nhsbsa.lis.rules.v1.model.IncomeType;
-import uk.nhs.nhsbsa.lis.rules.v1.model.MoneyPeriod;
+import uk.nhs.nhsbsa.lis.rules.v1.model.Interval;
 import uk.nhs.nhsbsa.lis.rules.v1.model.Outgoing;
 import uk.nhs.nhsbsa.lis.rules.v1.model.OutgoingType;
 import uk.nhs.nhsbsa.lis.rules.v1.model.Person;
@@ -104,8 +104,8 @@ public class HelperFunctions {
 			for(Outgoing outgoing : outgoings){
 				if(outgoing.getType() == type){
 					String value=outgoing.getValue();
-					MoneyPeriod moneyPeriod=outgoing.getMoneyPeriod();
-					value=convertMoney(value,moneyPeriod,MoneyPeriod.weekly);
+					Interval moneyPeriod=outgoing.getMoneyPeriod();
+					value=convertMoney(value,moneyPeriod,Interval.WEEKLY);
 					result.add(value);
 				}
 			} 
@@ -125,9 +125,9 @@ public class HelperFunctions {
 			for(Benefit benefit : benefits){
 				if(benefit.getType() == type){
 					String value=benefit.getValue();
-					MoneyPeriod moneyPeriod=benefit.getMoneyPeriod();
+					Interval moneyPeriod=benefit.getMoneyPeriod();
 					// convert to weekly
-					value=convertMoney(value,moneyPeriod,MoneyPeriod.weekly);
+					value=convertMoney(value,moneyPeriod,Interval.WEEKLY);
 					result.add(value);
 				}
 			} 
@@ -147,8 +147,8 @@ public class HelperFunctions {
 			for(Income income : incomes){
 				if(income.getType() == type){
 					String value=income.getValue();
-					MoneyPeriod moneyPeriod=income.getMoneyPeriod();
-					value=convertMoney(value,moneyPeriod,MoneyPeriod.weekly);
+					Interval moneyPeriod=income.getMoneyPeriod();
+					value=convertMoney(value,moneyPeriod,Interval.WEEKLY);
 					result.add(value);
 				}
 			} 
@@ -164,36 +164,36 @@ public class HelperFunctions {
 	 * @param requestedMoneyPeriod
 	 * @return
 	 */
-	public static String convertMoney(String input,MoneyPeriod inputMoneyPeriod,MoneyPeriod requestedMoneyPeriod){
+	public static String convertMoney(String input,Interval inputMoneyPeriod,Interval requestedMoneyPeriod){
 		if(inputMoneyPeriod==requestedMoneyPeriod){
 			// nothing to do
 			return input;
 		}
-		else if (inputMoneyPeriod==MoneyPeriod.UNDEFINED||requestedMoneyPeriod==MoneyPeriod.UNDEFINED){
-			logger.log(Level.WARNING,"Calling convertMoney with UNDEFINED conversion");
-		}
+//		else if (inputMoneyPeriod==Interval.UNDEFINED||requestedMoneyPeriod==Interval.UNDEFINED){
+//			logger.log(Level.WARNING,"Calling convertMoney with UNDEFINED conversion");
+//		}
 		double inputValue=NumberUtils.toDouble(input);
 		// convert to weekly
 		switch(inputMoneyPeriod)
 		{
-			case weekly:
+			case WEEKLY:
 				break;
-			case fortnightly:
+			case FORTNIGHTLY:
 				inputValue=inputValue/2;
 				break;
-			case fourWeekly:
+			case FOURWEEKLY:
 				inputValue=inputValue/4;
 				break;
-			case monthly:
+			case MONTHLY:
 				inputValue=(12*inputValue)/52;
 				break;
-			case yearly:
+			case YEARLY:
 				inputValue=inputValue/52;
 				break;
-			case tenMonthly:
+			case TEN_MONTHLY:
 				inputValue=(1.2*inputValue)/52;
 				break;
-			case sixMonthly:
+			case SIX_MONTHLY:
 				inputValue=(2*inputValue)/52;
 				break;
 			default:
@@ -202,24 +202,24 @@ public class HelperFunctions {
 		// now multiply by wanted
 		switch(requestedMoneyPeriod)
 		{
-			case weekly:
+			case WEEKLY:
 				break;
-			case fortnightly:
+			case FORTNIGHTLY:
 				inputValue=inputValue*2;
 				break;
-			case fourWeekly:
+			case FOURWEEKLY:
 				inputValue=inputValue*4;
 				break;
-			case monthly:
+			case MONTHLY:
 				inputValue=(52*inputValue)/12;
 				break;
-			case yearly:
+			case YEARLY:
 				inputValue=inputValue*52;
 				break;
-			case tenMonthly:
+			case TEN_MONTHLY:
 				inputValue=((52*10)*inputValue)/(12);
 				break;
-			case sixMonthly:
+			case SIX_MONTHLY:
 				inputValue=((52*6)*inputValue)/(12);
 				break;
 			default:

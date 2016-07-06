@@ -86,7 +86,7 @@ public class BillPersonaTestData {
 			testIncome.setState(ValueState.SET);
 			testIncome.setType(IncomeType.OCC_PENSION);
 			testIncome.setIncomeValue("50");
-			testIncome.setMoneyPeriod(MoneyPeriod.weekly);
+			testIncome.setMoneyPeriod(Interval.WEEKLY);
 			testIncomes.add(testIncome);
 			
 			testBenefits=new ArrayList<Benefit>();
@@ -94,7 +94,7 @@ public class BillPersonaTestData {
 			testBenefit.setState(ValueState.SET);
 			testBenefit.setType(BenefitType.RETIREMENT_PENSION);
 			testBenefit.setValue("119.30");
-			testBenefit.setMoneyPeriod(MoneyPeriod.weekly);
+			testBenefit.setMoneyPeriod(Interval.WEEKLY);
 			testBenefit.setOwner(testPerson);
 			testBenefits.add(testBenefit);
 			
@@ -103,13 +103,13 @@ public class BillPersonaTestData {
 			testOutgoing1.setState(ValueState.SET);
 			testOutgoing1.setType(OutgoingType.COMMUNITY_CHARGE);
 			testOutgoing1.setValue("20");
-			testOutgoing1.setMoneyPeriod(MoneyPeriod.weekly);
+			testOutgoing1.setMoneyPeriod(Interval.WEEKLY);
 			
 			Outgoing testOutgoing2=new Outgoing();
 			testOutgoing2.setState(ValueState.SET);
 			testOutgoing2.setType(OutgoingType.RENT);
 			testOutgoing2.setValue("60");
-			testOutgoing2.setMoneyPeriod(MoneyPeriod.weekly);
+			testOutgoing2.setMoneyPeriod(Interval.WEEKLY);
 			
 			testOutgoings.add(testOutgoing1);
 			testOutgoings.add(testOutgoing2);

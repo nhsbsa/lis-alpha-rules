@@ -23,12 +23,12 @@ public class Benefit implements IIncome{
 	
 	private String value; // TODO this may change to an object. at present can hold benefit info
 	
-	private MoneyPeriod moneyPeriod;
+	private Interval moneyPeriod;
 
 	public Benefit(){
 		type=BenefitType.UNDEFINED;
 		state=ValueState.UNDEFINED;
-		moneyPeriod=MoneyPeriod.UNDEFINED;
+		moneyPeriod=Interval.UNDEFINED;
 	}
 	
 	public BenefitType getType() {
@@ -55,11 +55,11 @@ public class Benefit implements IIncome{
 		this.value = value;
 	}
 	
-	public MoneyPeriod getMoneyPeriod() {
+	public Interval getMoneyPeriod() {
 		return moneyPeriod;
 	}
 
-	public void setMoneyPeriod(MoneyPeriod moneyPeriod) {
+	public void setMoneyPeriod(Interval moneyPeriod) {
 		this.moneyPeriod = moneyPeriod;
 	}
 

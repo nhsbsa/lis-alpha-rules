@@ -17,12 +17,12 @@ public class Outgoing {
 	private OutgoingType type;
 	private ValueState state;
 	private String value; // TODO this may change to an object. at present can hold income info
-	private MoneyPeriod moneyPeriod;
+	private Interval moneyPeriod;
 	
 	public Outgoing(){
 		type=OutgoingType.UNDEFINED;
 		state=ValueState.UNDEFINED;
-		moneyPeriod=MoneyPeriod.UNDEFINED;
+		moneyPeriod=Interval.UNDEFINED;
 	}
 
 	public OutgoingType getType() {
@@ -31,11 +31,11 @@ public class Outgoing {
 
 
 	
-	public MoneyPeriod getMoneyPeriod() {
+	public Interval getMoneyPeriod() {
 		return moneyPeriod;
 	}
 
-	public void setMoneyPeriod(MoneyPeriod moneyPeriod) {
+	public void setMoneyPeriod(Interval moneyPeriod) {
 		this.moneyPeriod = moneyPeriod;
 	}
 

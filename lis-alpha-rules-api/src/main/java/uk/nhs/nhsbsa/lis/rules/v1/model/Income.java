@@ -19,7 +19,7 @@ public class Income implements IIncome{
 	private IncomeType type;
 	private ValueState state;
 	private String value; // TODO this may change to an object. at present can hold income info
-	private MoneyPeriod moneyPeriod;
+	private Interval moneyPeriod;
 
 	/**
 	 * Constructor
@@ -27,7 +27,7 @@ public class Income implements IIncome{
 	public Income(){
 		type=IncomeType.UNDEFINED;
 		state=ValueState.UNDEFINED;
-		moneyPeriod=MoneyPeriod.UNDEFINED;
+//		moneyPeriod=Interval.UNDEFINED;
 	}
 	
 	public String getValue() {
@@ -58,11 +58,11 @@ public class Income implements IIncome{
 		this.state = state;
 	}
 	
-	public MoneyPeriod getMoneyPeriod() {
+	public Interval getMoneyPeriod() {
 		return moneyPeriod;
 	}
 
-	public void setMoneyPeriod(MoneyPeriod moneyPeriod) {
+	public void setMoneyPeriod(Interval moneyPeriod) {
 		this.moneyPeriod = moneyPeriod;
 	}
 
