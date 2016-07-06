@@ -19,7 +19,7 @@ public class Benefit implements IIncome{
 	
 	private ValueState state;
 	
-	private Boolean receives;
+	private Boolean receiving;
 	
 	private String value; // TODO this may change to an object. at present can hold benefit info
 	
@@ -102,4 +102,13 @@ public class Benefit implements IIncome{
 	public void setOwner(Person owner) {
 		this.owner = owner;
 	}
+
+	public Boolean getReceiving() {
+		return receiving;
+	}
+
+	public void setReceiving(Boolean receiving) {
+		this.receiving = receiving;
+	}
+
 }
