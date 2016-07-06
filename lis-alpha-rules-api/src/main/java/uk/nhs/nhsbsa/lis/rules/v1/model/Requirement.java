@@ -15,10 +15,16 @@ public class Requirement {
 
 	public void include(String path) {
 		includes.add(path);
+		if (excludes.contains(path)) {
+			excludes.remove(path);
+		}
 	}
 
 	public void exclude(String path) {
 		excludes.add(path);
+		if (includes.contains(path)) {
+			includes.remove(path);
+		}
 	}
 	
 	public boolean isRequired(String path) {
