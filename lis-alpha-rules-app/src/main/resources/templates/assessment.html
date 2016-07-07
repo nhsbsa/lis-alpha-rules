@@ -157,12 +157,15 @@
       		<div>
       			<H2>Calculation</H2>
       			<table>
-      			<thead>
-      				<tr>
-      				</tr>
-      			</thead>
       			<tbody>
-      				<tr></tr>
+      				<tr colspan="3"><th th:text="#{calculation.allowances}">Allowances</th></tr>
+      				<tr>
+      					<tr th:include="table-fields :: textfield('assessment.calculation.personalAllowance')">
+	                      <td>name</td>
+	                      <td>value</td>
+	                      <td>Enabled</td>
+                  		</tr>
+      				</tr>	
       			</tbody>
       			</table>
       		</div>

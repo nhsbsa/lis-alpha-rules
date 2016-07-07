@@ -8,6 +8,7 @@ global org.slf4j.Logger logger
 global uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.IAssessmentFactoryService factory
 global uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.IRequireService requireService
 
+// Benefit Rules
 rule "Default State Pension"
     when 
     	$index : ObjectIndex ()
@@ -46,18 +47,5 @@ rule "Disable State Pension"
         requireService.disable($assessment, $index, $benefit);
 end
 
-rule "Default Retirement Pension"
-    when 
-    	$index : ObjectIndex ()
-        $person : Person ( type in ( PersonType.MAIN_APPLICANT, PersonType.PARTNER ) )
-        exists $pensioner : IsPensioner ( person == $person )
-        $isPensioner : IsPensioner ( person == $person )
-        not Income( owner == $person, type == IncomeType.OCC_PENSION )
-    then
-        logger.info("Default Retirement Pension");
-        Income $income = factory.defaultIncome(IncomeType.OCC_PENSION);
-        $person.addIncome($income);
-        $index.reindex($person);
-        insert ($income);
-end
+
 

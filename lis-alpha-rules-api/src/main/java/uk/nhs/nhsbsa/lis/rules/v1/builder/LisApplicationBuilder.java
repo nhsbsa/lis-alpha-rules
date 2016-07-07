@@ -28,4 +28,5 @@ public class LisApplicationBuilder extends AbstractBuilder<LisApplication> {
 		getInstance().setApplicant(result.getInstance());
 		return result;
 	}
+	
 }
