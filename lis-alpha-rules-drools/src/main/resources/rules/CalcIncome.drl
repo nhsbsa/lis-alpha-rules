@@ -8,14 +8,15 @@ global org.slf4j.Logger logger
 global uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.IAssessmentFactoryService factory
 global uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.IRequireService requireService
 
-rule "State Pension Rule"
+rule "Private Pension Rule"
+    salience 80
 when 
         lisApplication : LisApplication( applicant != null, myApplicant : applicant )
         $breakdown : AssessmentBreakdown()
     then
-        logger.info("State Pension Rule");
+        logger.info("Private Pension Rule");
         
-        List<String> statePension = HelperFunctions.statePensionBenefit(myApplicant);
-        HelperFunctions.sumIncomeList($breakdown,statePension,"State Pension","Applicant");
+        List<String> privatePension = HelperFunctions.privatePensionBenefit(myApplicant);
+        HelperFunctions.sumIncomeList($breakdown,privatePension,"Private Pension","Applicant");
 end 
 

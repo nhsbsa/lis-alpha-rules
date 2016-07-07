@@ -18,7 +18,7 @@ end
 
 rule "IsPensioner"
     when
-        $person : (Person( type == PersonType.MAIN_APPLICANT) or Person( type == PersonType.PARTNER ))
+        $person : (Person( type in (PersonType.MAIN_APPLICANT, PersonType.PARTNER )))
         $age : Age( person == $person, value >= 60 )
     then
     	logger.info("IsPensioner");
