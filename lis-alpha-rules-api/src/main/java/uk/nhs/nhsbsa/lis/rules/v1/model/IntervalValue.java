@@ -125,9 +125,9 @@ public class IntervalValue {
 		
 		//exception if can't convert
 		if (!canConvert()) {
-			String msg = MessageFormatter.arrayFormat("Can't convert from {} to {}", 
+			String msg = MessageFormatter.arrayFormat("Can't convert from {} to {}. Call canConvert() first", 
 					new Object[]{this, interval}).getMessage();
-			throw new IllegalArgumentException(msg);
+			throw new IllegalStateException(msg);
 		}
 		
 		// nothing to do

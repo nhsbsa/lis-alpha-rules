@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 
 import org.junit.Test;
 
-public class IntervalMonetaryValueTest {
+public class IntervalValueTest {
 
 	@Test 
 	public void convertMoneyWeeklyTest(){
