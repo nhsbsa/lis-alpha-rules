@@ -74,7 +74,7 @@ public class AssessmentCalculation {
 		ruleList=new ArrayList<String>();
 		exemptionOutcome=ExemptionOutcome.UNDEFINED;
 	}
-
+	
 	public Double getRunningTotal() {
 		return runningTotal;
 	}

@@ -1,0 +1,25 @@
+package uk.nhs.nhsbsa.lis.rules.v1.droolsengine.assessment;
+ 
+import uk.nhs.nhsbsa.util.ObjectIndex;
+import uk.nhs.nhsbsa.lis.rules.v1.model.*;
+import uk.nhs.nhsbsa.lis.rules.v1.droolsengine.model.*;
+
+global org.slf4j.Logger logger
+global uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.IAssessmentFactoryService factory
+global uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.IRequireService requireService
+
+rule "Default Retirement Pension"
+    when 
+    	$index : ObjectIndex ()
+        $person : Person ( type in ( PersonType.MAIN_APPLICANT, PersonType.PARTNER ) )
+        exists $pensioner : IsPensioner ( person == $person )
+        $isPensioner : IsPensioner ( person == $person )
+        not Income( owner == $person, type == IncomeType.OCC_PENSION )
+    then
+        logger.info("Default Retirement Pension");
+        Income $income = factory.defaultIncome(IncomeType.OCC_PENSION);
+        $person.addIncome($income);
+        $index.reindex($person);
+        insert ($income);
+end
+

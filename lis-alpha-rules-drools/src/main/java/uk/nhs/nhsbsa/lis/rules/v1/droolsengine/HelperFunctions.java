@@ -148,7 +148,9 @@ public class HelperFunctions {
 			for(Income income : incomes){
 				if(income.getType() == type){
 					IntervalValue value=income.getValue();
-					result.add(value.convert(Interval.WEEKLY).getValue().toString());
+					if (value.canConvert()) {
+						result.add(value.convert(Interval.WEEKLY).getValue().toString());
+					}
 				}
 			} 
 		}
