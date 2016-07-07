@@ -23,7 +23,7 @@ public class SessionFactOutputProcessor extends DefaultSessionProcessor {
 	public void postProcess(KieSession session, Assessment assessment) {
 
 		List<Object> facts = extractFacts(session);
-		assessment.setFacts(facts);
+		assessment.setWorkingData(facts);
 	}
 
 	private List<Object> extractFacts(KieSession session) {

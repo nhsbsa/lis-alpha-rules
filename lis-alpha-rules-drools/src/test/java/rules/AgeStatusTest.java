@@ -31,9 +31,9 @@ public class AgeStatusTest extends AbstractRulesTest {
 		
 		Assessment actual = service.assess(input);
 
-		System.out.println(actual.getFacts());
+		System.out.println(actual.getWorkingData());
 		
-		assertTrue(actual.getFacts().contains("Age[Mr Bill Smith]=20"));
+		assertTrue(actual.getWorkingData().contains("Age[Mr Bill Smith]=20"));
 	}
 
 	@Test
@@ -44,9 +44,9 @@ public class AgeStatusTest extends AbstractRulesTest {
 		
 		Assessment actual = service.assess(input);
 
-		System.out.println(actual.getFacts());
+		System.out.println(actual.getWorkingData());
 		
-		assertTrue(actual.getFacts().contains("IsPensioner[Mr Bill Smith]"));
+		assertTrue(actual.getWorkingData().contains("IsPensioner[Mr Bill Smith]"));
 	}
 
 	@Test
@@ -58,9 +58,9 @@ public class AgeStatusTest extends AbstractRulesTest {
 		
 		Assessment actual = service.assess(input);
 
-		System.out.println(actual.getFacts());
+		System.out.println(actual.getWorkingData());
 		
-		assertFalse(actual.getFacts().contains("IsPensioner[Mr Bill Smith]"));
+		assertFalse(actual.getWorkingData().contains("IsPensioner[Mr Bill Smith]"));
 	}
 
 }

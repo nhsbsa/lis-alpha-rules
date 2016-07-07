@@ -47,7 +47,7 @@ public class Age {
 
 	@Override
 	public String toString() {
-		return MessageFormatter.arrayFormat("Age[{}]={}", new Object[]{
+		return MessageFormatter.arrayFormat("[{}] age = {}", new Object[]{
 				person, value
 		}).getMessage();
 	}

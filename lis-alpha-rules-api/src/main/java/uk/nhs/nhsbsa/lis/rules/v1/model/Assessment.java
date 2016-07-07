@@ -26,7 +26,7 @@ public class Assessment {
 
 	private AssessmentBreakdown breakdown;
 	
-	private List<Object> facts;
+	private List<Object> workingData;
 	
 	public Assessment() {
 		requirements = new Requirement();
@@ -70,11 +70,11 @@ public class Assessment {
 		this.breakdown = calculation;
 	}
 
-	public List<Object> getFacts() {
-		return facts;
+	public List<Object> getWorkingData() {
+		return workingData;
 	}
 
-	public void setFacts(List<Object> facts) {
-		this.facts = facts;
+	public void setWorkingData(List<Object> facts) {
+		this.workingData = facts;
 	}
 }

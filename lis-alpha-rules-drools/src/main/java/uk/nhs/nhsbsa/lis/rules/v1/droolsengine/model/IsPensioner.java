@@ -23,7 +23,7 @@ public class IsPensioner {
 
 	@Override
 	public String toString() {
-		return MessageFormatter.arrayFormat("IsPensioner[{}]", new Object[]{
+		return MessageFormatter.arrayFormat("[{}] is a Pensioner", new Object[]{
 				person
 		}).getMessage();
 	}

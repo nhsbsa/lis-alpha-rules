@@ -1,0 +1,13 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body th:fragment="body">
+
+  <h1>Calculated Data</h1>
+
+  <ul th:each="fact, factRow : ${assessment.workingData}">
+    <li th:include="calculation-fields :: textfield(*{fact})"></li>
+  </ul>
+
+</body>
+</html>

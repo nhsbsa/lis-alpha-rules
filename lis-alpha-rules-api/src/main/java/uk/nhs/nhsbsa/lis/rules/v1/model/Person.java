@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -113,10 +115,13 @@ public class Person {
 
 	@Override
 	public String toString() {
-		if (name != null) {
-			return name.toString();
-		}
-		return super.toString();
+		StringBuilder result = new StringBuilder();
+		if (!StringUtils.isEmpty(name.toString())) {
+			result.append(name.toString())
+				.append(" ");
+		} 
+		result.append(type.toString());
+		return result.toString();
 	}
 
 }
