@@ -97,4 +97,11 @@ public class Assessment {
 	public void setRules(List<Object> rules) {
 		this.rules = rules;
 	}
+	
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append(id);
+		return sb.toString();
+	}
 }

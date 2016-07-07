@@ -315,18 +315,7 @@ public class AssessmentBreakdown {
 
 	@Override
 	public String toString() {
-		return "AssessmentCalculation [runningTotal=" + runningTotal + ", runningPremiums=" + runningPremiums
-				+ ", runningIncome=" + runningIncome + ", totalHousing=" + totalHousing + ", personalAllowance="
-				+ personalAllowance + ", dependantsAllowance=" + dependantsAllowance + ", disabledChildPremium="
-				+ disabledChildPremium + ", clientGroupPremium=" + clientGroupPremium + ", enhancedDisabilityPremium="
-				+ enhancedDisabilityPremium + ", familyPremium=" + familyPremium + ", severeDisabilityPremium="
-				+ severeDisabilityPremium + ", carerPreium=" + carerPremium + ", councilTax=" + councilTax
-				+ ", mortgage=" + mortgage + ", rent=" + rent + ", groundRent=" + groundRent + ", otherCosts="
-				+ otherCosts + ", nonDependantDeductions=" + nonDependantDeductions + ", incomeCapitals="
-				+ incomeCapitals + ", clientGroups=" + clientGroups + ", claimDate=" + claimDate + ", zeroHour="
-				+ zeroHour + ", hasPartner=" + hasPartner + ", mainClaimantAge=" + mainClaimantAge + ", parterAge="
-				+ parterAge + ", prescriptionPrice=" + prescriptionPrice + ", upperLimitHC3Amount="
-				+ upperLimitHC3Amount + "]";
+		return "Breakdown [runningTotal=" + runningTotal + "]";
 	}
 	
 }

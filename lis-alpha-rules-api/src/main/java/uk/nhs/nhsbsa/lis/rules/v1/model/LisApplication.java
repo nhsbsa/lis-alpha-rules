@@ -139,9 +139,9 @@ public class LisApplication {
 	
 	@Override
 	public String toString() {
-		return "Assessment [claimDate=" + claimDate + ", processingDate=" + processingDate + ", address="
-				+ address + ", contactDetails=" + contactDetails + ", applicant=" + applicant + ", partner=" + partner
-				+ ", dependants=" + dependants + ", nonDependants=" + nonDependants + ", Savings=" + Savings + "]";
+		StringBuilder sb = new StringBuilder();
+		sb.append("Application(").append(claimDate).append(")");
+		return sb.toString();
 	}
 
 }

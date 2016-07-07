@@ -4,6 +4,7 @@ import org.drools.core.event.DefaultAgendaEventListener;
 import org.kie.api.definition.rule.Rule;
 import org.kie.api.event.rule.AfterMatchFiredEvent;
 import org.kie.api.runtime.KieSession;
+import org.kie.api.runtime.rule.Match;
 
 import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
 
@@ -20,9 +21,24 @@ public class RuleLoggerListenerSessionProcesser extends DefaultSessionProcessor 
 		
 		@Override
 		public void afterMatchFired(AfterMatchFiredEvent event) {
+
+			String rule = toString(event);
+			assessment.getRules().add(rule);
+		}
+
+		private String toString(AfterMatchFiredEvent event) {
+
+			StringBuilder result = new StringBuilder();
+			Match match = event.getMatch();
 			
-			Rule rule = event.getMatch().getRule();
-			assessment.getRules().add(rule.getName());
+			Rule rule = match.getRule();
+			result.append(rule.getName());
+
+//			List<?> objects = match.getObjects();
+//			if (!CollectionUtils.isEmpty(objects)) {
+//				result.append(" ").append(objects);
+//			}
+			return result.toString();
 		}
 	}
 	
