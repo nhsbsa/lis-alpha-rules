@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 
 import org.apache.commons.lang3.math.NumberUtils;
 
-import uk.nhs.nhsbsa.lis.rules.v1.model.AssessmentCalculation;
+import uk.nhs.nhsbsa.lis.rules.v1.model.AssessmentBreakdown;
 import uk.nhs.nhsbsa.lis.rules.v1.model.Benefit;
 import uk.nhs.nhsbsa.lis.rules.v1.model.BenefitType;
 import uk.nhs.nhsbsa.lis.rules.v1.model.Income;
@@ -252,7 +252,7 @@ public class HelperFunctions {
 	 * @param container
 	 * @param rule
 	 */
-	public static void logRule(AssessmentCalculation container,String rule){
+	public static void logRule(AssessmentBreakdown container,String rule){
 		LOGGER.log(Level.INFO,"Executing rule:"+rule);
 		container.getRuleList().add(rule);
 	}
@@ -271,7 +271,7 @@ public class HelperFunctions {
 	 * Sum the premiums from the assessment
 	 * @param assessmentCalc
 	 */
-	public static void sumPremiums(AssessmentCalculation assessmentCalc){
+	public static void sumPremiums(AssessmentBreakdown assessmentCalc){
 		if(assessmentCalc.getPersonalAllowance()!=null){
 			assessmentCalc.setRunningPremiums(assessmentCalc.getRunningPremiums()+assessmentCalc.getPersonalAllowance());		
 		}
@@ -305,7 +305,7 @@ public class HelperFunctions {
 	 * Sum the housing costs
 	 * @param assessmentCalc
 	 */
-	public static void sumHousingCosts(AssessmentCalculation assessmentCalc){
+	public static void sumHousingCosts(AssessmentBreakdown assessmentCalc){
 		if(assessmentCalc.getMortgage()!=null){
 			assessmentCalc.setTotalHousing(assessmentCalc.getTotalHousing()+assessmentCalc.getMortgage());
 		}
@@ -321,7 +321,7 @@ public class HelperFunctions {
 		assessmentCalc.setRunningPremiums(assessmentCalc.getRunningPremiums()+assessmentCalc.getTotalHousing());
 	}
 	
-	public static void sumIncomeAndCapital(AssessmentCalculation assessmentCalc){
+	public static void sumIncomeAndCapital(AssessmentBreakdown assessmentCalc){
 		List<IncomeCapital> incomes=assessmentCalc.getIncomeCapitals();
 		for(IncomeCapital incomeCapital : incomes){
 			Double thisIncome=NumberUtils.toDouble(incomeCapital.getWeeklyAmount().toString());
@@ -329,13 +329,13 @@ public class HelperFunctions {
 		}
 	}
 	
-	public static void sumRunningTotal(AssessmentCalculation assessmentCalc){
+	public static void sumRunningTotal(AssessmentBreakdown assessmentCalc){
 		assessmentCalc.setRunningTotal(assessmentCalc.getRunningPremiums()
 				+assessmentCalc.getTotalHousing()
 				-assessmentCalc.getRunningIncome());
 	}
 	
-	public static void sumIncomeList(AssessmentCalculation assessmentCalc,List<String> incomes,String incomeName,String owner){
+	public static void sumIncomeList(AssessmentBreakdown assessmentCalc,List<String> incomes,String incomeName,String owner){
 		if(incomes.size()>0){
 			for(String incomeCapital : incomes){
 				Double parseDouble=NumberUtils.toDouble(incomeCapital);

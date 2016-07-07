@@ -7,7 +7,7 @@ import org.kie.api.runtime.KieSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import uk.nhs.nhsbsa.lis.rules.v1.model.AssessmentCalculation;
+import uk.nhs.nhsbsa.lis.rules.v1.model.AssessmentBreakdown;
 import uk.nhs.nhsbsa.lis.rules.v1.model.LisApplication;
 
 /**
@@ -19,7 +19,7 @@ import uk.nhs.nhsbsa.lis.rules.v1.model.LisApplication;
 public class AssessmentRules {
 	
 	private KieSession kSession;
-	private AssessmentCalculation assessmentCalc;
+	private AssessmentBreakdown assessmentCalc;
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(AssessmentRules.class);
 	
@@ -39,9 +39,9 @@ public class AssessmentRules {
 	 * @param application
 	 * @return
 	 */
-	public AssessmentCalculation runApplicationRules(LisApplication application){
+	public AssessmentBreakdown runApplicationRules(LisApplication application){
 		if(kSession!=null){
-			assessmentCalc= new AssessmentCalculation();
+			assessmentCalc= new AssessmentBreakdown();
 			assessmentCalc.setClaimDate(application.getClaimDate());
 			kSession.insert(assessmentCalc);
 			kSession.insert(application);

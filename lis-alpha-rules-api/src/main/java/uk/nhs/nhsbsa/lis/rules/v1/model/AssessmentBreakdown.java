@@ -14,9 +14,9 @@ import org.slf4j.LoggerFactory;
  * @author lorob
  *
  */
-public class AssessmentCalculation {
+public class AssessmentBreakdown {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(AssessmentCalculation.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(AssessmentBreakdown.class);
 
 	// HC3 Fields
 	private Double runningTotal;
@@ -68,7 +68,7 @@ public class AssessmentCalculation {
 	/**
 	 * Constructor
 	 */
-	public AssessmentCalculation(){
+	public AssessmentBreakdown(){
 		incomeCapitals=new ArrayList<IncomeCapital>();
 		clientGroups=new ArrayList<ClientGroup>();
 		ruleList=new ArrayList<String>();

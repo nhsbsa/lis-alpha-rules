@@ -1,7 +1,7 @@
 package uk.nhs.nhsbsa.lis.rules.v1.droolsengine.assessment;
  
 import uk.nhs.nhsbsa.lis.rules.v1.model.LisApplication;
-import uk.nhs.nhsbsa.lis.rules.v1.model.AssessmentCalculation;
+import uk.nhs.nhsbsa.lis.rules.v1.model.AssessmentBreakdown;
 import uk.nhs.nhsbsa.lis.rules.v1.model.*;
 import uk.nhs.nhsbsa.lis.rules.v1.droolsengine.model.*;
 import uk.nhs.nhsbsa.lis.rules.v1.droolsengine.HelperFunctions;
@@ -14,47 +14,47 @@ rule "Has Applicant"
 	salience 100
     when
         lisApplication : LisApplication( applicant != null, myApplicant : applicant )
-        assessmentCalc : AssessmentCalculation()
+        $breakdown : AssessmentBreakdown()
     then
-    	HelperFunctions.logRule(assessmentCalc,"Has Applicant");
+    	HelperFunctions.logRule($breakdown,"Has Applicant");
 end
 
 rule "Is Single"
 	salience 100
  	when
         lisApplication : LisApplication( applicant != null, partner == null, myApplicant : applicant )
-        assessmentCalc : AssessmentCalculation()
+        $breakdown : AssessmentBreakdown()
     then
-    	HelperFunctions.logRule(assessmentCalc,"Is Single");
-    	assessmentCalc.setHasPartner(false);
+    	HelperFunctions.logRule($breakdown,"Is Single");
+    	$breakdown.setHasPartner(false);
 end
 
 rule "Has Partner"
 	salience 100
  	when
         lisApplication : LisApplication( applicant != null, partner != null, myPartner : partner )
-        assessmentCalc : AssessmentCalculation()
+        $breakdown : AssessmentBreakdown()
     then
-    	HelperFunctions.logRule(assessmentCalc,"Has Partner");
-    	assessmentCalc.setHasPartner(true);
+    	HelperFunctions.logRule($breakdown,"Has Partner");
+    	$breakdown.setHasPartner(true);
 end
 
 rule "Has Non Dependents"
 	salience 100
  	when
         lisApplication : LisApplication( applicant != null, nonDependants != null, myNonDependents : nonDependants )
-        assessmentCalc : AssessmentCalculation()
+        $breakdown : AssessmentBreakdown()
     then	
-    	HelperFunctions.logRule(assessmentCalc, "Has Non Dependants" );
+    	HelperFunctions.logRule($breakdown, "Has Non Dependants" );
 end
 
 rule "Has Dependents"
 	salience 100
  	when
         lisApplication : LisApplication( applicant != null, dependants != null, myDependents : dependants )
-        assessmentCalc : AssessmentCalculation()
+        $breakdown : AssessmentBreakdown()
     then
-    	HelperFunctions.logRule(assessmentCalc, "Has Dependants" );
+    	HelperFunctions.logRule($breakdown, "Has Dependants" );
 end
 
 rule "Applicant Age Calculation"
@@ -62,10 +62,10 @@ rule "Applicant Age Calculation"
 	when
 	    $person : Person ( type == PersonType.MAIN_APPLICANT )
 	    $age : Age ( person == $person )
-	    $assessmentCalc : AssessmentCalculation()
+	    $$breakdown : AssessmentBreakdown()
 	then
-		HelperFunctions.logRule($assessmentCalc, "Applicant Age Calculation" );
-		$assessmentCalc.setMainClaimantAge($age.getValue()); 
+		HelperFunctions.logRule($$breakdown, "Applicant Age Calculation" );
+		$$breakdown.setMainClaimantAge($age.getValue()); 
 end
 
 rule "Partner Age Calculation"
@@ -73,24 +73,24 @@ rule "Partner Age Calculation"
     when
         $person : Person ( type == PersonType.PARTNER )
         $age : Age ( person == $person )
-        $assessmentCalc : AssessmentCalculation()
+        $$breakdown : AssessmentBreakdown()
     then
-        HelperFunctions.logRule($assessmentCalc, "Partner Age Calculation" );
-        $assessmentCalc.setParterAge($age.getValue()); 
+        HelperFunctions.logRule($$breakdown, "Partner Age Calculation" );
+        $$breakdown.setParterAge($age.getValue()); 
 end
 
 rule "Community Charge Rule"
 	salience 80
 when 
 		lisApplication : LisApplication( applicant != null, myApplicant : applicant )
-		assessmentCalc : AssessmentCalculation()
+		$breakdown : AssessmentBreakdown()
 	then
-		HelperFunctions.logRule(assessmentCalc,"Community Charge Rule");
+		HelperFunctions.logRule($breakdown,"Community Charge Rule");
 		List<String> communityCharge = HelperFunctions.communityChargeCalculation(myApplicant);
 		
 		if(communityCharge.size()>0){
 			// TODO assume only 1 community charge for now, but what about duplicates?
-			assessmentCalc.setCouncilTax(Double.parseDouble(communityCharge.get(0)));
+			$breakdown.setCouncilTax(Double.parseDouble(communityCharge.get(0)));
 		}
 end
 
@@ -98,14 +98,14 @@ rule "Rent Rule"
 	salience 80
 when 
 		lisApplication : LisApplication( applicant != null, myApplicant : applicant )
-		assessmentCalc : AssessmentCalculation()
+		$breakdown : AssessmentBreakdown()
 	then
-		HelperFunctions.logRule(assessmentCalc,"Rent Rule");
+		HelperFunctions.logRule($breakdown,"Rent Rule");
 		
 		List<String> rent = HelperFunctions.rentCalculation(myApplicant);
 		if(rent.size()>0){
 			// TODO assume only 1 rent for now, but what about duplicates?
-			assessmentCalc.setRent(Double.parseDouble(rent.get(0)));
+			$breakdown.setRent(Double.parseDouble(rent.get(0)));
 		}
 end
 
@@ -113,14 +113,14 @@ rule "Mortgage Rule"
 	salience 80
 when 
 		lisApplication : LisApplication( applicant != null, myApplicant : applicant )
-		assessmentCalc : AssessmentCalculation()
+		$breakdown : AssessmentBreakdown()
 	then
-		HelperFunctions.logRule(assessmentCalc,"Mortgage Rule");
+		HelperFunctions.logRule($breakdown,"Mortgage Rule");
 		
 		List<String> mortgage = HelperFunctions.mortgageCalculation(myApplicant);
 		if(mortgage.size()>0){
 			// TODO assume only 1 mortgage for now, but what about duplicates?
-			assessmentCalc.setMortgage(Double.parseDouble(mortgage.get(0)));
+			$breakdown.setMortgage(Double.parseDouble(mortgage.get(0)));
 		}
 end
 
@@ -129,24 +129,24 @@ rule "State Pension Rule"
 	salience 80
 when 
 		lisApplication : LisApplication( applicant != null, myApplicant : applicant )
-		assessmentCalc : AssessmentCalculation()
+		$breakdown : AssessmentBreakdown()
 	then
-		HelperFunctions.logRule(assessmentCalc,"State Pension Rule");
+		HelperFunctions.logRule($breakdown,"State Pension Rule");
 		
 		List<String> statePension = HelperFunctions.statePensionBenefit(myApplicant);
-		HelperFunctions.sumIncomeList(assessmentCalc,statePension,"State Pension","Applicant");
+		HelperFunctions.sumIncomeList($breakdown,statePension,"State Pension","Applicant");
 end	
 
 rule "Private Pension Rule"
 	salience 80
 when 
 		lisApplication : LisApplication( applicant != null, myApplicant : applicant )
-		assessmentCalc : AssessmentCalculation()
+		$breakdown : AssessmentBreakdown()
 	then
-		HelperFunctions.logRule(assessmentCalc,"Private Pension Rule");
+		HelperFunctions.logRule($breakdown,"Private Pension Rule");
 		
 		List<String> privatePension = HelperFunctions.privatePensionBenefit(myApplicant);
-		HelperFunctions.sumIncomeList(assessmentCalc,privatePension,"Private Pension","Applicant");
+		HelperFunctions.sumIncomeList($breakdown,privatePension,"Private Pension","Applicant");
 end	
 
 

@@ -24,7 +24,7 @@ public class Assessment {
 	
 	private Requirement requirements;
 
-	private AssessmentCalculation calculation;
+	private AssessmentBreakdown breakdown;
 	
 	private List<Object> facts;
 	
@@ -62,12 +62,12 @@ public class Assessment {
 		this.application = application;
 	}
 
-	public AssessmentCalculation getCalculation() {
-		return calculation;
+	public AssessmentBreakdown getBreakdown() {
+		return breakdown;
 	}
 
-	public void setCalculation(AssessmentCalculation calculation) {
-		this.calculation = calculation;
+	public void setBreakdown(AssessmentBreakdown calculation) {
+		this.breakdown = calculation;
 	}
 
 	public List<Object> getFacts() {

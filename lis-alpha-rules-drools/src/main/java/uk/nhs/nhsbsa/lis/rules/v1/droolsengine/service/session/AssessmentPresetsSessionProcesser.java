@@ -3,7 +3,7 @@ package uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.session;
 import org.kie.api.runtime.KieSession;
 
 import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
-import uk.nhs.nhsbsa.lis.rules.v1.model.AssessmentCalculation;
+import uk.nhs.nhsbsa.lis.rules.v1.model.AssessmentBreakdown;
 import uk.nhs.nhsbsa.lis.rules.v1.model.Requirement;
 
 public class AssessmentPresetsSessionProcesser extends DefaultSessionProcessor {
@@ -15,9 +15,9 @@ public class AssessmentPresetsSessionProcesser extends DefaultSessionProcessor {
 		req.include("application");
 		assessment.setRequirements(req);
 		
-		AssessmentCalculation calc = new AssessmentCalculation();
+		AssessmentBreakdown calc = new AssessmentBreakdown();
 		calc.setClaimDate(assessment.getApplication().getClaimDate());
-		assessment.setCalculation(calc);
+		assessment.setBreakdown(calc);
 		session.insert(calc);
 	}
 
