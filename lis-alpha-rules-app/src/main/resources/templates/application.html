@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body th:fragment="body">
+
+  <form class="pure-form pure-form-aligned" action="#" th:action="@{/assessments/__${id}__}" th:object="${assessment}"
+    th:method="PUT">
+
+    <div class="right">
+      <button class="button" type="submit" name="update" th:text="#{form.update}">Update</button>
+    </div>
+
+    <h1>Household</h1>
+    <h2>Address</h2>
+    <fieldset>
+      <div class="pure-control-group" th:include="application-fields :: textfield('application.address.houseNameNumber')"></div>
+      <div class="pure-control-group" th:include="application-fields :: textfield('application.address.addressLine1')"></div>
+      <div class="pure-control-group" th:include="application-fields :: textfield('application.address.addressLine2')"></div>
+      <div class="pure-control-group" th:include="application-fields :: textfield('application.address.addressLine3')"></div>
+      <div class="pure-control-group" th:include="application-fields :: textfield('application.address.postcode')"></div>
+    </fieldset>
+
+    <h1>Main Applicant</h1>
+    <h2>Personal Details</h2>
+    <fieldset>
+      <div class="pure-control-group" th:include="application-fields :: textfield('application.applicant.name.title')"></div>
+      <div class="pure-control-group" th:include="application-fields :: textfield('application.applicant.name.forenames')"></div>
+      <div class="pure-control-group" th:include="application-fields :: textfield('application.applicant.name.surname')"></div>
+      <div class="pure-control-group" th:include="application-fields :: datefield('application.applicant.dob')"></div>
+      <div class="pure-control-group" th:include="application-fields :: textfield('application.applicant.nino')"></div>
+    </fieldset>
+
+    <h2>Benefits</h2>
+    <fieldset th:each="benefit, benefitRow : ${assessment.application.applicant.benefits}">
+      <div
+        th:include="application-fields :: benefit('application.applicant.benefits[__${benefitRow.index}__]', 'application.applicant.benefits[__${benefit.type}__]')">
+      </div>
+    </fieldset>
+
+    <h2>Income</h2>
+    <div th:each="income, incomeRow : ${assessment.application.applicant.incomes}">
+      <fieldset>
+        <div class="pure-control-group"
+          th:include="application-fields :: benefit('application.applicant.incomes[__${incomeRow.index}__]', 'application.applicant.incomes[__${income.type}__]')">
+        </div>
+      </fieldset>
+    </div>
+
+    <h2>Outgoings</h2>
+    <div th:each="outgoing, outgoingRow : ${assessment.application.applicant.outgoings}">
+      <fieldset>
+        <div class="pure-control-group"
+          th:include="application-fields :: outgoing('application.applicant.outgoings[__${outgoingRow.index}__]', 'application.applicant.outgoings[__${outgoing.type}__]')">
+        </div>
+      </fieldset>
+    </div>
+
+    <div class="right">
+      <button class="button" type="submit" name="update" th:text="#{form.update}">Update</button>
+    </div>
+
+  </form>
+
+
+</body>
+</html>

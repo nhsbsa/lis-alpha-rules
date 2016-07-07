@@ -32,7 +32,7 @@ public class AssessmentCalculation {
 	private Double enhancedDisabilityPremium;
 	private Double familyPremium;
 	private Double severeDisabilityPremium;
-	private Double carerPreium;
+	private Double carerPremium;
 	private Double councilTax;
 	// housing
 	private Double mortgage;
@@ -155,12 +155,12 @@ public class AssessmentCalculation {
 		this.severeDisabilityPremium = severeDisabilityPremium;
 	}
 
-	public Double getCarerPreium() {
-		return carerPreium;
+	public Double getCarerPremium() {
+		return carerPremium;
 	}
 
-	public void setCarerPreium(Double carerPreium) {
-		this.carerPreium = carerPreium;
+	public void setCarerPremium(Double carerPreium) {
+		this.carerPremium = carerPreium;
 	}
 
 	public Double getCouncilTax() {
@@ -345,7 +345,7 @@ public class AssessmentCalculation {
 				+ personalAllowance + ", dependantsAllowance=" + dependantsAllowance + ", disabledChildPremium="
 				+ disabledChildPremium + ", clientGroupPremium=" + clientGroupPremium + ", enhancedDisabilityPremium="
 				+ enhancedDisabilityPremium + ", familyPremium=" + familyPremium + ", severeDisabilityPremium="
-				+ severeDisabilityPremium + ", carerPreium=" + carerPreium + ", councilTax=" + councilTax
+				+ severeDisabilityPremium + ", carerPreium=" + carerPremium + ", councilTax=" + councilTax
 				+ ", mortgage=" + mortgage + ", rent=" + rent + ", groundRent=" + groundRent + ", otherCosts="
 				+ otherCosts + ", nonDependantDeductions=" + nonDependantDeductions + ", incomeCapitals="
 				+ incomeCapitals + ", clientGroups=" + clientGroups + ", claimDate=" + claimDate + ", zeroHour="

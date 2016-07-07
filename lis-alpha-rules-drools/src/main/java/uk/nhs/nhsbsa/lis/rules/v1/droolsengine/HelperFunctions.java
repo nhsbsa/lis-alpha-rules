@@ -293,8 +293,8 @@ public class HelperFunctions {
 		if(assessmentCalc.getSevereDisabilityPremium()!=null){
 			assessmentCalc.setRunningPremiums(assessmentCalc.getRunningPremiums()+assessmentCalc.getSevereDisabilityPremium());		
 		}
-		if(assessmentCalc.getCarerPreium()!=null){
-			assessmentCalc.setRunningPremiums(assessmentCalc.getRunningPremiums()+assessmentCalc.getCarerPreium());		
+		if(assessmentCalc.getCarerPremium()!=null){
+			assessmentCalc.setRunningPremiums(assessmentCalc.getRunningPremiums()+assessmentCalc.getCarerPremium());		
 		}
 		if(assessmentCalc.getCouncilTax()!=null){
 			assessmentCalc.setRunningPremiums(assessmentCalc.getRunningPremiums()+assessmentCalc.getCouncilTax());		

@@ -1,0 +1,14 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+  <table>
+    <tr th:fragment="textfield(path)">
+      <td th:text="#{calculation.__${path}__}">name</td>
+      <td th:text="${assessment.calculation.__${path}__}">value</td>
+    </tr>
+  </table>
+
+</body>
+</html>

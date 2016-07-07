@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body th:fragment="body">
+
+  <h1>Calculation</h1>
+
+  <table class="pure-table pure-table-horizontal">
+    <thead>
+      <tr>
+        <th colspan="2">Totals</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:include="calculation-fields :: textfield('runningTotal')"></tr>
+      <tr th:include="calculation-fields :: textfield('runningPremiums')"></tr>
+      <tr th:include="calculation-fields :: textfield('runningIncome')"></tr>
+      <tr th:include="calculation-fields :: textfield('totalHousing')"></tr>
+    </tbody>
+    <thead>
+      <tr>
+        <th colspan="2">Allowances</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:include="calculation-fields :: textfield('personalAllowance')"></tr>
+      <tr th:include="calculation-fields :: textfield('dependantsAllowance')"></tr>
+      <tr th:include="calculation-fields :: textfield('disabledChildPremium')"></tr>
+      <tr th:include="calculation-fields :: textfield('clientGroupPremium')"></tr>
+      <tr th:include="calculation-fields :: textfield('enhancedDisabilityPremium')"></tr>
+      <tr th:include="calculation-fields :: textfield('familyPremium')"></tr>
+      <tr th:include="calculation-fields :: textfield('severeDisabilityPremium')"></tr>
+      <tr th:include="calculation-fields :: textfield('carerPremium')"></tr>
+      <tr th:include="calculation-fields :: textfield('councilTax')"></tr>
+    </tbody>
+    <thead>
+      <tr>
+        <th colspan="2">Housing</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:include="calculation-fields :: textfield('mortgage')"></tr>
+      <tr th:include="calculation-fields :: textfield('rent')"></tr>
+      <tr th:include="calculation-fields :: textfield('groundRent')"></tr>
+      <tr th:include="calculation-fields :: textfield('otherCosts')"></tr>
+      <tr th:include="calculation-fields :: textfield('nonDependantDeductions')"></tr>
+    </tbody>
+  </table>
+
+
+
+
+
+
+  <!--     private List<IncomeCapital> incomeCapitals; -->
+  <!--     private List<ClientGroup> clientGroups; -->
+
+  <!--     private LocalDate claimDate; -->
+  <!--     private LocalTime zeroHour=LocalTime.parse("00:00"); -->
+
+  <!--     // TODO Other factors used in calculation - not sure if this should be here or elsewhere -->
+  <!--     private Boolean hasPartner; -->
+  <!--     private Long mainClaimantAge; -->
+  <!--     private Long parterAge; -->
+
+  <!--     private Double prescriptionPrice; -->
+  <!--     private Double upperLimitHC3Amount; -->
+
+  <!--     private ExemptionOutcome exemptionOutcome; -->
+
+</body>
+</html>
