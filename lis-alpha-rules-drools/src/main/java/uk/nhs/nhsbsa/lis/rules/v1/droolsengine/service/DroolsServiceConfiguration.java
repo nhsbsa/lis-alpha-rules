@@ -3,9 +3,10 @@ package uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.session.AssessmentPresetsSessionProcesser;
 import uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.session.ISessionProcessor;
 import uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.session.ObjectIndexSessionProcesser;
-import uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.session.AssessmentPresetsSessionProcesser;
+import uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.session.RuleLoggerListenerSessionProcesser;
 import uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.session.SessionFactInputProcesser;
 import uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.session.SessionFactOutputProcessor;
 import uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.session.SessionGlobalsProcessor;
@@ -36,6 +37,11 @@ public class DroolsServiceConfiguration {
 	@Bean
 	public ISessionProcessor createObjectIndexSessionProcesser() {
 		return new ObjectIndexSessionProcesser();
+	}
+	
+	@Bean
+	public ISessionProcessor createRuleLoggerListenerSessionProcesser() {
+		return new RuleLoggerListenerSessionProcesser();
 	}
 	
 	@Bean

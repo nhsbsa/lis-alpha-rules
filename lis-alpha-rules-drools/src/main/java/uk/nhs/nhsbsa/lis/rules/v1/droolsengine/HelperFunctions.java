@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 
 import org.apache.commons.lang3.math.NumberUtils;
 
+import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
 import uk.nhs.nhsbsa.lis.rules.v1.model.AssessmentBreakdown;
 import uk.nhs.nhsbsa.lis.rules.v1.model.Benefit;
 import uk.nhs.nhsbsa.lis.rules.v1.model.BenefitType;
@@ -252,9 +253,9 @@ public class HelperFunctions {
 	 * @param container
 	 * @param rule
 	 */
-	public static void logRule(AssessmentBreakdown container,String rule){
+	public static void logRule(Assessment assessment,String rule){
 		LOGGER.log(Level.INFO,"Executing rule:"+rule);
-		container.getRuleList().add(rule);
+		assessment.getRules().add(rule);
 	}
 	
 	/**

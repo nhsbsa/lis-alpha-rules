@@ -41,10 +41,6 @@ public class DroolsAssessmentRulesService implements IAssessmentRulesService {
 		
 	}
 
-	private Object getFacts(KieSession session) {
-		return null;
-	}
-
 	/**
 	 * Delegate to preProcess the session.
 	 * @param session

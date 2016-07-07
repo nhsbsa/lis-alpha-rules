@@ -60,19 +60,12 @@ public class AssessmentBreakdown {
 	private Double prescriptionPrice;
 	private Double upperLimitHC3Amount;
 	
-	private ExemptionOutcome exemptionOutcome;
-	
-	// Rules
-	private List<String> ruleList; // holds a string based list of rules used in the calculation
-	
 	/**
 	 * Constructor
 	 */
 	public AssessmentBreakdown(){
 		incomeCapitals=new ArrayList<IncomeCapital>();
 		clientGroups=new ArrayList<ClientGroup>();
-		ruleList=new ArrayList<String>();
-		exemptionOutcome=ExemptionOutcome.UNDEFINED;
 	}
 	
 	public Double getRunningTotal() {
@@ -243,14 +236,6 @@ public class AssessmentBreakdown {
 		this.parterAge = parterAge;
 	}
 
-	public List<String> getRuleList() {
-		return ruleList;
-	}
-
-	public void setRuleList(List<String> ruleList) {
-		this.ruleList = ruleList;
-	}
-
 	public Boolean getHasPartner() {
 		return hasPartner;
 	}
@@ -291,16 +276,6 @@ public class AssessmentBreakdown {
 
 	public void setUpperLimitHC3Amount(Double upperLimitHC3Amount) {
 		this.upperLimitHC3Amount = upperLimitHC3Amount;
-	}
-
-	
-
-	public ExemptionOutcome getExemptionOutcome() {
-		return exemptionOutcome;
-	}
-
-	public void setExemptionOutcome(ExemptionOutcome exemptionOutcome) {
-		this.exemptionOutcome = exemptionOutcome;
 	}
 
 	/**
@@ -351,7 +326,7 @@ public class AssessmentBreakdown {
 				+ incomeCapitals + ", clientGroups=" + clientGroups + ", claimDate=" + claimDate + ", zeroHour="
 				+ zeroHour + ", hasPartner=" + hasPartner + ", mainClaimantAge=" + mainClaimantAge + ", parterAge="
 				+ parterAge + ", prescriptionPrice=" + prescriptionPrice + ", upperLimitHC3Amount="
-				+ upperLimitHC3Amount + ", exemptionOutcome=" + exemptionOutcome + ", ruleList=" + ruleList + "]";
+				+ upperLimitHC3Amount + "]";
 	}
 	
 }

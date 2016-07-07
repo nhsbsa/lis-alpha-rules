@@ -1,0 +1,14 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body th:fragment="body">
+
+  <h1>Rules</h1>
+
+  <ul th:each="rule, ruleRow : ${assessment.rules}">
+    <li th:include="calculation-fields :: textfield(*{rule})"></li>
+  </ul>
+  
+
+</body>
+</html>

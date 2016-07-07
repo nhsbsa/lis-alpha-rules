@@ -1,5 +1,7 @@
 package uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.session;
 
+import java.util.ArrayList;
+
 import org.kie.api.runtime.KieSession;
 
 import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
@@ -11,14 +13,22 @@ public class AssessmentPresetsSessionProcesser extends DefaultSessionProcessor {
 	@Override
 	public void preProcess(KieSession session, Assessment assessment) {
 		
+		//requirements
 		Requirement req = new Requirement();
 		req.include("application");
 		assessment.setRequirements(req);
 		
-		AssessmentBreakdown calc = new AssessmentBreakdown();
-		calc.setClaimDate(assessment.getApplication().getClaimDate());
-		assessment.setBreakdown(calc);
-		session.insert(calc);
+		//breakdown
+		AssessmentBreakdown breakdown = new AssessmentBreakdown();
+		breakdown.setClaimDate(assessment.getApplication().getClaimDate());
+		assessment.setBreakdown(breakdown);
+		session.insert(breakdown);
+		
+		//rules
+		assessment.setRules(new ArrayList<>());
+		
+		//working data
+		assessment.setWorkingData(new ArrayList<>());
 	}
 
 }

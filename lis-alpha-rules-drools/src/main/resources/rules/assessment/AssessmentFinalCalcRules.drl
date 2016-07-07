@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.time.LocalDate;
 import java.util.List;
 
+global org.slf4j.Logger logger
 
 // Not much of a rule to sum the values
 rule "Total Outgoings"
@@ -16,7 +17,6 @@ when
 		lisApplication : LisApplication( applicant != null, myApplicant : applicant )
 		$breakdown : AssessmentBreakdown($breakdown!=null)
 	then
-		HelperFunctions.logRule($breakdown,"Total Outgoings");
 		$breakdown.setRunningPremiums(0.0);
 		$breakdown.setTotalHousing(0.0);
 		$breakdown.setRunningIncome(0.0);
@@ -35,22 +35,21 @@ when
 	$breakdown : AssessmentBreakdown($breakdown!=null, hasPremiums() )
 	
 then
-	HelperFunctions.logRule($breakdown,"HC LIS Assessment");
 	Double lowerLimit=$breakdown.getPrescriptionPrice()/2;
 	Double upperLimit=($breakdown.getPrescriptionPrice()/2)-$breakdown.getUpperLimitHC3Amount();
 	if($breakdown.getRunningTotal() >= lowerLimit){
 		// HC2
-		HelperFunctions.logRule($breakdown,"HC2");
+		logger.info("HC2");
 	}
 	else if($breakdown.getRunningTotal() < lowerLimit
 			&& 
 			$breakdown.getRunningTotal() >= upperLimit){
 		// HC3
-		HelperFunctions.logRule($breakdown,"HC3");
+		logger.info("HC3");
 	}
 	else{
 		// HC5
-		HelperFunctions.logRule($breakdown,"HC5");
+		logger.info("HC5");
 	}
 	 
 end
