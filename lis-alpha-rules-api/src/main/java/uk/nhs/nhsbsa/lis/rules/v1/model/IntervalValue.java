@@ -65,6 +65,15 @@ public class IntervalValue {
 	 * @param interval
 	 * @param value
 	 */
+	public IntervalValue(Interval interval, Number value) {
+		this(interval, value.toString());
+	}
+	
+	/**
+	 * Convenience constructor.
+	 * @param interval
+	 * @param value
+	 */
 	public IntervalValue(Interval interval, BigDecimal value) {
 		super();
 		this.interval = interval;
@@ -167,5 +176,18 @@ public class IntervalValue {
 	public String toString() {
 		return "£" + value + " " + interval;
 	}
+
+	public IntervalValue add(IntervalValue value) {
+		IntervalValue result = null;
+		if (value != null) {
+			IntervalValue tmp = value.convert(interval);
+			BigDecimal total = this.value.add(tmp.value);
+			result = new IntervalValue(interval, total);
+		} else {
+			result = this;
+		}
+		return result;
+	}
+
 
 }

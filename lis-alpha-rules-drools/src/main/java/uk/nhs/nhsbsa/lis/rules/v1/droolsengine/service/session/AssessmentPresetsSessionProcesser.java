@@ -6,6 +6,7 @@ import org.kie.api.runtime.KieSession;
 
 import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
 import uk.nhs.nhsbsa.lis.rules.v1.model.AssessmentBreakdown;
+import uk.nhs.nhsbsa.lis.rules.v1.model.AssessmentSummary;
 import uk.nhs.nhsbsa.lis.rules.v1.model.Requirement;
 
 public class AssessmentPresetsSessionProcesser extends DefaultSessionProcessor {
@@ -29,6 +30,11 @@ public class AssessmentPresetsSessionProcesser extends DefaultSessionProcessor {
 		
 		//working data
 		assessment.setWorkingData(new ArrayList<>());
+		
+		//summary
+		AssessmentSummary summary = new AssessmentSummary();
+		assessment.setSummary(summary);
+		session.insert(summary);
 	}
 
 }

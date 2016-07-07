@@ -19,3 +19,15 @@ when
         HelperFunctions.sumIncomeList($breakdown,statePension,"State Pension","Applicant");
 end 
 
+//rule "accumulate benefits"
+//salience -10
+//when 
+//	$summary : AssessmentSummary ()
+//	accumulate ( Benefit ( receiving == true, value.canConvert(), $value : value.convert(Interval.WEEKLY).value );
+//		$sum : sum ( $value )
+//	)
+//then
+//	IntervalValue total = new IntervalValue(Interval.WEEKLY, $sum);
+//	logger.info("accumulate benefits: {}", total);
+//	modify ( $summary ) { addResources(total) };
+//end

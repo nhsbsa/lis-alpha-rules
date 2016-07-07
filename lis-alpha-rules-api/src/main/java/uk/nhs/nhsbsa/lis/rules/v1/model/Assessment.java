@@ -30,6 +30,16 @@ public class Assessment {
 
 	private AssessmentBreakdown breakdown;
 	
+	private AssessmentSummary summary;
+	
+	public AssessmentSummary getSummary() {
+		return summary;
+	}
+
+	public void setSummary(AssessmentSummary summary) {
+		this.summary = summary;
+	}
+
 	private ExemptionOutcome outcome;
 
 	public Assessment() {
