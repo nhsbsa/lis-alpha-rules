@@ -10,14 +10,18 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
  *
  */
 public class Outgoing {
+	
 	@JsonBackReference
 	@Transient
 	transient private Person owner;
 	
 	private OutgoingType type;
+	
 	private ValueState state;
-	private String value; // TODO this may change to an object. at present can hold income info
-	private Interval moneyPeriod;
+
+	private Boolean receiving;
+	
+	private IntervalValue value;
 	
 	public Outgoing(){
 		type=OutgoingType.UNDEFINED;
@@ -28,16 +32,6 @@ public class Outgoing {
 		return type;
 	}
 
-
-	
-	public Interval getMoneyPeriod() {
-		return moneyPeriod;
-	}
-
-	public void setMoneyPeriod(Interval moneyPeriod) {
-		this.moneyPeriod = moneyPeriod;
-	}
-
 	public ValueState getState() {
 		return state;
 	}
@@ -46,16 +40,32 @@ public class Outgoing {
 		this.state = state;
 	}
 
-	public String getValue() {
+	public IntervalValue getValue() {
 		return value;
 	}
 
-	public void setValue(String value) {
+	public void setValue(IntervalValue value) {
 		this.value = value;
 	}
 
 	public void setType(OutgoingType type) {
 		this.type = type;
+	}
+	
+	public Person getOwner() {
+		return owner;
+	}
+
+	public void setOwner(Person owner) {
+		this.owner = owner;
+	}
+
+	public Boolean getReceiving() {
+		return receiving;
+	}
+
+	public void setReceiving(Boolean receiving) {
+		this.receiving = receiving;
 	}
 	
 	@Override
@@ -84,18 +94,10 @@ public class Outgoing {
 		return true;
 	}
 
-	public Person getOwner() {
-		return owner;
-	}
-
-	public void setOwner(Person owner) {
-		this.owner = owner;
-	}
-
 	@Override
 	public String toString() {
 		return "Outgoing [owner=" + owner + ", type=" + type + ", state=" + state + ", value=" + value
-				+ ", moneyPeriod=" + moneyPeriod + "]";
+				+ "]";
 	}
-	
+
 }

@@ -105,11 +105,11 @@ public class HelperFunctions {
 		List<Outgoing>outgoings=person.getOutgoings();
 		if (outgoings != null) {
 			for(Outgoing outgoing : outgoings){
-				if(outgoing.getType() == type){
-					String value=outgoing.getValue();
-					Interval moneyPeriod=outgoing.getMoneyPeriod();
-					value=convertMoney(value,moneyPeriod,Interval.WEEKLY);
-					result.add(value);
+				if(outgoing.getType() == type && outgoing.getValue() != null){
+					IntervalValue value=outgoing.getValue();
+					if (value.canConvert()) {
+						result.add(value.convert(Interval.WEEKLY).getValue().toPlainString());
+					}
 				}
 			} 
 		}
@@ -126,10 +126,10 @@ public class HelperFunctions {
 		List<Benefit>benefits = person.getBenefits();
 		if (benefits != null) {
 			for(Benefit benefit : benefits){
-				if(benefit.getType() == type){
+				if(benefit.getType() == type && benefit.getValue() != null){
 					IntervalValue value=benefit.getValue();
 					if (value.canConvert()) {
-						result.add(value.convert(Interval.WEEKLY).getValue().toString());
+						result.add(value.convert(Interval.WEEKLY).getValue().toPlainString());
 					}
 				}
 			} 
@@ -147,10 +147,10 @@ public class HelperFunctions {
 		List<Income>incomes = person.getIncomes();
 		if (incomes != null) {
 			for(Income income : incomes){
-				if(income.getType() == type){
+				if(income.getType() == type && income.getValue() != null){
 					IntervalValue value=income.getValue();
 					if (value.canConvert()) {
-						result.add(value.convert(Interval.WEEKLY).getValue().toString());
+						result.add(value.convert(Interval.WEEKLY).getValue().toPlainString());
 					}
 				}
 			} 

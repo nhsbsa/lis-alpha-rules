@@ -8,4 +8,5 @@ global org.slf4j.Logger logger
 global uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.IAssessmentFactoryService factory
 global uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.IRequireService requireService
 
-// Outgoing Rules
+// Benefit Rules
+

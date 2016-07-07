@@ -6,6 +6,8 @@ import uk.nhs.nhsbsa.lis.rules.v1.model.BenefitType;
 import uk.nhs.nhsbsa.lis.rules.v1.model.Income;
 import uk.nhs.nhsbsa.lis.rules.v1.model.IncomeType;
 import uk.nhs.nhsbsa.lis.rules.v1.model.LisApplication;
+import uk.nhs.nhsbsa.lis.rules.v1.model.Outgoing;
+import uk.nhs.nhsbsa.lis.rules.v1.model.OutgoingType;
 import uk.nhs.nhsbsa.lis.rules.v1.model.Person;
 import uk.nhs.nhsbsa.lis.rules.v1.model.PersonType;
 
@@ -37,6 +39,13 @@ public class AssessmentFactoryService implements IAssessmentFactoryService {
 	@Override
 	public Income defaultIncome(IncomeType type) {
 		Income result = new Income();
+		result.setType(type);
+		return result;
+	}
+	
+	@Override
+	public Outgoing defaultOutgoing(OutgoingType type) {
+		Outgoing result = new Outgoing();
 		result.setType(type);
 		return result;
 	}

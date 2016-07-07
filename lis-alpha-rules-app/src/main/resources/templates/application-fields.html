@@ -17,7 +17,7 @@
 		<span th:text="${assessment.requirements.isRequired('__${path}__')}"></span>
 	</div>
 
-	<div th:fragment="benefit(path, key)">
+	<div th:fragment="intervalValue(path, key)">
 		<input type="hidden" th:field="*{__${path}__.type}" />
         <div class="pure-control-group">
             <label th:text="#{__${key}__}">Benefit Field</label>
@@ -48,31 +48,10 @@
               </div>
             </div>
         </div>
-        .
         
 		<div class="pure-control-group">
             <label>Value</label>
 			<input type="text" th:field="*{__${path}__.value.value}"
-			th:disabled="!${assessment.requirements.isRequired('__${path}__')}" />
-			<span th:text="${assessment.requirements.isRequired('__${path}__')}"></span>
-		</div>
-	</div>
-	
-	<div  th:fragment="income(path, key)">
-		<div class="pure-control-group">
-			<label th:text="#{__${key}__}">Income Field</label>
-			<input type="hidden" th:field="*{__${path}__.type}" /> <input
-			type="text" th:field="*{__${path}__.value}"
-			th:disabled="!${assessment.requirements.isRequired('__${path}__')}" />
-			<span th:text="${assessment.requirements.isRequired('__${path}__')}"></span>
-		</div>
-	</div>
-	
-	<div th:fragment="outgoing(path, key)">
-		<div>
-			<label th:text="#{__${key}__}">Outgoing Field</label>
-			<input type="hidden" th:field="*{__${path}__.type}" /> <input
-			type="text" th:field="*{__${path}__.value}"
 			th:disabled="!${assessment.requirements.isRequired('__${path}__')}" />
 			<span th:text="${assessment.requirements.isRequired('__${path}__')}"></span>
 		</div>

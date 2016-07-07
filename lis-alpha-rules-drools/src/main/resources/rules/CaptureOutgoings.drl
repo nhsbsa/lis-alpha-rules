@@ -1,0 +1,23 @@
+package uk.nhs.nhsbsa.lis.rules.v1.droolsengine.assessment;
+ 
+import uk.nhs.nhsbsa.util.ObjectIndex;
+import uk.nhs.nhsbsa.lis.rules.v1.model.*;
+import uk.nhs.nhsbsa.lis.rules.v1.droolsengine.model.*;
+
+global org.slf4j.Logger logger
+global uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.IAssessmentFactoryService factory
+global uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.IRequireService requireService
+
+
+rule "Default Community Charge"
+    when 
+        $index : ObjectIndex ()
+        $person : Person ( type in ( PersonType.MAIN_APPLICANT, PersonType.PARTNER ) )
+        not Outgoing( owner == $person, type == OutgoingType.COMMUNITY_CHARGE )
+    then
+        logger.info("Default Community Charge");
+        Outgoing $outgoing = factory.defaultOutgoing(OutgoingType.COMMUNITY_CHARGE);
+        $person.addOutgoing($outgoing);
+        $index.reindex($person);
+        insert ($outgoing);
+end

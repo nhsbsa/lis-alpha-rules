@@ -2,6 +2,7 @@ package uk.nhs.nhsbsa.lis.rules.v1.builder;
 
 import java.util.List;
 
+import uk.nhs.nhsbsa.lis.rules.v1.model.IntervalValue;
 import uk.nhs.nhsbsa.lis.rules.v1.model.Outgoing;
 import uk.nhs.nhsbsa.lis.rules.v1.model.OutgoingType;
 
@@ -14,7 +15,7 @@ public class OutgoingsBuilder extends AbstractBuilder<List<Outgoing>>{
 		super(parent, name, instance);
 	}
 
-	public OutgoingsBuilder withOutgoingValue(String value) {
+	public OutgoingsBuilder withOutgoingValue(IntervalValue value) {
 		getItem().setValue(value);
 		return this;
 	}

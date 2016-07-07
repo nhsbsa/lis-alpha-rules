@@ -88,15 +88,13 @@ public class MiriamPersonaTestData {
 		Outgoing testOutgoing=new Outgoing();
 		testOutgoing.setState(ValueState.SET);
 		testOutgoing.setType(OutgoingType.COMMUNITY_CHARGE);
-		testOutgoing.setValue("40");
-		testOutgoing.setMoneyPeriod(Interval.WEEKLY);
+		testOutgoing.setValue(new IntervalValue(Interval.WEEKLY, "40"));
 		testOutgoings.add(testOutgoing);
 		
 		testOutgoing=new Outgoing();
 		testOutgoing.setState(ValueState.SET);
 		testOutgoing.setType(OutgoingType.MORTGAGE);
-		testOutgoing.setValue("175");
-		testOutgoing.setMoneyPeriod(Interval.MONTHLY);
+		testOutgoing.setValue(new IntervalValue(Interval.WEEKLY, "175"));
 		testOutgoings.add(testOutgoing);
 		
 		// son
@@ -111,8 +109,7 @@ public class MiriamPersonaTestData {
 		testOutgoing=new Outgoing();
 		testOutgoing.setState(ValueState.SET);
 		testOutgoing.setType(OutgoingType.PENSION);
-		testOutgoing.setValue("100");
-		testOutgoing.setMoneyPeriod(Interval.MONTHLY);
+		testOutgoing.setValue(new IntervalValue(Interval.WEEKLY, "100"));
 		testOutgoings2.add(testOutgoing);
 	}
 	

@@ -8,6 +8,7 @@ import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
 import uk.nhs.nhsbsa.lis.rules.v1.model.Benefit;
 import uk.nhs.nhsbsa.lis.rules.v1.model.Income;
 import uk.nhs.nhsbsa.lis.rules.v1.model.LisApplication;
+import uk.nhs.nhsbsa.lis.rules.v1.model.Outgoing;
 import uk.nhs.nhsbsa.lis.rules.v1.model.Person;
 
 public class SessionFactInputProcesser extends DefaultSessionProcessor {
@@ -36,6 +37,7 @@ public class SessionFactInputProcesser extends DefaultSessionProcessor {
 			session.insert(person);
 			insertBenefits(session, person.getBenefits());
 			insertIncomes(session, person.getIncomes());
+			insertOutgoings(session, person.getOutgoings());
 		}
 	}
 
@@ -53,7 +55,6 @@ public class SessionFactInputProcesser extends DefaultSessionProcessor {
 		session.insert(benefit);
 	}
 
-
 	private void insertIncomes(KieSession session, List<Income> incomes) {
 
 		if (incomes != null) {
@@ -66,6 +67,20 @@ public class SessionFactInputProcesser extends DefaultSessionProcessor {
 	private void insert(KieSession session, Income income) {
 
 		session.insert(income);
+	}
+
+	private void insertOutgoings(KieSession session, List<Outgoing> outgoings) {
+
+		if (outgoings != null) {
+			for (Outgoing outgoing : outgoings) {
+				insert(session, outgoing);
+			}
+		}
+	}
+
+	private void insert(KieSession session, Outgoing outgoing) {
+
+		session.insert(outgoing);
 	}
 
 
