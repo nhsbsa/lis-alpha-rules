@@ -1,0 +1,14 @@
+/* tidy up radios in pure-form-aligned layout */
+.pure-form-aligned .pure-control-group .pure-radio {
+	text-align: left;
+	width: 5em;
+}
+
+.pure-form .radiogroup {
+	padding: 0;
+	display: inline-block;
+}
+
+.pure-form-aligned .radiogroup label {
+	text-align: left;
+}

@@ -44,7 +44,7 @@ public class Requirement {
 	
 	private int distance(String msg, Set<String> paths, String path, int d) {
 		if (paths.contains(path)) {
-			LOGGER.info("Found {} path {} after {} hops", new Object[]{
+			LOGGER.trace("Found {} path {} after {} hops", new Object[]{
 					msg, path, d
 			});
 			return d;

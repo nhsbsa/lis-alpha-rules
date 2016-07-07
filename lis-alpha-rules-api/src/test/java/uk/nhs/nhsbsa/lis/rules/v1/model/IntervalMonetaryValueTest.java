@@ -45,10 +45,10 @@ public class IntervalMonetaryValueTest {
 	
 	private void convert(String inputValue, Interval inputInterval, Interval outputInterval, String expectedValue) {
 		
-		IntervalMonetaryValue input = new IntervalMonetaryValue(inputInterval, new BigDecimal(inputValue));
-		IntervalMonetaryValue expected = new IntervalMonetaryValue(outputInterval, new BigDecimal(expectedValue));
+		IntervalValue input = new IntervalValue(inputInterval, new BigDecimal(inputValue));
+		IntervalValue expected = new IntervalValue(outputInterval, new BigDecimal(expectedValue));
 		
-		assertEquals(expected, input.convertInterval(outputInterval));
+		assertEquals(expected, input.convert(outputInterval));
 	}
 
 }

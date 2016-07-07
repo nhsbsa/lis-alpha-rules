@@ -19,13 +19,15 @@ import uk.nhs.nhsbsa.lis.rules.v1.model.Income;
 import uk.nhs.nhsbsa.lis.rules.v1.model.IncomeCapital;
 import uk.nhs.nhsbsa.lis.rules.v1.model.IncomeType;
 import uk.nhs.nhsbsa.lis.rules.v1.model.Interval;
+import uk.nhs.nhsbsa.lis.rules.v1.model.IntervalValue;
 import uk.nhs.nhsbsa.lis.rules.v1.model.Outgoing;
 import uk.nhs.nhsbsa.lis.rules.v1.model.OutgoingType;
 import uk.nhs.nhsbsa.lis.rules.v1.model.Person;
 
 public class HelperFunctions {
-	private static final double ZERO_DOUBLE = 0D;
-	private static Logger logger=Logger.getLogger("uk.nhs.nhsbsa.lis.rules.v1.droolsengine.HelperFunctions");
+
+	private static Logger LOGGER = Logger.getLogger("uk.nhs.nhsbsa.lis.rules.v1.droolsengine.HelperFunctions");
+
 	private static DecimalFormat decimalFormat = new DecimalFormat("#.00"); 
 	
 	/**
@@ -124,11 +126,10 @@ public class HelperFunctions {
 		if (benefits != null) {
 			for(Benefit benefit : benefits){
 				if(benefit.getType() == type){
-					String value=benefit.getValue();
-					Interval moneyPeriod=benefit.getMoneyPeriod();
-					// convert to weekly
-					value=convertMoney(value,moneyPeriod,Interval.WEEKLY);
-					result.add(value);
+					IntervalValue value=benefit.getValue();
+					if (value.canConvert()) {
+						result.add(value.convert(Interval.WEEKLY).getValue().toString());
+					}
 				}
 			} 
 		}
@@ -164,14 +165,17 @@ public class HelperFunctions {
 	 * @param requestedMoneyPeriod
 	 * @return
 	 */
-	public static String convertMoney(String input,Interval inputMoneyPeriod,Interval requestedMoneyPeriod){
-		if(inputMoneyPeriod==requestedMoneyPeriod){
-			// nothing to do
+	public static String convertMoney(String input, Interval inputMoneyPeriod, Interval requestedMoneyPeriod){
+		
+		if (inputMoneyPeriod == null || requestedMoneyPeriod == null) {
+			return null;
+		}
+		
+		//shortcut
+		if (inputMoneyPeriod==requestedMoneyPeriod){
 			return input;
 		}
-//		else if (inputMoneyPeriod==Interval.UNDEFINED||requestedMoneyPeriod==Interval.UNDEFINED){
-//			logger.log(Level.WARNING,"Calling convertMoney with UNDEFINED conversion");
-//		}
+
 		double inputValue=NumberUtils.toDouble(input);
 		// convert to weekly
 		switch(inputMoneyPeriod)
@@ -249,7 +253,7 @@ public class HelperFunctions {
 	 * @param rule
 	 */
 	public static void logRule(AssessmentCalculation container,String rule){
-		logger.log(Level.INFO,"Executing rule:"+rule);
+		LOGGER.log(Level.INFO,"Executing rule:"+rule);
 		container.getRuleList().add(rule);
 	}
 	
@@ -259,7 +263,7 @@ public class HelperFunctions {
 	 * @param rule
 	 */
 	public static void logWorkflowRule(WorkflowState container,String rule){
-		logger.log(Level.INFO,"Executing rule:"+rule);
+		LOGGER.log(Level.INFO,"Executing rule:"+rule);
 		container.getRuleList().add(rule);
 	}
 	

@@ -82,8 +82,7 @@ public class MiriamPersonaTestData {
 		Benefit testBenefit=new Benefit();
 		testBenefit.setState(ValueState.SET);
 		testBenefit.setType(BenefitType.RETIREMENT_PENSION);
-		testBenefit.setValue("119.30");
-		testBenefit.setMoneyPeriod(Interval.WEEKLY);
+		testBenefit.setValue(new IntervalValue(Interval.WEEKLY, "119.30"));
 		testBenefits.add(testBenefit);
 		
 		testOutgoings=new ArrayList<Outgoing>();

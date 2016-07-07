@@ -22,7 +22,6 @@ public class Outgoing {
 	public Outgoing(){
 		type=OutgoingType.UNDEFINED;
 		state=ValueState.UNDEFINED;
-		moneyPeriod=Interval.UNDEFINED;
 	}
 
 	public OutgoingType getType() {

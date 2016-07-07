@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
  * @author lorob
  *
  */
-public class Benefit implements IIncome{
+public class Benefit {
 	
 	@JsonBackReference
 	@Transient
@@ -21,14 +21,11 @@ public class Benefit implements IIncome{
 	
 	private Boolean receiving;
 	
-	private String value; // TODO this may change to an object. at present can hold benefit info
-	
-	private Interval moneyPeriod;
+	private IntervalValue value;
 
 	public Benefit(){
 		type=BenefitType.UNDEFINED;
 		state=ValueState.UNDEFINED;
-		moneyPeriod=Interval.UNDEFINED;
 	}
 	
 	public BenefitType getType() {
@@ -47,26 +44,18 @@ public class Benefit implements IIncome{
 		this.state = state;
 	}
 
-	public String getValue() {
+	public IntervalValue getValue() {
 		return value;
 	}
 
-	public void setValue(String value) {
+	public void setValue(IntervalValue value) {
 		this.value = value;
 	}
 	
-	public Interval getMoneyPeriod() {
-		return moneyPeriod;
-	}
-
-	public void setMoneyPeriod(Interval moneyPeriod) {
-		this.moneyPeriod = moneyPeriod;
-	}
-
 	@Override
 	public String toString() {
-		return "Benefit [benefitType=" + type + ", benefitState=" + state + ", benefitValue="
-				+ value + ", moneyPeriod=" + moneyPeriod + "]";
+		return "Benefit [type=" + type + ", state=" + state + ", value="
+				+ value + "]";
 	}
 	
 	@Override

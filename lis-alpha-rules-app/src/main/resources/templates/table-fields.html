@@ -19,19 +19,40 @@
 
 	<div th:fragment="benefit(path, key)">
 		<input type="hidden" th:field="*{__${path}__.type}" />
+        <div class="pure-control-group">
+            <label th:text="#{__${key}__}">Benefit Field</label>
+            <label class="pure-radio">
+                <input type="radio" value="true"
+                    th:field="*{__${path}__.receiving}"
+                    th:disabled="!${assessment.requirements.isRequired('__${path}__')}" />
+                Yes
+            </label>
+            <label class="pure-radio">
+                <input type="radio" value="false"
+                    th:field="*{__${path}__.receiving}"
+                    th:disabled="!${assessment.requirements.isRequired('__${path}__')}" />
+                No
+            </label>
+        </div>
+        
+        <div class="pure-control-group">
+            <label>Frequency</label>
+            <div class="radiogroup">
+              <div th:each="interval : ${T(uk.nhs.nhsbsa.lis.rules.v1.model.Interval).values()}">
+              <input type="radio" th:value="${{interval}}"
+                  th:id="${path + '__${interval}__'}"
+                  th:field="*{__${path}__.value.interval}"
+                  th:disabled="!${assessment.requirements.isRequired('__${path}__')}" /> 
+              <label th:text="${__interval__}" th:for="${path + '__${interval}__'}">Interval
+              </label>
+              </div>
+            </div>
+        </div>
+        .
+        
 		<div class="pure-control-group">
-			<label th:text="#{__${key}__}">Benefit Field</label>
-			<label class="pure-radio">
-				<input type="radio" th:field="*{__${path}__.type}" value="true"/>
-				Yes
-			</label>
-			<label class="pure-radio">
-				<input type="radio" th:field="*{__${path}__.type}" value="false"/>
-				No
-			</label>
-		</div>
-		<div class="pure-control-group">
-			<input type="text" th:field="*{__${path}__.value}"
+            <label>Value</label>
+			<input type="text" th:field="*{__${path}__.value.value}"
 			th:disabled="!${assessment.requirements.isRequired('__${path}__')}" />
 			<span th:text="${assessment.requirements.isRequired('__${path}__')}"></span>
 		</div>

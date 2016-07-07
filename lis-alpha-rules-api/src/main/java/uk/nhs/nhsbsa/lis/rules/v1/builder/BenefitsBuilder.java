@@ -4,6 +4,7 @@ import java.util.List;
 
 import uk.nhs.nhsbsa.lis.rules.v1.model.Benefit;
 import uk.nhs.nhsbsa.lis.rules.v1.model.BenefitType;
+import uk.nhs.nhsbsa.lis.rules.v1.model.IntervalValue;
 
 public class BenefitsBuilder extends AbstractBuilder<List<Benefit>>{
 
@@ -15,7 +16,7 @@ public class BenefitsBuilder extends AbstractBuilder<List<Benefit>>{
 		super(parent, name, instance);
 	}
 
-	public BenefitsBuilder withBenefitValue(String value) {
+	public BenefitsBuilder withBenefitValue(IntervalValue value) {
 		getItem().setValue(value);
 		return this;
 	}

@@ -7,16 +7,16 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.helpers.MessageFormatter;
 
 import com.google.common.collect.ImmutableMap;
 
 /**
- * TODO convert to immutable class.
- * TODO user Long to represent pennies and format to pounds on front end.
+ * TODO use Long to represent pennies and format to pounds on front end.
  */
-public class IntervalMonetaryValue {
+public class IntervalValue {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(IntervalMonetaryValue.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(IntervalValue.class);
 	
 	/**
 	 * Standard MathContext for money.
@@ -45,7 +45,27 @@ public class IntervalMonetaryValue {
 	
 	private BigDecimal value;
 	
-	public IntervalMonetaryValue(Interval interval, BigDecimal value) {
+	/**
+	 * Default constructor.
+	 */
+	public IntervalValue() {
+	}
+
+	/**
+	 * Convenience constructor.
+	 * @param interval
+	 * @param value
+	 */
+	public IntervalValue(Interval interval, String value) {
+		this(interval, new BigDecimal(value));
+	}
+	
+	/**
+	 * Convenience constructor.
+	 * @param interval
+	 * @param value
+	 */
+	public IntervalValue(Interval interval, BigDecimal value) {
 		super();
 		this.interval = interval;
 		this.value = value.setScale(MC.getPrecision(), MC.getRoundingMode());
@@ -58,6 +78,15 @@ public class IntervalMonetaryValue {
 	public BigDecimal getValue() {
 		return value;
 	}
+
+	public void setInterval(Interval interval) {
+		this.interval = interval;
+	}
+
+	public void setValue(BigDecimal value) {
+		this.value = value;
+	}
+
 
 	@Override
 	public int hashCode() {
@@ -76,7 +105,7 @@ public class IntervalMonetaryValue {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		IntervalMonetaryValue other = (IntervalMonetaryValue) obj;
+		IntervalValue other = (IntervalValue) obj;
 		if (interval != other.interval)
 			return false;
 		if (value == null) {
@@ -87,10 +116,22 @@ public class IntervalMonetaryValue {
 		return true;
 	}
 
-	public IntervalMonetaryValue convertInterval(Interval interval) {
+	/**
+	 * Scale the current interval to the one provided.
+	 * @param interval
+	 * @return a new IntervalValue with the new scale.
+	 */
+	public IntervalValue convert(Interval interval) {
 		
+		//exception if can't convert
+		if (!canConvert()) {
+			String msg = MessageFormatter.arrayFormat("Can't convert from {} to {}", 
+					new Object[]{this, interval}).getMessage();
+			throw new IllegalArgumentException(msg);
+		}
+		
+		// nothing to do
 		if(interval == this.interval){
-			// nothing to do
 			return this;
 		}
 
@@ -112,10 +153,14 @@ public class IntervalMonetaryValue {
 			newValue = working;
 		}
 		
-		IntervalMonetaryValue result = new IntervalMonetaryValue(interval, newValue);
+		IntervalValue result = new IntervalValue(interval, newValue);
 		LOGGER.info("{} > £{} YEARLY > {}", new Object[]{this, working, result});
 
 		return result;
+	}
+
+	public boolean canConvert() {
+		return value != null && interval != null;
 	}
 
 	@Override
@@ -123,5 +168,4 @@ public class IntervalMonetaryValue {
 		return "£" + value + " " + interval;
 	}
 
-	
 }
