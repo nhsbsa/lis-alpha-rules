@@ -1,0 +1,27 @@
+package uk.nhs.nhsbsa.lis.rules.v1.droolsengine.assessment;
+ 
+import uk.nhs.nhsbsa.lis.rules.v1.model.*;
+import uk.nhs.nhsbsa.lis.rules.v1.droolsengine.model.*;
+
+global org.slf4j.Logger logger
+global uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.IAssessmentFactoryService factory
+
+rule "IsDependant"
+    when
+        $person : (Person( type in (PersonType.DEPENDANT)))
+        $age : Age( person == $person, value < 16 )
+    then
+        logger.info("IsDependant");
+        insert ( new IsDependant($person) );
+end
+
+
+rule "IsNonDependant"
+    when
+        $person : (Person( type in (PersonType.DEPENDANT)))
+        $age : Age( person == $person, value >= 16 )
+    then
+        logger.info("IsNonDependant");
+        insert ( new IsNonDependant($person) );
+end
+

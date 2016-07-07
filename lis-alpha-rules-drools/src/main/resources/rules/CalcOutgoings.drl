@@ -8,5 +8,50 @@ global org.slf4j.Logger logger
 global uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.IAssessmentFactoryService factory
 global uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.IRequireService requireService
 
-// Benefit Rules
+
+rule "Community Charge Rule"
+    salience 80
+when 
+        lisApplication : LisApplication( applicant != null, myApplicant : applicant )
+        $breakdown : AssessmentBreakdown()
+    then
+        logger.info("Community Charge Rule");
+        List<String> communityCharge = HelperFunctions.communityChargeCalculation(myApplicant);
+        
+        if(communityCharge.size()>0){
+            // TODO assume only 1 community charge for now, but what about duplicates?
+            $breakdown.setCouncilTax(Double.parseDouble(communityCharge.get(0)));
+        }
+end
+
+rule "Rent Rule"
+    salience 80
+when 
+        lisApplication : LisApplication( applicant != null, myApplicant : applicant )
+        $breakdown : AssessmentBreakdown()
+    then
+        logger.info("Rent Rule");
+        
+        List<String> rent = HelperFunctions.rentCalculation(myApplicant);
+        if(rent.size()>0){
+            // TODO assume only 1 rent for now, but what about duplicates?
+            $breakdown.setRent(Double.parseDouble(rent.get(0)));
+        }
+end
+
+rule "Mortgage Rule"
+    salience 80
+when 
+        lisApplication : LisApplication( applicant != null, myApplicant : applicant )
+        $breakdown : AssessmentBreakdown()
+    then
+        logger.info("Mortgage Rule");
+        
+        List<String> mortgage = HelperFunctions.mortgageCalculation(myApplicant);
+        if(mortgage.size()>0){
+            // TODO assume only 1 mortgage for now, but what about duplicates?
+            $breakdown.setMortgage(Double.parseDouble(mortgage.get(0)));
+        }
+end
+
 
