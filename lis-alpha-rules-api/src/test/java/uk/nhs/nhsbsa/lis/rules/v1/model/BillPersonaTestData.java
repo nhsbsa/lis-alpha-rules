@@ -85,8 +85,7 @@ public class BillPersonaTestData {
 			Income testIncome=new Income();
 			testIncome.setState(ValueState.SET);
 			testIncome.setType(IncomeType.OCC_PENSION);
-			testIncome.setIncomeValue("50");
-			testIncome.setMoneyPeriod(Interval.WEEKLY);
+			testIncome.setValue(new IntervalValue(Interval.WEEKLY, "50"));
 			testIncomes.add(testIncome);
 			
 			testBenefits=new ArrayList<Benefit>();

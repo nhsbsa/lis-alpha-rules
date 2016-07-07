@@ -74,8 +74,7 @@ public class MiriamPersonaTestData {
 		Income testIncome=new Income();
 		testIncome.setState(ValueState.SET);
 		testIncome.setType(IncomeType.OCC_PENSION);
-		testIncome.setIncomeValue("50");
-		testIncome.setMoneyPeriod(Interval.WEEKLY);
+		testIncome.setValue(new IntervalValue(Interval.WEEKLY, "50"));
 		testIncomes.add(testIncome);
 		
 		testBenefits=new ArrayList<Benefit>();
@@ -105,8 +104,7 @@ public class MiriamPersonaTestData {
 		testIncome=new Income();
 		testIncome.setState(ValueState.SET);
 		testIncome.setType(IncomeType.EARNS);
-		testIncome.setIncomeValue("1600");
-		testIncome.setMoneyPeriod(Interval.MONTHLY);
+		testIncome.setValue(new IntervalValue(Interval.WEEKLY, "1600"));
 		testIncomes2.add(testIncome);
 		
 		testOutgoings2=new ArrayList<Outgoing>();

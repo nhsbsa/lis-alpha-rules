@@ -4,6 +4,7 @@ import java.util.List;
 
 import uk.nhs.nhsbsa.lis.rules.v1.model.Income;
 import uk.nhs.nhsbsa.lis.rules.v1.model.IncomeType;
+import uk.nhs.nhsbsa.lis.rules.v1.model.IntervalValue;
 
 public class IncomesBuilder extends AbstractBuilder<List<Income>>{
 	public IncomesBuilder() {
@@ -14,7 +15,7 @@ public class IncomesBuilder extends AbstractBuilder<List<Income>>{
 		super(parent, name, instance);
 	}
 
-	public IncomesBuilder withIncomeValue(String value) {
+	public IncomesBuilder withIncomeValue(IntervalValue value) {
 		getItem().setValue(value);
 		return this;
 	}

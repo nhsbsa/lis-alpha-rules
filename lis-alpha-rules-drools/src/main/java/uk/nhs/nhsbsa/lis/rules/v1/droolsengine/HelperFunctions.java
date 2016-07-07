@@ -147,10 +147,8 @@ public class HelperFunctions {
 		if (incomes != null) {
 			for(Income income : incomes){
 				if(income.getType() == type){
-					String value=income.getValue();
-					Interval moneyPeriod=income.getMoneyPeriod();
-					value=convertMoney(value,moneyPeriod,Interval.WEEKLY);
-					result.add(value);
+					IntervalValue value=income.getValue();
+					result.add(value.convert(Interval.WEEKLY).getValue().toString());
 				}
 			} 
 		}

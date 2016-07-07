@@ -11,15 +11,18 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
  * @author lorob
  *
  */
-public class Income implements IIncome{
+public class Income {
 	@JsonBackReference
 	@Transient
 	transient private Person owner;
 	
 	private IncomeType type;
 	private ValueState state;
-	private String value; // TODO this may change to an object. at present can hold income info
-	private Interval moneyPeriod;
+
+	private Boolean receiving;
+	
+	private IntervalValue value;
+
 
 	/**
 	 * Constructor
@@ -27,19 +30,14 @@ public class Income implements IIncome{
 	public Income(){
 		type=IncomeType.UNDEFINED;
 		state=ValueState.UNDEFINED;
-//		moneyPeriod=Interval.UNDEFINED;
 	}
 	
-	public String getValue() {
+	public IntervalValue getValue() {
 		return value;
 	}
 	
-	public void setValue(String value){
+	public void setValue(IntervalValue value){
 		this.value=value;
-	}
-
-	public void setIncomeValue(String value) {
-		this.value = value;
 	}
 
 	public IncomeType getType() {
@@ -58,18 +56,10 @@ public class Income implements IIncome{
 		this.state = state;
 	}
 	
-	public Interval getMoneyPeriod() {
-		return moneyPeriod;
-	}
-
-	public void setMoneyPeriod(Interval moneyPeriod) {
-		this.moneyPeriod = moneyPeriod;
-	}
-
 	@Override
 	public String toString() {
-		return "Income [incomeType=" + type + ", incomeState=" + state + ", incomeValue=" + value
-				+ ", moneyPeriod=" + moneyPeriod + "]";
+		return "Income [incomeType=" + type + ", incomeState=" + state + ", value=" + value
+				+ "]";
 	}
 
 	@Override
@@ -104,6 +94,14 @@ public class Income implements IIncome{
 
 	public void setOwner(Person owner) {
 		this.owner = owner;
+	}
+
+	public Boolean getReceiving() {
+		return receiving;
+	}
+
+	public void setReceiving(Boolean receiving) {
+		this.receiving = receiving;
 	}
 
 	

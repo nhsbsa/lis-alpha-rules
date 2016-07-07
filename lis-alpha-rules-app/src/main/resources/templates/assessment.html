@@ -72,7 +72,7 @@
             <div th:each="income, incomeRow : ${assessment.application.applicant.incomes}">
 				<fieldset>
 					<div class="pure-control-group"
-						th:include="table-fields :: income('application.applicant.incomes[__${incomeRow.index}__]', 'application.applicant.incomes[__${income.type}__]')">
+						th:include="table-fields :: benefit('application.applicant.incomes[__${incomeRow.index}__]', 'application.applicant.incomes[__${income.type}__]')">
 					</div>
 				</fieldset>
 			</div>
