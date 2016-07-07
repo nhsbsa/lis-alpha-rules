@@ -52,7 +52,7 @@ public class BenefitsTest extends AbstractRulesTest {
 	@Test
 	public void testDisablePensionerStatePension() {
 
-		bill.getApplicant().setDob(bill.getClaimDate().minusYears(20));
+		bill.getApplicant().setDob(bill.getClaimDate().minusYears(20)); 
 		Assessment input = new Assessment("123", bill);
 		
 		Assessment actual = service.assess(input);
