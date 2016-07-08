@@ -3,6 +3,8 @@ package uk.nhs.nhsbsa.util;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.slf4j.helpers.MessageFormatter;
+
 import uk.nhs.nhsbsa.util.ObjectWalker.CallbackItem;
 
 public class ObjectIndex {
@@ -39,5 +41,10 @@ public class ObjectIndex {
 	public Object get(String path) {
 		
 		return pathIndex.get(path);
+	}
+	
+	@Override
+	public String toString() {
+		return MessageFormatter.arrayFormat("Index has {} objects", new Object[]{objectIndex.size()}).getMessage();
 	}
 }

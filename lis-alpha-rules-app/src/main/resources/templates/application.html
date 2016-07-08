@@ -21,39 +21,10 @@
     </fieldset>
 
     <h1>Main Applicant</h1>
-    <h2>Personal Details</h2>
-    <fieldset>
-      <div class="pure-control-group" th:include="application-fields :: textfield('application.applicant.name.title')"></div>
-      <div class="pure-control-group" th:include="application-fields :: textfield('application.applicant.name.forenames')"></div>
-      <div class="pure-control-group" th:include="application-fields :: textfield('application.applicant.name.surname')"></div>
-      <div class="pure-control-group" th:include="application-fields :: datefield('application.applicant.dob')"></div>
-      <div class="pure-control-group" th:include="application-fields :: textfield('application.applicant.nino')"></div>
-    </fieldset>
-
-    <h2>Benefits</h2>
-    <fieldset th:each="benefit, benefitRow : ${assessment.application.applicant.benefits}">
-      <div
-        th:include="application-fields :: intervalValue('application.applicant.benefits[__${benefitRow.index}__]', 'application.applicant.benefits[__${benefit.type}__]')">
-      </div>
-    </fieldset>
-
-    <h2>Income</h2>
-    <div th:each="income, incomeRow : ${assessment.application.applicant.incomes}">
-      <fieldset>
-        <div class="pure-control-group"
-          th:include="application-fields :: intervalValue('application.applicant.incomes[__${incomeRow.index}__]', 'application.applicant.incomes[__${income.type}__]')">
-        </div>
-      </fieldset>
-    </div>
-
-    <h2>Outgoings</h2>
-    <div th:each="outgoing, outgoingRow : ${assessment.application.applicant.outgoings}">
-      <fieldset>
-        <div class="pure-control-group"
-          th:include="application-fields :: intervalValue('application.applicant.outgoings[__${outgoingRow.index}__]', 'application.applicant.outgoings[__${outgoing.type}__]')">
-        </div>
-      </fieldset>
-    </div>
+    <div th:include="person :: body(person_path='application.applicant')"></div>
+    
+    <h1>Partner</h1>
+    <div th:replace="person :: body(person_path='application.partner')" th:if="${applicant.hasPartner}"></div>
 
     <div class="right">
       <button class="button" type="submit" name="update" th:text="#{form.update}">Update</button>

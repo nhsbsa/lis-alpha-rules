@@ -46,6 +46,11 @@ public class LisApplication {
 	private Person applicant;
 	
 	/**
+	 * Has applicant got a partner.
+	 */
+	private Boolean hasPartner;
+	
+	/**
 	 * Partner
 	 */
 	private Person partner;
@@ -142,6 +147,14 @@ public class LisApplication {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Application(").append(claimDate).append(")");
 		return sb.toString();
+	}
+
+	public Boolean getHasPartner() {
+		return hasPartner;
+	}
+
+	public void setHasPartner(Boolean hasPartner) {
+		this.hasPartner = hasPartner;
 	}
 
 }

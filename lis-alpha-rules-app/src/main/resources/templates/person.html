@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+    <div th:fragment="body(person_path)">
+      <h2>Personal Details</h2>
+      
+      <fieldset>
+        <div class="pure-control-group" th:include="application-fields :: textfield('__${person_path}__.name.title')"></div>
+        <div class="pure-control-group" th:include="application-fields :: textfield('__${person_path}__.name.forenames')"></div>
+        <div class="pure-control-group" th:include="application-fields :: textfield('__${person_path}__.name.surname')"></div>
+        <div class="pure-control-group" th:include="application-fields :: datefield('__${person_path}__.dob')"></div>
+        <div class="pure-control-group" th:include="application-fields :: textfield('__${person_path}__.nino')"></div>
+      </fieldset>
+  
+      <h2>Benefits</h2>
+      <fieldset th:each="benefit, benefitRow : ${assessment.__${person_path}__.benefits}">
+        <div
+          th:include="application-fields :: intervalValue('__${person_path}__.benefits[__${benefitRow.index}__]', '__${person_path}__.benefits[__${benefit.type}__]')">
+        </div>
+      </fieldset>
+  
+      <h2>Income</h2>
+      <div th:each="income, incomeRow : ${assessment.__${person_path}__.incomes}">
+        <fieldset>
+          <div class="pure-control-group"
+            th:include="application-fields :: intervalValue('__${person_path}__.incomes[__${incomeRow.index}__]', '__${person_path}__.incomes[__${income.type}__]')">
+          </div>
+        </fieldset>
+      </div>
+  
+      <h2>Outgoings</h2>
+      <div th:each="outgoing, outgoingRow : ${assessment.__${person_path}__.outgoings}">
+        <fieldset>
+          <div class="pure-control-group"
+            th:include="application-fields :: intervalValue('__${person_path}__.outgoings[__${outgoingRow.index}__]', '__${person_path}__.outgoings[__${outgoing.type}__]')">
+          </div>
+        </fieldset>
+      </div>
+    </div>
+
+
+
+</body>
+</html>
