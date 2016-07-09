@@ -119,11 +119,14 @@ public class Person {
 		if (name != null && !StringUtils.isEmpty(name.toString())) {
 			result.append(name.toString())
 				.append(" ");
-		} 
+		}
 		if (type != null) {
 			result.append(type.toString());
 		}
-		return result.toString();
+		if (result.length() > 0) {
+			return result.toString();
+		}
+		return super.toString();
 	}
 
 }
