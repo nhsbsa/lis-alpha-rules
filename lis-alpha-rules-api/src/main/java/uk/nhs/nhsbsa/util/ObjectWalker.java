@@ -2,6 +2,7 @@ package uk.nhs.nhsbsa.util;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -133,6 +134,7 @@ public class ObjectWalker {
 		if (o != null) {
 			Class<?> clazz = o.getClass();
 			if (!ClassUtils.isPrimitiveOrWrapper(clazz)
+					&& !(o instanceof BigDecimal)
 					&& !(o instanceof String)
 					&& !clazz.isEnum()) {
 				result = true;

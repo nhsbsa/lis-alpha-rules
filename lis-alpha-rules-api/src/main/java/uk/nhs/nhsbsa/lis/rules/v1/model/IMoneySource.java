@@ -7,6 +7,11 @@ package uk.nhs.nhsbsa.lis.rules.v1.model;
  */
 public interface IMoneySource {
 	
-	public Boolean isReceiving();
+	public enum Type {
+		RESOURCE,
+		REQUIREMENT;
+	}
+	public Boolean getReceiving();
 	public IntervalValue getValue();
+	public Type moneySourceType();
 }

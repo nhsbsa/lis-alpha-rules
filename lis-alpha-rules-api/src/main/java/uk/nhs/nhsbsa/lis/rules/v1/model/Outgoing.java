@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
  * @author lorob
  *
  */
-public class Outgoing {
+public class Outgoing implements IMoneySource {
 	
 	@JsonBackReference
 	@Transient
@@ -26,6 +26,11 @@ public class Outgoing {
 	public Outgoing(){
 		type=OutgoingType.UNDEFINED;
 		state=ValueState.UNDEFINED;
+	}
+
+	@Override
+	public IMoneySource.Type moneySourceType() {
+		return IMoneySource.Type.REQUIREMENT;
 	}
 
 	public OutgoingType getType() {

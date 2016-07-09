@@ -11,7 +11,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
  * @author lorob
  *
  */
-public class Income {
+public class Income implements IMoneySource {
+	
 	@JsonBackReference
 	@Transient
 	transient private Person owner;
@@ -23,7 +24,6 @@ public class Income {
 	
 	private IntervalValue value;
 
-
 	/**
 	 * Constructor
 	 */
@@ -32,6 +32,11 @@ public class Income {
 		state=ValueState.UNDEFINED;
 	}
 	
+	@Override
+	public IMoneySource.Type moneySourceType() {
+		return IMoneySource.Type.RESOURCE;
+	}
+
 	public IntervalValue getValue() {
 		return value;
 	}

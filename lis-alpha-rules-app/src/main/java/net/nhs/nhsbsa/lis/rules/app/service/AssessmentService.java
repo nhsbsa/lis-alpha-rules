@@ -53,6 +53,10 @@ public class AssessmentService implements IAssessmentService {
 	public Assessment update(String id, Assessment updated) {
 		
 		Assessment existing = assessmentRespository.findOne(id);
+		if (existing == null) {
+			existing = create();
+			updated.setId(existing.getId());
+		}
 		assembler.map(updated, existing);
 		Assessment result = assessmentRestClient.put(id, existing);
 		result = assessmentRespository.save(result);

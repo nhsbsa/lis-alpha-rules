@@ -10,10 +10,6 @@ public class AssessmentSummary {
 		return resources;
 	}
 
-	public void addResources(IntervalValue resources) {
-		this.resources = resources.add(this.resources);
-	}
-
 	public IntervalValue getRequirements() {
 		return requirements;
 	}
@@ -22,4 +18,12 @@ public class AssessmentSummary {
 		this.requirements = requirements;
 	}
 	
+	public void addResources(IntervalValue resources) {
+		this.resources = resources.add(this.resources);
+	}
+
+	public void addRequirements(IntervalValue requirements) {
+		this.requirements = requirements.add(this.requirements);
+	} 
+
 }
