@@ -120,7 +120,9 @@ public class Person {
 			result.append(name.toString())
 				.append(" ");
 		} 
-		result.append(type.toString());
+		if (type != null) {
+			result.append(type.toString());
+		}
 		return result.toString();
 	}
 

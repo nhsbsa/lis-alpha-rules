@@ -17,10 +17,23 @@
 		<span th:text="${assessment.requirements.isRequired('__${path}__')}"></span>
 	</div>
 
+	<div th:fragment="booleanfield(path)" class="pure-control-group">
+		<label th:text="#{__${path}__}">Field</label> <label
+			class="pure-radio"> <input type="radio" value="true"
+			th:field="*{__${path}__}"
+			th:disabled="!${assessment.requirements.isRequired('__${path}__')}" />
+			Yes
+		</label> <label class="pure-radio"> <input type="radio" value="false"
+			th:field="*{__${path}__}"
+			th:disabled="!${assessment.requirements.isRequired('__${path}__')}" />
+			No
+		</label>
+	</div>
+
 	<div th:fragment="intervalValue(path, key)">
 		<input type="hidden" th:field="*{__${path}__.type}" />
         <div class="pure-control-group">
-            <label th:text="#{__${key}__}">Benefit Field</label>
+            <label th:text="#{__${key}__}">Field</label>
             <label class="pure-radio">
                 <input type="radio" value="true"
                     th:field="*{__${path}__.receiving}"

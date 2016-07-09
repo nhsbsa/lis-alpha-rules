@@ -24,7 +24,10 @@
     <div th:include="person :: body(person_path='application.applicant')"></div>
     
     <h1>Partner</h1>
-    <div th:replace="person :: body(person_path='application.partner')" th:if="${applicant.hasPartner}"></div>
+    <div class="pure-control-group" th:include="application-fields :: booleanfield('application.hasPartner')"></div>
+    <div th:if="*{application.hasPartner == true}">
+	    <div th:replace="person :: body(person_path='application.partner')"></div>
+    </div>
 
     <div class="right">
       <button class="button" type="submit" name="update" th:text="#{form.update}">Update</button>
