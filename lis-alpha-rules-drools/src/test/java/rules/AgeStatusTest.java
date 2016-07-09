@@ -33,7 +33,7 @@ public class AgeStatusTest extends AbstractRulesTest {
 
 		System.out.println(actual.getWorkingData());
 		
-		assertTrue(actual.getWorkingData().contains("Age[Mr Bill Smith]=20"));
+		assertTrue(actual.getWorkingData().contains("[Mr Bill Smith MAIN_APPLICANT] age = 20"));
 	}
 
 	@Test
@@ -46,7 +46,7 @@ public class AgeStatusTest extends AbstractRulesTest {
 
 		System.out.println(actual.getWorkingData());
 		
-		assertTrue(actual.getWorkingData().contains("IsPensioner[Mr Bill Smith]"));
+		assertTrue(actual.getWorkingData().contains("[Mr Bill Smith MAIN_APPLICANT] is a Pensioner"));
 	}
 
 	@Test
@@ -60,7 +60,7 @@ public class AgeStatusTest extends AbstractRulesTest {
 
 		System.out.println(actual.getWorkingData());
 		
-		assertFalse(actual.getWorkingData().contains("IsPensioner[Mr Bill Smith]"));
+		assertFalse(actual.getWorkingData().contains("[Mr Bill Smith MAIN_APPLICANT] is a Pensioner"));
 	}
 
 }

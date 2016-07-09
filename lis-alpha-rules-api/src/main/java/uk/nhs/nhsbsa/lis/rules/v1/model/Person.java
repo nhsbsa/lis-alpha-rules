@@ -116,7 +116,7 @@ public class Person {
 	@Override
 	public String toString() {
 		StringBuilder result = new StringBuilder();
-		if (!StringUtils.isEmpty(name.toString())) {
+		if (name != null && !StringUtils.isEmpty(name.toString())) {
 			result.append(name.toString())
 				.append(" ");
 		} 
