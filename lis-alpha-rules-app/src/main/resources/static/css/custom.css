@@ -24,3 +24,35 @@
 .calc-value {
     text-align: left;
 }
+
+h3 {
+    margin-top: 20px;
+    font-size: 1.2em;
+    color: #0065BD;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.intro h2.pending {
+    background-color: gray;
+    color: white;
+    text-align : center;
+}
+
+.intro h2.full-help {
+    background-color: green;
+    color: white;
+    text-align : center;
+}
+
+.intro h2.partial-help {
+    background-color: orange;
+    color: white;
+    text-align : center;
+}
+
+.intro h2.no-help {
+    background-color: red;
+    color: white;
+    text-align : center;
+}

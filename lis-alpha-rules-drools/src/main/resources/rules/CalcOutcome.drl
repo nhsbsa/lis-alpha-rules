@@ -11,6 +11,7 @@ then
   insert ( new FullEntitlementThreshold( new IntervalValue(Interval.WEEKLY, "4.20") ) );
 end
 
+
 rule "No Entitlement Threshold"
 when
   not NoEntitlementThreshold()
@@ -18,10 +19,10 @@ then
   insert ( new NoEntitlementThreshold( new IntervalValue(Interval.WEEKLY, "128.00") ) );
 end
 
+
 rule "Accumulate Resources"
 no-loop true
 when 
-	$summary : AssessmentSummary ( resources == null )
 	not Resources()
 	accumulate ( IMoneySource ( moneySourceType() == IMoneySource.Type.RESOURCE, receiving == true, value.canConvert(), $value : value.convert(Interval.WEEKLY).value );
 		$sum : sum ( $value )
@@ -31,10 +32,10 @@ then
 	insert ( new Resources(total) );
 end
 
+
 rule "Accumulate Requirements"
 no-loop true
 when 
-	$summary : AssessmentSummary ( requirements == null )
 	not Requirements()
 	accumulate ( IMoneySource ( moneySourceType() == IMoneySource.Type.REQUIREMENT, receiving == true, value.canConvert(), $value : value.convert(Interval.WEEKLY).value );
 		$sum : sum ( $value )
@@ -50,10 +51,11 @@ salience -100
 when
 	not Resources ()	
 	not Requirements ()
-	not IEntitlement()
+	not Entitlement()
 then
 	logger.info("pending more data");
 end
+
 
 rule "Excess contribution"
 when
@@ -65,31 +67,45 @@ then
 	insert ( new ExcessContribution(val) );
 end
 
+
 rule "Full Entitlement"
 when
 	$fullThreshold : FullEntitlementThreshold (  )
 	$excessContribution : ExcessContribution ( value.lte($fullThreshold.value) )
-	not IEntitlement()
+	not Entitlement()
 then
-	insert ( new FullEntitlement() );
+	insert ( new Entitlement(EntitlementLevel.FULL, $excessContribution.getValue()) );
 end
+
 
 rule "Partial Entitlement"
 when
 	$fullThreshold : FullEntitlementThreshold (  )
 	$noThreshold : NoEntitlementThreshold (  )
 	$excessContribution : ExcessContribution ( value.gt($fullThreshold.value), value.lt($noThreshold.value) )
-	not IEntitlement()
+	not Entitlement()
 then
-	insert ( new PartialEntitlement() );
+	insert ( new Entitlement(EntitlementLevel.PARTIAL, $excessContribution.getValue()) );
 end
+
 
 rule "No Entitlement"
 when
 	$noThreshold : NoEntitlementThreshold (  )
 	$excessContribution : ExcessContribution ( value.gte($noThreshold.value) )
-	not IEntitlement()
+	not Entitlement()
 then
-	insert ( new NoEntitlement() );
+	Entitlement ent = new Entitlement(EntitlementLevel.NONE, $excessContribution.getValue());
+	insert ( ent );
 end
+
+rule "Summary"
+when
+	$assessment: Assessment()
+	$entitlement : Entitlement()
+then
+	$assessment.setEntitlement($entitlement);
+end
+
+
 

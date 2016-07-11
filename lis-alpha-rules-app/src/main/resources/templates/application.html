@@ -6,12 +6,13 @@
   <form class="pure-form pure-form-aligned" action="#" th:action="@{/assessments/__${id}__}" th:object="${assessment}"
     th:method="PUT">
 
+	<h1>Application</h1>
     <div class="right">
       <button class="button" type="submit" name="update" th:text="#{form.update}">Update</button>
     </div>
 
-    <h1>Household</h1>
-    <h2>Address</h2>
+    <h2>Household</h2>
+    <h3>Address</h3>
     <fieldset>
       <div class="pure-control-group" th:include="application-fields :: textfield('application.address.houseNameNumber')"></div>
       <div class="pure-control-group" th:include="application-fields :: textfield('application.address.addressLine1')"></div>
@@ -20,10 +21,10 @@
       <div class="pure-control-group" th:include="application-fields :: textfield('application.address.postcode')"></div>
     </fieldset>
 
-    <h1>Main Applicant</h1>
+    <h2>Main Applicant</h2>
     <div th:include="person :: body(person_path='application.applicant')"></div>
     
-    <h1>Partner</h1>
+    <h2>Partner</h2>
     <div class="pure-control-group" th:include="application-fields :: booleanfield('application.hasPartner')"></div>
     <div th:if="*{application.hasPartner == true}">
 	    <div th:replace="person :: body(person_path='application.partner')"></div>

@@ -4,7 +4,7 @@
 <body>
 
     <div th:fragment="body(person_path)">
-      <h2>Personal Details</h2>
+      <h3>Personal Details</h3>
       
       <fieldset>
         <div class="pure-control-group" th:include="application-fields :: textfield('__${person_path}__.name.title')"></div>
@@ -14,14 +14,14 @@
         <div class="pure-control-group" th:include="application-fields :: textfield('__${person_path}__.nino')"></div>
       </fieldset>
   
-      <h2>Benefits</h2>
+      <h3>Benefits</h3>
       <fieldset th:each="benefit, benefitRow : ${assessment.__${person_path}__.benefits}">
         <div
           th:include="application-fields :: intervalValue('__${person_path}__.benefits[__${benefitRow.index}__]', '__${person_path}__.benefits[__${benefit.type}__]')">
         </div>
       </fieldset>
   
-      <h2>Income</h2>
+      <h3>Income</h3>
       <div th:each="income, incomeRow : ${assessment.__${person_path}__.incomes}">
         <fieldset>
           <div class="pure-control-group"
@@ -30,7 +30,7 @@
         </fieldset>
       </div>
   
-      <h2>Outgoings</h2>
+      <h3>Outgoings</h3>
       <div th:each="outgoing, outgoingRow : ${assessment.__${person_path}__.outgoings}">
         <fieldset>
           <div class="pure-control-group"

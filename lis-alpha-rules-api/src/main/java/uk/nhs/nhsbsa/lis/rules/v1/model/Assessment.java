@@ -7,7 +7,7 @@ import org.springframework.data.annotation.Id;
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.Application;
 import uk.nhs.nhsbsa.lis.rules.v1.model.flow.Requirement;
 import uk.nhs.nhsbsa.lis.rules.v1.model.outcome.AssessmentBreakdown;
-import uk.nhs.nhsbsa.lis.rules.v1.model.outcome.AssessmentSummary;
+import uk.nhs.nhsbsa.lis.rules.v1.model.outcome.Entitlement;
 import uk.nhs.nhsbsa.lis.rules.v1.model.outcome.ExemptionOutcome;
 
 /**
@@ -36,16 +36,8 @@ public class Assessment {
 
 	private AssessmentBreakdown breakdown;
 	
-	private AssessmentSummary summary;
+	private Entitlement entitlement;
 	
-	public AssessmentSummary getSummary() {
-		return summary;
-	}
-
-	public void setSummary(AssessmentSummary summary) {
-		this.summary = summary;
-	}
-
 	private ExemptionOutcome outcome;
 
 	public Assessment() {
@@ -56,6 +48,14 @@ public class Assessment {
 	public Assessment(String id, Application application) {
 		this();
 		this.application = application;
+	}
+
+	public Entitlement getEntitlement() {
+		return entitlement;
+	}
+
+	public void setEntitlement(Entitlement entitlement) {
+		this.entitlement = entitlement;
 	}
 
 	public Requirement getRequirements() {
