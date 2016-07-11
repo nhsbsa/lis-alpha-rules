@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import uk.nhs.nhsbsa.lis.rules.v1.IAssessmentRulesService;
 import uk.nhs.nhsbsa.lis.rules.v1.IAssessmentWebService;
 import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
-import uk.nhs.nhsbsa.lis.rules.v1.model.application.LisApplication;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.Application;
 
 @Controller
 @RequestMapping("/assessments")
@@ -28,7 +28,7 @@ public class AssessmentController implements IAssessmentWebService {
 	
 	@Override
 	@RequestMapping(method=RequestMethod.POST)
-	public @ResponseBody Assessment post(LisApplication application) {
+	public @ResponseBody Assessment post(Application application) {
 
     	LOGGER.info("POST /assessments");
 		return assess(new Assessment(null, application));

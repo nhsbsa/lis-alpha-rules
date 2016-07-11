@@ -17,7 +17,7 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import uk.nhs.nhsbsa.lis.rules.v1.model.application.LisApplication;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.Application;
 import uk.nhs.nhsbsa.lis.rules.ws.LisRulesWebServiceApplication;
 
 /**
@@ -39,8 +39,8 @@ public class LisRulesWebServiceApplicationTest {
 	@Test
 	@Ignore
 	public void testGreeting() throws Exception {
-		ResponseEntity<LisApplication> entity = new TestRestTemplate()
-				.getForEntity("http://localhost:" + this.port + "/assessments/123", LisApplication.class);
+		ResponseEntity<Application> entity = new TestRestTemplate()
+				.getForEntity("http://localhost:" + this.port + "/assessments/123", Application.class);
 		assertEquals(HttpStatus.OK, entity.getStatusCode());
 	}
 

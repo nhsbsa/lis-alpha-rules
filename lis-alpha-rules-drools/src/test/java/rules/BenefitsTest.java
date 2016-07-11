@@ -10,13 +10,13 @@ import org.junit.Before;
 import org.junit.Test;
 
 import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
-import uk.nhs.nhsbsa.lis.rules.v1.model.Requirement;
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.BillPersonaTestData;
-import uk.nhs.nhsbsa.lis.rules.v1.model.application.LisApplication;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.Application;
+import uk.nhs.nhsbsa.lis.rules.v1.model.flow.Requirement;
 
 public class BenefitsTest extends AbstractRulesTest {
 
-	private LisApplication bill;
+	private Application bill;
 	
 	@Before
 	public void setup() {

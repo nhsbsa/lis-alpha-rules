@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
-import uk.nhs.nhsbsa.lis.rules.v1.model.application.LisApplication;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.Application;
 
 public class AssessmentRestClient implements IAssessmentRestClient {
 
@@ -37,8 +37,8 @@ public class AssessmentRestClient implements IAssessmentRestClient {
 	}
 
 	@Override
-	public Assessment post(LisApplication application) {
-		HttpEntity<LisApplication> requestEntity = new HttpEntity<LisApplication>(application);
+	public Assessment post(Application application) {
+		HttpEntity<Application> requestEntity = new HttpEntity<Application>(application);
 		ResponseEntity<Assessment> responseEntity =
 				restTemplate.exchange(
 						restEndpointBuilder.getPostResourceUri(),

@@ -12,7 +12,7 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 /**
  * The root class for a rules based LIS assessment.
  */
-public class LisApplication {
+public class Application {
 	
 	/**
 	 * Assessment is based on claim date. This is the date the claim

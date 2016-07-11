@@ -7,7 +7,7 @@ import org.kie.api.runtime.KieSession;
 import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.Benefit;
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.Income;
-import uk.nhs.nhsbsa.lis.rules.v1.model.application.LisApplication;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.Application;
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.Outgoing;
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.Person;
 
@@ -23,7 +23,7 @@ public class SessionFactInputProcesser extends DefaultSessionProcessor {
 		insert(session, assessment.getApplication());
 	}
 
-	private void insert(KieSession session, LisApplication application) {
+	private void insert(KieSession session, Application application) {
 
 		if (application != null) {
 			session.insert(application);

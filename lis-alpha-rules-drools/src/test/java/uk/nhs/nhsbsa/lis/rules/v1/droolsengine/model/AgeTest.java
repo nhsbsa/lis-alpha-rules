@@ -7,17 +7,17 @@ import java.time.LocalDate;
 import org.junit.Before;
 import org.junit.Test;
 
-import uk.nhs.nhsbsa.lis.rules.v1.model.application.LisApplication;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.Application;
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.Person;
 
 public class AgeTest {
 
-	LisApplication app;
+	Application app;
 	Person person;
 	
 	@Before
 	public void setup() {
-		app = new LisApplication();
+		app = new Application();
 		app.setClaimDate(LocalDate.parse("2016-01-10"));
 		person = new Person();
 	}

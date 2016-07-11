@@ -4,8 +4,6 @@ import org.springframework.data.annotation.Transient;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
-import uk.nhs.nhsbsa.lis.rules.v1.model.ValueState;
-
 /**
  * class to represent an income
  * An income has a type and whether a value has been set or not.

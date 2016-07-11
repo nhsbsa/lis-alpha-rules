@@ -4,8 +4,6 @@ import org.springframework.data.annotation.Transient;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
-import uk.nhs.nhsbsa.lis.rules.v1.model.ValueState;
-
 /**
  * Benefit class to hold benefit information
  * @author lorob

@@ -5,7 +5,7 @@ import uk.nhs.nhsbsa.lis.rules.v1.model.application.Benefit;
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.BenefitType;
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.Income;
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.IncomeType;
-import uk.nhs.nhsbsa.lis.rules.v1.model.application.LisApplication;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.Application;
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.Outgoing;
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.OutgoingType;
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.Person;
@@ -14,9 +14,9 @@ import uk.nhs.nhsbsa.lis.rules.v1.model.application.PersonType;
 public class AssessmentFactoryService implements IAssessmentFactoryService {
 
 	@Override
-	public LisApplication defaultApplication() {
+	public Application defaultApplication() {
 		
-		LisApplication application = new LisApplication();
+		Application application = new Application();
 		return application;
 	}
 

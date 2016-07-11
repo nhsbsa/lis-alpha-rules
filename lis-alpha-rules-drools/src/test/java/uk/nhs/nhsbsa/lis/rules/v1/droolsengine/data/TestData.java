@@ -4,17 +4,17 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import uk.nhs.nhsbsa.lis.rules.v1.model.ValueState;
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.BillPersonaTestData;
-import uk.nhs.nhsbsa.lis.rules.v1.model.application.LisApplication;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.Application;
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.MiriamPersonaTestData;
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.Person;
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.Saving;
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.SavingType;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.ValueState;
 
 public class TestData {
 	
-	public LisApplication createBillAssessment(){
+	public Application createBillAssessment(){
 		
 		LocalDate assessmentDate;
 		LocalDate processingDate;
@@ -22,7 +22,7 @@ public class TestData {
 		assessmentDate=LocalDate.parse("2016-07-01");
 		processingDate=LocalDate.parse("2016-07-01");
 		
-		LisApplication billApplication=new LisApplication();
+		Application billApplication=new Application();
 		BillPersonaTestData billPersonaTestData=new BillPersonaTestData();
 		billApplication.setAddress(billPersonaTestData.testAddress);
 		billApplication.setApplicant(billPersonaTestData.testPerson);
@@ -35,7 +35,7 @@ public class TestData {
 		return billApplication;
 	}
 	
-	public LisApplication createMiriamAssessment(){
+	public Application createMiriamAssessment(){
 		
 		LocalDate assessmentDate;
 		LocalDate processingDate;
@@ -43,7 +43,7 @@ public class TestData {
 		assessmentDate=LocalDate.parse("2016-02-01");
 		processingDate=LocalDate.parse("2016-05-01");
 		
-		LisApplication miriamApplication=new LisApplication();
+		Application miriamApplication=new Application();
 		MiriamPersonaTestData miriamPersonaTestData=new MiriamPersonaTestData();
 		miriamApplication.setAddress(miriamPersonaTestData.testAddress);
 		miriamApplication.setApplicant(miriamPersonaTestData.testPerson);

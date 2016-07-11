@@ -1,10 +1,10 @@
 package uk.nhs.nhsbsa.lis.rules.v1.builder;
 
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.Address;
-import uk.nhs.nhsbsa.lis.rules.v1.model.application.LisApplication;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.Application;
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.Person;
 
-public class LisApplicationBuilder extends AbstractBuilder<LisApplication> {
+public class LisApplicationBuilder extends AbstractBuilder<Application> {
 
 	
 	public LisApplicationBuilder() {

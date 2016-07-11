@@ -4,7 +4,11 @@ import java.util.List;
 
 import org.springframework.data.annotation.Id;
 
-import uk.nhs.nhsbsa.lis.rules.v1.model.application.LisApplication;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.Application;
+import uk.nhs.nhsbsa.lis.rules.v1.model.flow.Requirement;
+import uk.nhs.nhsbsa.lis.rules.v1.model.outcome.AssessmentBreakdown;
+import uk.nhs.nhsbsa.lis.rules.v1.model.outcome.AssessmentSummary;
+import uk.nhs.nhsbsa.lis.rules.v1.model.outcome.ExemptionOutcome;
 
 /**
  * An assessment of an application.
@@ -22,7 +26,7 @@ public class Assessment {
 	/**
 	 * The application being assessed.
 	 */
-	private LisApplication application;
+	private Application application;
 	
 	private Requirement requirements;
 
@@ -49,7 +53,7 @@ public class Assessment {
 		requirements.include("application");
 	}
 	
-	public Assessment(String id, LisApplication application) {
+	public Assessment(String id, Application application) {
 		this();
 		this.application = application;
 	}
@@ -70,11 +74,11 @@ public class Assessment {
 		this.id = id;
 	}
 
-	public LisApplication getApplication() {
+	public Application getApplication() {
 		return application;
 	}
 
-	public void setApplication(LisApplication application) {
+	public void setApplication(Application application) {
 		this.application = application;
 	}
 

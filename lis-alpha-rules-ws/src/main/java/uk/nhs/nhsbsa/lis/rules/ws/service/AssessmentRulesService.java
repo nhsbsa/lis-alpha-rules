@@ -13,10 +13,10 @@ import uk.nhs.nhsbsa.lis.rules.v1.IAssessmentRulesService;
 import uk.nhs.nhsbsa.lis.rules.v1.builder.LisApplicationBuilder;
 import uk.nhs.nhsbsa.lis.rules.v1.builder.PersonBuilder;
 import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
-import uk.nhs.nhsbsa.lis.rules.v1.model.Requirement;
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.BenefitType;
-import uk.nhs.nhsbsa.lis.rules.v1.model.application.LisApplication;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.Application;
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.Person;
+import uk.nhs.nhsbsa.lis.rules.v1.model.flow.Requirement;
 
 @Service
 public class AssessmentRulesService implements IAssessmentRulesService {
@@ -90,7 +90,7 @@ public class AssessmentRulesService implements IAssessmentRulesService {
 		}
 	}
 */
-	private LisApplication defaultApplication() {
+	private Application defaultApplication() {
 		
 		LisApplicationBuilder builder = new LisApplicationBuilder();
 		builder.withAddress()

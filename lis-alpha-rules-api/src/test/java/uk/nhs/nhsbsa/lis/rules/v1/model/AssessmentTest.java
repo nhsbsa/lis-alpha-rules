@@ -11,11 +11,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.BillPersonaTestData;
-import uk.nhs.nhsbsa.lis.rules.v1.model.application.LisApplication;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.Application;
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.MiriamPersonaTestData;
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.Person;
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.Saving;
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.SavingType;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.ValueState;
 
 public class AssessmentTest {
 	
@@ -28,7 +29,7 @@ public class AssessmentTest {
 		assessmentDate=LocalDate.parse("2016-04-01");
 		processingDate=LocalDate.parse("2016-04-01");
 		
-		LisApplication assessment=new LisApplication();
+		Application assessment=new Application();
 		BillPersonaTestData billPersonaTestData=new BillPersonaTestData();
 		assessment.setAddress(billPersonaTestData.testAddress);
 		assessment.setApplicant(billPersonaTestData.testPerson);
@@ -57,7 +58,7 @@ public class AssessmentTest {
 		assessmentDate=LocalDate.parse("2016-05-01");
 		processingDate=LocalDate.parse("2016-05-01");
 		
-		LisApplication assessment=new LisApplication();
+		Application assessment=new Application();
 		MiriamPersonaTestData miriamPersonaTestData=new MiriamPersonaTestData();
 		assessment.setAddress(miriamPersonaTestData.testAddress);
 		assessment.setApplicant(miriamPersonaTestData.testPerson);
@@ -100,7 +101,7 @@ public class AssessmentTest {
 	 * Just for outputting 
 	 * @return
 	 */
-	public String toJSONString(LisApplication assessment){
+	public String toJSONString(Application assessment){
 			ObjectMapper mapper = new ObjectMapper();
 			mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
 			try{

@@ -3,7 +3,6 @@ package uk.nhs.nhsbsa.lis.rules.v1.model.application;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import uk.nhs.nhsbsa.lis.rules.v1.model.ValueState;
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.Address;
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.Benefit;
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.BenefitType;
@@ -12,7 +11,7 @@ import uk.nhs.nhsbsa.lis.rules.v1.model.application.Income;
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.IncomeType;
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.Interval;
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.IntervalValue;
-import uk.nhs.nhsbsa.lis.rules.v1.model.application.LisApplication;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.Application;
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.Name;
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.Outgoing;
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.OutgoingType;
@@ -48,7 +47,7 @@ public class BillPersonaTestData {
 				createBillPersona();
 		}
 		
-		public LisApplication createApplication(){
+		public Application createApplication(){
 			
 			LocalDate assessmentDate;
 			LocalDate processingDate;
@@ -56,7 +55,7 @@ public class BillPersonaTestData {
 			assessmentDate=LocalDate.parse("2016-07-01");
 			processingDate=LocalDate.parse("2016-07-01");
 			
-			LisApplication billApplication=new LisApplication();
+			Application billApplication=new Application();
 			BillPersonaTestData billPersonaTestData=new BillPersonaTestData();
 			billApplication.setAddress(billPersonaTestData.testAddress);
 			billApplication.setApplicant(billPersonaTestData.testPerson);

@@ -4,7 +4,7 @@ import java.time.temporal.ChronoUnit;
 
 import org.slf4j.helpers.MessageFormatter;
 
-import uk.nhs.nhsbsa.lis.rules.v1.model.application.LisApplication;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.Application;
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.Person;
 
 public class Age {
@@ -13,13 +13,13 @@ public class Age {
 	
 	private Long value;
 	
-	public Age(LisApplication application, Person person) {
+	public Age(Application application, Person person) {
 		super();
 		this.person = person;
 		value = getAge(application, person);
 	}
 
-	private Long getAge(LisApplication application, Person p) {
+	private Long getAge(Application application, Person p) {
 		Long result = null;
 		if (p.getDob() != null) {
 			result = ChronoUnit.YEARS.between(

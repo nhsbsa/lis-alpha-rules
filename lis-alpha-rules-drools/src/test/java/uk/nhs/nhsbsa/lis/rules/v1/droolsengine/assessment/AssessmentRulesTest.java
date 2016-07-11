@@ -5,8 +5,8 @@ import org.junit.Test;
 
 import uk.nhs.nhsbsa.lis.rules.v1.droolsengine.assessment.AssessmentRules;
 import uk.nhs.nhsbsa.lis.rules.v1.droolsengine.data.TestData;
-import uk.nhs.nhsbsa.lis.rules.v1.model.AssessmentBreakdown;
-import uk.nhs.nhsbsa.lis.rules.v1.model.application.LisApplication;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.Application;
+import uk.nhs.nhsbsa.lis.rules.v1.model.outcome.AssessmentBreakdown;
 
 @Ignore
 public class AssessmentRulesTest {
@@ -18,7 +18,7 @@ public class AssessmentRulesTest {
 	public void testBillAssessment(){
 		AssessmentRules rulesCheck=new AssessmentRules();
 		TestData testData=new TestData();
-		LisApplication billApplication=testData.createBillAssessment();
+		Application billApplication=testData.createBillAssessment();
 		AssessmentBreakdown assessmentCalc=rulesCheck.runApplicationRules(billApplication);
 		System.out.println("Bills assessment="+assessmentCalc);
 		rulesCheck.clearRules();
@@ -30,7 +30,7 @@ public class AssessmentRulesTest {
 	public void testMiriamApplication(){
 		AssessmentRules rulesCheck=new AssessmentRules();
 		TestData testData=new TestData();
-		LisApplication miriamApplication=testData.createMiriamAssessment();
+		Application miriamApplication=testData.createMiriamAssessment();
 		AssessmentBreakdown assessmentCalc=rulesCheck.runApplicationRules(miriamApplication);
 		System.out.println("Miriams assessment="+assessmentCalc);
 		rulesCheck.clearRules();

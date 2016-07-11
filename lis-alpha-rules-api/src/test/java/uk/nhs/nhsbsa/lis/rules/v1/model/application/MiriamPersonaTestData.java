@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import uk.nhs.nhsbsa.lis.rules.v1.model.ValueState;
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.Address;
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.Benefit;
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.BenefitType;

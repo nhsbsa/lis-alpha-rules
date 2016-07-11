@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import uk.nhs.nhsbsa.lis.rules.v1.model.Requirement;
+import uk.nhs.nhsbsa.lis.rules.v1.model.flow.Requirement;
 
 public class RequirementTest {
 

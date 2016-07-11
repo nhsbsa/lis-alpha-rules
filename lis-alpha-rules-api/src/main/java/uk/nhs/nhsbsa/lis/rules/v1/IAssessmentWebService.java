@@ -1,7 +1,7 @@
 package uk.nhs.nhsbsa.lis.rules.v1;
 
 import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
-import uk.nhs.nhsbsa.lis.rules.v1.model.application.LisApplication;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.Application;
 
 public interface IAssessmentWebService {
 
@@ -10,7 +10,7 @@ public interface IAssessmentWebService {
 	 * @param application
 	 * @return
 	 */
-	public Assessment post(LisApplication application);
+	public Assessment post(Application application);
 
 	/**
 	 * GET a default Assessment by ID.

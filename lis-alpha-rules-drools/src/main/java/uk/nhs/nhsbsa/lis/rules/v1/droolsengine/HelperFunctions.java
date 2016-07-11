@@ -13,8 +13,6 @@ import java.util.logging.Logger;
 import org.apache.commons.lang3.math.NumberUtils;
 
 import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
-import uk.nhs.nhsbsa.lis.rules.v1.model.AssessmentBreakdown;
-import uk.nhs.nhsbsa.lis.rules.v1.model.IncomeCapital;
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.Benefit;
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.BenefitType;
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.Income;
@@ -24,6 +22,8 @@ import uk.nhs.nhsbsa.lis.rules.v1.model.application.IntervalValue;
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.Outgoing;
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.OutgoingType;
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.Person;
+import uk.nhs.nhsbsa.lis.rules.v1.model.outcome.AssessmentBreakdown;
+import uk.nhs.nhsbsa.lis.rules.v1.model.outcome.IncomeCapital;
 
 public class HelperFunctions {
 

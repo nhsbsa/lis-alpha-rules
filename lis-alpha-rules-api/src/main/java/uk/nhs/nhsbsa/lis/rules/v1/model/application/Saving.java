@@ -1,7 +1,5 @@
 package uk.nhs.nhsbsa.lis.rules.v1.model.application;
 
-import uk.nhs.nhsbsa.lis.rules.v1.model.ValueState;
-
 /**
  * Savings. Generally from PART 4 is a name and value. There are no
  * period related to the share. The question asks for number of shares rather than

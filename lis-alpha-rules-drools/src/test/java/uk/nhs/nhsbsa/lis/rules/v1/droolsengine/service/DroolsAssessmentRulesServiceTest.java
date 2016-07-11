@@ -11,7 +11,7 @@ import uk.nhs.nhsbsa.lis.rules.v1.IAssessmentRulesService;
 import uk.nhs.nhsbsa.lis.rules.v1.droolsengine.config.DroolsConfiguration;
 import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.BillPersonaTestData;
-import uk.nhs.nhsbsa.lis.rules.v1.model.application.LisApplication;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.Application;
 
 @ContextConfiguration(classes={
 		DroolsServiceConfiguration.class,
@@ -30,7 +30,7 @@ public class DroolsAssessmentRulesServiceTest extends AbstractJUnit4SpringContex
 	@Test
 	public void testAssessment() {
 		
-		LisApplication bill = new BillPersonaTestData().createApplication();
+		Application bill = new BillPersonaTestData().createApplication();
 		Assessment input = new Assessment("123", bill);
 		
 		Assessment actual = service.assess(input);

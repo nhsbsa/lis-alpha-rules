@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import org.kie.api.runtime.KieSession;
 
 import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
-import uk.nhs.nhsbsa.lis.rules.v1.model.AssessmentBreakdown;
-import uk.nhs.nhsbsa.lis.rules.v1.model.AssessmentSummary;
-import uk.nhs.nhsbsa.lis.rules.v1.model.Requirement;
+import uk.nhs.nhsbsa.lis.rules.v1.model.flow.Requirement;
+import uk.nhs.nhsbsa.lis.rules.v1.model.outcome.AssessmentBreakdown;
+import uk.nhs.nhsbsa.lis.rules.v1.model.outcome.AssessmentSummary;
 
 public class AssessmentPresetsSessionProcesser extends DefaultSessionProcessor {
 

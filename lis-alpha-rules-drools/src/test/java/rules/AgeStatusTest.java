@@ -10,11 +10,11 @@ import org.junit.Test;
 
 import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.BillPersonaTestData;
-import uk.nhs.nhsbsa.lis.rules.v1.model.application.LisApplication;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.Application;
 
 public class AgeStatusTest extends AbstractRulesTest {
 
-	private LisApplication bill;
+	private Application bill;
 	
 	@Before
 	public void setup() {
@@ -52,7 +52,7 @@ public class AgeStatusTest extends AbstractRulesTest {
 	@Test
 	public void testPensioner_false() {
 
-		LisApplication bill = new BillPersonaTestData().createApplication();
+		Application bill = new BillPersonaTestData().createApplication();
 		bill.getApplicant().setDob(LocalDate.now().minusYears(20));
 		Assessment input = new Assessment("123", bill);
 		
