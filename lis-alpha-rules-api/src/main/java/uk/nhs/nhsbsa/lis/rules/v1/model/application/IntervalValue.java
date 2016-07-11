@@ -45,6 +45,20 @@ public class IntervalValue {
 	
 	private BigDecimal value;
 	
+	public static boolean canConvert(IntervalValue... values) {
+		boolean result = Boolean.TRUE;
+		for (IntervalValue value : values) {
+			if (value == null ||
+					value.value == null|| 
+					value.interval == null) {
+				result = Boolean.FALSE;
+				break;
+			}
+		}
+		return result;
+	}
+
+
 	/**
 	 * Default constructor.
 	 */
@@ -169,17 +183,12 @@ public class IntervalValue {
 	}
 
 	public boolean canConvert() {
-		return value != null && interval != null;
-	}
-
-	@Override
-	public String toString() {
-		return "£" + value + " " + interval;
+		return canConvert(this);
 	}
 
 	public IntervalValue add(IntervalValue value) {
 		IntervalValue result = null;
-		if (value != null) {
+		if (canConvert(this, value)) {
 			IntervalValue tmp = value.convert(interval);
 			BigDecimal total = this.value.add(tmp.value);
 			result = new IntervalValue(interval, total);
@@ -189,5 +198,100 @@ public class IntervalValue {
 		return result;
 	}
 
+	public IntervalValue subtract(IntervalValue value) {
+		IntervalValue result = null;
+		if (canConvert(this, value)) {
+			IntervalValue tmp = value.convert(interval);
+			BigDecimal total = this.value.subtract(tmp.value);
+			result = new IntervalValue(interval, total);
+		} else {
+			result = this;
+		}
+		return result;
+	}
+
+	public IntervalValue multiply(IntervalValue value) {
+		IntervalValue result = null;
+		if (canConvert(this, value)) {
+			IntervalValue tmp = value.convert(interval);
+			BigDecimal total = this.value.multiply(tmp.value);
+			result = new IntervalValue(interval, total);
+		} else {
+			result = this;
+		}
+		return result;
+	}
+
+	public IntervalValue divide(IntervalValue value) {
+		IntervalValue result = null;
+		if (canConvert(this, value)) {
+			IntervalValue tmp = value.convert(interval);
+			BigDecimal total = this.value.divide(tmp.value);
+			result = new IntervalValue(interval, total);
+		} else {
+			result = this;
+		}
+		return result;
+	}
+
+	public Boolean eq(IntervalValue value) {
+		Boolean result = null;
+		if (canConvert(this, value)) {
+			IntervalValue tmp = value.convert(interval);
+			result = this.value.compareTo(tmp.getValue()) == 0;
+		} else {
+			result = Boolean.FALSE;
+		}
+		return result;
+	}
+
+	public Boolean gt(IntervalValue value) {
+		Boolean result = null;
+		if (canConvert(this, value)) {
+			IntervalValue tmp = value.convert(interval);
+			result = this.value.compareTo(tmp.getValue()) > 0;
+		} else {
+			result = Boolean.FALSE;
+		}
+		return result;
+	}
+
+	public Boolean gte(IntervalValue value) {
+		Boolean result = null;
+		if (canConvert(this, value)) {
+			IntervalValue tmp = value.convert(interval);
+			result = this.value.compareTo(tmp.getValue()) >= 0;
+		} else {
+			result = Boolean.FALSE;
+		}
+		return result;
+	}
+
+	public Boolean lt(IntervalValue value) {
+		Boolean result = null;
+		if (canConvert(this, value)) {
+			IntervalValue tmp = value.convert(interval);
+			result = this.value.compareTo(tmp.getValue()) < 0;
+		} else {
+			result = Boolean.FALSE;
+		}
+		return result;
+	}
+
+	public Boolean lte(IntervalValue value) {
+		Boolean result = null;
+		if (canConvert(this, value)) {
+			IntervalValue tmp = value.convert(interval);
+			result = this.value.compareTo(tmp.getValue()) <= 0;
+		} else {
+			result = Boolean.FALSE;
+		}
+		return result;
+	}
+
+	@Override
+	public String toString() {
+		return "£" + value + " " + interval;
+	}
 
 }

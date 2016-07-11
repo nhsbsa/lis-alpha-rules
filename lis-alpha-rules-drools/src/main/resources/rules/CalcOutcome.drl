@@ -1,0 +1,95 @@
+package uk.nhs.nhsbsa.lis.rules.v1.droolsengine.assessment;
+ 
+global org.slf4j.Logger logger
+global uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.IAssessmentFactoryService factory
+global uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.IRequireService requireService
+
+rule "Full Entitlement Threshold"
+when
+  not FullEntitlementThreshold()
+then
+  insert ( new FullEntitlementThreshold( new IntervalValue(Interval.WEEKLY, "4.20") ) );
+end
+
+rule "No Entitlement Threshold"
+when
+  not NoEntitlementThreshold()
+then
+  insert ( new NoEntitlementThreshold( new IntervalValue(Interval.WEEKLY, "128.00") ) );
+end
+
+rule "Accumulate Resources"
+no-loop true
+when 
+	$summary : AssessmentSummary ( resources == null )
+	not Resources()
+	accumulate ( IMoneySource ( moneySourceType() == IMoneySource.Type.RESOURCE, receiving == true, value.canConvert(), $value : value.convert(Interval.WEEKLY).value );
+		$sum : sum ( $value )
+	)
+then
+	IntervalValue total = new IntervalValue(Interval.WEEKLY, $sum);
+	insert ( new Resources(total) );
+end
+
+rule "Accumulate Requirements"
+no-loop true
+when 
+	$summary : AssessmentSummary ( requirements == null )
+	not Requirements()
+	accumulate ( IMoneySource ( moneySourceType() == IMoneySource.Type.REQUIREMENT, receiving == true, value.canConvert(), $value : value.convert(Interval.WEEKLY).value );
+		$sum : sum ( $value )
+	)
+then
+	IntervalValue total = new IntervalValue(Interval.WEEKLY, $sum);
+	insert ( new Requirements(total) );
+end
+
+
+rule "Entitlement calculation pending information"
+salience -100
+when
+	not Resources ()	
+	not Requirements ()
+	not IEntitlement()
+then
+	logger.info("pending more data");
+end
+
+rule "Excess contribution"
+when
+	$resources : Resources (  )
+	$requirements : Requirements (  )
+	not ExcessContribution()
+then
+	IntervalValue val = $resources.getValue().subtract($requirements.getValue());
+	insert ( new ExcessContribution(val) );
+end
+
+rule "Full Entitlement"
+when
+	$fullThreshold : FullEntitlementThreshold (  )
+	$excessContribution : ExcessContribution ( value.lte($fullThreshold.value) )
+	not IEntitlement()
+then
+	insert ( new FullEntitlement() );
+end
+
+rule "Partial Entitlement"
+when
+	$fullThreshold : FullEntitlementThreshold (  )
+	$noThreshold : NoEntitlementThreshold (  )
+	$excessContribution : ExcessContribution ( value.gt($fullThreshold.value), value.lt($noThreshold.value) )
+	not IEntitlement()
+then
+	insert ( new PartialEntitlement() );
+end
+
+rule "No Entitlement"
+when
+	$noThreshold : NoEntitlementThreshold (  )
+	$excessContribution : ExcessContribution ( value.gte($noThreshold.value) )
+	not IEntitlement()
+then
+	insert ( new NoEntitlement() );
+end
+
