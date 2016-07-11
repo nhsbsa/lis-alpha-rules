@@ -1,9 +1,5 @@
 package uk.nhs.nhsbsa.lis.rules.v1.droolsengine.assessment;
  
-import uk.nhs.nhsbsa.util.ObjectIndex;
-import uk.nhs.nhsbsa.lis.rules.v1.model.*;
-import uk.nhs.nhsbsa.lis.rules.v1.droolsengine.model.*;
-
 global org.slf4j.Logger logger
 global uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.IAssessmentFactoryService factory
 global uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.IRequireService requireService
@@ -12,7 +8,7 @@ global uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.IRequireService requireSe
 rule "Community Charge Rule"
     salience 80
 when 
-        lisApplication : LisApplication( applicant != null, myApplicant : applicant )
+        Application : Application( applicant != null, myApplicant : applicant )
         $breakdown : AssessmentBreakdown()
     then
         logger.info("Community Charge Rule");
@@ -27,7 +23,7 @@ end
 rule "Rent Rule"
     salience 80
 when 
-        lisApplication : LisApplication( applicant != null, myApplicant : applicant )
+        Application : Application( applicant != null, myApplicant : applicant )
         $breakdown : AssessmentBreakdown()
     then
         logger.info("Rent Rule");
@@ -42,7 +38,7 @@ end
 rule "Mortgage Rule"
     salience 80
 when 
-        lisApplication : LisApplication( applicant != null, myApplicant : applicant )
+        Application : Application( applicant != null, myApplicant : applicant )
         $breakdown : AssessmentBreakdown()
     then
         logger.info("Mortgage Rule");

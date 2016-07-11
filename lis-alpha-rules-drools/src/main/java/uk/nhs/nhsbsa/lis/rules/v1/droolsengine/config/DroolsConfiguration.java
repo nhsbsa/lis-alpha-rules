@@ -1,5 +1,6 @@
 package uk.nhs.nhsbsa.lis.rules.v1.droolsengine.config;
 
+import java.io.File;
 import java.io.IOException;
 
 import org.kie.api.KieBase;
@@ -10,6 +11,10 @@ import org.kie.api.builder.KieModule;
 import org.kie.api.builder.KieRepository;
 import org.kie.api.builder.ReleaseId;
 import org.kie.api.runtime.KieContainer;
+import org.kie.internal.builder.KnowledgeBuilder;
+import org.kie.internal.builder.KnowledgeBuilderConfiguration;
+import org.kie.internal.builder.KnowledgeBuilderFactory;
+import org.kie.internal.builder.conf.DumpDirOption;
 import org.kie.internal.io.ResourceFactory;
 import org.kie.spring.KModuleBeanFactoryPostProcessor;
 import org.springframework.context.annotation.Bean;
@@ -59,7 +64,8 @@ public class DroolsConfiguration {
 		            return kieRepository.getDefaultReleaseId();
 		        }
 		    });
-	
+
+		    System.setProperty("drools.dump.dir", "/tmp/drools-generated-sources");
 		    KieBuilder kieBuilder = getKieServices().newKieBuilder(kieFileSystem()); 
 		    kieBuilder.buildAll();
 	

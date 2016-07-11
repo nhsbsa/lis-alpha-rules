@@ -1,7 +1,5 @@
 package uk.nhs.nhsbsa.lis.rules.ws.service;
 
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -13,9 +11,7 @@ import uk.nhs.nhsbsa.lis.rules.v1.IAssessmentRulesService;
 import uk.nhs.nhsbsa.lis.rules.v1.builder.LisApplicationBuilder;
 import uk.nhs.nhsbsa.lis.rules.v1.builder.PersonBuilder;
 import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
-import uk.nhs.nhsbsa.lis.rules.v1.model.application.BenefitType;
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.Application;
-import uk.nhs.nhsbsa.lis.rules.v1.model.application.Person;
 import uk.nhs.nhsbsa.lis.rules.v1.model.flow.Requirement;
 
 @Service

@@ -1,12 +1,4 @@
 package uk.nhs.nhsbsa.lis.rules.v1.droolsengine.assessment;
- 
-import uk.nhs.nhsbsa.lis.rules.v1.model.LisApplication;
-import uk.nhs.nhsbsa.lis.rules.v1.model.AssessmentBreakdown;
-import uk.nhs.nhsbsa.lis.rules.v1.model.*;
-import uk.nhs.nhsbsa.lis.rules.v1.droolsengine.HelperFunctions;
-import java.time.LocalDateTime;
-import java.time.LocalDate;
-import java.util.List;
 
 global org.slf4j.Logger logger
 
@@ -14,7 +6,7 @@ global org.slf4j.Logger logger
 rule "Total Outgoings"
 	salience 40
 when 
-		lisApplication : LisApplication( applicant != null, myApplicant : applicant )
+		Application : Application( applicant != null, myApplicant : applicant )
 		$breakdown : AssessmentBreakdown($breakdown!=null)
 	then
 		$breakdown.setRunningPremiums(0.0);
@@ -31,7 +23,7 @@ when
 rule "HC LIS Assessment"
 	salience 20
 when
-	lisApplication : LisApplication( applicant != null, myApplicant : applicant )
+	Application : Application( applicant != null, myApplicant : applicant )
 	$breakdown : AssessmentBreakdown($breakdown!=null, hasPremiums() )
 	
 then

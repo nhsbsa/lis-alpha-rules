@@ -13,9 +13,6 @@
   <artifactId>lis-alpha-rules-drools</artifactId>
   <packaging>jar</packaging>
 
-  <properties>
-    <version.drools>6.4.0.Final</version.drools>
-  </properties>
   <dependencies>
     <dependency>
       <groupId>net.nhs.nhsbsa.lis.lis-alpha-rules</groupId>
@@ -82,4 +79,13 @@
       <artifactId>spring-boot-starter-test</artifactId>
     </dependency>
   </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.kie</groupId>
+        <artifactId>kie-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
 </project>

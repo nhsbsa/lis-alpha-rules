@@ -1,24 +1,22 @@
 package uk.nhs.nhsbsa.lis.rules.v1.droolsengine.assessment;
  
-import uk.nhs.nhsbsa.lis.rules.v1.model.*;
-
 global org.slf4j.Logger logger
 global uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.IAssessmentFactoryService factory
 
 rule "Default Application"
     when 
         $assessment : Assessment( )
-        not LisApplication( )
+        not Application( )
     then
         logger.info("Default Application");
-        LisApplication $application = factory.defaultApplication();
+        Application $application = factory.defaultApplication();
         modify ($assessment) { setApplication($application) };
         insert ($application);
 end
 
 rule "Default Applicant"
     when
-        $application: LisApplication ( applicant == null )
+        $application: Application ( applicant == null )
     then
         logger.info("Default Applicant");
         Person $applicant = factory.defaultPerson(PersonType.MAIN_APPLICANT);
@@ -28,7 +26,7 @@ end
 
 rule "Default Partner"
     when
-        $application: LisApplication ( partner == null, hasPartner == true )
+        $application: Application ( partner == null, hasPartner == true )
     then
         logger.info("Default Partner");
         Person $partner = factory.defaultPerson(PersonType.PARTNER);

@@ -5,9 +5,9 @@ import java.util.List;
 import org.kie.api.runtime.KieSession;
 
 import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.Application;
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.Benefit;
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.Income;
-import uk.nhs.nhsbsa.lis.rules.v1.model.application.Application;
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.Outgoing;
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.Person;
 

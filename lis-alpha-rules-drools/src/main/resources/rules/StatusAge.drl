@@ -1,14 +1,11 @@
 package uk.nhs.nhsbsa.lis.rules.v1.droolsengine.assessment;
  
-import uk.nhs.nhsbsa.lis.rules.v1.model.*;
-import uk.nhs.nhsbsa.lis.rules.v1.droolsengine.model.*;
-
 global org.slf4j.Logger logger
 global uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.IAssessmentFactoryService factory
 
 rule "Age"
     when
-        $application : LisApplication()
+        $application : Application()
         $person : Person( dob != null )
         not Age( person == $person )
     then

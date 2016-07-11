@@ -24,7 +24,9 @@
     <sonar.projectKey>${project.groupId}:${project.artifactId}</sonar.projectKey>
     <sonar.projectName>${project.artifactId}</sonar.projectName>
     <sonar.projectVersion>${project.version}</sonar.projectVersion>
+    <version.drools>6.4.0.Final</version.drools>
   </properties>
+
 
   <distributionManagement>
     <repository>
@@ -65,8 +67,23 @@
 
   <build>
     <pluginManagement>
-
       <plugins>
+        <plugin>
+          <groupId>org.kie</groupId>
+          <artifactId>kie-maven-plugin</artifactId>
+          <version>${version.drools}</version>
+          <extensions>true</extensions>
+          <dependencies>
+            <dependency>
+              <groupId>org.slf4j</groupId>
+              <artifactId>slf4j-simple</artifactId>
+              <version>1.6.1</version>
+            </dependency>
+          </dependencies>
+          <configuration>
+            <drools.dump.dir>target/drools-generated-sources</drools.dump.dir>
+          </configuration>
+        </plugin>
 
         <!-- distribute test jars -->
         <plugin>
