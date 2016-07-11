@@ -21,7 +21,9 @@ public class AssessmentPresetsSessionProcesser extends DefaultSessionProcessor {
 		
 		//breakdown
 		AssessmentBreakdown breakdown = new AssessmentBreakdown();
-		breakdown.setClaimDate(assessment.getApplication().getClaimDate());
+		if (assessment.getApplication() != null) {
+			breakdown.setClaimDate(assessment.getApplication().getClaimDate());
+		}
 		assessment.setBreakdown(breakdown);
 		session.insert(breakdown);
 		

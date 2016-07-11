@@ -1,7 +1,6 @@
 package uk.nhs.nhsbsa.lis.rules.v1.model;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,7 +49,6 @@ public class AssessmentBreakdown {
 	 * If claim is save \ restored do we use the initial date or the save date?
 	 */
 	private LocalDate claimDate;
-	private LocalTime zeroHour=LocalTime.parse("00:00");
 	
 	// TODO Other factors used in calculation - not sure if this should be here or elsewhere
 	private Boolean hasPartner;
@@ -287,26 +285,21 @@ public class AssessmentBreakdown {
 	 * @return
 	 */
 	public boolean compareToClaimDate(String lookupFromDate,String lookupToDate) throws Exception{
-		try{
-			if(claimDate==null){
-				LOGGER.warn("Trying to compare a claim date to null internal date");
-				throw new Exception("Trying to compare a claim date to null internal date");
-			}
+		
+		boolean result = false;
+		if(claimDate==null){
+			LOGGER.warn("Trying to compare a claim date to null internal date");
+		} else {
 			LocalDate fromDate =LocalDate.parse(lookupFromDate);
 			LocalDate toDate =LocalDate.parse(lookupToDate);
 			if(claimDate.equals(fromDate)){
-				return true;
-			}
-			if(claimDate.isBefore(toDate)&&claimDate.isAfter(fromDate)){
+				result = true;
+			} else if(claimDate.isBefore(toDate)&&claimDate.isAfter(fromDate)){
 				LOGGER.info("FOUND DATE="+lookupFromDate);
-				return true;
+				result = true;
 			}
-			return false;
 		}
-		catch(Exception e){
-			LOGGER.warn("Unable to process dates : {} : {}", lookupFromDate, lookupToDate);
-			throw e;
-		}
+		return result;
 	}
 
 	public boolean hasPremiums() {
