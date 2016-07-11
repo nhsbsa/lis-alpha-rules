@@ -1,4 +1,4 @@
-package uk.nhs.nhsbsa.lis.rules.v1.model;
+package uk.nhs.nhsbsa.lis.rules.v1.model.application;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -15,6 +15,8 @@ import org.junit.Test;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.PersonType;
 
 public class DataModelTest {
 	

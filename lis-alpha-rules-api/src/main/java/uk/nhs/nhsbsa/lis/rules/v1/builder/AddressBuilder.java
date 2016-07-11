@@ -2,7 +2,7 @@ package uk.nhs.nhsbsa.lis.rules.v1.builder;
 
 import java.util.Arrays;
 
-import uk.nhs.nhsbsa.lis.rules.v1.model.Address;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.Address;
 
 public class AddressBuilder extends AbstractBuilder<Address>{
 

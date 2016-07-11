@@ -1,4 +1,4 @@
-package uk.nhs.nhsbsa.lis.rules.v1.model;
+package uk.nhs.nhsbsa.lis.rules.v1.model.application;
 
 /**
  * Form has relationship type

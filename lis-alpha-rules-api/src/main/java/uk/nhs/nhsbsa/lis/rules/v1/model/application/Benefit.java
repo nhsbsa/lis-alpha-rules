@@ -1,40 +1,46 @@
-package uk.nhs.nhsbsa.lis.rules.v1.model;
+package uk.nhs.nhsbsa.lis.rules.v1.model.application;
 
 import org.springframework.data.annotation.Transient;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import uk.nhs.nhsbsa.lis.rules.v1.model.ValueState;
+
 /**
- * Expenses and outgoings i.e. rent \ community charge \ accommodation costs
+ * Benefit class to hold benefit information
  * @author lorob
  *
  */
-public class Outgoing implements IMoneySource {
+public class Benefit implements IMoneySource {
 	
 	@JsonBackReference
 	@Transient
 	transient private Person owner;
 	
-	private OutgoingType type;
+	private BenefitType type;
 	
 	private ValueState state;
-
+	
 	private Boolean receiving;
 	
 	private IntervalValue value;
-	
-	public Outgoing(){
-		type=OutgoingType.UNDEFINED;
+
+	public Benefit(){
+		type=BenefitType.UNDEFINED;
 		state=ValueState.UNDEFINED;
 	}
-
+	
 	@Override
 	public IMoneySource.Type moneySourceType() {
-		return IMoneySource.Type.REQUIREMENT;
+		return IMoneySource.Type.RESOURCE;
+	}
+	
+	public BenefitType getType() {
+		return type;
 	}
 
-	public OutgoingType getType() {
-		return type;
+	public void setType(BenefitType type) {
+		this.type = type;
 	}
 
 	public ValueState getState() {
@@ -52,30 +58,16 @@ public class Outgoing implements IMoneySource {
 	public void setValue(IntervalValue value) {
 		this.value = value;
 	}
-
-	public void setType(OutgoingType type) {
-		this.type = type;
-	}
 	
-	public Person getOwner() {
-		return owner;
-	}
-
-	public void setOwner(Person owner) {
-		this.owner = owner;
-	}
-
-	public Boolean getReceiving() {
-		return receiving;
-	}
-
-	public void setReceiving(Boolean receiving) {
-		this.receiving = receiving;
+	@Override
+	public String toString() {
+		return "Benefit [type=" + type + ", state=" + state + ", value="
+				+ value + "]";
 	}
 	
 	@Override
 	public int hashCode() {
-		final int prime = 41;
+		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((type == null) ? 0 : type.hashCode());
 		return result;
@@ -93,16 +85,26 @@ public class Outgoing implements IMoneySource {
 			System.err.println(getClass().getClassLoader() + " != " + obj.getClass().getClassLoader());
 			return false;
 		}
-		Outgoing other = (Outgoing) obj;
+		Benefit other = (Benefit) obj;
 		if (type != other.type)
 			return false;
 		return true;
 	}
 
-	@Override
-	public String toString() {
-		return "Outgoing [owner=" + owner + ", type=" + type + ", state=" + state + ", value=" + value
-				+ "]";
+	public Person getOwner() {
+		return owner;
+	}
+
+	public void setOwner(Person owner) {
+		this.owner = owner;
+	}
+
+	public Boolean getReceiving() {
+		return receiving;
+	}
+
+	public void setReceiving(Boolean receiving) {
+		this.receiving = receiving;
 	}
 
 }

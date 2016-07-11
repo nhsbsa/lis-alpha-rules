@@ -1,4 +1,4 @@
-package uk.nhs.nhsbsa.lis.rules.v1.model;
+package uk.nhs.nhsbsa.lis.rules.v1.model.application;
 
 import java.math.BigDecimal;
 import java.math.MathContext;

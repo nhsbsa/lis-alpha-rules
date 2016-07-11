@@ -1,10 +1,13 @@
-package uk.nhs.nhsbsa.lis.rules.v1.model;
+package uk.nhs.nhsbsa.lis.rules.v1.model.application;
 
 import static org.junit.Assert.assertEquals;
 
 import java.math.BigDecimal;
 
 import org.junit.Test;
+
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.Interval;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.IntervalValue;
 
 public class IntervalValueTest {
 

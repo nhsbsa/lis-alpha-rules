@@ -8,7 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import uk.nhs.nhsbsa.lis.rules.v1.model.AssessmentBreakdown;
-import uk.nhs.nhsbsa.lis.rules.v1.model.LisApplication;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.LisApplication;
 
 /**
  * RulesCheck Class

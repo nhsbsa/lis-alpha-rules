@@ -1,5 +1,7 @@
 package uk.nhs.nhsbsa.lis.rules.v1.model;
 
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.IntervalValue;
+
 public class AssessmentSummary {
 
 	private IntervalValue resources;

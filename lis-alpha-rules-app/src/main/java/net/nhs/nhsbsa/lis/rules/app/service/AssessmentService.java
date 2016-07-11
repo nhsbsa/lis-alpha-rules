@@ -10,7 +10,7 @@ import net.nhs.nhsbsa.lis.rules.app.exception.ResourceNotFoundException;
 import net.nhs.nhsbsa.lis.rules.app.repository.IAssessmentRespository;
 import net.nhs.nhsbsa.lis.rules.client.IAssessmentRestClient;
 import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
-import uk.nhs.nhsbsa.lis.rules.v1.model.LisApplication;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.LisApplication;
 
 @Service
 public class AssessmentService implements IAssessmentService {

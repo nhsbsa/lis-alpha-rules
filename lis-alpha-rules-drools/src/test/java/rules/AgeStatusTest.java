@@ -9,8 +9,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
-import uk.nhs.nhsbsa.lis.rules.v1.model.BillPersonaTestData;
-import uk.nhs.nhsbsa.lis.rules.v1.model.LisApplication;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.BillPersonaTestData;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.LisApplication;
 
 public class AgeStatusTest extends AbstractRulesTest {
 

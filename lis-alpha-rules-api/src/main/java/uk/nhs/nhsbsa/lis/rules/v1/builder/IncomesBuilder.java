@@ -2,9 +2,9 @@ package uk.nhs.nhsbsa.lis.rules.v1.builder;
 
 import java.util.List;
 
-import uk.nhs.nhsbsa.lis.rules.v1.model.Income;
-import uk.nhs.nhsbsa.lis.rules.v1.model.IncomeType;
-import uk.nhs.nhsbsa.lis.rules.v1.model.IntervalValue;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.Income;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.IncomeType;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.IntervalValue;
 
 public class IncomesBuilder extends AbstractBuilder<List<Income>>{
 	public IncomesBuilder() {

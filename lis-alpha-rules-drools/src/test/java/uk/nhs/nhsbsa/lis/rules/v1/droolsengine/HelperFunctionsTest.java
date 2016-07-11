@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import uk.nhs.nhsbsa.lis.rules.v1.model.Interval;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.Interval;
 
 /**
  * Test the helper function conversions

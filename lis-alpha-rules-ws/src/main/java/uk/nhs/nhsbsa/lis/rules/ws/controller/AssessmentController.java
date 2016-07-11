@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import uk.nhs.nhsbsa.lis.rules.v1.IAssessmentRulesService;
 import uk.nhs.nhsbsa.lis.rules.v1.IAssessmentWebService;
 import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
-import uk.nhs.nhsbsa.lis.rules.v1.model.LisApplication;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.LisApplication;
 
 @Controller
 @RequestMapping("/assessments")

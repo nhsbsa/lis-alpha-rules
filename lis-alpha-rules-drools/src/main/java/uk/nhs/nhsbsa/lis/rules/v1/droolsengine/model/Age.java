@@ -4,8 +4,8 @@ import java.time.temporal.ChronoUnit;
 
 import org.slf4j.helpers.MessageFormatter;
 
-import uk.nhs.nhsbsa.lis.rules.v1.model.LisApplication;
-import uk.nhs.nhsbsa.lis.rules.v1.model.Person;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.LisApplication;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.Person;
 
 public class Age {
 

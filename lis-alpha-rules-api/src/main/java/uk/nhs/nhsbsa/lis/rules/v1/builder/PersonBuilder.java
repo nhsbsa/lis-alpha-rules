@@ -3,12 +3,12 @@ package uk.nhs.nhsbsa.lis.rules.v1.builder;
 import java.util.ArrayList;
 import java.util.List;
 
-import uk.nhs.nhsbsa.lis.rules.v1.model.Benefit;
-import uk.nhs.nhsbsa.lis.rules.v1.model.Income;
-import uk.nhs.nhsbsa.lis.rules.v1.model.Name;
-import uk.nhs.nhsbsa.lis.rules.v1.model.Outgoing;
-import uk.nhs.nhsbsa.lis.rules.v1.model.Person;
-import uk.nhs.nhsbsa.lis.rules.v1.model.PersonType;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.Benefit;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.Income;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.Name;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.Outgoing;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.Person;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.PersonType;
 
 public class PersonBuilder extends AbstractBuilder<Person>{
 

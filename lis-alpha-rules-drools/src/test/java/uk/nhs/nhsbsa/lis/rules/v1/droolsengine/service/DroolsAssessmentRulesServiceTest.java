@@ -10,8 +10,8 @@ import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import uk.nhs.nhsbsa.lis.rules.v1.IAssessmentRulesService;
 import uk.nhs.nhsbsa.lis.rules.v1.droolsengine.config.DroolsConfiguration;
 import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
-import uk.nhs.nhsbsa.lis.rules.v1.model.BillPersonaTestData;
-import uk.nhs.nhsbsa.lis.rules.v1.model.LisApplication;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.BillPersonaTestData;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.LisApplication;
 
 @ContextConfiguration(classes={
 		DroolsServiceConfiguration.class,

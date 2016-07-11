@@ -4,13 +4,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import uk.nhs.nhsbsa.lis.rules.v1.model.BillPersonaTestData;
-import uk.nhs.nhsbsa.lis.rules.v1.model.LisApplication;
-import uk.nhs.nhsbsa.lis.rules.v1.model.MiriamPersonaTestData;
-import uk.nhs.nhsbsa.lis.rules.v1.model.Person;
-import uk.nhs.nhsbsa.lis.rules.v1.model.Saving;
-import uk.nhs.nhsbsa.lis.rules.v1.model.SavingType;
 import uk.nhs.nhsbsa.lis.rules.v1.model.ValueState;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.BillPersonaTestData;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.LisApplication;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.MiriamPersonaTestData;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.Person;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.Saving;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.SavingType;
 
 public class TestData {
 	

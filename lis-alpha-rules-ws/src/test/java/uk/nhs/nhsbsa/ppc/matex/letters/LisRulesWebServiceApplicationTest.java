@@ -17,7 +17,7 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import uk.nhs.nhsbsa.lis.rules.v1.model.LisApplication;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.LisApplication;
 import uk.nhs.nhsbsa.lis.rules.ws.LisRulesWebServiceApplication;
 
 /**

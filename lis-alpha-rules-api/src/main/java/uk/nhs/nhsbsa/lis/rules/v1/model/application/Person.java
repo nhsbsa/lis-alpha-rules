@@ -1,4 +1,4 @@
-package uk.nhs.nhsbsa.lis.rules.v1.model;
+package uk.nhs.nhsbsa.lis.rules.v1.model.application;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

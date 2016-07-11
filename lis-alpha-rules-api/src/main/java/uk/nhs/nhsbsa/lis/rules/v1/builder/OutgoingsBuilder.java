@@ -2,9 +2,9 @@ package uk.nhs.nhsbsa.lis.rules.v1.builder;
 
 import java.util.List;
 
-import uk.nhs.nhsbsa.lis.rules.v1.model.IntervalValue;
-import uk.nhs.nhsbsa.lis.rules.v1.model.Outgoing;
-import uk.nhs.nhsbsa.lis.rules.v1.model.OutgoingType;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.IntervalValue;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.Outgoing;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.OutgoingType;
 
 public class OutgoingsBuilder extends AbstractBuilder<List<Outgoing>>{
 	public OutgoingsBuilder() {

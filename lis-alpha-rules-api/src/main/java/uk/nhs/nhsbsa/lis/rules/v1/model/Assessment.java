@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.data.annotation.Id;
 
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.LisApplication;
+
 /**
  * An assessment of an application.
  * This object contains all the requirements, validations, calculated fields and outcome of the assessment.

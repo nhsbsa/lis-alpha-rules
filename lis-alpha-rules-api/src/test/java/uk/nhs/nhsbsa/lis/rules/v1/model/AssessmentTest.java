@@ -10,6 +10,13 @@ import org.junit.Test;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.BillPersonaTestData;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.LisApplication;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.MiriamPersonaTestData;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.Person;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.Saving;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.SavingType;
+
 public class AssessmentTest {
 	
 	BillPersonaTestData testData;

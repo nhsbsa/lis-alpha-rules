@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
-import uk.nhs.nhsbsa.lis.rules.v1.model.LisApplication;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.LisApplication;
 
 public class AssessmentRestClient implements IAssessmentRestClient {
 

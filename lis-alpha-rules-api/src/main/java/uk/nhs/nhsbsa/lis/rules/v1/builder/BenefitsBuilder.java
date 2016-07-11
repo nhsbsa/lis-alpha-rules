@@ -2,9 +2,9 @@ package uk.nhs.nhsbsa.lis.rules.v1.builder;
 
 import java.util.List;
 
-import uk.nhs.nhsbsa.lis.rules.v1.model.Benefit;
-import uk.nhs.nhsbsa.lis.rules.v1.model.BenefitType;
-import uk.nhs.nhsbsa.lis.rules.v1.model.IntervalValue;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.Benefit;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.BenefitType;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.IntervalValue;
 
 public class BenefitsBuilder extends AbstractBuilder<List<Benefit>>{
 

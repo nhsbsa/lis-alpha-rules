@@ -13,10 +13,10 @@ import uk.nhs.nhsbsa.lis.rules.v1.IAssessmentRulesService;
 import uk.nhs.nhsbsa.lis.rules.v1.builder.LisApplicationBuilder;
 import uk.nhs.nhsbsa.lis.rules.v1.builder.PersonBuilder;
 import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
-import uk.nhs.nhsbsa.lis.rules.v1.model.BenefitType;
-import uk.nhs.nhsbsa.lis.rules.v1.model.LisApplication;
-import uk.nhs.nhsbsa.lis.rules.v1.model.Person;
 import uk.nhs.nhsbsa.lis.rules.v1.model.Requirement;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.BenefitType;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.LisApplication;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.Person;
 
 @Service
 public class AssessmentRulesService implements IAssessmentRulesService {

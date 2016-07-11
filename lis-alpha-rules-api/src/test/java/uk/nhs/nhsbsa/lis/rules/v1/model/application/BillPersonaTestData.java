@@ -1,7 +1,23 @@
-package uk.nhs.nhsbsa.lis.rules.v1.model;
+package uk.nhs.nhsbsa.lis.rules.v1.model.application;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+
+import uk.nhs.nhsbsa.lis.rules.v1.model.ValueState;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.Address;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.Benefit;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.BenefitType;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.ContactDetails;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.Income;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.IncomeType;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.Interval;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.IntervalValue;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.LisApplication;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.Name;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.Outgoing;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.OutgoingType;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.Person;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.PersonType;
 
 public class BillPersonaTestData {
 	

@@ -1,4 +1,4 @@
-package uk.nhs.nhsbsa.lis.rules.v1.model;
+package uk.nhs.nhsbsa.lis.rules.v1.model.application;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -9,6 +9,9 @@ import java.util.Arrays;
 import org.junit.Test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.Benefit;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.Person;
 
 public class BenefitTest {
 

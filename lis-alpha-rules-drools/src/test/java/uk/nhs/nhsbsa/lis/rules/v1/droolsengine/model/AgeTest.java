@@ -7,8 +7,8 @@ import java.time.LocalDate;
 import org.junit.Before;
 import org.junit.Test;
 
-import uk.nhs.nhsbsa.lis.rules.v1.model.LisApplication;
-import uk.nhs.nhsbsa.lis.rules.v1.model.Person;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.LisApplication;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.Person;
 
 public class AgeTest {
 

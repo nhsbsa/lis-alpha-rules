@@ -1,6 +1,6 @@
 package uk.nhs.nhsbsa.lis.rules.v1.builder;
 
-import uk.nhs.nhsbsa.lis.rules.v1.model.Name;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.Name;
 
 public class NameBuilder extends AbstractBuilder<Name>{
 
