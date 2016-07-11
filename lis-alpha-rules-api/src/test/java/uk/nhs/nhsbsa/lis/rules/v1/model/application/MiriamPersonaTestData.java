@@ -101,7 +101,7 @@ public class MiriamPersonaTestData {
 		testOutgoings=new ArrayList<Outgoing>();
 		Outgoing testOutgoing=new Outgoing();
 		testOutgoing.setState(ValueState.SET);
-		testOutgoing.setType(OutgoingType.COMMUNITY_CHARGE);
+		testOutgoing.setType(OutgoingType.COUNCIL_TAX);
 		testOutgoing.setValue(new IntervalValue(Interval.WEEKLY, "40"));
 		testOutgoings.add(testOutgoing);
 		

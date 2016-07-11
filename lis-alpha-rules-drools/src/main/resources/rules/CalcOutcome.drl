@@ -99,7 +99,7 @@ then
 	insert ( ent );
 end
 
-rule "Summary"
+rule "Entitlement"
 when
 	$assessment: Assessment()
 	$entitlement : Entitlement()

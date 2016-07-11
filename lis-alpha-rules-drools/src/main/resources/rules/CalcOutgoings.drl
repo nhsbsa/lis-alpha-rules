@@ -11,12 +11,12 @@ when
         Application : Application( applicant != null, myApplicant : applicant )
         $breakdown : AssessmentBreakdown()
     then
-        logger.info("Community Charge Rule");
-        List<String> communityCharge = HelperFunctions.communityChargeCalculation(myApplicant);
+        logger.info("Council Tax Rule");
+        List<String> councilTax = HelperFunctions.councilTaxCalculation(myApplicant);
         
-        if(communityCharge.size()>0){
+        if(councilTax.size()>0){
             // TODO assume only 1 community charge for now, but what about duplicates?
-            $breakdown.setCouncilTax(Double.parseDouble(communityCharge.get(0)));
+            $breakdown.setCouncilTax(Double.parseDouble(councilTax.get(0)));
         }
 end
 

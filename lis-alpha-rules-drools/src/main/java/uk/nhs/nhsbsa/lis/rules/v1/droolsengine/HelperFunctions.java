@@ -42,12 +42,12 @@ public class HelperFunctions {
 	}
 	
 	/**
-	 * Search for and return the community charge calculation
+	 * Search for and return the council tax calculation
 	 * @param person
 	 * @return
 	 */
-	public static List <String> communityChargeCalculation(Person person){
-		return HelperFunctions.outgoingCalculation(person,OutgoingType.COMMUNITY_CHARGE);
+	public static List <String> councilTaxCalculation(Person person){
+		return HelperFunctions.outgoingCalculation(person,OutgoingType.COUNCIL_TAX);
 	} 
 	
 	/**

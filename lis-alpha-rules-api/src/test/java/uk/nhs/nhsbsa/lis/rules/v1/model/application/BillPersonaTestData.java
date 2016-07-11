@@ -114,7 +114,7 @@ public class BillPersonaTestData {
 			testOutgoings=new ArrayList<Outgoing>();
 			Outgoing testOutgoing1=new Outgoing();
 			testOutgoing1.setState(ValueState.SET);
-			testOutgoing1.setType(OutgoingType.COMMUNITY_CHARGE);
+			testOutgoing1.setType(OutgoingType.COUNCIL_TAX);
 			testOutgoing1.setValue(new IntervalValue(Interval.WEEKLY, "20"));
 			
 			Outgoing testOutgoing2=new Outgoing();

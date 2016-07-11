@@ -9,10 +9,10 @@ rule "Default Community Charge"
     when 
         $index : ObjectIndex ()
         $person : Person ( type in ( PersonType.MAIN_APPLICANT, PersonType.PARTNER ) )
-        not Outgoing( owner == $person, type == OutgoingType.COMMUNITY_CHARGE )
+        not Outgoing( owner == $person, type == OutgoingType.COUNCIL_TAX )
     then
         logger.info("Default Community Charge");
-        Outgoing $outgoing = factory.defaultOutgoing(OutgoingType.COMMUNITY_CHARGE);
+        Outgoing $outgoing = factory.defaultOutgoing(OutgoingType.COUNCIL_TAX);
         $person.addOutgoing($outgoing);
         $index.reindex($person);
         insert ($outgoing);

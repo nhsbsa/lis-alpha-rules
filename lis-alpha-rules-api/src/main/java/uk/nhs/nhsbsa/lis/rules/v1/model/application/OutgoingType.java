@@ -6,7 +6,7 @@ package uk.nhs.nhsbsa.lis.rules.v1.model.application;
  */
 public enum OutgoingType {
 	UNDEFINED,
-	COMMUNITY_CHARGE,
+	COUNCIL_TAX,
 	RENT,
 	GROUND_RENT,
 	MORTGAGE,
