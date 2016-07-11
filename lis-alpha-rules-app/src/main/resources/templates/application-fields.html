@@ -51,7 +51,7 @@
         <div class="pure-control-group">
             <label>Frequency</label>
             <div class="radiogroup">
-              <div th:each="interval : ${T(uk.nhs.nhsbsa.lis.rules.v1.model.Interval).values()}">
+              <div th:each="interval : ${T(uk.nhs.nhsbsa.lis.rules.v1.model.application.Interval).values()}">
               <input type="radio" th:value="${{interval}}"
                   th:id="${path + '__${interval}__'}"
                   th:field="*{__${path}__.value.interval}"
