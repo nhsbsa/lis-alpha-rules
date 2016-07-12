@@ -4,14 +4,12 @@ global org.slf4j.Logger logger
 global uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.IAssessmentFactoryService factory
 global uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.IRequireService requireService
 
-
-rule "Default Community Charge"
+rule "Default Council Tax"
     when 
         $index : ObjectIndex ()
         $person : Person ( type in ( PersonType.MAIN_APPLICANT, PersonType.PARTNER ) )
         not Outgoing( owner == $person, type == OutgoingType.COUNCIL_TAX )
     then
-        logger.info("Default Community Charge");
         Outgoing $outgoing = factory.defaultOutgoing(OutgoingType.COUNCIL_TAX);
         $person.addOutgoing($outgoing);
         $index.reindex($person);

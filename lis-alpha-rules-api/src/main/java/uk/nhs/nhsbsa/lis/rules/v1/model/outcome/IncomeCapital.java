@@ -7,18 +7,21 @@ public class IncomeCapital {
 	private String paidTo; // Claimant, partner or whatever is needed for the form
 	private BigDecimal weeklyAmount;
 	private BigDecimal earningsDisregard; // TODO verify whether this is an amount or string
-	private BigDecimal otherDisregard; // TODO verify whether this is an amount or string
+    private BigDecimal otherDisregard; // TODO verify whether this is an amount or string
+    private BigDecimal netWeeklyAmount; // TODO verify whether this is an amount or string
 	
-	public IncomeCapital() {
+    public IncomeCapital(String type, String paidTo, BigDecimal weeklyAmount, BigDecimal earningsDisregard,
+            BigDecimal otherDisregard, BigDecimal netWeeklyAmount) {
+        super();
+        this.type = type;
+        this.paidTo = paidTo;
+        this.weeklyAmount = weeklyAmount;
+        this.earningsDisregard = earningsDisregard;
+        this.otherDisregard = otherDisregard;
+        this.netWeeklyAmount = netWeeklyAmount;
+    }
+    public IncomeCapital() {
 	}
-	public IncomeCapital(String type,String paidTo,BigDecimal weeklyAmount){
-		this.type=type;
-		this.paidTo=paidTo;
-		this.weeklyAmount=weeklyAmount;
-	}
-	
-	
-	
 	public String getType() {
 		return type;
 	}
@@ -49,12 +52,16 @@ public class IncomeCapital {
 	public void setOtherDisregard(BigDecimal otherDisregard) {
 		this.otherDisregard = otherDisregard;
 	}
-	@Override
-	public String toString() {
-		return "IncomeCapital [type=" + type + ", paidTo=" + paidTo + ", weeklyAmount=" + weeklyAmount
-				+ ", earningsDisregard=" + earningsDisregard + ", otherDisregard=" + otherDisregard + "]";
-	}
-	
-	
-	
+    public BigDecimal getNetWeeklyAmount() {
+        return netWeeklyAmount;
+    }
+    public void setNetWeeklyAmount(BigDecimal netWeeklyAmount) {
+        this.netWeeklyAmount = netWeeklyAmount;
+    }
+    @Override
+    public String toString() {
+        return "IncomeCapital [type=" + type + ", paidTo=" + paidTo + ", weeklyAmount=" + weeklyAmount
+                + ", earningsDisregard=" + earningsDisregard + ", otherDisregard=" + otherDisregard
+                + ", netWeeklyAmount=" + netWeeklyAmount + "]";
+    }
 }

@@ -24,7 +24,10 @@ rule "Accumulate Resources"
 no-loop true
 when 
 	not Resources()
-	accumulate ( IMoneySource ( moneySourceType() == IMoneySource.Type.RESOURCE, receiving == true, value.canConvert(), $value : value.convert(Interval.WEEKLY).value );
+	accumulate ( IMoneySource ( 
+			moneySourceType() == IMoneySource.Type.RESOURCE,
+			receiving == true, value.canConvert(),
+			$value : value.convert(Interval.WEEKLY).value );
 		$sum : sum ( $value )
 	)
 then
@@ -37,7 +40,10 @@ rule "Accumulate Requirements"
 no-loop true
 when 
 	not Requirements()
-	accumulate ( IMoneySource ( moneySourceType() == IMoneySource.Type.REQUIREMENT, receiving == true, value.canConvert(), $value : value.convert(Interval.WEEKLY).value );
+	accumulate ( IMoneySource ( 
+			moneySourceType() == IMoneySource.Type.REQUIREMENT, 
+			receiving == true, value.canConvert(),
+			$value : value.convert(Interval.WEEKLY).value );
 		$sum : sum ( $value )
 	)
 then

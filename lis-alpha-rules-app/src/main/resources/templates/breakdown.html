@@ -12,10 +12,10 @@
       </tr>
     </thead>
     <tbody>
-      <tr th:include="breakdown-fields :: textfield('runningTotal')"></tr>
-      <tr th:include="breakdown-fields :: textfield('runningPremiums')"></tr>
-      <tr th:include="breakdown-fields :: textfield('runningIncome')"></tr>
-      <tr th:include="breakdown-fields :: textfield('totalHousing')"></tr>
+      <tr th:include="breakdown-fields :: textfield('breakdown.runningTotal')"></tr>
+      <tr th:include="breakdown-fields :: textfield('breakdown.runningPremiums')"></tr>
+      <tr th:include="breakdown-fields :: textfield('breakdown.runningIncome')"></tr>
+      <tr th:include="breakdown-fields :: textfield('breakdown.totalHousing')"></tr>
     </tbody>
     <thead>
       <tr>
@@ -23,15 +23,15 @@
       </tr>
     </thead>
     <tbody>
-      <tr th:include="breakdown-fields :: textfield('personalAllowance')"></tr>
-      <tr th:include="breakdown-fields :: textfield('dependantsAllowance')"></tr>
-      <tr th:include="breakdown-fields :: textfield('disabledChildPremium')"></tr>
-      <tr th:include="breakdown-fields :: textfield('clientGroupPremium')"></tr>
-      <tr th:include="breakdown-fields :: textfield('enhancedDisabilityPremium')"></tr>
-      <tr th:include="breakdown-fields :: textfield('familyPremium')"></tr>
-      <tr th:include="breakdown-fields :: textfield('severeDisabilityPremium')"></tr>
-      <tr th:include="breakdown-fields :: textfield('carerPremium')"></tr>
-      <tr th:include="breakdown-fields :: textfield('councilTax')"></tr>
+      <tr th:include="breakdown-fields :: textfield('breakdown.personalAllowance')"></tr>
+      <tr th:include="breakdown-fields :: textfield('breakdown.dependantsAllowance')"></tr>
+      <tr th:include="breakdown-fields :: textfield('breakdown.disabledChildPremium')"></tr>
+      <tr th:include="breakdown-fields :: textfield('breakdown.clientGroupPremium')"></tr>
+      <tr th:include="breakdown-fields :: textfield('breakdown.enhancedDisabilityPremium')"></tr>
+      <tr th:include="breakdown-fields :: textfield('breakdown.familyPremium')"></tr>
+      <tr th:include="breakdown-fields :: textfield('breakdown.severeDisabilityPremium')"></tr>
+      <tr th:include="breakdown-fields :: textfield('breakdown.carerPremium')"></tr>
+      <tr th:include="breakdown-fields :: textfield('breakdown.councilTax')"></tr>
     </tbody>
     <thead>
       <tr>
@@ -39,16 +39,33 @@
       </tr>
     </thead>
     <tbody>
-      <tr th:include="breakdown-fields :: textfield('mortgage')"></tr>
-      <tr th:include="breakdown-fields :: textfield('rent')"></tr>
-      <tr th:include="breakdown-fields :: textfield('groundRent')"></tr>
-      <tr th:include="breakdown-fields :: textfield('otherCosts')"></tr>
-      <tr th:include="breakdown-fields :: textfield('nonDependantDeductions')"></tr>
+      <tr th:include="breakdown-fields :: textfield('breakdown.mortgage')"></tr>
+      <tr th:include="breakdown-fields :: textfield('breakdown.rent')"></tr>
+      <tr th:include="breakdown-fields :: textfield('breakdown.groundRent')"></tr>
+      <tr th:include="breakdown-fields :: textfield('breakdown.otherCosts')"></tr>
+      <tr th:include="breakdown-fields :: textfield('breakdown.nonDependantDeductions')"></tr>
     </tbody>
   </table>
 
 
-
+  <h3>Income &amp; Capital</h3>
+  <table class="pure-table pure-table-horizontal">
+    <thead>
+      <tr>
+        <th th:text="#{breakdown.title.income.type}">Income Type</th>
+        <th th:text="#{breakdown.title.income.paidTo}"></th>
+        <th th:text="#{breakdown.title.income.weeklyAmount}"></th>
+        <th th:text="#{breakdown.title.income.earningsDisregard}"></th>
+        <th th:text="#{breakdown.title.income.otherDisregard}"></th>
+        <th th:text="#{breakdown.title.income.netWeeklyAmount}"></th>
+      </tr>
+    </thead>
+    <tbody th:object="${assessment.breakdown2}" >
+      <tr th:each="ic, icRow : *{incomeCapital}" >
+      	<td th:replace="breakdown-fields :: incomeCapital('breakdown2.incomeCapital[__${icRow.index}__]')"></td>
+      </tr>
+    </tbody>
+  </table>
 
 
 

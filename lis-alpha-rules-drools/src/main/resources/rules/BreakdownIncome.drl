@@ -4,15 +4,25 @@ global org.slf4j.Logger logger
 global uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.IAssessmentFactoryService factory
 global uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.IRequireService requireService
 
-rule "Private Pension Rule"
-    salience 80
-when 
-        Application : Application( applicant != null, myApplicant : applicant )
-        $breakdown : AssessmentBreakdown()
+rule "Breakdown Income"
+	when 
+	    $breakdown : Breakdown()
+		$income : Income ( 
+			receiving == true, 
+			value.canConvert(), 
+			owner.type in ( PersonType.MAIN_APPLICANT, PersonType.PARTNER ) )
     then
-        logger.info("Private Pension Rule");
-        
-        List<String> privatePension = HelperFunctions.privatePensionBenefit(myApplicant);
-        HelperFunctions.sumIncomeList($breakdown,privatePension,"Private Pension","Applicant");
+        $breakdown.addIncomeCapital($income);
+end 
+
+rule "Breakdown Benefits"
+	when 
+	    $breakdown : Breakdown()
+		$benefit : Benefit ( 
+			receiving == true, 
+			value.canConvert(), 
+			owner.type in ( PersonType.MAIN_APPLICANT, PersonType.PARTNER ) )
+    then
+        $breakdown.addIncomeCapital($benefit);
 end 
 

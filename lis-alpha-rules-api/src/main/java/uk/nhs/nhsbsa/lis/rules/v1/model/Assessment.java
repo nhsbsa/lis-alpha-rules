@@ -7,6 +7,7 @@ import org.springframework.data.annotation.Id;
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.Application;
 import uk.nhs.nhsbsa.lis.rules.v1.model.flow.Requirement;
 import uk.nhs.nhsbsa.lis.rules.v1.model.outcome.AssessmentBreakdown;
+import uk.nhs.nhsbsa.lis.rules.v1.model.outcome.Breakdown;
 import uk.nhs.nhsbsa.lis.rules.v1.model.outcome.Entitlement;
 import uk.nhs.nhsbsa.lis.rules.v1.model.outcome.ExemptionOutcome;
 
@@ -33,6 +34,16 @@ public class Assessment {
 	private List<Object> workingData;
 
 	private List<Object> rules;
+
+	private Breakdown breakdown2;
+	
+	public Breakdown getBreakdown2() {
+		return breakdown2;
+	}
+
+	public void setBreakdown2(Breakdown breakdown2) {
+		this.breakdown2 = breakdown2;
+	}
 
 	private AssessmentBreakdown breakdown;
 	

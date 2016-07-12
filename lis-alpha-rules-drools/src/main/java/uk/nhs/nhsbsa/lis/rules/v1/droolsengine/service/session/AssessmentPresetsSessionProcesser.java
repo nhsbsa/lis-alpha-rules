@@ -7,6 +7,7 @@ import org.kie.api.runtime.KieSession;
 import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
 import uk.nhs.nhsbsa.lis.rules.v1.model.flow.Requirement;
 import uk.nhs.nhsbsa.lis.rules.v1.model.outcome.AssessmentBreakdown;
+import uk.nhs.nhsbsa.lis.rules.v1.model.outcome.Breakdown;
 
 public class AssessmentPresetsSessionProcesser extends DefaultSessionProcessor {
 
@@ -19,11 +20,16 @@ public class AssessmentPresetsSessionProcesser extends DefaultSessionProcessor {
 		assessment.setRequirements(req);
 		
 		//breakdown
-		AssessmentBreakdown breakdown = new AssessmentBreakdown();
+		AssessmentBreakdown assessmentBreakdown = new AssessmentBreakdown();
 		if (assessment.getApplication() != null) {
-			breakdown.setClaimDate(assessment.getApplication().getClaimDate());
+			assessmentBreakdown.setClaimDate(assessment.getApplication().getClaimDate());
 		}
-		assessment.setBreakdown(breakdown);
+		assessment.setBreakdown(assessmentBreakdown);
+		session.insert(assessmentBreakdown);
+		
+		//breakdown TODO remove old breakdown after refactor
+		Breakdown breakdown = new Breakdown();
+		assessment.setBreakdown2(breakdown);
 		session.insert(breakdown);
 		
 		//rules

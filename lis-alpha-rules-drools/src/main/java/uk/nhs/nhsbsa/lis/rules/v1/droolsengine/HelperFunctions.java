@@ -341,7 +341,7 @@ public class HelperFunctions {
 			for(String incomeCapital : incomes){
 				Double parseDouble=NumberUtils.toDouble(incomeCapital);
 				assessmentCalc.getIncomeCapitals().add(
-					new IncomeCapital(incomeName,owner,new BigDecimal(parseDouble)));
+					new IncomeCapital(incomeName,owner,new BigDecimal(parseDouble), null, null, null));
 			}
 		}
 	}

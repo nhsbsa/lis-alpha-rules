@@ -5,9 +5,32 @@
 
   <table>
     <tr th:fragment="textfield(path)">
-      <td th:text="#{breakdown.__${path}__}">name</td>
-      <td th:text="${assessment.breakdown.__${path}__}">value</td>
+      <td th:text="#{__${path}__}">name</td>
+      <td th:text="${assessment.__${path}__}">value</td>
     </tr>
+  </table>
+
+  <table class="pure-table pure-table-horizontal">
+    <thead>
+      <tr>
+        <th th:text="#{breakdown.title.income.type}">Income Type</th>
+        <th th:text="#{breakdown.title.income.paidTo}"></th>
+        <th th:text="#{breakdown.title.income.weeklyAmount}"></th>
+        <th th:text="#{breakdown.title.income.earningsDisregard}"></th>
+        <th th:text="#{breakdown.title.income.otherDisregard}"></th>
+        <th th:text="#{breakdown.title.income.netWeeklyAmount}"></th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr th:fragment="incomeCapital(path)">
+      <td th:text="${assessment.__${path}__.type}">type</td>
+      <td th:text="${assessment.__${path}__.paidTo}">paidTo</td>
+      <td th:text="${assessment.__${path}__.weeklyAmount}">weeklyAmount</td>
+      <td th:text="${assessment.__${path}__.earningsDisregard}">earningsDisregard</td>
+      <td th:text="${assessment.__${path}__.otherDisregard}">otherDisregard</td>
+      <td th:text="${assessment.__${path}__.netWeeklyAmount}">netWeeklyAmount</td>
+    </tr>
+    </tbody>
   </table>
 
 </body>
