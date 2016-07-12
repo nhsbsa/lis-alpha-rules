@@ -20,6 +20,7 @@ rule "Private Pension Resources"
 when 
     $breakdown : Breakdown()
 	$person : Person()
+	exists ConsiderPerson( person == $person )
 	not IncomeCapital( type == IncomeType.OCC_PENSION.name(), paidTo == $person.name.toString() )
 	accumulate ( Income ( 
 			type == IncomeType.OCC_PENSION,

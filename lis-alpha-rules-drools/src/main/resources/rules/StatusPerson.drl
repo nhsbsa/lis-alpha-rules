@@ -3,13 +3,22 @@ package uk.nhs.nhsbsa.lis.rules.v1.droolsengine.assessment;
 global org.slf4j.Logger logger
 global uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.IAssessmentFactoryService factory
 
-rule "Has Partner"
+rule "Applicant"
+    when
+        $application : Application ( )
+        $applicant : Person ( type == PersonType.MAIN_APPLICANT )
+    then
+        insert ( new ConsiderPerson($applicant, PersonType.MAIN_APPLICANT) );
+end
+
+rule "Partner"
     when
         $application : Application ( hasPartner == true )
         $applicant : Person ( type == PersonType.MAIN_APPLICANT )
         $partner : Person ( type == PersonType.PARTNER )
     then
         insert ( new HasPartner($applicant, $partner) );
+        insert ( new ConsiderPerson($partner, PersonType.PARTNER) );
 end
 
 rule "Is Dependant"

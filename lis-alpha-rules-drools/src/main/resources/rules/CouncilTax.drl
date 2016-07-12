@@ -16,9 +16,7 @@ rule "Default Council Tax"
         insert ($outgoing);
 end
 
-
 rule "Council Tax Requirements"
-no-loop true
 when 
 	not CouncilTax( )
     $breakdown : Breakdown()

@@ -47,6 +47,7 @@ rule "State Pension Resources"
 when 
     $breakdown : Breakdown()
 	$person : Person()
+	exists ConsiderPerson( person == $person )
 	not IncomeCapital( type == BenefitType.RETIREMENT_PENSION.name(), paidTo == $person.name.toString() )
 	accumulate ( Benefit ( 
 			type == BenefitType.RETIREMENT_PENSION,
