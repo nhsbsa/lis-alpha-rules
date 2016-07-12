@@ -65,7 +65,7 @@ public class DroolsConfiguration {
 		        }
 		    });
 
-		    System.setProperty("drools.dump.dir", "/tmp/drools-generated-sources");
+//		    System.setProperty("drools.dump.dir", "/tmp/drools-generated-sources");
 		    KieBuilder kieBuilder = getKieServices().newKieBuilder(kieFileSystem()); 
 		    kieBuilder.buildAll();
 	
