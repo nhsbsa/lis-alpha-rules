@@ -8,6 +8,7 @@ rule "Default Private Pension"
     when 
     	$index : ObjectIndex ()
         $person : Person ( type in ( PersonType.MAIN_APPLICANT, PersonType.PARTNER ) )
+        exists ConsiderPerson( person == $person )
         not Income( owner == $person, type == IncomeType.OCC_PENSION )
     then
         Income $income = factory.defaultIncome(IncomeType.OCC_PENSION);

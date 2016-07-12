@@ -7,15 +7,27 @@ rule "Age"
     when
         $application : Application()
         $person : Person( dob != null )
+        exists ConsiderPerson( person == $person )
         not Age( person == $person )
     then
         logger.info("Age");
         insert ( new Age($application, $person) );
 end
 
+//TODO
+rule "Oldest Applicant"
+    when
+    	$person : Person( type == PersonType.MAIN_APPLICANT )
+    	$age : Age( person == $person)
+        not OldestApplicant( )
+    then
+        insert ( new OldestApplicant($person, $age) );
+end
+
 rule "IsPensioner"
     when
-        $person : (Person( type in (PersonType.MAIN_APPLICANT, PersonType.PARTNER )))
+        $person : Person()
+        exists ConsiderPerson( person == $person )
         $age : Age( person == $person, value >= 60 )
     then
     	logger.info("IsPensioner");

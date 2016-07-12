@@ -8,6 +8,7 @@ rule "Default Council Tax"
     when 
         $index : ObjectIndex ()
         $person : Person ( type in ( PersonType.MAIN_APPLICANT, PersonType.PARTNER ) )
+        exists ConsiderPerson( person == $person )
         not Outgoing( owner == $person, type == OutgoingType.COUNCIL_TAX )
     then
         Outgoing $outgoing = factory.defaultOutgoing(OutgoingType.COUNCIL_TAX);

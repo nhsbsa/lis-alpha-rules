@@ -1,5 +1,7 @@
 package uk.nhs.nhsbsa.lis.rules.v1.model.outcome;
 
+import org.slf4j.helpers.MessageFormatter;
+
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.IntervalValue;
 
 public class CouncilTax implements IRequirement {
@@ -23,4 +25,10 @@ public class CouncilTax implements IRequirement {
         this.value = value;
     }
 
+    @Override
+    public String toString() {
+        return MessageFormatter.arrayFormat("Council tax of {}", new Object[]{
+                value
+        }).getMessage();
+    }
 }

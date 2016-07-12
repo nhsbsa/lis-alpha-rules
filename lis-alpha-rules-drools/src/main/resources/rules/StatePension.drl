@@ -9,6 +9,7 @@ rule "Default State Pension"
     when 
     	$index : ObjectIndex ()
         $person : Person ( type in ( PersonType.MAIN_APPLICANT, PersonType.PARTNER ) )
+        exists ConsiderPerson( person == $person )
         exists $pensioner : IsPensioner ( person == $person )
         not Benefit( owner == $person, type == BenefitType.RETIREMENT_PENSION )
     then
@@ -24,6 +25,7 @@ rule "Enable State Pension"
     	$assessment : Assessment ()
     	$index : ObjectIndex ()
         $person : Person ( type in ( PersonType.MAIN_APPLICANT, PersonType.PARTNER ) )
+        exists ConsiderPerson( person == $person )
         $benefit : Benefit( owner == $person, type == BenefitType.RETIREMENT_PENSION )
         $isPensioner : IsPensioner ( person == $person )
     then
@@ -36,6 +38,7 @@ rule "Disable State Pension"
     	$assessment : Assessment ()
     	$index : ObjectIndex ()
         $person : Person ( type in ( PersonType.MAIN_APPLICANT, PersonType.PARTNER ) )
+        exists ConsiderPerson( person == $person )
         $benefit : Benefit( owner == $person, type == BenefitType.RETIREMENT_PENSION )
         not IsPensioner ( person == $person )
     then
