@@ -56,3 +56,8 @@ h3 {
     color: white;
     text-align : center;
 }
+
+.todo {
+	visibility: hidden;
+	height: 0px;
+}

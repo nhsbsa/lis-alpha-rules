@@ -4,11 +4,11 @@ global org.slf4j.Logger logger
 global uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.IAssessmentFactoryService factory
 global uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.IRequireService requireService
 
-rule "Calculate Premiums"
+rule "Add Personal Allowance to Breakdown"
 	when
-        Application : Application( applicant != null, myApplicant : applicant )
-        $breakdown : AssessmentBreakdown()
+        $breakdown : Breakdown()
+        $allowance : PersonalAllowance()
     then
-    	
+    	$breakdown.setPersonalAllowance($allowance);
 end 
 

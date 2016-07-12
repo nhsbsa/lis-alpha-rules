@@ -8,35 +8,41 @@
 	<h2>Requirements</h2>
 	
 	<h3>Personal Allowance</h3>
-  	<p>TODO personal allowance requirement</p>
+  	<p>
+  		<span th:replace="breakdown-fields :: weeklyValue('personalAllowance?.value')"></span>
+  		(<span th:replace="breakdown-fields :: weeklyValue('personalAllowance?.name')"></span>)
+  	</p>
 	
-	<h3>Dependants</h3>
-  	<p>TODO dependants requirement</p>
-	
-	<h3>Disabled Child Premium</h3>
-  	<p>TODO Disabled Child Premium requirement</p>
-	
-	<h3>Client Group Premium</h3>
-  	<p>TODO Client Group Premium requirement</p>
-	
-	<h3>Enhanced Disability Premium</h3>
-  	<p>TODO Enhanced Disability Premium requirement</p>
-	
-	<h3>Family Premium</h3>
-  	<p>TODO Family Premium requirement</p>
-	
-	<h3>Severe Disability Premium</h3>
-  	<p>TODO Severe Disability Premium requirement</p>
-	
-	<h3>Carer Premium</h3>
-  	<p>TODO Carer Premium requirement</p>
-	
+	<div class="todo">
+		<h3>Dependants</h3>
+	  	<p>TODO dependants requirement</p>
+		
+		<h3>Disabled Child Premium</h3>
+	  	<p>TODO Disabled Child Premium requirement</p>
+		
+		<h3>Client Group Premium</h3>
+	  	<p>TODO Client Group Premium requirement</p>
+		
+		<h3>Enhanced Disability Premium</h3>
+	  	<p>TODO Enhanced Disability Premium requirement</p>
+		
+		<h3>Family Premium</h3>
+	  	<p>TODO Family Premium requirement</p>
+		
+		<h3>Severe Disability Premium</h3>
+	  	<p>TODO Severe Disability Premium requirement</p>
+		
+		<h3>Carer Premium</h3>
+	  	<p>TODO Carer Premium requirement</p>
+	</div>
+		
 	<h3>Council Tax</h3>
   	<p><span th:replace="breakdown-fields :: weeklyValue('councilTax.value')"></span></p>
-	
-	<h3>Housing Costs</h3>
-  	<p>TODO Housing Costs requirement</p>
-	
+
+	<div class="todo">	
+		<h3>Housing Costs</h3>
+	  	<p>TODO Housing Costs requirement</p>
+	</div>	
 
   <h2>Resources</h2>
   <h3>Income &amp; Capital</h3>
