@@ -8,11 +8,8 @@ rule "Default Retirement Pension"
     when 
     	$index : ObjectIndex ()
         $person : Person ( type in ( PersonType.MAIN_APPLICANT, PersonType.PARTNER ) )
-        exists $pensioner : IsPensioner ( person == $person )
-        $isPensioner : IsPensioner ( person == $person )
         not Income( owner == $person, type == IncomeType.OCC_PENSION )
     then
-        logger.info("Default Retirement Pension");
         Income $income = factory.defaultIncome(IncomeType.OCC_PENSION);
         $person.addIncome($income);
         $index.reindex($person);
