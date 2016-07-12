@@ -44,11 +44,10 @@ rule "Disable State Pension"
 end
 
 rule "State Pension Resources"
-no-loop true
 when 
-	not IncomeCapital( type == BenefitType.RETIREMENT_PENSION.name() )
     $breakdown : Breakdown()
 	$person : Person()
+	not IncomeCapital( type == BenefitType.RETIREMENT_PENSION.name(), paidTo == $person.name.toString() )
 	accumulate ( Benefit ( 
 			type == BenefitType.RETIREMENT_PENSION,
 			receiving == true, value.canConvert(),

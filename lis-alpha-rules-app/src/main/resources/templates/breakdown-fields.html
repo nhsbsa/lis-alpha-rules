@@ -3,13 +3,11 @@
 
 <body>
 
-  <table>
-    <tr th:fragment="textfield(path)">
-      <td th:text="#{__${path}__}">name</td>
-      <td th:text="${assessment.__${path}__}">value</td>
-    </tr>
-  </table>
+  <p>
+  	<span th:fragment="weeklyValue(path)" th:text="*{__${path}__}"></span>
+  </p>
 
+  <!-- income capital -->
   <table class="pure-table pure-table-horizontal">
     <thead>
       <tr>

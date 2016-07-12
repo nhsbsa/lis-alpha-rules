@@ -17,11 +17,10 @@ rule "Default Private Pension"
 end
 
 rule "Private Pension Resources"
-no-loop true
 when 
-	not IncomeCapital( type == IncomeType.OCC_PENSION.name() )
     $breakdown : Breakdown()
 	$person : Person()
+	not IncomeCapital( type == IncomeType.OCC_PENSION.name(), paidTo == $person.name.toString() )
 	accumulate ( Income ( 
 			type == IncomeType.OCC_PENSION,
 			receiving == true, value.canConvert(),
