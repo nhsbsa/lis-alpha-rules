@@ -32,11 +32,6 @@ public class Income implements IMoneySource {
 		state=ValueState.UNDEFINED;
 	}
 	
-	@Override
-	public IMoneySource.Type moneySourceType() {
-		return IMoneySource.Type.RESOURCE;
-	}
-
 	public IntervalValue getValue() {
 		return value;
 	}
@@ -45,6 +40,7 @@ public class Income implements IMoneySource {
 		this.value=value;
 	}
 
+    @Override
 	public IncomeType getType() {
 		return type;
 	}

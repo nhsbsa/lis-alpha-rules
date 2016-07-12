@@ -21,12 +21,11 @@ end
 
 
 rule "Accumulate Resources"
+salience -100
 no-loop true
 when 
 	not Resources()
-	accumulate ( IMoneySource ( 
-			moneySourceType() == IMoneySource.Type.RESOURCE,
-			receiving == true, value.canConvert(),
+	accumulate ( IResource ( 
 			$value : value.convert(Interval.WEEKLY).value );
 		$sum : sum ( $value )
 	)
@@ -37,12 +36,11 @@ end
 
 
 rule "Accumulate Requirements"
+salience -100
 no-loop true
 when 
 	not Requirements()
-	accumulate ( IMoneySource ( 
-			moneySourceType() == IMoneySource.Type.REQUIREMENT, 
-			receiving == true, value.canConvert(),
+	accumulate ( IRequirement ( 
 			$value : value.convert(Interval.WEEKLY).value );
 		$sum : sum ( $value )
 	)
@@ -64,6 +62,7 @@ end
 
 
 rule "Excess contribution"
+salience -100
 when
 	$resources : Resources (  )
 	$requirements : Requirements (  )
@@ -75,6 +74,7 @@ end
 
 
 rule "Full Entitlement"
+salience -100
 when
 	$fullThreshold : FullEntitlementThreshold (  )
 	$excessContribution : ExcessContribution ( value.lte($fullThreshold.value) )
@@ -85,6 +85,7 @@ end
 
 
 rule "Partial Entitlement"
+salience -100
 when
 	$fullThreshold : FullEntitlementThreshold (  )
 	$noThreshold : NoEntitlementThreshold (  )
@@ -96,6 +97,7 @@ end
 
 
 rule "No Entitlement"
+salience -100
 when
 	$noThreshold : NoEntitlementThreshold (  )
 	$excessContribution : ExcessContribution ( value.gte($noThreshold.value) )
@@ -106,6 +108,7 @@ then
 end
 
 rule "Entitlement"
+salience -100
 when
 	$assessment: Assessment()
 	$entitlement : Entitlement()

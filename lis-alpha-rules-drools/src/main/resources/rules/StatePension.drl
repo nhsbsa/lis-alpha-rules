@@ -1,10 +1,10 @@
 package uk.nhs.nhsbsa.lis.rules.v1.droolsengine.assessment;
  
+
 global org.slf4j.Logger logger
 global uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.IAssessmentFactoryService factory
 global uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.IRequireService requireService
 
-// Benefit Rules
 rule "Default State Pension"
     when 
     	$index : ObjectIndex ()
@@ -43,5 +43,26 @@ rule "Disable State Pension"
         requireService.disable($assessment, $index, $benefit);
 end
 
-
+rule "State Pension Resources"
+no-loop true
+when 
+	not IncomeCapital( type == BenefitType.RETIREMENT_PENSION.name() )
+    $breakdown : Breakdown()
+	$person : Person()
+	accumulate ( Benefit ( 
+			type == BenefitType.RETIREMENT_PENSION,
+			receiving == true, value.canConvert(),
+			owner == $person,
+			$value : value.convert(Interval.WEEKLY).value );
+		$sum : sum ( $value )
+	)
+then
+	IntervalValue total = new IntervalValue(Interval.WEEKLY, $sum);
+	IncomeCapital requirement = new IncomeCapital(BenefitType.RETIREMENT_PENSION.name(), 
+		$person.toString(), 
+		total.getValue(),
+		null, null, null);
+	$breakdown.addIncomeCapital(requirement);
+	insert ( requirement );
+end
 

@@ -5,13 +5,10 @@ global uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.IAssessmentFactoryService
 global uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.IRequireService requireService
 
 rule "Calculate Premiums"
-when 
+	when
         Application : Application( applicant != null, myApplicant : applicant )
         $breakdown : AssessmentBreakdown()
     then
-        logger.info("State Pension Rule");
-        
-        List<String> statePension = HelperFunctions.statePensionBenefit(myApplicant);
-        HelperFunctions.sumIncomeList($breakdown,statePension,"State Pension","Applicant");
+    	
 end 
 

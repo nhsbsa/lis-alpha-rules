@@ -2,7 +2,13 @@ package uk.nhs.nhsbsa.lis.rules.v1.model.outcome;
 
 import java.math.BigDecimal;
 
-public class IncomeCapital {
+import org.slf4j.helpers.MessageFormatter;
+
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.Interval;
+import uk.nhs.nhsbsa.lis.rules.v1.model.application.IntervalValue;
+
+public class IncomeCapital implements IResource {
+    
 	private String type; // This could be an IncomeType,SavingType or BenefitType TODO better way of doing this
 	private String paidTo; // Claimant, partner or whatever is needed for the form
 	private BigDecimal weeklyAmount;
@@ -59,9 +65,13 @@ public class IncomeCapital {
         this.netWeeklyAmount = netWeeklyAmount;
     }
     @Override
+    public IntervalValue getValue() {
+        return new IntervalValue(Interval.WEEKLY, weeklyAmount);
+    }
+    @Override
     public String toString() {
-        return "IncomeCapital [type=" + type + ", paidTo=" + paidTo + ", weeklyAmount=" + weeklyAmount
-                + ", earningsDisregard=" + earningsDisregard + ", otherDisregard=" + otherDisregard
-                + ", netWeeklyAmount=" + netWeeklyAmount + "]";
+        return MessageFormatter.arrayFormat("{} income capital paid to {} as {}", new Object[]{
+                getValue(), paidTo, type
+        }).getMessage();
     }
 }

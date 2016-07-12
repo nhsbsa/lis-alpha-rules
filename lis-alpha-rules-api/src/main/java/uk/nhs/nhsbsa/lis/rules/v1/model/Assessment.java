@@ -9,7 +9,6 @@ import uk.nhs.nhsbsa.lis.rules.v1.model.flow.Requirement;
 import uk.nhs.nhsbsa.lis.rules.v1.model.outcome.AssessmentBreakdown;
 import uk.nhs.nhsbsa.lis.rules.v1.model.outcome.Breakdown;
 import uk.nhs.nhsbsa.lis.rules.v1.model.outcome.Entitlement;
-import uk.nhs.nhsbsa.lis.rules.v1.model.outcome.ExemptionOutcome;
 
 /**
  * An assessment of an application.
@@ -49,8 +48,6 @@ public class Assessment {
 	
 	private Entitlement entitlement;
 	
-	private ExemptionOutcome outcome;
-
 	public Assessment() {
 		requirements = new Requirement();
 		requirements.include("application");
@@ -107,14 +104,6 @@ public class Assessment {
 
 	public void setWorkingData(List<Object> facts) {
 		this.workingData = facts;
-	}
-
-	public ExemptionOutcome getOutcome() {
-		return outcome;
-	}
-
-	public void setOutcome(ExemptionOutcome outcome) {
-		this.outcome = outcome;
 	}
 
 	public List<Object> getRules() {

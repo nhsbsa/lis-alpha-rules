@@ -3,7 +3,16 @@ package uk.nhs.nhsbsa.lis.rules.v1.droolsengine.assessment;
 global org.slf4j.Logger logger
 global uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.IAssessmentFactoryService factory
 
-rule "IsDependant"
+rule "Has Partner"
+    when
+        $application : Application ( hasPartner == true )
+        $applicant : Person ( type == PersonType.MAIN_APPLICANT )
+        $partner : Person ( type == PersonType.PARTNER )
+    then
+        insert ( new HasPartner($applicant, $partner) );
+end
+
+rule "Is Dependant"
     when
         $person : (Person( type in (PersonType.DEPENDANT)))
         $age : Age( person == $person, value < 16 )
@@ -12,8 +21,7 @@ rule "IsDependant"
         insert ( new IsDependant($person) );
 end
 
-
-rule "IsNonDependant"
+rule "Is Non-dependant"
     when
         $person : (Person( type in (PersonType.DEPENDANT)))
         $age : Age( person == $person, value >= 16 )

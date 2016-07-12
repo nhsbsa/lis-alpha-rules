@@ -29,10 +29,6 @@ public class Outgoing implements IMoneySource {
 	}
 
 	@Override
-	public IMoneySource.Type moneySourceType() {
-		return IMoneySource.Type.REQUIREMENT;
-	}
-
 	public OutgoingType getType() {
 		return type;
 	}

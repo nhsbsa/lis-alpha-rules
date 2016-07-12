@@ -29,10 +29,6 @@ public class Benefit implements IMoneySource {
 	}
 	
 	@Override
-	public IMoneySource.Type moneySourceType() {
-		return IMoneySource.Type.RESOURCE;
-	}
-	
 	public BenefitType getType() {
 		return type;
 	}

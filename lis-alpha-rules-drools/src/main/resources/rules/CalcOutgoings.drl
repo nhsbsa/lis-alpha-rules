@@ -4,22 +4,6 @@ global org.slf4j.Logger logger
 global uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.IAssessmentFactoryService factory
 global uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.IRequireService requireService
 
-
-rule "Community Charge Rule"
-    salience 80
-when 
-        Application : Application( applicant != null, myApplicant : applicant )
-        $breakdown : AssessmentBreakdown()
-    then
-        logger.info("Council Tax Rule");
-        List<String> councilTax = HelperFunctions.councilTaxCalculation(myApplicant);
-        
-        if(councilTax.size()>0){
-            // TODO assume only 1 community charge for now, but what about duplicates?
-            $breakdown.setCouncilTax(Double.parseDouble(councilTax.get(0)));
-        }
-end
-
 rule "Rent Rule"
     salience 80
 when 

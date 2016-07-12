@@ -1,12 +1,14 @@
 package uk.nhs.nhsbsa.lis.rules.v1.model.outcome;
 
+import org.slf4j.helpers.MessageFormatter;
+
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.IntervalValue;
 
 public class Entitlement {
 
-	EntitlementLevel level;
+	private EntitlementLevel level;
 	
-	IntervalValue excessContribution;
+	private IntervalValue excessContribution;
 
 	public Entitlement() {
 	}
@@ -35,7 +37,8 @@ public class Entitlement {
 
 	@Override
 	public String toString() {
-		return "Application entitled to FULL help with help costs";
+		return MessageFormatter.arrayFormat("Application entitled to {} help with help costs",
+		        new Object[]{level}).getMessage();
 	}
 
 }

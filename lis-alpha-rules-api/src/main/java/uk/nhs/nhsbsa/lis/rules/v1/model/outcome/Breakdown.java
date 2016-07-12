@@ -3,23 +3,19 @@ package uk.nhs.nhsbsa.lis.rules.v1.model.outcome;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.Benefit;
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.Income;
 import uk.nhs.nhsbsa.lis.rules.v1.model.application.Interval;
 
 /**
- * Class to hold the values used in the assessment calculation
- * This is based on the HC3 form
- * @author lorob
- *
+ * Breakdown of resources/requirements used in the assessment.
  */
 public class Breakdown {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(Breakdown.class);
-
+    private PersonalAllowance personalAllowance;
+    
+    private CouncilTax councilTax;
+    
 	private List<IncomeCapital> incomeCapital;
 
 	public List<IncomeCapital> getIncomeCapital() {
@@ -54,5 +50,21 @@ public class Breakdown {
 		}
 		this.incomeCapital.add(incomeCapital);
 	}
+
+    public PersonalAllowance getPersonalAllowance() {
+        return personalAllowance;
+    }
+
+    public void setPersonalAllowance(PersonalAllowance personalAllowance) {
+        this.personalAllowance = personalAllowance;
+    }
+
+    public CouncilTax getCouncilTax() {
+        return councilTax;
+    }
+
+    public void setCouncilTax(CouncilTax councilTax) {
+        this.councilTax = councilTax;
+    }
 	
 }

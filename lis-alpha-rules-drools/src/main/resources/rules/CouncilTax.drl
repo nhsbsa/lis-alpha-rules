@@ -15,3 +15,22 @@ rule "Default Council Tax"
         $index.reindex($person);
         insert ($outgoing);
 end
+
+
+rule "Council Tax Requirements"
+no-loop true
+when 
+	not CouncilTax( )
+    $breakdown : Breakdown()
+	accumulate ( Outgoing ( 
+			type == OutgoingType.COUNCIL_TAX,
+			receiving == true, value.canConvert(),
+			$value : value.convert(Interval.WEEKLY).value );
+		$sum : sum ( $value )
+	)
+then
+	IntervalValue total = new IntervalValue(Interval.WEEKLY, $sum);
+	CouncilTax resource = new CouncilTax(total);
+    $breakdown.setCouncilTax(resource);
+	insert ( resource );
+end
