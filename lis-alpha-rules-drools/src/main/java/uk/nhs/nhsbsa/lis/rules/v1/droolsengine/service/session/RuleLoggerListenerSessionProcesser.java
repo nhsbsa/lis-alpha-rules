@@ -5,11 +5,15 @@ import org.kie.api.definition.rule.Rule;
 import org.kie.api.event.rule.AfterMatchFiredEvent;
 import org.kie.api.runtime.KieSession;
 import org.kie.api.runtime.rule.Match;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import uk.nhs.nhsbsa.lis.rules.v1.model.Assessment;
 
 public class RuleLoggerListenerSessionProcesser extends DefaultSessionProcessor {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(RuleLoggerListenerSessionProcesser.class);
+	
 	private static class Listener extends DefaultAgendaEventListener {
 		
 		private Assessment assessment;
@@ -38,6 +42,7 @@ public class RuleLoggerListenerSessionProcesser extends DefaultSessionProcessor 
 //			if (!CollectionUtils.isEmpty(objects)) {
 //				result.append(" ").append(objects);
 //			}
+			LOGGER.info("Rule match: {}", rule.getName());
 			return result.toString();
 		}
 	}
