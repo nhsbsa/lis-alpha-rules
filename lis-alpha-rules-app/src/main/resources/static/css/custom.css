@@ -61,3 +61,8 @@ h3 {
 	visibility: hidden;
 	height: 0px;
 }
+
+li {
+    list-style: square inside; 
+    margin-top: 5px;
+}
