@@ -58,6 +58,7 @@ public class BenefitsTest extends AbstractRulesTest {
 		Assessment actual = service.assess(input);
 
 		Requirement req = actual.getRequirements();
+		System.out.println(req);
 		assertFalse(req.isRequired("application.applicant.benefits[0]"));
 	}
 
