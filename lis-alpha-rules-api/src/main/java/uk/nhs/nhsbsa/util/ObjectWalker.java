@@ -17,6 +17,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.Assert;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 /**
  * Class to walk an object model and callback for every Field discovered. 
  */
@@ -187,7 +189,7 @@ public class ObjectWalker {
 		List<CallbackItem> result = new ArrayList<>();
 		List<Field> fields = FieldUtils.getAllFieldsList(o.getClass());
 		for (java.lang.reflect.Field field : fields) {
-			if (!Modifier.isStatic(field.getModifiers())) {
+			if (traverseField(field)) {
 				try {
 					String fieldName = field.getName();
 					String fieldPath = append(path, fieldName);
@@ -202,7 +204,15 @@ public class ObjectWalker {
 		return result;
 	}
 
-	private String append(String path, String fieldName) {
+	private boolean traverseField(Field field) {
+	    boolean result = !Modifier.isStatic(field.getModifiers());
+	    if (result) {
+	        result = field.getAnnotationsByType(JsonBackReference.class).length == 0;
+	    }
+	    return result;
+    }
+
+    private String append(String path, String fieldName) {
 		if (path == null) {
 			return fieldName;
 		}
