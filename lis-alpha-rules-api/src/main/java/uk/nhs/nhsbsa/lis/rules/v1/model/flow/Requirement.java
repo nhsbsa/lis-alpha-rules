@@ -21,6 +21,7 @@ public class Requirement {
 	}
 
 	public void exclude(String path) {
+	    LOGGER.info("Excluding {}", path);
 		excludes.add(path);
 		if (includes.contains(path)) {
 			includes.remove(path);

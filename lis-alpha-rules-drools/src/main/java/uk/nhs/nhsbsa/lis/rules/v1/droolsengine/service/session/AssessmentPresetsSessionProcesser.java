@@ -34,10 +34,6 @@ public class AssessmentPresetsSessionProcesser extends DefaultSessionProcessor {
 		
 		//rules
 		assessment.setRules(new ArrayList<>());
-		
-		//working data
-		assessment.setWorkingData(new ArrayList<>());
-		
 	}
 
 }

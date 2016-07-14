@@ -1,5 +1,7 @@
 package uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.session;
 
+import java.util.ArrayList;
+
 import org.drools.core.event.DefaultRuleRuntimeEventListener;
 import org.kie.api.runtime.KieSession;
 
@@ -26,6 +28,9 @@ public class WorkingDataSessionProcesser extends DefaultSessionProcessor {
 	@Override
 	public void preProcess(KieSession session, Assessment assessment) {
 		
+        //working data
+        assessment.setWorkingData(new ArrayList<>());
+        
 		session.addEventListener(new Listener(assessment));
 	}
 
