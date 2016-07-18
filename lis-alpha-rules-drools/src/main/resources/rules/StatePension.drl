@@ -6,6 +6,7 @@ global uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.IAssessmentFactoryService
 global uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.IRequireService requireService
 
 rule "Default State Pension"
+salience 100
     when 
     	$index : ObjectIndex ()
         $person : Person ( type in ( PersonType.MAIN_APPLICANT, PersonType.PARTNER ) )

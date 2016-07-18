@@ -4,6 +4,7 @@ global org.slf4j.Logger logger
 global uk.nhs.nhsbsa.lis.rules.v1.droolsengine.service.IAssessmentFactoryService factory
 
 rule "Default Application"
+salience 100
     when 
         $assessment : Assessment( )
         not Application( )
@@ -15,6 +16,7 @@ rule "Default Application"
 end
 
 rule "Default Applicant"
+salience 100
     when
         $application: Application ( applicant == null )
     then
@@ -25,6 +27,7 @@ rule "Default Applicant"
 end
 
 rule "Default Partner"
+salience 100
     when
         $application: Application ( partner == null, hasPartner == true )
     then
