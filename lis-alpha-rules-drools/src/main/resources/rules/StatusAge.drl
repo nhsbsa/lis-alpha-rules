@@ -10,7 +10,6 @@ rule "Age"
         exists ConsiderPerson( person == $person )
         not Age( person == $person )
     then
-        logger.info("Age");
         insert ( new Age($application, $person) );
 end
 

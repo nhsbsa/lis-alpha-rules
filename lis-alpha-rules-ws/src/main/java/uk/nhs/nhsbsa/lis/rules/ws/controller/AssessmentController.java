@@ -28,7 +28,7 @@ public class AssessmentController implements IAssessmentWebService {
 	
 	@Override
 	@RequestMapping(method=RequestMethod.POST)
-	public @ResponseBody Assessment post(Application application) {
+	public @ResponseBody Assessment post(@RequestBody Application application) {
 
     	LOGGER.info("POST /assessments");
 		return assess(new Assessment(null, application));
