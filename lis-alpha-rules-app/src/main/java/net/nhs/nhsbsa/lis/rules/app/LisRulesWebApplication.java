@@ -6,10 +6,10 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @ComponentScan(basePackages={"net.nhs.nhsbsa.lis"})
-public class Application {
+public class LisRulesWebApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(LisRulesWebApplication.class, args);
     }
 
 }
