@@ -78,4 +78,30 @@
     </resources>
   </build>
 
+  <profiles>
+    <profile>
+      <id>heroku</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>com.heroku.sdk</groupId>
+            <artifactId>heroku-maven-plugin</artifactId>
+            <configuration>
+              <stack>cedar-14</stack>
+              <appName>${project.artifactId}</appName>
+              <jdkVersion>1.8</jdkVersion>
+              <includeTarget>false</includeTarget>
+              <includes>
+                <include>target/${project.build.finalName}.jar</include>
+              </includes>
+              <processTypes>
+                <web>java -Dserver.port=$PORT -Dassessments.uri=https://lis-alpha-rules-ws.herokuapp.com/assessments -jar target/${project.build.finalName}.jar</web>
+              </processTypes>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
 </project>
