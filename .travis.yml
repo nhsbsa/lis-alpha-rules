@@ -1,13 +1,4 @@
 language: java
 jdk:
   - oraclejdk8
-script: mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
-deploy:
-  - provider: heroku
-    api:
-      key:
-        secure: eEw1iGI2PbAW9XwTuY1TINFCh2aSmod0NUhzO0TWPD97anq5Nruk7s1wl8QqHvtKnAHqNIuCnr78VjMzZjKbtTbarNPmtO+RKn3otIzxfVlUTTS/RHqVtHEGZ+DiOBVhZiAToxEnHJVwYNWgc5l3yQT0tPHXt3PfdbO2ztWJzYTx1nUk1nfbdIRgn5v3pILKnPvzlx+OcNJYtVyBnvjtCPeQpyS07X1Hl4eJppqBnQfRV220XM+5nRjc0ZPzrThvGQ6kJQU9DX08oIcoDIINkhxsRD9sOiNX+YawFibaXJK5JdidHfFYeiNu9jXoXFZbcoxQcowbKvxoX2/lc4+BeoFgOfnURx23WupgO03O1ZKVEEmDb1lHWnbh9VhBYcFw/4slXksjEWbcMb70axQjFdo5+fx0yFWagXSu/DEc0cS9shXyUG++wC6kO3IQ5Yz2e/c5qO55vy39KSkHNKgquH/+zmQSCsfqubPSJPJHCB/vIqo+B848IyXkdb4//3lu0j9N7OU0pjBG3Xhd/PXeiZ8uQJq/DUxIEtsBVZtrIbjVbr7Kdpbl+ZIameAPUJjbxupuPAAstAMxZ522jE73nPiyuB9nEyqU+a6JZn3kxz+ClR0pY8BmNteGqPEc78P1VYYGkAYABCj2fhGaY5WKSx7WkJUoB/frYuys20RZaaI=
-    on:
-      all_branches: true
-    app:
-      master: lis-alpha-rules-ws
+script: mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V -P heroku
