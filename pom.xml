@@ -68,11 +68,14 @@
   <build>
     <pluginManagement>
       <plugins>
+        <!-- heroku deploy -->
         <plugin>
           <groupId>com.heroku.sdk</groupId>
           <artifactId>heroku-maven-plugin</artifactId>
           <version>1.0.3</version>
         </plugin>
+        
+        <!-- drools generate sources -->
         <plugin>
           <groupId>org.kie</groupId>
           <artifactId>kie-maven-plugin</artifactId>
