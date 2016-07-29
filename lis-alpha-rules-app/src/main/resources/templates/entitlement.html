@@ -26,7 +26,7 @@
       <div class="clear"></div>
 
       <div class="intro" th:if="${entitlement != null}">
-        <h1 th:text="Valid LIS Certificate: ${entitlement.cert}">LIS Certificate Number</h1>
+        <h1>Valid LIS Certificate: <span th:text="${entitlement.cert}"></span></h1>
         <p>valid from <span th:text="${entitlement.from}">
         </span> until <span th:text="${entitlement.until}"></span></p>
       </div>
