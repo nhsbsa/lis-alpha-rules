@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Prototype Rules Engine Interface</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
+<link rel="stylesheet" type="text/css" href="../css/pure-min.css" media="all" />
+<link rel="stylesheet" type="text/css" href="../css/application.css" media="all" />
+<link rel="stylesheet" type="text/css" href="../css/style.css" media="all" />
+<link rel="stylesheet" type="text/css" href="../css/custom.css" media="all" />
+</head>
+
+<body>
+  <div id="content">
+
+    <div class="container">
+      <div class="header">
+        <div class="headerlogo">
+          <p>Version ${project.version}</p>
+        </div>
+      </div>
+
+      <div class="clear"></div>
+
+      <div class="intro" th:if="${entitlement != null}">
+        <h1 th:text="${entitlement.cert}">LIS Certificate Number</h1>
+        <p>LIS Certificate valid from <span th:text="${entitlement.from}">
+        </span> until <span th:text="${entitlement.until}"></span></p>
+      </div>
+      <div class="intro" th:unless="${entitlement != null}">
+        <h1 >Invalid Certificate</h1>
+      </div>
+      <div class="clear"></div>
+
+    </div>
+  </div>
+</body>
+</html>
