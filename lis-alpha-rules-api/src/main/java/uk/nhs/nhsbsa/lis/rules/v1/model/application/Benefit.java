@@ -1,7 +1,5 @@
 package uk.nhs.nhsbsa.lis.rules.v1.model.application;
 
-import org.springframework.data.annotation.Transient;
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 /**
@@ -12,8 +10,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 public class Benefit implements IMoneySource {
 	
 	@JsonBackReference
-	@Transient
-	transient private Person owner;
+	private Person owner;
 	
 	private BenefitType type;
 	
@@ -45,6 +42,7 @@ public class Benefit implements IMoneySource {
 		this.state = state;
 	}
 
+	@Override
 	public IntervalValue getValue() {
 		return value;
 	}
@@ -74,9 +72,6 @@ public class Benefit implements IMoneySource {
 		if (obj == null)
 			return false;
 		if (getClass() != obj.getClass()) {
-			//TODO handle SpringBoot devtools classloader defect:
-			//https://github.com/spring-projects/spring-boot/issues/3316
-			System.err.println(getClass().getClassLoader() + " != " + obj.getClass().getClassLoader());
 			return false;
 		}
 		Benefit other = (Benefit) obj;
@@ -93,6 +88,7 @@ public class Benefit implements IMoneySource {
 		this.owner = owner;
 	}
 
+    @Override
 	public Boolean getReceiving() {
 		return receiving;
 	}

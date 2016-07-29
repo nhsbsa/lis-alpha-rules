@@ -34,21 +34,21 @@ public class PersonBuilder extends AbstractBuilder<Person>{
 	
 	public BenefitsBuilder withBenefits() {
 		
-		BenefitsBuilder result = new BenefitsBuilder(this, "benefits", (List<Benefit>)new ArrayList<Benefit>());
+		BenefitsBuilder result = new BenefitsBuilder(this, "benefits", new ArrayList<>());
 		getInstance().setBenefits(result.getInstance());
 		return result;
 	}
 	
 	public OutgoingsBuilder withOutgoings() {
 		
-		OutgoingsBuilder result = new OutgoingsBuilder(this, "outgoings", (List<Outgoing>)new ArrayList<Outgoing>());
+		OutgoingsBuilder result = new OutgoingsBuilder(this, "outgoings", new ArrayList<>());
 		getInstance().setOutgoings(result.getInstance());
 		return result;
 	}
 
 	public IncomesBuilder withIncomes() {
 	
-		IncomesBuilder result = new IncomesBuilder(this, "incomes", (List<Income>)new ArrayList<Income>());
+		IncomesBuilder result = new IncomesBuilder(this, "incomes", new ArrayList<>());
 		getInstance().setIncomes(result.getInstance());
 		return result;
 	}

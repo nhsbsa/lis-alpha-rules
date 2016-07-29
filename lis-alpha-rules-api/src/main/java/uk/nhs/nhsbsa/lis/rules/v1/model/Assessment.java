@@ -55,6 +55,7 @@ public class Assessment {
 	
 	public Assessment(String id, Application application) {
 		this();
+		this.id = id;
 		this.application = application;
 	}
 
