@@ -74,7 +74,7 @@
           <artifactId>heroku-maven-plugin</artifactId>
           <version>1.0.3</version>
         </plugin>
-        
+
         <!-- drools generate sources -->
         <plugin>
           <groupId>org.kie</groupId>
@@ -129,6 +129,7 @@
           <configuration>
             <executable>true</executable>
             <addResources>false</addResources>
+            <excludeDevtools>true</excludeDevtools>
           </configuration>
         </plugin>
 
@@ -147,6 +148,10 @@
               <exclude>**/*Test.*</exclude>
               <exclude>**/*IT.*</exclude>
             </excludes>
+            <includes>
+              <include>net/nhs/**</include>
+              <include>uk/nhs/**</include>
+            </includes>
           </configuration>
           <executions>
             <execution>
@@ -220,6 +225,9 @@
 
       </plugins>
     </pluginManagement>
+
+    <plugins>
+    </plugins>
 
   </build>
 
