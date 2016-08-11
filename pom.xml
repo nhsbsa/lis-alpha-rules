@@ -130,6 +130,7 @@
             <executable>true</executable>
             <addResources>false</addResources>
             <excludeDevtools>true</excludeDevtools>
+            <addResources>false</addResources>
           </configuration>
         </plugin>
 
