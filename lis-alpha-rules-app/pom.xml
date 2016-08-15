@@ -111,8 +111,7 @@
                 <include>${project.build.directory}/${project.build.finalName}.jar</include>
               </includes>
               <processTypes>
-                <web>java -Dserver.port=$PORT -Dassessments.uri=https://lis-alpha-rules-ws.herokuapp.com/assessments
-                  -jar target/${project.build.finalName}.jar</web>
+                <web>java -Dserver.port=$PORT -Dassessments.uri=https://lis-alpha-rules-ws.herokuapp.com/assessments -jar target/${project.build.finalName}.jar</web>
               </processTypes>
             </configuration>
           </plugin>
