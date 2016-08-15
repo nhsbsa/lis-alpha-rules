@@ -34,6 +34,10 @@
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-security</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-devtools</artifactId>
       <optional>true</optional>
     </dependency>
@@ -107,7 +111,8 @@
                 <include>${project.build.directory}/${project.build.finalName}.jar</include>
               </includes>
               <processTypes>
-                <web>java -Dserver.port=$PORT -Dassessments.uri=https://lis-alpha-rules-ws.herokuapp.com/assessments -jar target/${project.build.finalName}.jar</web>
+                <web>java -Dserver.port=$PORT -Dassessments.uri=https://lis-alpha-rules-ws.herokuapp.com/assessments
+                  -jar target/${project.build.finalName}.jar</web>
               </processTypes>
             </configuration>
           </plugin>
